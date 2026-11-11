@@ -1,0 +1,2319 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programación Anual de Actividades 2027</title>
+<meta name="description" content="Seguimiento del registro del Programa Anual de Actividades 2027 de la Coordinación de Bienestar Social (IMSS): cursos y talleres, actividades complementarias y teatros.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css">
+<script src="assets/d3.v7.9.0.min.js"></script>
+<script src="assets/dash-runtime.js"></script>
+</head>
+<body>
+<div id="dash-root">
+<style>
+#dash-root { --dash-gutter: clamp(16px, 3vw, 40px); }
+.px { --px-verde:#1E5B4F; --px-verde-osc:#002F2A; --px-guinda:#9B2247; --px-oro:#A57F2C; font-family:'Noto Sans', var(--font-anthropic-sans); color:var(--color-fg); max-width:1280px; margin-inline:auto; display:flex; flex-direction:column; gap:var(--cds-gap-xl); }
+.px-head { display:flex; flex-direction:column; gap:var(--cds-gap-sm); border-top:3px solid var(--px-guinda); padding-top:var(--cds-pad-lg); }
+.px-eyebrow { font-size:var(--cds-font-size-caption); letter-spacing:.12em; text-transform:uppercase; color:var(--px-oro); font-weight:600; }
+.px-title { margin:0; font-size:var(--cds-font-size-title); font-weight:300; letter-spacing:-.01em; line-height:1.15; }
+.px-lead { margin:0; font-size:var(--cds-font-size-body); color:var(--color-fg-muted); max-width:72ch; line-height:1.55; }
+.px .px-lead b, .px .px-strong { color:var(--color-fg); font-weight:600; }
+.px-bar { display:flex; flex-wrap:wrap; align-items:center; gap:var(--cds-gap-sm); }
+.px-bar label { font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); }
+.px select, .px input[type=search] { font:inherit; font-size:var(--cds-font-size-caption); color:var(--color-fg); background:var(--color-panel); border:1px solid var(--color-border-line); border-radius:var(--cds-radius); padding:var(--cds-pad-xs) var(--cds-pad-sm); max-width:100%; }
+.px-kpis { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap:var(--cds-gap-md); }
+.px-kpi { background:var(--color-panel); border:1px solid var(--color-border-line); border-left:3px solid var(--px-verde); border-radius:var(--cds-radius); padding:var(--cds-pad-md) var(--cds-pad-lg); display:flex; flex-direction:column; gap:var(--cds-gap-xs); }
+.px-kpi:nth-child(2){ border-left-color:var(--px-guinda); } .px-kpi:nth-child(3){ border-left-color:var(--px-oro); } .px-kpi:nth-child(4){ border-left-color:var(--px-verde-osc); } .px-kpi:nth-child(5){ border-left-color:var(--px-oro); }
+.px-kpi-l { font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); line-height:1.35; }
+.px-kpi-v { font-size:var(--cds-font-size-title); font-weight:300; font-variant-numeric:tabular-nums; line-height:1.1; min-height:1.1em; }
+.px-sec { display:flex; flex-direction:column; gap:var(--cds-gap-md); }
+.px-sec-h { display:flex; flex-direction:column; gap:var(--cds-gap-xs); }
+.px-sec-n { font-size:var(--cds-font-size-caption); letter-spacing:.1em; text-transform:uppercase; color:var(--px-guinda); font-weight:600; }
+.px-sec-t { margin:0; font-size:var(--cds-font-size-heading); font-weight:var(--cds-font-weight-medium); }
+.px-sec-d { margin:0; font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); max-width:90ch; line-height:1.5; }
+.px-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap:var(--cds-gap-md); }
+.px-card { background:var(--color-panel); border:1px solid var(--color-border-line); border-radius:var(--cds-radius); padding:var(--cds-pad-lg); display:flex; flex-direction:column; gap:var(--cds-gap-sm); min-width:0; }
+.px-card h3 { margin:0; font-size:var(--cds-font-size-body); font-weight:var(--cds-font-weight-medium); }
+.px-note { margin:0; font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); line-height:1.45; }
+.px-chart { position:relative; min-height:220px; width:100%; }
+.px-chart svg { display:block; overflow:visible; }
+.px-lbl { font-size:12px; fill:var(--color-fg); }
+.px-val { font-size:12px; fill:var(--color-fg-muted); font-variant-numeric:tabular-nums; }
+.px-strong-v { fill:var(--color-fg); font-weight:600; }
+.px-tick { font-size:11px; fill:var(--color-fg-muted); }
+.px-tip { position:absolute; z-index:5; pointer-events:none; background:var(--cds-surface-popover); border:1px solid var(--cds-border); border-radius:var(--cds-radius); box-shadow:var(--cds-shadow-popover); padding:var(--cds-pad-xs) var(--cds-pad-sm); font-size:var(--cds-font-size-caption); max-width:18rem; line-height:1.4; }
+.px-tip-h { color:var(--cds-text-secondary); margin-bottom:2px; }
+.px-tip-r { display:flex; justify-content:space-between; gap:var(--cds-gap-md); }
+.px-tip-r span:last-child { font-variant-numeric:tabular-nums; font-weight:600; }
+.px-fail { display:flex; align-items:center; justify-content:center; gap:var(--cds-gap-xs); min-height:inherit; color:var(--color-fg-muted); font-size:var(--cds-font-size-caption); }
+.px-fail::before { content:''; width:.375rem; height:.375rem; border-radius:50%; background:var(--color-bad); }
+.px-tbl-wrap { overflow:auto; max-height:560px; max-width:100%; min-height:96px; border-top:1px solid var(--color-border-line); resize:both; }
+.px-tbl-wrap::-webkit-resizer { background:linear-gradient(135deg, transparent 50%, var(--color-fg-muted) 50%, var(--color-fg-muted) 58%, transparent 58%, transparent 70%, var(--color-fg-muted) 70%, var(--color-fg-muted) 78%, transparent 78%); }
+.px-tbl { width:100%; border-collapse:collapse; font-size:var(--cds-font-size-caption); font-variant-numeric:tabular-nums; }
+.px-tbl th { position:sticky; top:0; background:var(--color-panel); text-align:left; font-weight:600; color:var(--color-fg-muted); border-bottom:1px solid var(--color-border-line); padding:var(--cds-pad-xs) var(--cds-pad-sm); white-space:normal; line-height:1.25; vertical-align:bottom; z-index:1; box-shadow:inset -1px 0 0 color-mix(in srgb, var(--color-border-line) 70%, transparent); }
+.px-tbl th.px-th-edge { cursor:col-resize; box-shadow:inset -2px 0 0 var(--px-oro); }
+.px-tbl.px-fixed { table-layout:fixed; }
+.px-tbl.px-fixed td { overflow:hidden; text-overflow:ellipsis; }
+@media (max-width: 720px) { .px-tbl { font-size:12px; } .px-tbl td, .px-tbl th { padding:4px 6px; } }
+.px-tbl td { padding:var(--cds-pad-xs) var(--cds-pad-sm); border-bottom:1px solid var(--color-border-line); vertical-align:top; line-height:1.4; }
+.px-tbl .px-num { text-align:right; }
+.px-tbl th button { all:unset; cursor:pointer; }
+.px-tbl th[aria-sort=ascending] button::after { content:' ↑'; } .px-tbl th[aria-sort=descending] button::after { content:' ↓'; }
+.px-tbl tr.px-on td { background:color-mix(in srgb, var(--px-oro) 10%, transparent); }
+.px-cellbar { height:4px; border-radius:2px; background:var(--px-verde); margin-top:3px; }
+.px-wide { min-width:16rem; }
+@media (max-width: 720px) { .px-hide-n { display:none; } }
+.px-levels { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap:var(--cds-gap-md); }
+.px-level { border-top:3px solid var(--px-verde); }
+.px-level:nth-child(2) { border-top-color:var(--px-guinda); } .px-level:nth-child(3) { border-top-color:var(--px-oro); }
+.px-level-n { font-size:var(--cds-font-size-caption); letter-spacing:.1em; color:var(--color-fg-muted); text-transform:uppercase; }
+.px-list { margin:0; padding-left:1.1rem; font-size:var(--cds-font-size-caption); line-height:1.6; color:var(--color-fg-muted); }
+.px-measure { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap:var(--cds-gap-sm); }
+.px-pill { border:1px solid var(--color-border-line); border-radius:var(--cds-radius); padding:var(--cds-pad-sm) var(--cds-pad-md); font-size:var(--cds-font-size-caption); line-height:1.5; }
+.px-foot { font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); border-top:1px solid var(--color-border-line); padding-top:var(--cds-pad-md); line-height:1.5; }
+.px-trio { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:var(--cds-gap-sm); }
+.px-trio > div { display:flex; flex-direction:column; gap:var(--cds-gap-xs); min-width:0; }
+.px-pair { border-top:3px solid var(--px-verde); }
+#kpi-asistencias { border-top-color:var(--px-guinda); }
+.px-crumbs { display:flex; flex-wrap:wrap; gap:var(--cds-gap-xs); align-items:center; font-size:var(--cds-font-size-caption); }
+.px-crumbs button { font:inherit; color:var(--px-verde); background:none; border:1px solid var(--color-border-line); border-radius:var(--cds-radius); padding:2px var(--cds-pad-sm); cursor:pointer; }
+.px-crumbs button[aria-current] { color:var(--color-fg); border-color:var(--px-oro); font-weight:600; cursor:default; }
+.px-crumb-bar { justify-content:space-between; }
+.px-sticky { position:sticky; top:0; z-index:6; background:var(--color-bg); display:flex; flex-direction:column; gap:var(--cds-gap-xs); padding-top:var(--cds-pad-sm); box-shadow:0 6px 10px -10px rgba(0,0,0,.35); }
+.px-filters { display:flex; flex-wrap:wrap; align-items:flex-end; gap:var(--cds-gap-md); padding-bottom:var(--cds-pad-xs); }
+.px-f { display:flex; flex-direction:column; gap:2px; min-width:min(100%, 13rem); flex:1 1 13rem; }
+.px-f label { font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); }
+.px-f select { width:100%; }
+.px-reset { font:inherit; font-size:var(--cds-font-size-caption); color:var(--px-guinda); background:none; border:1px solid var(--color-border-line); border-radius:var(--cds-radius); padding:var(--cds-pad-xs) var(--cds-pad-sm); cursor:pointer; }
+.px-sw { display:inline-block; width:.7rem; height:.7rem; border-radius:2px; vertical-align:-1px; margin:0 4px 0 2px; }
+.px-sw-p { background:#1E5B4F; opacity:.35; } .px-sw-r { background:#9B2247; margin-left:10px; }
+.px-niv tbody tr.px-click { cursor:pointer; }
+.px-tbl tfoot td { font-weight:600; border-top:1px solid var(--color-fg-muted); border-bottom:none; }
+.px-tbl tr.px-post td { color:var(--color-fg-muted); }
+@media (prefers-reduced-motion: no-preference) {
+  .px-grow { transform-box: fill-box; transform-origin: 50% 100%; animation: px-grow var(--cds-dur-slow) var(--cds-ease-out) both; }
+  .px-grow-x { transform-box: fill-box; transform-origin: 0 50%; animation: px-grow-x var(--cds-dur-slow) var(--cds-ease-out) both; }
+  .px-fade { animation: px-fade var(--cds-dur-slow) var(--cds-ease-out) 400ms both; }
+  @keyframes px-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes px-grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes px-fade { from { opacity: 0; } to { opacity: 1; } }
+}
+.px-layer { transition: opacity var(--cds-dur-slow); }
+.px-legend span:hover { color:var(--color-fg); }
+.px-tabs { display:flex; flex-wrap:wrap; gap:var(--cds-gap-xs); border-bottom:1px solid var(--color-border-line); }
+.px-tab { font:inherit; font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); background:none; border:none; border-bottom:3px solid transparent; padding:var(--cds-pad-sm) var(--cds-pad-md); cursor:pointer; text-align:left; display:flex; flex-direction:column; gap:2px; flex:1 1 14rem; max-width:24rem; }
+.px-tab-n { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--px-oro); font-weight:600; }
+.px-tab[aria-selected="true"] { color:var(--color-fg); border-bottom-color:var(--px-guinda); font-weight:600; }
+.px-tab:hover { color:var(--color-fg); }
+.px-mod { display:flex; flex-direction:column; gap:var(--cds-gap-xl); scroll-margin-top:190px; }
+.px-mod[hidden] { display:none; }
+.px-mod-h { display:flex; flex-direction:column; gap:var(--cds-gap-sm); }
+.px-mod-t { margin:0; font-size:var(--cds-font-size-title); font-weight:300; line-height:1.2; }
+.px-pend { border-top:3px solid var(--px-oro); }
+.px-sem-bar { display:flex; flex-wrap:wrap; gap:var(--cds-gap-xs) var(--cds-gap-lg); font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); }
+.px-sem-item { display:inline-flex; align-items:center; gap:6px; }
+.px-dot { display:inline-block; width:.7rem; height:.7rem; border-radius:50%; flex:none; vertical-align:-1px; margin-right:6px; }
+.px-sem-item .px-dot { margin-right:0; }
+.px-dot-v { background:#1E5B4F; } .px-dot-a { background:#A57F2C; } .px-dot-r { background:#9B2247; }
+.px-tbl td.px-sem { white-space:nowrap; }
+.px-kpi-sem { display:inline-flex; align-items:center; gap:4px; margin-left:10px; font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); font-weight:400; vertical-align:middle; }
+.px-kpi-sem .px-dot { margin-right:0; }
+.px-metodo { border-top:1px solid var(--color-border-line); padding-top:var(--cds-pad-sm); font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); line-height:1.55; }
+.px-metodo summary { cursor:pointer; color:var(--px-verde); font-weight:600; }
+.px-metodo ol { margin:var(--cds-gap-sm) 0 0; padding-left:1.2rem; display:flex; flex-direction:column; gap:4px; }
+.px-metodo b { color:var(--color-fg); }
+.px-uso-t { flex:1 1 18rem; }
+.px-uso-filtro { display:flex; flex-wrap:wrap; align-items:center; gap:var(--cds-gap-xs) var(--cds-gap-sm); }
+.px-uso-filtro label { font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); font-weight:600; }
+.px-uso-filtro select { min-width:min(100%, 20rem); }
+.px-uso-filtro .px-note { flex:1 1 18rem; }
+.px-uso-h { margin:var(--cds-gap-md) 0 0; font-size:var(--cds-font-size-body); color:var(--px-verde); font-weight:600; }
+.px-uso-def { border:1px solid var(--color-border-line); border-left:3px solid var(--px-verde); border-radius:var(--cds-radius); background:color-mix(in srgb, var(--px-verde) 5%, transparent); font-size:var(--cds-font-size-caption); line-height:1.55; }
+.px-uso-def summary { cursor:pointer; padding:var(--cds-pad-sm) var(--cds-pad-md); font-weight:600; color:var(--px-verde); }
+.px-uso-def-b { padding:0 var(--cds-pad-lg) var(--cds-pad-md); display:flex; flex-direction:column; gap:var(--cds-gap-xs); }
+.px-uso-def-b p { margin:0; } .px-uso-def-b ol { margin:0; padding-left:1.2rem; display:flex; flex-direction:column; gap:4px; }
+.px-uso-f { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin:var(--cds-gap-xs) 0; font-weight:600; color:var(--px-verde-osc); }
+.px-uso-fr { display:inline-flex; flex-direction:column; text-align:center; font-weight:400; }
+.px-uso-fr i { font-style:normal; padding:2px 6px; } .px-uso-fr i:first-child { border-bottom:1px solid currentColor; }
+.px-uso-ej { background:var(--color-panel); border:1px solid var(--color-border-line); border-radius:var(--cds-radius); padding:var(--cds-pad-sm) var(--cds-pad-md); }
+.px-uso-n { display:inline-flex; align-items:center; gap:5px; margin-right:10px; white-space:nowrap; }
+.px-uso-n::before { content:''; width:.6rem; height:.6rem; border-radius:50%; background:var(--c); }
+.px-uso-heat { overflow-x:auto; }
+.px-uso-heat svg { min-width:640px; }
+.px-uso-heat rect.px-c { stroke:var(--color-panel); stroke-width:1.5; }
+.px-uso-heat rect.px-c:hover { stroke:var(--px-verde-osc); stroke-width:2; }
+.px-uso-scale { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--color-fg-muted); margin-top:6px; }
+.px-uso-scale i { display:inline-block; width:160px; height:10px; border-radius:2px; background:linear-gradient(90deg, color-mix(in srgb, #1E5B4F 6%, transparent), #1E5B4F); }
+.px-uso-two { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap:var(--cds-gap-sm) var(--cds-gap-xl); }
+.px-uso-niv { display:flex; flex-direction:column; gap:var(--cds-gap-sm); margin-top:var(--cds-gap-sm); font-size:var(--cds-font-size-caption); }
+.px-uso-niv .px-r { display:grid; grid-template-columns:minmax(8rem, 11rem) 1fr auto; gap:10px; align-items:center; }
+.px-uso-niv .px-b { height:14px; background:color-mix(in srgb, var(--color-fg) 8%, transparent); border-radius:2px; overflow:hidden; }
+.px-uso-niv .px-b i { display:block; height:100%; border-radius:2px; transform-origin:0 50%; }
+.px-uso-niv .px-v { font-weight:600; min-width:6rem; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.px-uso-niv small { font-weight:400; color:var(--color-fg-muted); }
+.px-uso-cmp-row { cursor:pointer; }
+@media (max-width: 560px) { .px-uso-niv .px-r { grid-template-columns:1fr auto; } .px-uso-niv .px-b { grid-column:1 / -1; grid-row:2; } }
+.px-uso-cmp-row:hover rect.px-hit { fill:color-mix(in srgb, var(--px-verde) 8%, transparent); }
+.px-seg-btn { font-weight:600; border-color:var(--px-verde); }
+.px-sgm { border-top:3px solid var(--px-verde); scroll-margin-top:200px; }
+.px-seg-two { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:var(--cds-gap-md) var(--cds-gap-xl); }
+@media (max-width: 640px) { .px-seg-two { grid-template-columns:minmax(0, 1fr); } }
+.px-seg-col { display:flex; flex-direction:column; gap:var(--cds-gap-sm); border-left:3px solid var(--px-verde); padding-left:var(--cds-pad-md); }
+.px-seg-asi { border-left-color:var(--px-guinda); }
+.px-seg-h { font-size:var(--cds-font-size-caption); letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--px-verde); }
+.px-seg-asi .px-seg-h { color:var(--px-guinda); }
+.px-seg-k { display:flex; flex-direction:column; gap:2px; }
+.px-seg-na { font-size:var(--cds-font-size-body); color:var(--color-fg-muted); }
+.px-seg-row { cursor:pointer; }
+.px-seg-row:hover rect.px-hit { fill:color-mix(in srgb, var(--px-verde) 7%, transparent); }
+.px-grid-2 { grid-template-columns:repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); }
+.px-med { display:inline-flex; align-items:center; gap:var(--cds-gap-xs); flex-wrap:wrap; }
+.px-med-l { font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); margin-right:2px; }
+.px-rep-h { align-items:flex-end; }
+.px-mi[hidden], .px-ma[hidden] { display:none !important; }
+.px-med-bar { display:flex; flex-wrap:wrap; align-items:center; gap:var(--cds-gap-xs) var(--cds-gap-md); }
+.px-med-bar .px-note { flex:1 1 22rem; max-width:80ch; }
+.px-upd { display:flex; flex-wrap:wrap; align-items:baseline; gap:var(--cds-gap-xs) var(--cds-gap-lg); font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); border-left:3px solid var(--px-oro); padding:var(--cds-pad-xs) var(--cds-pad-md); background:color-mix(in srgb, var(--px-oro) 6%, transparent); border-radius:var(--cds-radius); }
+.px-upd-t { font-weight:600; color:var(--px-oro); letter-spacing:.06em; text-transform:uppercase; }
+.px-upd b, .px-upd-chip b { color:var(--color-fg); font-weight:600; }
+.px-upd-n { flex-basis:100%; }
+.px-mod-top { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:var(--cds-gap-xs) var(--cds-gap-md); }
+.px-upd-chip { font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); border:1px solid var(--color-border-line); border-radius:999px; padding:2px var(--cds-pad-sm); }
+.px-kpi-de { font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); font-weight:400; }
+.px-grid-rep { grid-template-columns:repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.px-grid-rep .px-tbl td:first-child { white-space:normal; }
+.px-two { display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:var(--cds-gap-lg); align-items:start; }
+@media (max-width: 860px) { .px-two { grid-template-columns:minmax(0, 1fr); } }
+.px-tbl-compact th { white-space:normal; line-height:1.25; vertical-align:bottom; padding:var(--cds-pad-xs) 6px; }
+.px-tbl-compact td { padding:4px 6px; white-space:nowrap; }
+.px-tbl-compact td:first-child { white-space:normal; min-width:9rem; }
+.px-tbl-compact th.px-num { max-width:7.5rem; }
+.px-two-c { display:flex; flex-direction:column; gap:var(--cds-gap-sm); min-width:0; }
+.px-sw-meta { background:color-mix(in srgb, #1E5B4F 22%, transparent); outline:1px solid color-mix(in srgb, #1E5B4F 45%, transparent); margin-left:0; } .px-sw-reg { background:linear-gradient(90deg, #9B2247 33%, #A57F2C 33% 66%, #1E5B4F 66%); margin-left:12px; }
+.px-tbl tr.px-tot-row td { font-weight:600; border-top:1px solid var(--color-fg-muted); }
+.px-card-h { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:var(--cds-gap-sm); }
+.px-card-h > div:first-child { flex:1 1 18rem; display:flex; flex-direction:column; gap:var(--cds-gap-xs); }
+.px-play, .px-seg { display:flex; align-items:center; gap:var(--cds-gap-xs); }
+.px-btn { font:inherit; font-size:var(--cds-font-size-caption); color:var(--px-verde); background:var(--color-panel); border:1px solid var(--color-border-line); border-radius:var(--cds-radius); padding:var(--cds-pad-xs) var(--cds-pad-sm); cursor:pointer; }
+.px-btn[aria-pressed="true"] { background:var(--px-verde); border-color:var(--px-verde); color:#fff; }
+.px-race-mes { width:min(12rem, 40vw); accent-color:#9B2247; }
+.px-race-mes-lbl { font-size:44px; font-weight:300; fill:var(--color-fg-muted); opacity:.35; }
+.px-map svg path.px-pais { fill:color-mix(in srgb, var(--color-fg) 4%, transparent); stroke:var(--color-border-line); stroke-width:.8; }
+.px-map svg path.px-pais.px-mx { fill:color-mix(in srgb, #1E5B4F 7%, transparent); stroke:color-mix(in srgb, #1E5B4F 45%, transparent); }
+.px-map circle { stroke:var(--color-panel); stroke-width:.8; fill-opacity:.78; transition:opacity var(--cds-dur-slow); }
+@media (prefers-reduced-motion: no-preference) {
+  .px-grow-r { transform-box: fill-box; transform-origin: 50% 50%; animation: px-grow-r var(--cds-dur-slow) var(--cds-ease-out) both; }
+  .px-fade-in { animation: px-fade var(--cds-dur-slow) var(--cds-ease-out) both; }
+  @keyframes px-grow-r { from { transform: scale(0); } to { transform: scale(1); } }
+}
+.px-legend { display:flex; flex-wrap:wrap; gap:var(--cds-gap-xs) var(--cds-gap-md); font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); margin-bottom:var(--cds-gap-sm); }
+.px-legend span { display:inline-flex; align-items:center; gap:5px; }
+.px-legend i { width:.7rem; height:.7rem; border-radius:2px; display:inline-block; }
+.px-niv tbody tr.px-click:hover td { background:color-mix(in srgb, var(--px-verde) 8%, transparent); }
+[data-dash-source-state=empty] { color:transparent; }
+[data-dash-source-state=refreshing] { opacity:.5; transition:opacity var(--cds-dur-slow); }
+</style>
+
+<div class="px">
+  <header class="px-head" id="inicio">
+    <div class="px-eyebrow">Coordinación de Bienestar Social · DATMP · Seguimiento del PAA</div>
+    <h1 class="px-title">Programación Anual de Actividades 2027</h1>
+    <p class="px-lead">Seguimiento del registro del Programa Anual de Actividades 2027 contra la meta programada, para Jefes de Departamento y directores de las UOPSI. Elige tu OOAD y tu Unidad Operativa en los filtros.</p>
+    <div class="px-upd" aria-label="Fecha de actualización">
+      <span class="px-upd-t">Fecha de actualización</span>
+      <span class="px-upd-i">Cursos y talleres: <b data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b></span>
+      <span class="px-upd-i">Actividades complementarias: <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b></span>
+      <span class="px-upd-i">Teatros: <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b></span>
+      <span class="px-upd-n">Corresponde a la fecha de corte que trae el nombre de cada reporte en Google Drive.</span>
+    </div>
+  </header>
+  <div class="px-sticky" id="barra-fija">
+      <div class="px-filters" id="filtros" role="group" aria-label="Filtros">
+        <div class="px-f"><label for="px-f-ooad">Nacional / OOAD</label><select id="px-f-ooad" data-draw="f-ooad" data-source="uni_nivel" data-field="nombre" aria-label="OOAD"></select></div>
+        <div class="px-f"><label for="px-f-uo">UOPSI</label><select id="px-f-uo" data-draw="f-uo" data-source="uni_nivel" data-field="nombre" aria-label="UOPSI"></select></div>
+        <div class="px-f"><label for="px-f-area">Área normativa</label><select id="px-f-area" data-draw="f-area" data-source="resumen" data-field="area" aria-label="Área normativa"></select></div>
+        <button type="button" class="px-btn px-seg-btn" aria-controls="seguimiento">Seguimiento de inscripciones y asistencias</button>
+        <button type="button" class="px-reset">Restablecer filtros</button>
+      </div>
+      <nav class="px-tabs" role="tablist" aria-label="Módulos">
+        <button type="button" role="tab" class="px-tab" id="tab-modulo-1" data-mod="1" aria-selected="true" aria-controls="modulo-1"><span class="px-tab-n">Módulo 1</span>Inscripciones y asistencias a cursos y talleres</button>
+        <button type="button" role="tab" class="px-tab" id="tab-modulo-2" data-mod="2" aria-selected="false" aria-controls="modulo-2"><span class="px-tab-n">Módulo 2</span>Asistencias en actividades complementarias</button>
+        <button type="button" role="tab" class="px-tab" id="tab-modulo-3" data-mod="3" aria-selected="false" aria-controls="modulo-3"><span class="px-tab-n">Módulo 3</span>Asistencias en teatros</button>
+      </nav>
+  </div>
+
+
+  <div class="px-mod" id="modulo-1" role="tabpanel" aria-labelledby="tab-modulo-1" data-mod="1">
+    <div class="px-mod-h">
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 1</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_CURSOS de Google Drive</span></div>
+      <h2 class="px-mod-t">Programa Anual de Inscripciones y Asistencias a Cursos y Talleres</h2>
+      <p class="px-lead"><b data-draw="amb">—</b>: <b data-draw="avk" data-k="inscripciones">—</b> inscripciones registradas de una meta de <b data-draw="mk" data-k="meta_2027">—</b> inscripciones 2027 · avance <b data-draw="avk" data-k="avance">—</b>.</p>
+      <div class="px-med-bar"><div class="px-med" role="group" aria-label="Unidad de medida"><span class="px-med-l">Unidad de medida</span><button type="button" class="px-btn px-med-btn" data-m="inscripciones" aria-pressed="true">Inscripciones</button><button type="button" class="px-btn px-med-btn" data-m="asistencias" aria-pressed="false">Asistencias</button></div><span class="px-note">Cambia la unidad de medida de los apartados 01 y 02: metas y registro por área y por OOAD, reportes del registro, instalaciones, actividades y evolución por corte. La meta 2027 y el semáforo existen solo para inscripciones; con Asistencias se muestran las asistencias registradas, sin meta.</span></div>
+    </div>
+  <section class="px-sec" id="metas">
+    <div class="px-sec-h">
+      <div class="px-sec-n">01 · Meta de inscripciones 2027</div>
+      <h2 class="px-sec-t">Meta de inscripciones 2027 y avance del registro</h2>
+      <p class="px-sec-d">La meta 2027 parte de las inscripciones programadas en el PAA 2026 de cada Unidad Operativa y área normativa, y se suma por OOAD y a nivel nacional. Las áreas normativas son cuatro: Capacitación y Adiestramiento Técnico incluye a CECART y Promoción de la Salud incluye a CASSAAM.</p>
+    </div>
+    <div class="px-kpis" id="kpi-metas">
+      <div class="px-kpi"><div class="px-kpi-l">Inscripciones programadas 2026</div><div class="px-kpi-v dash-skeleton" data-draw="mk" data-k="programado_2026">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Meta de inscripciones 2027</div><div class="px-kpi-v dash-skeleton" data-draw="mk" data-k="meta_2027">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Incremento de inscripciones</div><div class="px-kpi-v dash-skeleton" data-draw="mk" data-k="incremento">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Variación</div><div class="px-kpi-v dash-skeleton" data-draw="mk" data-k="variacion">—</div></div>
+    </div>
+    <p class="px-note px-meta-na" hidden>El área seleccionada no tiene meta en la base.</p>
+    <div class="px-card" id="metas-area">
+      <h3><span class="px-mi">Meta por área normativa</span><span class="px-ma" hidden>Asistencias registradas por área normativa</span> · <span data-draw="m-amb">—</span></h3>
+      <p class="px-note"><span class="px-mi">Avance del registro del PAA 2027 contra la meta de inscripciones de cada área, con el semáforo de avance (Verde ≥ 80%, Amarillo 60% a 79.99%, Rojo &lt; 60%).</span><span class="px-ma" hidden>Asistencias registradas en el PAA 2027 por área normativa, con su participación en las asistencias del ámbito. No hay meta de asistencias.</span></p>
+      <p class="px-note px-legend-static px-mi"><span class="px-sw px-sw-meta"></span>Meta de inscripciones 2027 <span class="px-sw px-sw-reg"></span>Inscripciones registradas, con el color del semáforo</p>
+      <div class="px-chart dash-skeleton" data-draw="ch-metas-area" data-source="av_nivel" style="min-height:212px"></div>
+    </div>
+    <p class="px-note px-meta-fuera" hidden>Esta Unidad Operativa está en la base de metas pero no en el catálogo UOPSI del tablero.</p>
+    <div class="px-card" id="metas-ooad">
+      <h3><span class="px-ml px-ml-1"><span class="px-mi">Meta y registro</span><span class="px-ma" hidden>Asistencias registradas</span> por OOAD</span><span class="px-ml px-ml-2" hidden><span class="px-mi">Meta y registro</span><span class="px-ma" hidden>Asistencias registradas</span> por Unidad Operativa</span></h3>
+      <p class="px-note px-ma" hidden>Asistencias registradas en el PAA 2027 del área seleccionada, de mayor a menor, con su participación en las asistencias del ámbito. Haz clic en una barra para filtrar el tablero.</p>
+      <p class="px-note px-mi">Cada barra clara es la meta de inscripciones 2027 del área seleccionada y la barra de color, las inscripciones registradas en el PAA 2027, con el color del semáforo; a la derecha, el avance. Meta de <span data-draw="mtot2-n">—</span>: <span data-draw="mtot2" data-k="meta_2027">—</span> inscripciones. Haz clic en una barra para filtrar el tablero.</p>
+      <div class="px-sem-bar px-mi">
+        <span class="px-sem-item"><i class="px-dot px-dot-v"></i><b class="px-strong" data-draw="semk" data-k="verde">—</b> Verde · 80% o más de la meta</span>
+        <span class="px-sem-item"><i class="px-dot px-dot-a"></i><b class="px-strong" data-draw="semk" data-k="amarillo">—</b> Amarillo · de 60% a 79.99%</span>
+        <span class="px-sem-item"><i class="px-dot px-dot-r"></i><b class="px-strong" data-draw="semk" data-k="rojo">—</b> Rojo · menos de 60%</span>
+      </div>
+      <div class="px-chart dash-skeleton" data-draw="ch-metas-ooad" data-source="av_nivel metas_nivel" style="min-height:420px"></div>
+    </div>
+  </section>
+
+  <section class="px-sec" id="avance-registro">
+    <div class="px-sec-h">
+      <div class="px-sec-n">02 · Avance del registro del PAA 2027</div>
+      <h2 class="px-sec-t">Inscripciones y asistencias registradas frente a la meta 2027</h2>
+      <p class="px-sec-d">Grupos capturados en el REPORTE PAA CURSOS con corte al <b class="px-strong" data-draw="av-corte">—</b>. Las inscripciones son el cupo programado de cada grupo (CAN_CUPO) y las asistencias, las asistencias programadas (CAN_ASISTENCIAS). Responde a los filtros de ámbito y de área.</p>
+    </div>
+    <div class="px-kpis" id="kpi-avance">
+      <div class="px-kpi"><div class="px-kpi-l">Grupos registrados</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="grupos">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Inscripciones registradas</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="inscripciones">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Avance contra la meta de inscripciones 2027 · Verde ≥ 80%, Amarillo 60% a 79.99%, Rojo &lt; 60%</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="avance">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Asistencias registradas</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="asistencias">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Unidades Operativas con registro</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="unidades_con_registro">—</div></div>
+    </div>
+    <div class="px-card px-sgm" id="seguimiento">
+      <div class="px-card-h"><div><h3>Seguimiento de inscripciones y asistencias · <span data-draw="seg-amb">—</span></h3><p class="px-note">Inscripciones y asistencias registradas lado a lado, para el ámbito y el área de los filtros. Las inscripciones se comparan con la meta de inscripciones 2027 y llevan el semáforo; la Base de Metas 2026–2027 no trae meta de asistencias, por lo que las asistencias se muestran como registro, con su relación por inscripción.</p></div></div>
+      <div class="px-seg-two">
+        <div class="px-seg-col px-seg-ins">
+          <div class="px-seg-h">Inscripciones</div>
+          <div class="px-seg-k"><span class="px-kpi-l">Meta de inscripciones 2027</span><span class="px-kpi-v dash-skeleton" data-draw="segk" data-k="meta_2027">—</span></div>
+          <div class="px-seg-k"><span class="px-kpi-l">Inscripciones registradas</span><span class="px-kpi-v dash-skeleton" data-draw="segk" data-k="inscripciones">—</span></div>
+          <div class="px-seg-k"><span class="px-kpi-l">Avance contra la meta</span><span class="px-kpi-v dash-skeleton" data-draw="segk" data-k="avance">—</span></div>
+        </div>
+        <div class="px-seg-col px-seg-asi">
+          <div class="px-seg-h">Asistencias</div>
+          <div class="px-seg-k"><span class="px-kpi-l">Meta de asistencias 2027</span><span class="px-kpi-v px-seg-na">Sin meta en la Base de Metas</span></div>
+          <div class="px-seg-k"><span class="px-kpi-l">Asistencias registradas</span><span class="px-kpi-v dash-skeleton" data-draw="segk" data-k="asistencias">—</span></div>
+          <div class="px-seg-k"><span class="px-kpi-l">Asistencias por inscripción</span><span class="px-kpi-v dash-skeleton" data-draw="segk" data-k="asistencias_por_inscripcion">—</span></div>
+        </div>
+      </div>
+      <h4 class="px-uso-h"><span class="px-al-1">Por OOAD</span><span class="px-al-2" hidden>Por Unidad Operativa</span><span class="px-al-3" hidden>Por instalación</span></h4>
+      <p class="px-note">Cada renglón muestra a la izquierda las inscripciones registradas contra la meta (barra clara: meta; barra de color: registro con el color del semáforo) y a la derecha las asistencias registradas. Ordenado por inscripciones registradas. Haz clic en un renglón para bajar de nivel.</p>
+      <div class="px-chart dash-skeleton" data-draw="ch-seg" data-source="av_nivel" style="min-height:240px"></div>
+      <h4 class="px-uso-h">Por mes de inicio de los grupos</h4>
+      <div class="px-seg-two">
+        <div><div class="px-note">Inscripciones registradas</div><div class="px-chart dash-skeleton" data-draw="ch-seg-mes" data-k="inscripciones" data-source="av_dim" style="min-height:200px"></div></div>
+        <div><div class="px-note">Asistencias registradas</div><div class="px-chart dash-skeleton" data-draw="ch-seg-mes" data-k="asistencias" data-source="av_dim" style="min-height:200px"></div></div>
+      </div>
+    </div>
+    <div class="px-card" id="avance-criterios">
+      <h3>Apego a los Criterios Técnicos 2027</h3>
+      <p class="px-note">Proporción de los grupos registrados cuya actividad está en el Layout 2027, que alcanzan la meta mínima de su actividad con su cupo y cuyo rango de edad queda dentro del que fija el criterio.</p>
+      <div class="px-kpis">
+        <div class="px-kpi"><div class="px-kpi-l">Grupos con clave vigente en el catálogo 2027</div><div class="px-kpi-v dash-skeleton" data-draw="avv" data-k="pct_clave_vigente">—</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Grupos que alcanzan la meta mínima</div><div class="px-kpi-v dash-skeleton" data-draw="avv" data-k="pct_meta_minima">—</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Grupos con edad dentro del rango</div><div class="px-kpi-v dash-skeleton" data-draw="avv" data-k="pct_edad">—</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Grupos con cuota de recuperación</div><div class="px-kpi-v dash-skeleton" data-draw="avv" data-k="grupos_con_pago">—</div></div>
+      </div>
+    </div>
+    <div class="px-card-h px-rep-h">
+      <div class="px-sec-h">
+        <h3 class="px-sec-t">Reportes del registro</h3>
+        <p class="px-sec-d">Cada reporte reparte las <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas del ámbito y el área seleccionados; al pasar el cursor se ven los grupos, las inscripciones y las asistencias.</p>
+      </div>
+    </div>
+    <div class="px-grid px-grid-rep">
+      <div class="px-card" id="rep-ventanas"><h3>Ventanas de programación · mes de inicio</h3><div data-draw="avd" data-dim="Mes de inicio" data-source="av_dim"></div></div>
+      <div class="px-card" id="rep-docente"><h3>Tipo de docente</h3><div data-draw="avd" data-dim="Tipo de docente" data-source="av_dim"></div></div>
+      <div class="px-card" id="rep-lugar"><h3>Lugar de impartición</h3><div data-draw="avd" data-dim="Lugar" data-source="av_dim"></div></div>
+      <div class="px-card" id="rep-estrategia"><h3>Estrategia 2027</h3><div data-draw="avd" data-dim="Estrategia" data-source="av_dim"></div></div>
+    </div>
+    <div class="px-grid">
+      <div class="px-card" id="rep-instalaciones">
+        <h3>Instalaciones con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas</h3>
+        <p class="px-note">Las 15 instalaciones del ámbito con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas; al pasar el cursor se ven los grupos, las inscripciones y las asistencias.</p>
+        <div class="px-chart dash-skeleton" data-draw="ch-av-inst" data-source="av_nivel" style="min-height:300px"></div>
+      </div>
+      <div class="px-card" id="rep-actividades">
+        <h3>Actividades con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas</h3>
+        <p class="px-note">Las 15 actividades del ámbito con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas; al pasar el cursor se ven los grupos, las inscripciones y las asistencias. En guinda, las actividades con clave en el Layout 2027.</p>
+        <div class="px-chart dash-skeleton" data-draw="ch-av-act" data-source="av_act" style="min-height:300px"></div>
+      </div>
+    </div>
+    <div class="px-card" id="rep-cortes">
+      <h3>Evolución del registro por fecha de corte</h3>
+      <p class="px-note"><span class="px-mi">Inscripciones registradas a nivel nacional en cada corte procesado, frente a la meta de 1,267,527.</span><span class="px-ma" hidden>Asistencias registradas a nivel nacional en cada corte procesado (sin meta de asistencias).</span> La actualización diaria agrega un corte cada vez que llega un reporte nuevo.</p>
+      <div class="px-chart dash-skeleton" data-draw="ch-cortes" data-source="avance_corte" style="min-height:240px"></div>
+    </div>
+  </section>
+
+  <section class="px-sec" id="tiempos-uso">
+    <div class="px-sec-h">
+      <div class="px-sec-n">03 · Tiempos de uso de las instalaciones</div>
+      <h2 class="px-sec-t">Ocupación de las instalaciones según el horario de los grupos registrados</h2>
+      <p class="px-sec-d">Cuántas horas se ocupa cada instalación según el horario de los grupos registrados en el PAA 2027, medido solo dentro del horario en que la instalación tiene actividad: de su primera a su última hora con grupos, en los días de la semana con grupos y entre su primera y su última fecha con grupos. El resto del tiempo no se considera. Incluye los grupos de las cuatro áreas normativas, por lo que no cambia con el filtro de área; no incluye los grupos en Centros de Extensión ni los registrados sin instalación.</p>
+    </div>
+    <div class="px-card">
+      <div class="px-card-h"><h3 class="px-uso-t" data-draw="uso-t">—</h3><button class="px-btn px-uso-back" type="button" hidden>Volver al conjunto</button></div>
+      <div class="px-uso-filtro"><label for="px-f-inst">Instalación</label><select id="px-f-inst" data-draw="f-inst" data-source="av_uso" data-field="instalacion" aria-label="Instalación"></select><span class="px-note">Filtra los indicadores, el mapa de calor, la ocupación por mes, los niveles y el comparativo. Entre paréntesis, cuántas instalaciones de ese tipo tienen grupos en el ámbito.</span></div>
+      <div class="px-kpis">
+        <div class="px-kpi"><div class="px-kpi-l">Instalaciones con grupos</div><div class="px-kpi-v dash-skeleton" data-draw="usok" data-k="instalaciones">—</div><div class="px-kpi-de"><span data-draw="usok" data-k="unidades">—</span></div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Ocupación promedio</div><div class="px-kpi-v dash-skeleton" data-draw="usok" data-k="ocupacion">—</div><div class="px-kpi-de">Horas ocupadas ÷ horas disponibles (ver la explicación abajo)</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Horas de uso por semana</div><div class="px-kpi-v dash-skeleton" data-draw="usok" data-k="horas_semana">—</div><div class="px-kpi-de"><span data-draw="usok" data-k="horas_semana_disp">—</span></div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Instalaciones con ocupación baja</div><div class="px-kpi-v px-uso-baja dash-skeleton" data-draw="usok" data-k="baja">—</div><div class="px-kpi-de">Menos del 50% de su horario con actividad</div></div>
+      </div>
+      <details class="px-uso-def">
+        <summary>¿Qué significa y cómo se calcula el porcentaje de ocupación?</summary>
+        <div class="px-uso-def-b">
+          <p>El porcentaje de ocupación indica <b>qué parte del horario en que una instalación tiene actividad está realmente ocupada por grupos</b> del Programa Anual de Actividades 2027. Responde a la pregunta: dentro del horario en que la instalación funciona, ¿cuánto tiempo está comprometido con grupos y cuánto queda libre?</p>
+          <div class="px-uso-f"><span>Porcentaje de ocupación</span><span>=</span><span class="px-uso-fr"><i>Horas ocupadas</i><i>Horas disponibles en el horario con actividad</i></span></div>
+          <p><b>Metodología de cálculo</b></p>
+          <ol>
+            <li><b>Calendario de cada grupo.</b> Para cada grupo registrado en el REPORTE PAA CURSOS se toman su fecha de inicio y de término (FEC_FECHA_INICIO, FEC_FECHA_TERMINO), sus días de la semana (DES_DIAS_SEMANA_NOM) y su horario (REF_HORA_INICIO a REF_HORA_TERMINO). Con ellos se marcan, fecha por fecha, los bloques de 15 minutos en que el grupo ocupa la instalación.</li>
+            <li><b>Horario con actividad de la instalación.</b> Se identifican la primera y la última hora del día con algún grupo (redondeadas a horas completas), los días de la semana con grupos y la primera y la última fecha con grupos. Ese es el horario disponible de la instalación; <b>el tiempo fuera de él no se considera</b> (madrugada, noche, días sin grupos y semanas antes del primer grupo o después del último).</li>
+            <li><b>Horas disponibles.</b> Número de fechas del periodo que caen en los días con grupos × horas del horario con actividad.</li>
+            <li><b>Horas ocupadas.</b> Bloques de 15 minutos con al menos un grupo dentro de ese horario. Si dos o más grupos coinciden en la misma instalación, fecha y hora, el bloque se cuenta una sola vez; por eso las horas de grupo pueden ser mayores que las horas ocupadas.</li>
+            <li><b>Porcentaje.</b> Horas ocupadas ÷ horas disponibles.</li>
+            <li><b>Conjuntos de instalaciones.</b> Para una Unidad Operativa, una OOAD o el nivel nacional se suman las horas ocupadas de todas sus instalaciones y se dividen entre la suma de sus horas disponibles (promedio ponderado por horas). Las horas por semana son el promedio de las instalaciones.</li>
+            <li><b>Mapa de calor y ocupación mensual.</b> El mapa muestra, para cada día y hora, el porcentaje de las fechas del periodo en que hubo algún grupo; para un conjunto de instalaciones es el promedio. La ocupación mensual aplica la misma fórmula a las fechas de cada mes.</li>
+          </ol>
+          <p class="px-uso-ej"><b>Ejemplo ilustrativo.</b> Una instalación con grupos de lunes a viernes, de 08:00 a 14:00 horas (6 horas), del 4 de enero al 30 de abril, tiene 85 fechas × 6 horas = 510 horas disponibles. Si sus grupos ocupan 408 horas: 408 ÷ 510 = <b>80.0%</b>, ocupación alta.</p>
+          <p><b>Niveles de ocupación:</b> <span class="px-uso-n" style="--c:#9B2247">baja, menos de 50%</span> <span class="px-uso-n" style="--c:#A57F2C">media, de 50% a menos de 80%</span> <span class="px-uso-n" style="--c:#1E5B4F">alta, 80% o más</span>. Estos niveles son propios de la ocupación y distintos del semáforo de avance contra la meta.</p>
+          <p><b>Cómo leerlo:</b> mide la programación registrada, no la asistencia real. No descuenta días festivos, vacaciones ni cierres dentro del periodo, por lo que el porcentaje es conservador. Excluye los grupos en Centros de Extensión y los registrados sin instalación, que no ocupan un espacio de la Unidad Operativa. Un porcentaje bajo señala capacidad disponible para nuevos grupos; uno alto, una instalación muy demandada.</p>
+        </div>
+      </details>
+      <h4 class="px-uso-h">Ocupación por día y hora</h4>
+      <p class="px-note">Porcentaje de las fechas del periodo en que la instalación está ocupada en cada hora; para un conjunto de instalaciones es el promedio. El tono más oscuro corresponde al valor más alto de la escala. Al pasar el cursor sobre una celda se ve el valor.</p>
+      <div class="px-chart px-uso-heat dash-skeleton" data-draw="uso-heat" data-source="av_uso" style="min-height:220px"></div>
+      <div class="px-uso-two">
+        <section><h4 class="px-uso-h">Ocupación por mes</h4><div class="px-chart dash-skeleton" data-draw="uso-mes" data-source="av_uso" style="min-height:200px"></div></section>
+        <section><h4 class="px-uso-h">Instalaciones por nivel de ocupación</h4><div class="px-uso-niv" data-draw="uso-niv" data-source="av_uso"></div></section>
+      </div>
+    </div>
+    <div class="px-card">
+      <h3 data-draw="uso-ct">—</h3>
+      <p class="px-note"><span class="px-ul2 px-ul2-1">Haz clic en una OOAD para ver sus Unidades Operativas.</span><span class="px-ul2 px-ul2-2" hidden>Haz clic en una Unidad Operativa para ver sus instalaciones.</span><span class="px-ul2 px-ul2-3" hidden>Haz clic en una instalación para ver su mapa de calor, su ocupación por mes y sus indicadores arriba; al pasar el cursor se ven su horario, sus días y su periodo.</span> El color indica el nivel: verde alta, oro media y guinda baja.</p>
+      <div class="px-chart dash-skeleton" data-draw="uso-cmp" data-source="av_uso" style="min-height:200px"></div>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="px-mod" id="modulo-2" role="tabpanel" aria-labelledby="tab-modulo-2" data-mod="2" hidden>
+    <div class="px-mod-h">
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 2</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_ACOMPLEMENTARIA de Google Drive</span></div>
+      <h2 class="px-mod-t">Programa Anual de Asistencias en Actividades Complementarias</h2>
+      <p class="px-lead">Seguimiento del registro de las actividades complementarias (campañas, pláticas y eventos) en el REPORTE PAA ACTIVIDADES COMPLEMENTARIAS. <b data-draw="acamb">—</b>: <b data-draw="ack" data-k="asistencias">—</b> asistencias registradas.</p>
+    </div>
+    <section class="px-sec" id="ac-registro">
+      <div class="px-sec-h">
+        <div class="px-sec-n">01 · Seguimiento del registro</div>
+        <h2 class="px-sec-t">Asistencias registradas en las actividades complementarias del PAA 2027</h2>
+        <p class="px-sec-d">Registro con corte al <b class="px-strong" data-draw="ac-corte">—</b>. La medida de este módulo son las asistencias registradas (CAN_ASISTENCIA). Da seguimiento al proceso de registro, sin comparar contra metas. Responde a los filtros de ámbito y de área.</p>
+      </div>
+      <div class="px-kpis">
+        <div class="px-kpi"><div class="px-kpi-l">Asistencias registradas</div><div class="px-kpi-v dash-skeleton" data-draw="ack" data-k="asistencias">—</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Unidades Operativas con registro</div><div class="px-kpi-v dash-skeleton" data-draw="ack" data-k="unidades_con_registro">—</div></div>
+      </div>
+      <div class="px-grid">
+        <div class="px-card"><h3>Por área normativa</h3><p class="px-note">Asistencias registradas por área; CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. El área elegida en el filtro se resalta.</p><div class="px-chart dash-skeleton" data-draw="ch-ac-area" data-source="ac_nivel" style="min-height:160px"></div></div>
+        <div class="px-card"><h3>Por tipo de actividad</h3><p class="px-note">Asistencias registradas en campañas, pláticas y eventos.</p><div class="px-chart dash-skeleton" data-draw="acd" data-dim="Tipo de actividad" data-source="ac_dim" style="min-height:160px"></div></div>
+      </div>
+      <div class="px-card"><h3>Por mes de la actividad</h3><p class="px-note">Asistencias registradas según el mes de la actividad.</p><div class="px-chart dash-skeleton" data-draw="ch-ac-mes" data-source="ac_dim" style="min-height:220px"></div></div>
+      <div class="px-grid px-grid-2">
+        <div class="px-card"><h3>Estrategia 2027</h3><div data-draw="acd" data-dim="Estrategia" data-source="ac_dim"></div></div>
+        <div class="px-card"><h3>Tipo de docente</h3><div data-draw="acd" data-dim="Tipo de docente" data-source="ac_dim"></div></div>
+        <div class="px-card"><h3>Lugar de realización</h3><div data-draw="acd" data-dim="Lugar" data-source="ac_dim"></div></div>
+        <div class="px-card"><h3>Bloques con más asistencias</h3><div data-draw="acd" data-dim="Bloque" data-source="ac_dim"></div></div>
+      </div>
+      <div class="px-card">
+        <h3 data-draw="ac-ct">—</h3>
+        <p class="px-note"><span class="px-al-1">Haz clic en una OOAD para ver sus Unidades Operativas.</span><span class="px-al-2" hidden>Haz clic en una Unidad Operativa para ver dónde se realizan sus actividades.</span><span class="px-al-3" hidden>Instalaciones y Centros de Extensión donde se realizan las actividades de la Unidad Operativa.</span> Al pasar el cursor se ve la participación en las asistencias del ámbito.</p>
+        <div class="px-chart dash-skeleton" data-draw="ch-ac-nivel" data-source="ac_nivel" style="min-height:240px"></div>
+      </div>
+      <div class="px-card"><h3>Actividades con más asistencias registradas</h3><p class="px-note">Las 15 actividades del ámbito con más asistencias registradas; al pasar el cursor se ven su clave, su tipo y su bloque.</p><div class="px-chart dash-skeleton" data-draw="acd" data-dim="Actividad" data-source="ac_dim" style="min-height:240px"></div></div>
+      <div class="px-card"><h3>Evolución del registro por fecha de corte</h3><p class="px-note">Asistencias registradas a nivel nacional en cada corte procesado; la actualización diaria agrega un corte cada vez que llega un reporte nuevo.</p><div class="px-chart dash-skeleton" data-draw="ch-ac-cortes" data-source="ac_corte" style="min-height:220px"></div></div>
+    </section>
+  </div>
+
+  <div class="px-mod" id="modulo-3" role="tabpanel" aria-labelledby="tab-modulo-3" data-mod="3" hidden>
+    <div class="px-mod-h">
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 3</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b> · archivo Reporte_PAA_Teatros de Google Drive</span></div>
+      <h2 class="px-mod-t">Programa Anual de Asistencias en Teatros</h2>
+      <p class="px-lead">Seguimiento del registro de los eventos en los Teatros Cubiertos del IMSS, en el Reporte PAA Teatros. <b data-draw="teamb">—</b>: <b data-draw="tek" data-k="asistencias">—</b> asistencias registradas.</p>
+    </div>
+    <section class="px-sec" id="te-registro">
+      <div class="px-sec-h">
+        <div class="px-sec-n">01 · Seguimiento del registro</div>
+        <h2 class="px-sec-t">Asistencias registradas en los eventos de los Teatros Cubiertos</h2>
+        <p class="px-sec-d">Registro con corte al <b class="px-strong" data-draw="te-corte">—</b>. La medida de este módulo son las asistencias registradas en cada evento (NUM_ASISTENCIA). Da seguimiento al proceso de registro, sin comparar contra metas. Responde a los filtros de OOAD y de UOPSI (elige el teatro en UOPSI) y al de área, que se toma del primer dígito de la clave de actividad.</p>
+      </div>
+      <div class="px-kpis">
+        <div class="px-kpi"><div class="px-kpi-l">Asistencias registradas</div><div class="px-kpi-v dash-skeleton" data-draw="tek" data-k="asistencias">—</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Teatros con registro</div><div class="px-kpi-v dash-skeleton" data-draw="tek" data-k="teatros_con_registro">—</div></div>
+      </div>
+      <p class="px-note px-te-noteatro" hidden>La Unidad Operativa elegida en el filtro no es un Teatro Cubierto; elige un teatro en UOPSI o regresa a su OOAD.</p>
+      <div class="px-card"><h3>Por mes del evento</h3><p class="px-note">Asistencias registradas según la fecha del evento.</p><div class="px-chart dash-skeleton" data-draw="ch-te-mes" data-source="te_dim" style="min-height:220px"></div></div>
+      <div class="px-grid px-grid-2">
+        <div class="px-card"><h3>Tipo de evento</h3><div data-draw="ted" data-dim="Tipo de evento" data-source="te_dim"></div></div>
+        <div class="px-card"><h3>Detalle del evento</h3><div data-draw="ted" data-dim="Detalle del evento" data-source="te_dim"></div></div>
+        <div class="px-card"><h3>Estrategia 2027</h3><div data-draw="ted" data-dim="Estrategia" data-source="te_dim"></div></div>
+        <div class="px-card"><h3>Actividades con más asistencias</h3><div data-draw="ted" data-dim="Actividad" data-source="te_dim"></div></div>
+      </div>
+      <div class="px-card">
+        <h3 data-draw="te-ct">—</h3>
+        <p class="px-note"><span class="px-al-1">Haz clic en una OOAD para ver sus teatros.</span><span class="px-al-2" hidden>Haz clic en un teatro para ver solo sus asistencias.</span><span class="px-al-3" hidden>Asistencias del teatro elegido; para compararlo con los demás teatros de su OOAD, quita el filtro de UOPSI.</span> Al pasar el cursor se ve la participación en las asistencias del ámbito.</p>
+        <div class="px-chart dash-skeleton" data-draw="ch-te-nivel" data-source="te_nivel" style="min-height:200px"></div>
+      </div>
+      <div class="px-card"><h3>Evolución del registro por fecha de corte</h3><p class="px-note">Asistencias registradas a nivel nacional en cada corte procesado; la actualización diaria agrega un corte cada vez que llega un reporte nuevo.</p><div class="px-chart dash-skeleton" data-draw="ch-te-cortes" data-source="te_corte" style="min-height:220px"></div></div>
+    </section>
+  </div>
+
+  <footer class="px-foot">Fuentes: REPORTE PAA CURSOS (registro del PAA 2027; inscripciones = CAN_CUPO, asistencias = CAN_ASISTENCIAS; tiempos de uso por bloques de 15 minutos dentro del horario con actividad), Base de metas 2026–2027 de inscripciones por OOAD, UOPSI y área normativa, catálogo UOPSI (sin tiendas ni velatorios) y Layout 2027 de los Criterios Técnicos. Áreas normativas: CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Semáforo: Verde ≥ 80% de la meta, Amarillo de 60% a 79.99%, Rojo &lt; 60%. Tiempos de uso: niveles de ocupación baja &lt; 50%, media de 50% a 79.9% y alta ≥ 80% del horario con actividad. División de Apoyo Técnico y Mejora de Procesos.</footer>
+</div>
+
+<script>
+// Cálculos del catálogo: cada uno devuelve filas por área más un total "Todas".
+dash.calc('resumen', {
+  title: 'Resumen por área',
+  description: 'Actividades, agrupaciones, estrategias y criterios definidos por área normativa (CECART se cuenta en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud), con el total de todas las áreas.',
+  inputs: ['layout_2027'],
+  fn: (layout_2027) => {
+    const areaNormativa = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
+    layout_2027 = layout_2027.map((r) => ({ ...r, area: areaNormativa(r.area) }));
+    const one = (area, rs) => ({
+      area,
+      actividades: rs.length,
+      agrupaciones: new Set(rs.map((r) => r.area + '|' + r.agrupacion_clave)).size,
+      estrategias: new Set(rs.map((r) => String(r.estrategia_clave))).size,
+      con_periodicidad: rs.filter((r) => r.periodicidad_grupo !== 'Sin periodicidad definida').length,
+      con_edad: rs.filter((r) => Number(r.edad_maxima) > 0).length,
+      participacion: layout_2027.length ? rs.length / layout_2027.length : 0,
+    });
+    const areas = [...new Set(layout_2027.map((r) => r.area))];
+    const rows = areas.map((a) => one(a, layout_2027.filter((r) => r.area === a))).sort((a, b) => b.actividades - a.actividades);
+    return [one('Todas', layout_2027), ...rows];
+  },
+});
+</script>
+
+<script>
+// Utilidades compartidas de dibujo.
+window.PX = (() => {
+  const COLORS = {
+    'Cultura Física y Deporte': '#1E5B4F',
+    'Promoción de la Salud': '#9B2247',
+    'Desarrollo Cultural': '#A57F2C',
+    'Capacitación y Adiestramiento Técnico': '#002F2A',
+    'CASSAAM': '#611232',
+    'CECART': '#BC955C',
+  };
+  const fmt = d3.format(',');
+  const pct = d3.format('.1%');
+  const area = () => dash.params().area || 'Todas';
+  const esc = (s) => String(s).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D').replace(/,/g, '%2C');
+  const color = (a) => COLORS[a] || '#1E5B4F';
+
+  // Estado común: devuelve true si todas las fuentes están listas.
+  const ready = (el, ids) => {
+    const st = ids.map((id) => dash.data(id).status);
+    el.replaceChildren();
+    const failed = st.some((s) => s === 'error' || s === 'missing');
+    const ok = st.every((s) => s === 'ok');
+    el.classList.toggle('dash-skeleton', !ok && !failed);
+    if (failed) {
+      const f = document.createElement('div');
+      f.className = 'px-fail';
+      f.textContent = 'No se pudo cargar';
+      el.appendChild(f);
+    }
+    return ok;
+  };
+
+  const fit = (node, max) => {
+    const full = node.textContent;
+    if (node.getComputedTextLength() <= max) return;
+    let t = full;
+    while (t.length > 4 && node.getComputedTextLength() > max) {
+      t = t.slice(0, -1);
+      node.textContent = t.trimEnd() + '…';
+    }
+  };
+
+  const hover = (el, sel, lines) => {
+    const tip = document.createElement('div');
+    tip.className = 'px-tip';
+    tip.hidden = true;
+    el.appendChild(tip);
+    sel.on('pointerenter pointermove', (ev, d) => {
+      const [head, ...rows] = lines(d);
+      const h = document.createElement('div');
+      h.className = 'px-tip-h';
+      h.textContent = head;
+      tip.replaceChildren(h, ...rows.map(([k, v]) => {
+        const r = document.createElement('div');
+        r.className = 'px-tip-r';
+        const a = document.createElement('span'); a.textContent = k;
+        const b = document.createElement('span'); b.textContent = v;
+        r.append(a, b);
+        return r;
+      }));
+      tip.hidden = false;
+      const box = el.getBoundingClientRect();
+      let x = ev.clientX - box.left + 14;
+      const y = ev.clientY - box.top + 14;
+      if (x + tip.offsetWidth > box.width) x = Math.max(0, ev.clientX - box.left - tip.offsetWidth - 14);
+      tip.style.left = x + 'px';
+      tip.style.top = Math.min(y, Math.max(0, box.height - tip.offsetHeight)) + 'px';
+    }).on('pointerleave', () => { tip.hidden = true; });
+  };
+
+  // Barras horizontales con la etiqueta arriba de cada barra.
+  const hbar = (el, rows, o) => {
+    const anim = !el.dataset.pxDrawn && rows.length > 0;
+    if (anim) el.dataset.pxDrawn = '1';
+    const W = Math.max(240, el.clientWidth);
+    const step = 38;
+    const H = Math.max(step, rows.length * step);
+    el.style.minHeight = H + 'px';
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', o.aria || '');
+    const probe = svg.append('text').attr('class', 'px-val').text(fmt(d3.max(rows, o.value) || 0) + ' · 100.0%');
+    const valW = probe.node().getComputedTextLength() + 10;
+    probe.remove();
+    const x = d3.scaleLinear([0, d3.max(rows, o.value) || 1], [0, Math.max(40, W - valW)]);
+    const g = svg.selectAll('g.px-row').data(rows).join('g').attr('class', 'px-row').attr('transform', (d, i) => `translate(0,${i * step})`);
+    g.append('rect').attr('width', W).attr('height', step).attr('fill', 'transparent');
+    g.append('text').attr('class', 'px-lbl').attr('y', 13).text(o.label).each(function () { fit(this, W - 4); });
+    g.append('rect').attr('y', 19).attr('height', 12).attr('rx', 3)
+      .attr('width', (d) => Math.max(2, x(o.value(d))))
+      .attr('fill', o.color)
+      .attr('opacity', (d) => (o.dim && o.dim(d) ? 0.22 : 1))
+    .attr('class', () => (anim ? 'px-grow-x' : null))
+    .style('animation-delay', (d, i) => (anim ? i * 35 + 'ms' : null));
+    g.append('text').attr('class', 'px-val').attr('y', 29).attr('x', (d) => Math.max(2, x(o.value(d))) + 6).text(o.valueText || ((d) => fmt(o.value(d))));
+    hover(el, g, o.tip);
+  };
+
+  return { COLORS, fmt, pct, area, esc, color, ready, fit, hover, hbar };
+})();
+</script>
+
+<script>
+// Filtro de área normativa y marca de cifras.
+dash.draw('f-area', (sel) => {
+  const d = dash.data('resumen');
+  const areas = d.status === 'ok' ? d.data.filter((r) => r.area !== 'Todas').map((r) => r.area) : [];
+  sel.replaceChildren(new Option('Todas las áreas', ''), ...areas.map((a) => new Option(a, a)));
+  sel.value = dash.params().area ?? '';
+  sel.onchange = () => dash.setParams({ area: sel.value || null });
+});
+
+window.pxMark = (el, source, field, where, text) => {
+  const s = document.createElement('span');
+  s.dataset.source = source;
+  s.dataset.field = field;
+  s.dataset.where = where;
+  s.textContent = text;
+  el.replaceChildren(s);
+};
+</script>
+
+
+
+<script>
+// Universo de programación por ámbito, y filtros Nacional / OOAD / UOPSI.
+dash.calc('uni_nivel', {
+  title: 'Universo por ámbito',
+  description: 'OOAD, Unidades Operativas (sin tiendas ni velatorios), instalaciones registradas, instalaciones operativas y superficie, a nivel nacional, por OOAD, por Unidad Operativa y por instalación.',
+  inputs: ['unidades_operativas', 'instalaciones'],
+  fn: (unidades_operativas, instalaciones) => {
+    const acc = new Map();
+    const get = (k, base) => {
+      let o = acc.get(k);
+      if (!o) { o = { ...base, ooad: 0, unidades: 0, instalaciones: 0, instalaciones_operativas: 0, area_m2: 0 }; acc.set(k, o); }
+      return o;
+    };
+    const clu = (cve) => Math.floor(Number(cve) / 1000) + '-' + (Number(cve) % 1000);
+    const ooads = new Set();
+    for (const u of unidades_operativas) {
+      ooads.add(String(u.cve_ooad));
+      get('N', { nivel: 'Nacional', clave: 'Nacional', nombre: 'Nacional', tipo: '', padre: '' }).unidades += 1;
+      const o = get('O' + u.cve_ooad, { nivel: 'OOAD', clave: String(u.cve_ooad), nombre: u.ooad, tipo: '', padre: 'Nacional' });
+      o.unidades += 1; o.ooad = 1;
+      const x = get('U' + u.cve_uo, { nivel: 'Unidad Operativa', clave: clu(u.cve_uo), nombre: u.unidad_operativa, tipo: u.tipo_uo, padre: String(u.cve_ooad) });
+      x.unidades = 1; x.ooad = 1;
+    }
+    get('N', {}).ooad = ooads.size;
+    for (const i of instalaciones) {
+      const op = i.operativa === 'SI' ? 1 : 0;
+      const m2 = Number(i.area_m2) || 0;
+      const rows = [
+        get('N', {}),
+        get('O' + i.cve_ooad, { nivel: 'OOAD', clave: String(i.cve_ooad), nombre: i.ooad, tipo: '', padre: 'Nacional' }),
+        get('U' + i.cve_uo, { nivel: 'Unidad Operativa', clave: clu(i.cve_uo), nombre: i.unidad_operativa, tipo: '', padre: String(i.cve_ooad) }),
+        get('I' + i.cve_instalacion, { nivel: 'Instalación', clave: clu(i.cve_uo) + ' · ' + i.cve_instalacion, nombre: i.nombre_instalacion, tipo: i.tipo_instalacion, padre: clu(i.cve_uo) }),
+      ];
+      for (const o of rows) { o.instalaciones += 1; o.instalaciones_operativas += op; o.area_m2 += m2; }
+    }
+    return [...acc.values()].map((o) => ({ ...o, area_m2: Math.round(o.area_m2) }));
+  },
+});
+
+window.PXU = {
+  scope: () => {
+    const p = dash.params();
+    if (p.uo) return { nivel: 'Unidad Operativa', clave: p.uo, hijos: 'Instalación' };
+    if (p.ooad) return { nivel: 'OOAD', clave: p.ooad, hijos: 'Unidad Operativa' };
+    return { nivel: 'Nacional', clave: 'Nacional', hijos: 'OOAD' };
+  },
+  row: (nivel, clave) => {
+    const d = dash.data('uni_nivel');
+    return d.status === 'ok' ? d.data.find((r) => r.nivel === nivel && r.clave === clave) || null : null;
+  },
+  where: (r) => 'nivel=' + PX.esc(r.nivel) + '&clave=' + PX.esc(r.clave),
+};
+
+// Filtros
+dash.draw('f-ooad', (sel) => {
+  const d = dash.data('uni_nivel');
+  const rows = d.status === 'ok' ? d.data.filter((r) => r.nivel === 'OOAD').sort((a, b) => Number(a.clave) - Number(b.clave)) : [];
+  sel.replaceChildren(new Option('Nacional', ''), ...rows.map((r) => new Option(r.clave + ' · ' + r.nombre, r.clave)));
+  sel.value = dash.params().ooad ?? '';
+  sel.onchange = () => dash.setParams({ ooad: sel.value || null, uo: null, inst: null });
+});
+
+dash.draw('f-uo', (sel) => {
+  const d = dash.data('uni_nivel');
+  const ooad = dash.params().ooad;
+  const rows = d.status === 'ok' && ooad ? d.data.filter((r) => r.nivel === 'Unidad Operativa' && r.padre === ooad).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es')) : [];
+  sel.replaceChildren(new Option(ooad ? 'Todas las UOPSI' : 'Elige primero una OOAD', ''), ...rows.map((r) => new Option(r.nombre, r.clave)));
+  sel.disabled = !ooad;
+  sel.value = dash.params().uo ?? '';
+  sel.onchange = () => dash.setParams({ uo: sel.value || null, inst: null });
+});
+
+document.querySelectorAll('.px-reset').forEach((b) => b.addEventListener('click', () => dash.resetParams()));
+
+dash.draw('amb', (el) => {
+  const s = PXU.scope();
+  const r = PXU.row(s.nivel, s.clave);
+  if (!r) { el.textContent = '—'; return; }
+  pxMark(el, 'uni_nivel', 'nombre', PXU.where(r), r.nombre);
+});
+
+dash.onData(() => {
+  const h = PXU.scope().hijos;
+  const lv = h === 'OOAD' ? 1 : h === 'Unidad Operativa' ? 2 : 3;
+  [1, 2, 3].forEach((i) => document.querySelectorAll('.px-ul-' + i).forEach((n) => { n.hidden = i !== lv; }));
+});
+
+</script>
+<script>
+// Utilidades compartidas: meses y llenado de tablas.
+window.PXP = {
+  MESES: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+};
+
+window.pxRowsTo = (tb, rows, keyOf, cells, click) => {
+  tb.replaceChildren();
+  const frag = document.createDocumentFragment();
+  for (const r of rows) {
+    const tr = document.createElement('tr');
+    tr.dataset.key = keyOf(r).map(PX.esc).join(',');
+    if (click) {
+      const go = click(r);
+      if (go) { tr.className = 'px-click'; tr.tabIndex = 0; tr.onclick = go; tr.onkeydown = (e) => { if (e.key === 'Enter') go(); }; }
+    }
+    for (const [t, c] of cells(r)) {
+      const td = document.createElement('td');
+      if (c) td.className = c;
+      td.textContent = t;
+      tr.appendChild(td);
+    }
+    frag.appendChild(tr);
+  }
+  tb.appendChild(frag);
+};
+</script>
+<script>
+// Módulos: una pestaña a la vez; el enlace recuerda el módulo abierto.
+const pxShowMod = (n) => {
+  document.querySelectorAll('.px-mod').forEach((m) => { m.hidden = m.dataset.mod !== String(n); });
+  document.querySelectorAll('.px-tab').forEach((t) => t.setAttribute('aria-selected', String(t.dataset.mod === String(n))));
+};
+document.querySelectorAll('.px-tab').forEach((t) => t.addEventListener('click', () => {
+  pxShowMod(t.dataset.mod);
+  dash.setLink('modulo-' + t.dataset.mod);
+  const m = document.getElementById('modulo-' + t.dataset.mod);
+  const bar = document.getElementById('barra-fija');
+  if (m && bar && m.getBoundingClientRect().top < bar.getBoundingClientRect().bottom) m.scrollIntoView({ block: 'start' });
+}));
+const pxHash = (location.hash || '').match(/^#modulo-([123])$/);
+if (pxHash) pxShowMod(pxHash[1]);
+</script>
+<script>
+// Meta de inscripciones 2027 por Unidad Operativa, OOAD y área normativa.
+dash.calc('metas_nivel', {
+  title: 'Meta de inscripciones 2027 por nivel',
+  description: 'Inscripciones programadas 2026 y meta de inscripciones 2027 a nivel nacional, por OOAD (Meta Criterio 2027) y por Unidad Operativa, por área normativa y en total (Todas), con el incremento, la variación, la participación de cada área en la meta del ámbito y la de cada OOAD o Unidad Operativa en su nivel superior.',
+  inputs: ['metas_2027', 'metas_2027_uopsi'],
+  fn: (metas_2027, metas_2027_uopsi) => {
+    const acc = new Map();
+    const add = (nivel, clave, nombre, padre, area, r, extra) => {
+      const k = nivel + '|' + clave + '|' + area;
+      const o = acc.get(k) || { nivel, clave, nombre, padre, area, programado_2026: 0, meta_2027: 0, ...extra };
+      o.programado_2026 += Number(r.programado_2026);
+      o.meta_2027 += Number(r.meta_2027);
+      acc.set(k, o);
+    };
+    for (const r of metas_2027) {
+      const area = r.area === 'Total' ? 'Todas' : r.area;
+      add('OOAD', String(r.cve_ooad), r.ooad, 'Nacional', area, r, {});
+      add('Nacional', 'Nacional', 'Nacional', '', area, r, {});
+    }
+    for (const r of metas_2027_uopsi) {
+      const area = r.area === 'Total' ? 'Todas' : r.area;
+      add('Unidad Operativa', r.unidad, r.uopsi, String(r.cve_ooad), area, r, { en_universo: r.en_universo });
+    }
+    const get = (nivel, clave, area) => acc.get(nivel + '|' + clave + '|' + area);
+    const nivelPadre = { OOAD: 'Nacional', 'Unidad Operativa': 'OOAD' };
+    return [...acc.values()].map((o) => {
+      const tot = get(o.nivel, o.clave, 'Todas');
+      const p = nivelPadre[o.nivel] ? get(nivelPadre[o.nivel], o.padre, o.area) : null;
+      return {
+        ...o,
+        incremento: o.meta_2027 - o.programado_2026,
+        variacion: o.programado_2026 ? o.meta_2027 / o.programado_2026 - 1 : null,
+        part_area: tot && tot.meta_2027 ? o.meta_2027 / tot.meta_2027 : null,
+        part_padre: p && p.meta_2027 ? o.meta_2027 / p.meta_2027 : null,
+      };
+    });
+  },
+});
+
+window.PXM = {
+  scope: () => {
+    const p = dash.params();
+    if (p.uo) return { nivel: 'Unidad Operativa', clave: p.uo };
+    if (p.ooad) return { nivel: 'OOAD', clave: p.ooad };
+    return { nivel: 'Nacional', clave: 'Nacional' };
+  },
+  lista: () => {
+    const p = dash.params();
+    if (p.uo) return { nivel: 'Unidad Operativa', padre: String(p.uo).split('-')[0], padreNivel: 'OOAD' };
+    if (p.ooad) return { nivel: 'Unidad Operativa', padre: p.ooad, padreNivel: 'OOAD' };
+    return { nivel: 'OOAD', padre: 'Nacional', padreNivel: 'Nacional' };
+  },
+  row: (nivel, clave, area) => {
+    const d = dash.data('metas_nivel');
+    return d.status === 'ok' ? d.data.find((r) => r.nivel === nivel && r.clave === clave && r.area === area) || null : null;
+  },
+  where: (r) => 'nivel=' + PX.esc(r.nivel) + '&clave=' + PX.esc(r.clave) + '&area=' + PX.esc(r.area),
+  fmt: (k, v) => (k === 'variacion' ? (v >= 0 ? '+' : '') + d3.format('.1%')(v) : k.startsWith('part') ? d3.format('.1%')(v) : (k === 'incremento' ? (v >= 0 ? '+' : '') : '') + PX.fmt(Math.round(v))),
+};
+
+dash.onData(() => {
+  const d = dash.data('metas_nivel');
+  const a = PX.area();
+  const ok = d.status === 'ok';
+  const na = ok && a !== 'Todas' && !d.data.some((r) => r.area === a);
+  document.querySelectorAll('.px-meta-na').forEach((n) => { n.hidden = !na; });
+  const s = PXM.scope();
+  const r = ok && s.nivel === 'Unidad Operativa' ? PXM.row(s.nivel, s.clave, 'Todas') : null;
+  document.querySelectorAll('.px-meta-fuera').forEach((n) => { n.hidden = !(r && r.en_universo === 'No'); });
+  const lv = PXM.lista().nivel === 'OOAD' ? 1 : 2;
+  [1, 2].forEach((i) => document.querySelectorAll('.px-ml-' + i).forEach((n) => { n.hidden = i !== lv; }));
+});
+
+dash.draw('mk', (el) => {
+  const k = el.dataset.k;
+  el.classList.toggle('dash-skeleton', dash.data('metas_nivel').status === 'loading');
+  const s = PXM.scope();
+  const r = PXM.row(s.nivel, s.clave, PX.area());
+  if (!r || r[k] === null || r[k] === undefined) { el.textContent = '—'; return; }
+  pxMark(el, 'metas_nivel', k, PXM.where(r), PXM.fmt(k, r[k]));
+});
+
+dash.draw('mtot2', (el) => {
+  const k = el.dataset.k;
+  const l = PXM.lista();
+  const r = PXM.row(l.padreNivel, l.padre, PX.area());
+  if (!r) { el.textContent = '—'; return; }
+  pxMark(el, 'metas_nivel', k, PXM.where(r), PXM.fmt(k, r[k]));
+});
+
+dash.draw('mtot2-n', (el) => {
+  const l = PXM.lista();
+  const r = PXM.row(l.padreNivel, l.padre, 'Todas');
+  if (!r) { el.textContent = '—'; return; }
+  pxMark(el, 'metas_nivel', 'nombre', PXM.where(r), r.nombre);
+});
+
+dash.draw('m-amb', (el) => {
+  const s = PXM.scope();
+  const r = PXM.row(s.nivel, s.clave, 'Todas');
+  if (!r) { el.textContent = '—'; return; }
+  pxMark(el, 'metas_nivel', 'nombre', PXM.where(r), r.nombre);
+});
+
+window.PXS = { color: (s) => ({ Verde: '#1E5B4F', Amarillo: '#A57F2C', Rojo: '#9B2247' }[s] || '#6F7271') };
+
+dash.draw('ch-metas-area', (el) => {
+  if (!PX.ready(el, ['av_nivel'])) return;
+  const s = PXM.scope();
+  const sel = PX.area();
+  const orden = ['Promoción de la Salud', 'Desarrollo Cultural', 'Cultura Física y Deporte', 'Capacitación y Adiestramiento Técnico'];
+  if (PXMED.m() === 'asistencias') {
+    const tot = dash.data('av_nivel').data.find((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === 'Todas');
+    const ra = dash.data('av_nivel').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && orden.includes(r.area)).sort((x, y) => orden.indexOf(x.area) - orden.indexOf(y.area));
+    if (!ra.length) return;
+    const part = (r) => (tot && tot.asistencias ? r.asistencias / tot.asistencias : null);
+    PX.hbar(el, ra, {
+      aria: 'Asistencias registradas por área normativa',
+      label: (r) => r.area,
+      value: (r) => r.asistencias,
+      valueText: (r) => PX.fmt(Math.round(r.asistencias)) + (part(r) === null ? '' : ' · ' + PXV.pct(part(r))),
+      color: (r) => PX.color(r.area),
+      dim: (r) => sel !== 'Todas' && r.area !== sel,
+      tip: (r) => [r.area, ['Asistencias registradas', PX.fmt(Math.round(r.asistencias))], ['Participación en las asistencias', part(r) === null ? '' : PXV.pct(part(r))], ['Inscripciones registradas', PX.fmt(Math.round(r.inscripciones))], ['Grupos registrados', PX.fmt(r.grupos)]],
+    });
+    return;
+  }
+  const rows = dash.data('av_nivel').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && orden.includes(r.area) && r.meta_2027 !== null).sort((x, y) => orden.indexOf(x.area) - orden.indexOf(y.area));
+  if (!rows.length) return;
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(260, el.clientWidth);
+  const step = 50;
+  const H = rows.length * step + 4;
+  el.style.minHeight = H + 'px';
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Avance del registro contra la meta de inscripciones 2027 por área normativa');
+  const probe = svg.append('text').attr('class', 'px-val').text(PX.fmt(Math.round(d3.max(rows, (r) => r.inscripciones))) + ' de ' + PX.fmt(Math.round(d3.max(rows, (r) => r.meta_2027))) + ' · 100.0%');
+  const vw = probe.node().getComputedTextLength() + 26;
+  probe.remove();
+  const x = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.meta_2027, r.inscripciones)) || 1], [0, Math.max(60, W - vw)]);
+  const g = svg.selectAll('g.px-ma').data(rows).join('g').attr('class', 'px-ma').attr('transform', (r, i) => `translate(0,${i * step})`)
+    .attr('opacity', (r) => (sel !== 'Todas' && r.area !== sel ? 0.3 : 1));
+  g.append('rect').attr('width', W).attr('height', step).attr('fill', 'transparent');
+  g.append('text').attr('class', 'px-lbl').attr('y', 13).text((r) => r.area).each(function () { PX.fit(this, W - 4); });
+  g.append('rect').attr('y', 20).attr('height', 16).attr('rx', 3).attr('width', (r) => Math.max(2, x(r.meta_2027)))
+    .attr('fill', 'color-mix(in srgb, #1E5B4F 18%, transparent)').attr('stroke', 'color-mix(in srgb, #1E5B4F 45%, transparent)');
+  g.append('rect').attr('y', 23).attr('height', 10).attr('rx', 2).attr('x', 0).attr('width', (r) => Math.max(r.inscripciones > 0 ? 2 : 0, x(r.inscripciones)))
+    .attr('fill', (r) => PXS.color(r.semaforo)).attr('class', anim ? 'px-grow-x' : null).style('animation-delay', (r, i) => (anim ? i * 70 + 'ms' : null));
+  g.append('circle').attr('cx', (r) => Math.max(2, x(r.meta_2027)) + 10).attr('cy', 28).attr('r', 5).attr('fill', (r) => PXS.color(r.semaforo));
+  const tv = g.append('text').attr('class', 'px-val').attr('x', (r) => Math.max(2, x(r.meta_2027)) + 20).attr('y', 32);
+  tv.append('tspan').attr('class', 'px-strong-v').text((r) => (r.avance === null ? '' : PXV.pct(r.avance)));
+  tv.append('tspan').text((r) => '  ' + PX.fmt(Math.round(r.inscripciones)) + ' de ' + PX.fmt(Math.round(r.meta_2027)));
+  PX.hover(el, g, (r) => [r.area, ['Meta de inscripciones 2027', PX.fmt(Math.round(r.meta_2027))], ['Inscripciones registradas', PX.fmt(Math.round(r.inscripciones))], ['Avance', r.avance === null ? '' : PXV.pct(r.avance)], ['Semáforo', r.semaforo || '']]);
+});
+
+dash.draw('ch-metas-ooad', (el) => {
+  if (!PX.ready(el, ['av_nivel', 'metas_nivel'])) return;
+  const a = PX.area();
+  const l = PXM.lista();
+  const sel = PXM.scope();
+  const prog = new Map(dash.data('metas_nivel').data.filter((r) => r.nivel === l.nivel && r.area === a).map((r) => [r.clave, r]));
+  if (PXMED.m() === 'asistencias') {
+    const ra = dash.data('av_nivel').data.filter((r) => r.nivel === l.nivel && r.padre === l.padre && r.area === a).sort((x, y) => y.asistencias - x.asistencias);
+    if (!ra.length) return;
+    const tot = d3.sum(ra, (r) => r.asistencias);
+    const anim = !el.dataset.pxDrawn;
+    el.dataset.pxDrawn = '1';
+    const W = Math.max(260, el.clientWidth);
+    const step = 26;
+    const H = ra.length * step + 6;
+    el.style.minHeight = H + 'px';
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Asistencias registradas por ' + (l.nivel === 'OOAD' ? 'OOAD' : 'Unidad Operativa'));
+    const probe = svg.append('g');
+    const lw = d3.max(ra, (r) => probe.append('text').attr('class', 'px-lbl').text(r.nombre).node().getComputedTextLength()) || 0;
+    const vw = probe.append('text').attr('class', 'px-val').text(PX.fmt(d3.max(ra, (r) => r.asistencias)) + ' · 100.0%').node().getComputedTextLength() + 10;
+    probe.remove();
+    const labelW = Math.min(lw + 10, W * 0.42);
+    const x = d3.scaleLinear([0, d3.max(ra, (r) => r.asistencias) || 1], [0, Math.max(40, W - labelW - vw)]);
+    const g = svg.selectAll('g.px-mo').data(ra).join('g').attr('class', 'px-mo').attr('transform', (r, i) => `translate(0,${3 + i * step})`).style('cursor', 'pointer')
+      .attr('opacity', (r) => (sel.nivel === l.nivel && r.clave !== sel.clave ? 0.45 : 1))
+      .on('click', (ev, r) => dash.setParams(r.nivel === 'OOAD' ? { ooad: r.clave, uo: null } : { ooad: r.padre, uo: r.clave }));
+    g.append('rect').attr('width', W).attr('height', step).attr('fill', 'transparent');
+    g.append('text').attr('class', 'px-lbl').attr('x', labelW - 8).attr('y', step / 2 + 4).attr('text-anchor', 'end').text((r) => r.nombre).each(function () { PX.fit(this, labelW - 10); });
+    g.append('rect').attr('x', labelW).attr('y', 7).attr('height', step - 14).attr('rx', 2).attr('width', (r) => (r.asistencias > 0 ? Math.max(2, x(r.asistencias)) : 0))
+      .attr('fill', '#9B2247').attr('class', anim ? 'px-grow-x' : null).style('animation-delay', (r, i) => (anim ? Math.min(i * 18, 500) + 'ms' : null));
+    g.append('text').attr('class', 'px-val').attr('x', (r) => labelW + x(r.asistencias) + 6).attr('y', step / 2 + 4).text((r) => PX.fmt(Math.round(r.asistencias)) + (tot ? ' · ' + PXV.pct(r.asistencias / tot) : ''));
+    PX.hover(el, g, (r) => [r.nombre, ['Asistencias registradas', PX.fmt(Math.round(r.asistencias))], ['Participación en las asistencias', tot ? PXV.pct(r.asistencias / tot) : ''], ['Inscripciones registradas', PX.fmt(Math.round(r.inscripciones))], ['Grupos registrados', PX.fmt(r.grupos)]]);
+    return;
+  }
+  const rows = dash.data('av_nivel').data.filter((r) => r.nivel === l.nivel && r.padre === l.padre && r.area === a && r.meta_2027 !== null).sort((x, y) => y.meta_2027 - x.meta_2027);
+  if (!rows.length) return;
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(260, el.clientWidth);
+  const step = 26;
+  const H = rows.length * step + 6;
+  el.style.minHeight = H + 'px';
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Avance del registro contra la meta de inscripciones 2027 por ' + (l.nivel === 'OOAD' ? 'OOAD' : 'Unidad Operativa'));
+  const probe = svg.append('g');
+  const lw = d3.max(rows, (r) => probe.append('text').attr('class', 'px-lbl').text(r.nombre).node().getComputedTextLength()) || 0;
+  const vw = probe.append('text').attr('class', 'px-val').text('100.0%').node().getComputedTextLength() + 30;
+  probe.remove();
+  const labelW = Math.min(lw + 10, W * 0.42);
+  const x = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.meta_2027, r.inscripciones)) || 1], [0, Math.max(40, W - labelW - vw)]);
+  const g = svg.selectAll('g.px-mo').data(rows).join('g').attr('class', 'px-mo').attr('transform', (r, i) => `translate(0,${3 + i * step})`).style('cursor', 'pointer')
+    .attr('opacity', (r) => (sel.nivel === l.nivel && r.clave !== sel.clave ? 0.45 : 1))
+    .on('click', (ev, r) => dash.setParams(r.nivel === 'OOAD' ? { ooad: r.clave, uo: null } : { ooad: r.padre, uo: r.clave }));
+  g.append('rect').attr('width', W).attr('height', step).attr('fill', 'transparent');
+  g.append('text').attr('class', 'px-lbl').attr('x', labelW - 8).attr('y', step / 2 + 4).attr('text-anchor', 'end').text((r) => r.nombre).each(function () { PX.fit(this, labelW - 10); });
+  g.append('rect').attr('x', labelW).attr('y', 5).attr('height', step - 10).attr('rx', 3).attr('width', (r) => Math.max(2, x(r.meta_2027)))
+    .attr('fill', 'color-mix(in srgb, #1E5B4F 18%, transparent)').attr('stroke', (r) => (r.clave === sel.clave ? '#9B2247' : 'color-mix(in srgb, #1E5B4F 45%, transparent)'));
+  g.append('rect').attr('x', labelW).attr('y', 8).attr('height', step - 16).attr('rx', 2).attr('width', (r) => (r.inscripciones > 0 ? Math.max(2, x(r.inscripciones)) : 0))
+    .attr('fill', (r) => PXS.color(r.semaforo)).attr('class', anim ? 'px-grow-x' : null).style('animation-delay', (r, i) => (anim ? Math.min(i * 18, 500) + 'ms' : null));
+  g.append('circle').attr('cx', (r) => labelW + Math.max(2, x(r.meta_2027)) + 10).attr('cy', step / 2).attr('r', 4.5).attr('fill', (r) => PXS.color(r.semaforo));
+  g.append('text').attr('class', 'px-val').attr('x', (r) => labelW + Math.max(2, x(r.meta_2027)) + 19).attr('y', step / 2 + 4).append('tspan').attr('class', 'px-strong-v').text((r) => (r.avance === null ? '' : PXV.pct(r.avance)));
+  PX.hover(el, g, (r) => {
+    const p = prog.get(r.clave);
+    return [r.nombre, ['Meta de inscripciones 2027', PX.fmt(Math.round(r.meta_2027))], ['Inscripciones registradas', PX.fmt(Math.round(r.inscripciones))], ['Avance', r.avance === null ? '' : PXV.pct(r.avance)], ['Semáforo', r.semaforo || ''], ['Participación en la meta', p && p.part_padre !== null ? d3.format('.1%')(p.part_padre) : ''], ['Inscripciones programadas 2026', p ? PX.fmt(p.programado_2026) : '']];
+  });
+});
+
+</script>
+<script>
+// Avance del registro del PAA: REPORTE PAA CURSOS frente a la meta 2027.
+dash.calc('av_nivel', {
+  title: 'Avance del registro por nivel',
+  description: 'Grupos, inscripciones (CAN_CUPO), asistencias (CAN_ASISTENCIAS) y clases registradas a nivel nacional, por OOAD, por Unidad Operativa y por instalación, por área normativa (CECART en Capacitación y Adiestramiento Técnico, CASSAAM en Promoción de la Salud) y en total; con la meta de inscripciones 2027, el avance (inscripciones registradas ÷ meta), las asistencias por inscripción (asistencias ÷ inscripciones registradas), las Unidades Operativas con registro y el semáforo del avance contra la meta de inscripciones 2027 (nacional, de cada OOAD y de cada Unidad Operativa): Verde de 80% en adelante, Amarillo de 60% a 79.99% y Rojo por debajo de 60%.',
+  inputs: ['avance_instalacion', 'avance_instalaciones', 'unidades_operativas', 'metas_nivel'],
+  fn: (avance_instalacion, avance_instalaciones, unidades_operativas, metas_nivel) => {
+    const areaNormativa = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
+    const uo = new Map(unidades_operativas.map((u) => [Math.floor(Number(u.cve_uo) / 1000) + '-' + (Number(u.cve_uo) % 1000), u]));
+    const inst = new Map(avance_instalaciones.map((i) => [i.unidad + '|' + i.cve_instalacion, i]));
+    const meta = new Map(metas_nivel.map((m) => [m.nivel + '|' + m.clave + '|' + m.area, m.meta_2027]));
+    const acc = new Map();
+    const unidades = new Map();
+    const add = (k, base, r) => {
+      const o = acc.get(k) || { ...base, grupos: 0, inscripciones: 0, asistencias: 0, clases: 0 };
+      o.grupos += Number(r.grupos); o.inscripciones += Number(r.inscripciones); o.asistencias += Number(r.asistencias); o.clases += Number(r.clases);
+      acc.set(k, o);
+    };
+    for (const r0 of avance_instalacion) {
+      const r = { ...r0, area: areaNormativa(r0.area) };
+      const u = uo.get(r.unidad);
+      if (!u) continue;
+      const i = inst.get(r.unidad + '|' + r.cve_instalacion) || { instalacion: String(r.cve_instalacion), tipo_instalacion: '' };
+      for (const area of ['Todas', r.area]) {
+        add('Nacional|Nacional|' + area, { nivel: 'Nacional', clave: 'Nacional', nombre: 'Nacional', padre: '', tipo: '', area }, r);
+        add('OOAD|' + u.cve_ooad + '|' + area, { nivel: 'OOAD', clave: String(u.cve_ooad), nombre: u.ooad, padre: 'Nacional', tipo: '', area }, r);
+        add('Unidad Operativa|' + r.unidad + '|' + area, { nivel: 'Unidad Operativa', clave: r.unidad, nombre: u.unidad_operativa || u.tipo_uo, padre: String(u.cve_ooad), tipo: u.tipo_uo, area }, r);
+        add('Instalación|' + r.unidad + ' · ' + r.cve_instalacion + '|' + area, { nivel: 'Instalación', clave: r.unidad + ' · ' + r.cve_instalacion, nombre: i.instalacion, padre: r.unidad, tipo: i.tipo_instalacion, area }, r);
+        for (const k of ['Nacional|Nacional|' + area, 'OOAD|' + u.cve_ooad + '|' + area]) {
+          if (!unidades.has(k)) unidades.set(k, new Set());
+          unidades.get(k).add(r.unidad);
+        }
+      }
+    }
+    const universo = new Map();
+    for (const u of unidades_operativas) {
+      universo.set('Nacional|Nacional', (universo.get('Nacional|Nacional') || 0) + 1);
+      universo.set('OOAD|' + u.cve_ooad, (universo.get('OOAD|' + u.cve_ooad) || 0) + 1);
+    }
+    // OOAD y Unidades Operativas con meta pero sin registro también aparecen, con cero.
+    for (const m of metas_nivel) {
+      if (m.nivel === 'Nacional') continue;
+      if (m.nivel === 'Unidad Operativa' && !uo.has(m.clave)) continue;
+      const k = m.nivel + '|' + m.clave + '|' + m.area;
+      if (!acc.has(k)) {
+        const u = m.nivel === 'Unidad Operativa' ? uo.get(m.clave) : null;
+        acc.set(k, { nivel: m.nivel, clave: m.clave, nombre: m.nombre, padre: m.padre, tipo: u ? u.tipo_uo : '', area: m.area, grupos: 0, inscripciones: 0, asistencias: 0, clases: 0 });
+      }
+    }
+    const filas = [...acc.entries()].map(([k, o]) => {
+      const mt = o.nivel === 'Instalación' ? null : (meta.get(o.nivel + '|' + o.clave + '|' + o.area) ?? null);
+      const un = unidades.get(k);
+      const uv = universo.get(o.nivel + '|' + o.clave);
+      return { ...o, meta_2027: mt, avance: mt ? o.inscripciones / mt : null, asistencias_por_inscripcion: o.inscripciones ? o.asistencias / o.inscripciones : null, unidades_con_registro: un ? un.size : (o.nivel === 'Nacional' || o.nivel === 'OOAD' ? 0 : null), unidades_universo: uv ?? null };
+    });
+    // Semáforo con umbrales fijos sobre el avance contra la meta de inscripciones 2027 de cada ámbito
+    // (la nacional es 1,267,527): Verde de 80% en adelante, Amarillo de 60% a 79.99% y Rojo por debajo de 60%.
+    const VERDE = 0.8;
+    const AMARILLO = 0.6;
+    return filas.map((f) => ({ ...f, semaforo: f.avance === null ? null : f.avance >= VERDE ? 'Verde' : f.avance >= AMARILLO ? 'Amarillo' : 'Rojo' }));
+  },
+});
+
+dash.calc('av_sem', {
+  title: 'Resumen del semáforo de avance',
+  description: 'Por ámbito (nacional u OOAD) y área: número de OOAD o Unidades Operativas en Verde, Amarillo y Rojo según el semáforo de avance del registro.',
+  inputs: ['av_nivel'],
+  fn: (av_nivel) => {
+    const acc = new Map();
+    for (const r of av_nivel) {
+      if (!r.semaforo) continue;
+      const k = r.nivel + '|' + r.padre + '|' + r.area;
+      const o = acc.get(k) || { nivel_hijos: r.nivel, padre: r.padre, area: r.area, verde: 0, amarillo: 0, rojo: 0 };
+      o[r.semaforo.toLowerCase()] += 1;
+      acc.set(k, o);
+    }
+    return [...acc.values()];
+  },
+});
+
+dash.calc('av_dim', {
+  title: 'Registro por dimensión de reporte',
+  description: 'Grupos, inscripciones y asistencias registradas por mes de inicio, tipo de docente, franja horaria, duración del grupo, lugar, tipo de actividad, tipo de curso y estrategia; a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total, con la participación de cada valor en las inscripciones y en las asistencias del ámbito.',
+  inputs: ['avance_dimension', 'unidades_operativas'],
+  fn: (avance_dimension, unidades_operativas) => {
+    const areaNormativa = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
+    const uo = new Map(unidades_operativas.map((u) => [Math.floor(Number(u.cve_uo) / 1000) + '-' + (Number(u.cve_uo) % 1000), u]));
+    const acc = new Map();
+    const tot = new Map();
+    const totA = new Map();
+    for (const r of avance_dimension) {
+      const u = uo.get(r.unidad);
+      if (!u) continue;
+      for (const area of ['Todas', areaNormativa(r.area)]) {
+        for (const [nivel, clave] of [['Nacional', 'Nacional'], ['OOAD', String(u.cve_ooad)], ['Unidad Operativa', r.unidad]]) {
+          const g = nivel + '|' + clave + '|' + area + '|' + r.dimension;
+          const k = g + '|' + r.valor;
+          const o = acc.get(k) || { nivel, clave, area, dimension: r.dimension, valor: r.valor, grupos: 0, inscripciones: 0, asistencias: 0 };
+          o.grupos += Number(r.grupos); o.inscripciones += Number(r.inscripciones); o.asistencias += Number(r.asistencias);
+          acc.set(k, o);
+          tot.set(g, (tot.get(g) || 0) + Number(r.inscripciones));
+          totA.set(g, (totA.get(g) || 0) + Number(r.asistencias));
+        }
+      }
+    }
+    return [...acc.values()].map((o) => {
+      const g = o.nivel + '|' + o.clave + '|' + o.area + '|' + o.dimension;
+      const t = tot.get(g), ta = totA.get(g);
+      return { ...o, participacion: t ? o.inscripciones / t : null, participacion_asistencias: ta ? o.asistencias / ta : null };
+    });
+  },
+});
+
+dash.calc('av_act', {
+  title: 'Registro por actividad y apego a criterios',
+  description: 'Por actividad, a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total: grupos, inscripciones y asistencias registradas, y grupos con clave vigente en el Layout 2027, que alcanzan la meta mínima, con edad dentro del rango y con cuota de recuperación.',
+  inputs: ['avance_actividad', 'avance_catalogo_actividades', 'unidades_operativas'],
+  fn: (avance_actividad, avance_catalogo_actividades, unidades_operativas) => {
+    const areaNormativa = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
+    const uo = new Map(unidades_operativas.map((u) => [Math.floor(Number(u.cve_uo) / 1000) + '-' + (Number(u.cve_uo) % 1000), u]));
+    const cat = new Map(avance_catalogo_actividades.map((a) => [String(a.clave_actividad), a]));
+    const campos = ['grupos', 'inscripciones', 'asistencias', 'grupos_clave_vigente', 'grupos_cumplen_meta_minima', 'grupos_edad_en_rango', 'grupos_con_pago'];
+    const acc = new Map();
+    for (const r of avance_actividad) {
+      const u = uo.get(r.unidad);
+      if (!u) continue;
+      const c = cat.get(String(r.clave_actividad)) || {};
+      for (const area of ['Todas', areaNormativa(r.area)]) {
+        for (const [nivel, clave] of [['Nacional', 'Nacional'], ['OOAD', String(u.cve_ooad)], ['Unidad Operativa', r.unidad]]) {
+          const k = nivel + '|' + clave + '|' + area + '|' + r.clave_actividad;
+          const o = acc.get(k) || { nivel, clave, area, clave_actividad: String(r.clave_actividad), actividad: c.actividad || '', en_catalogo_2027: c.en_catalogo_2027 || 'No', ...Object.fromEntries(campos.map((f) => [f, 0])) };
+          for (const f of campos) o[f] += Number(r[f]) || 0;
+          acc.set(k, o);
+        }
+      }
+    }
+    return [...acc.values()];
+  },
+});
+
+dash.calc('av_valid', {
+  title: 'Apego a los Criterios Técnicos 2027',
+  description: 'Por nivel y área: proporción de grupos registrados con clave vigente en el Layout 2027, que alcanzan la meta mínima de su actividad y con edad dentro del rango del criterio, y grupos con cuota de recuperación.',
+  inputs: ['av_act'],
+  fn: (av_act) => {
+    const acc = new Map();
+    for (const r of av_act) {
+      const k = r.nivel + '|' + r.clave + '|' + r.area;
+      const o = acc.get(k) || { nivel: r.nivel, clave: r.clave, area: r.area, grupos: 0, grupos_clave_vigente: 0, grupos_cumplen_meta_minima: 0, grupos_edad_en_rango: 0, grupos_con_pago: 0 };
+      for (const f of ['grupos', 'grupos_clave_vigente', 'grupos_cumplen_meta_minima', 'grupos_edad_en_rango', 'grupos_con_pago']) o[f] += r[f];
+      acc.set(k, o);
+    }
+    return [...acc.values()].map((o) => ({ ...o, pct_clave_vigente: o.grupos ? o.grupos_clave_vigente / o.grupos : null, pct_meta_minima: o.grupos ? o.grupos_cumplen_meta_minima / o.grupos : null, pct_edad: o.grupos ? o.grupos_edad_en_rango / o.grupos : null }));
+  },
+});
+
+window.PXV = {
+  scope: () => {
+    const p = dash.params();
+    if (p.uo) return { nivel: 'Unidad Operativa', clave: p.uo, hijos: 'Instalación' };
+    if (p.ooad) return { nivel: 'OOAD', clave: p.ooad, hijos: 'Unidad Operativa' };
+    return { nivel: 'Nacional', clave: 'Nacional', hijos: 'OOAD' };
+  },
+  where: (r, extra) => 'nivel=' + PX.esc(r.nivel) + '&clave=' + PX.esc(r.clave) + '&area=' + PX.esc(r.area) + (extra || ''),
+  find: (id, nivel, clave) => {
+    const d = dash.data(id);
+    if (d.status !== 'ok') return null;
+    const a = PX.area();
+    return d.data.find((r) => r.nivel === nivel && r.clave === clave && r.area === a) || null;
+  },
+  pct: d3.format('.1%'),
+  fecha: (iso) => {
+    const [y, m, d] = String(iso).split('-').map(Number);
+    return d + ' de ' + PXP.MESES[m - 1] + ' de ' + y;
+  },
+  barCell: (td, v, color) => {
+    const b = document.createElement('div');
+    b.className = 'px-cellbar';
+    b.style.width = Math.max(2, Math.min(1, v) * 100) + '%';
+    b.style.marginLeft = 'auto';
+    if (color) b.style.background = color;
+    td.appendChild(b);
+  },
+};
+
+dash.onData(() => {
+  const h = PXV.scope().hijos;
+  const lv = h === 'OOAD' ? 1 : h === 'Unidad Operativa' ? 2 : 3;
+  [1, 2, 3].forEach((i) => document.querySelectorAll('.px-al-' + i).forEach((n) => { n.hidden = i !== lv; }));
+});
+
+dash.draw('av-corte', (el) => {
+  const d = dash.data('avance_corte');
+  if (d.status !== 'ok' || !d.data.length) { el.textContent = '—'; return; }
+  const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
+  el.textContent = PXV.fecha(r.fecha_corte);
+});
+
+dash.draw('avk', (el) => {
+  const k = el.dataset.k;
+  el.classList.toggle('dash-skeleton', dash.data('av_nivel').status === 'loading');
+  const s = PXV.scope();
+  const r = PXV.find('av_nivel', s.nivel, s.clave);
+  if (!r || r[k] === null || r[k] === undefined) { el.textContent = '—'; return; }
+  pxMark(el, 'av_nivel', k, PXV.where(r), k === 'avance' ? PXV.pct(r[k]) : PX.fmt(Math.round(r[k])));
+  if (k === 'avance' && r.semaforo) {
+    const sem = document.createElement('span');
+    sem.className = 'px-kpi-sem';
+    const dot = document.createElement('i');
+    dot.className = 'px-dot px-dot-' + r.semaforo[0].toLowerCase();
+    const lab = document.createElement('span');
+    lab.dataset.source = 'av_nivel'; lab.dataset.field = 'semaforo'; lab.dataset.where = PXV.where(r);
+    lab.textContent = r.semaforo;
+    sem.append(dot, lab);
+    el.appendChild(sem);
+  }
+  if (k === 'unidades_con_registro' && r.unidades_universo) {
+    const de = document.createElement('span');
+    de.className = 'px-kpi-de';
+    de.textContent = ' de ' + PX.fmt(r.unidades_universo);
+    el.appendChild(de);
+  }
+});
+
+dash.draw('avv', (el) => {
+  const k = el.dataset.k;
+  el.classList.toggle('dash-skeleton', dash.data('av_valid').status === 'loading');
+  const s = PXV.scope();
+  const r = PXV.find('av_valid', s.nivel, s.clave);
+  if (!r || r[k] === null || r[k] === undefined) { el.textContent = '—'; return; }
+  pxMark(el, 'av_valid', k, PXV.where(r), k.startsWith('pct') ? PXV.pct(r[k]) : PX.fmt(r[k]));
+});
+
+dash.draw('semk', (el) => {
+  const d = dash.data('av_sem');
+  const l = PXM.lista();
+  const r = d.status === 'ok' ? d.data.find((x) => x.nivel_hijos === l.nivel && x.padre === l.padre && x.area === PX.area()) : null;
+  if (!r) { el.textContent = '—'; return; }
+  const k = el.dataset.k;
+  const sp = document.createElement('span');
+  sp.dataset.source = 'av_sem'; sp.dataset.field = k;
+  sp.dataset.where = 'nivel_hijos=' + PX.esc(r.nivel_hijos) + '&padre=' + PX.esc(r.padre) + '&area=' + PX.esc(r.area);
+  sp.textContent = PX.fmt(r[k]);
+  el.replaceChildren(sp);
+});
+
+
+dash.draw('avd', (el) => {
+  if (!PX.ready(el, ['av_dim'])) return;
+  const dim = el.dataset.dim;
+  const s = PXV.scope();
+  const a = PX.area();
+  let rows = dash.data('av_dim').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.dimension === dim);
+  const m = PXMED.m();
+  const pf = m === 'asistencias' ? 'participacion_asistencias' : 'participacion';
+  rows = dim === 'Mes de inicio' ? rows.sort((x, y) => String(x.valor).localeCompare(String(y.valor))) : rows.sort((x, y) => y[m] - x[m]);
+  if (!rows.length) {
+    const p = document.createElement('p');
+    p.className = 'px-note';
+    p.textContent = 'Sin grupos registrados en el ámbito seleccionado.';
+    el.appendChild(p);
+    return;
+  }
+  const label = (v) => (dim === 'Mes de inicio' ? PXP.MESES[Number(v) - 1].replace(/^./, (c) => c.toUpperCase()) : v);
+  const pal = ['#1E5B4F', '#9B2247', '#A57F2C', '#002F2A', '#611232', '#BC955C'];
+  PX.hbar(el, rows, {
+    aria: PXMED.t() + ' registradas por ' + dim.toLowerCase(),
+    label: (d) => label(d.valor),
+    value: (d) => d[m],
+    valueText: (d) => PX.fmt(Math.round(d[m])) + (d[pf] === null ? '' : ' · ' + PXV.pct(d[pf])),
+    color: (d, i) => (dim === 'Mes de inicio' ? '#1E5B4F' : pal[rows.indexOf(d) % pal.length]),
+    tip: (d) => [label(d.valor), ['Grupos registrados', PX.fmt(d.grupos)], ['Inscripciones registradas', PX.fmt(Math.round(d.inscripciones))], ['Asistencias registradas', PX.fmt(Math.round(d.asistencias))], ['Participación en las ' + PXMED.t().toLowerCase(), d[pf] === null ? '' : PXV.pct(d[pf])]],
+  });
+});
+
+dash.draw('ch-av-inst', (el) => {
+  if (!PX.ready(el, ['av_nivel'])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const p = dash.params();
+  const rows = dash.data('av_nivel').data.filter((r) => r.nivel === 'Instalación' && r.area === a && r.grupos > 0 &&
+    (s.nivel === 'Nacional' || (s.nivel === 'OOAD' && String(r.padre).split('-')[0] === s.clave) || (s.nivel === 'Unidad Operativa' && r.padre === p.uo)))
+    
+    .sort((x, y) => y[PXMED.m()] - x[PXMED.m()]).slice(0, 15);
+  if (!rows.length) return;
+  const uo = new Map(dash.data('av_nivel').data.filter((r) => r.nivel === 'Unidad Operativa' && r.area === 'Todas').map((r) => [r.clave, r.nombre]));
+  PX.hbar(el, rows, {
+    aria: 'Instalaciones con más ' + PXMED.t().toLowerCase() + ' registradas',
+    label: (d) => d.nombre + (s.nivel === 'Unidad Operativa' ? '' : ' · ' + (uo.get(d.padre) || d.padre)),
+    value: (d) => d[PXMED.m()],
+    color: () => '#1E5B4F',
+    tip: (d) => [d.nombre + ' · ' + (uo.get(d.padre) || d.padre), ['Tipo', d.tipo || ''], ['Grupos registrados', PX.fmt(d.grupos)], ['Inscripciones registradas', PX.fmt(Math.round(d.inscripciones))], ['Asistencias registradas', PX.fmt(Math.round(d.asistencias))]],
+  });
+});
+
+dash.draw('ch-av-act', (el) => {
+  if (!PX.ready(el, ['av_act'])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const m = PXMED.m();
+  const rows = dash.data('av_act').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a).sort((x, y) => y[m] - x[m]).slice(0, 15);
+  if (!rows.length) return;
+  PX.hbar(el, rows, {
+    aria: 'Actividades con más ' + PXMED.t().toLowerCase() + ' registradas',
+    label: (d) => d.clave_actividad + ' · ' + d.actividad,
+    value: (d) => d[m],
+    color: (d) => (d.en_catalogo_2027 === 'Sí' ? '#9B2247' : 'var(--cds-chart-muted)'),
+    tip: (d) => [d.clave_actividad + ' · ' + d.actividad, ['Grupos registrados', PX.fmt(d.grupos)], ['Inscripciones registradas', PX.fmt(Math.round(d.inscripciones))], ['Asistencias registradas', PX.fmt(Math.round(d.asistencias))], ['Clave en el Layout 2027', d.en_catalogo_2027]],
+  });
+});
+
+dash.draw('ch-cortes', (el) => {
+  if (!PX.ready(el, ['avance_corte'])) return;
+  const META = 1267527;
+  const m = PXMED.m();
+  const rows = [...dash.data('avance_corte').data].sort((x, y) => String(x.fecha_corte).localeCompare(String(y.fecha_corte)));
+  if (!rows.length) return;
+  const W = Math.max(260, el.clientWidth);
+  const H = 220;
+  el.style.minHeight = H + 'px';
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', PXMED.t() + ' registradas por fecha de corte');
+  const fmtc = (v) => new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
+  const maxv = d3.max(rows, (r) => r[m]) || 1;
+  const y = d3.scaleLinear([0, maxv * 1.15], [H - 26, 18]).nice();
+  const ticks = y.ticks(4);
+  const probe = svg.append('text').attr('class', 'px-tick').text(fmtc(d3.max(ticks)));
+  const left = probe.node().getComputedTextLength() + 8;
+  probe.remove();
+  const x = d3.scaleBand(rows.map((r) => r.fecha_corte), [left, W - 4]).paddingInner(0.35).paddingOuter(0.2);
+  svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', left).attr('x2', W - 4).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'px-tick').attr('x', left - 6).attr('y', (t) => y(t) + 4).attr('text-anchor', 'end').text(fmtc);
+  const f = (iso) => { const [yy, mm, dd] = String(iso).split('-').map(Number); return dd + ' ' + PXP.MESES[mm - 1].slice(0, 3); };
+  let lastR = -Infinity;
+  svg.append('g').selectAll('text').data(rows).join('text').attr('class', 'px-tick').attr('text-anchor', 'middle').attr('x', (r) => x(r.fecha_corte) + x.bandwidth() / 2).attr('y', H - 8).text((r) => f(r.fecha_corte))
+    .each(function () { const w = this.getComputedTextLength(); const cx = Number(this.getAttribute('x')); if (cx - w / 2 < lastR + 6) this.remove(); else lastR = cx + w / 2; });
+  const bw = Math.min(40, x.bandwidth());
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('rect').attr('x', (r) => x(r.fecha_corte)).attr('width', x.bandwidth()).attr('y', 0).attr('height', H - 26).attr('fill', 'transparent');
+  g.append('rect').attr('x', (r) => x(r.fecha_corte) + (x.bandwidth() - bw) / 2).attr('width', bw).attr('rx', 3).attr('y', (r) => y(r[m])).attr('height', (r) => y(0) - y(r[m])).attr('fill', m === 'inscripciones' ? '#1E5B4F' : '#9B2247');
+  const lab = g.append('text').attr('class', 'px-val').attr('text-anchor', 'middle').attr('x', (r) => x(r.fecha_corte) + x.bandwidth() / 2).attr('y', (r) => y(r[m]) - 5).text((r) => PX.fmt(Math.round(r[m])));
+  if ((d3.max(lab.nodes(), (n) => n.getComputedTextLength()) || 0) > x.step()) lab.remove();
+  PX.hover(el, g, (r) => [PXV.fecha(r.fecha_corte), ['Inscripciones registradas', PX.fmt(Math.round(r.inscripciones))], ...(m === 'inscripciones' ? [['Avance contra la meta', PXV.pct(r.inscripciones / META)]] : []), ['Grupos registrados', PX.fmt(r.grupos)], ['Asistencias registradas', PX.fmt(Math.round(r.asistencias))], ['Unidades Operativas con registro', PX.fmt(r.unidades)]]);
+});
+</script>
+<script>
+// Ajuste manual del ancho de columnas: arrastrar el borde derecho de un encabezado.
+(() => {
+  const EDGE = 7;
+  let drag = null;
+  const thAt = (e) => {
+    const th = e.target && e.target.closest ? e.target.closest('.px-tbl th') : null;
+    if (!th) return null;
+    const r = th.getBoundingClientRect();
+    return r.right - e.clientX <= EDGE && r.right - e.clientX >= -2 ? th : null;
+  };
+  const freeze = (table) => {
+    if (table.classList.contains('px-fixed')) return;
+    const ths = [...table.querySelectorAll('thead th')];
+    const ws = ths.map((h) => h.getBoundingClientRect().width);
+    ths.forEach((h, i) => { h.style.width = ws[i] + 'px'; });
+    table.style.width = ws.reduce((p, c) => p + c, 0) + 'px';
+    table.classList.add('px-fixed');
+  };
+  document.addEventListener('pointermove', (e) => {
+    if (drag) {
+      const w = Math.max(44, drag.w + e.clientX - drag.x);
+      drag.th.style.width = w + 'px';
+      drag.table.style.width = Math.max(120, drag.tw + (w - drag.w)) + 'px';
+      return;
+    }
+    document.querySelectorAll('.px-tbl th.px-th-edge').forEach((h) => h.classList.remove('px-th-edge'));
+    const th = thAt(e);
+    if (th) th.classList.add('px-th-edge');
+  });
+  document.addEventListener('pointerdown', (e) => {
+    const th = thAt(e);
+    if (!th) return;
+    e.preventDefault();
+    const table = th.closest('table');
+    freeze(table);
+    drag = { th, table, x: e.clientX, w: th.getBoundingClientRect().width, tw: table.getBoundingClientRect().width };
+  });
+  document.addEventListener('pointerup', () => { drag = null; });
+  document.addEventListener('dblclick', (e) => {
+    const th = thAt(e);
+    if (!th) return;
+    const table = th.closest('table');
+    table.classList.remove('px-fixed');
+    table.style.width = '';
+    table.querySelectorAll('thead th').forEach((h) => { h.style.width = ''; });
+  });
+})();
+</script>
+<script>
+// Tiempos de uso de las instalaciones (avance_uso: bloques de 15 minutos dentro del horario con actividad).
+dash.calc('av_uso', {
+  title: 'Tiempos de uso por nivel',
+  description: 'Por instalación y sumado por Unidad Operativa, OOAD y nivel nacional, para todas las instalaciones y para cada instalación homologada (nombre sin su número final; campo instalacion, vacío = todas): instalaciones y Unidades Operativas con grupos, grupos, horas de grupo, horas ocupadas y horas disponibles dentro del horario con actividad, ocupación (ocupadas ÷ disponibles), horas por semana (promedio por instalación), instalaciones por nivel de ocupación (baja < 50 %, media 50 % a 79.9 %, alta ≥ 80 %), mapa de calor por día y hora (promedio de las instalaciones) y ocupación por mes (ocupadas ÷ disponibles de cada mes). Sin Centros de Extensión ni grupos sin instalación.',
+  inputs: ['avance_uso', 'avance_instalaciones', 'unidades_operativas'],
+  fn: (avance_uso, avance_instalaciones, unidades_operativas) => {
+    const uo = new Map(unidades_operativas.map((u) => [Math.floor(Number(u.cve_uo) / 1000) + '-' + (Number(u.cve_uo) % 1000), u]));
+    const inst = new Map(avance_instalaciones.map((i) => [i.unidad + '|' + i.cve_instalacion, i]));
+    const L = (s, n) => { const a = String(s || '').split(',').map(Number); return Array.from({ length: n }, (_, i) => a[i] || 0); };
+    const groups = new Map();
+    const put = (k, base, r) => { if (!groups.has(k)) groups.set(k, { base, rows: [] }); groups.get(k).rows.push(r); };
+    // Instalación homologada: nombre sin su número final y sin distinguir acentos ni mayúsculas.
+    const llave = (n) => String(n || '').replace(/\s+\d+\s*$/, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    const etiqueta = new Map();
+    const tipoDe = new Map();
+    const cuenta = new Map();
+    for (const i of avance_instalaciones) {
+      const k = llave(i.instalacion);
+      const t = String(i.instalacion || '').replace(/\s+\d+\s*$/, '').trim();
+      const lbl = t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+      const c = cuenta.get(k + '|' + lbl) || 0;
+      cuenta.set(k + '|' + lbl, c + 1);
+      if (!etiqueta.has(k) || c + 1 > (cuenta.get(k + '|' + etiqueta.get(k)) || 0)) etiqueta.set(k, lbl);
+      if (!tipoDe.has(k)) tipoDe.set(k, i.tipo_instalacion || 'Otras');
+    }
+    for (const r of avance_uso) {
+      const u = uo.get(r.unidad);
+      if (!u) continue;
+      const i = inst.get(r.unidad + '|' + r.cve_instalacion) || { instalacion: 'Instalación ' + r.cve_instalacion, tipo_instalacion: '' };
+      const un = u.unidad_operativa || u.tipo_uo;
+      const k = llave(i.instalacion);
+      for (const b of ['', k]) {
+        const ex = b ? { instalacion: b, instalacion_nombre: etiqueta.get(b) || b, instalacion_tipo: tipoDe.get(b) || 'Otras' } : { instalacion: '', instalacion_nombre: 'Todas las instalaciones', instalacion_tipo: '' };
+        put('N|' + b, { nivel: 'Nacional', clave: 'Nacional', nombre: 'Nacional', padre: '', ...ex }, r);
+        put('O|' + u.cve_ooad + '|' + b, { nivel: 'OOAD', clave: String(u.cve_ooad), nombre: u.ooad, padre: 'Nacional', ...ex }, r);
+        put('U|' + r.unidad + '|' + b, { nivel: 'Unidad Operativa', clave: r.unidad, nombre: un, padre: String(u.cve_ooad), ...ex }, r);
+      }
+      put('I|' + r.unidad + '|' + r.cve_instalacion, { nivel: 'Instalación', clave: r.unidad + ' · ' + r.cve_instalacion, nombre: i.instalacion, padre: r.unidad, unidad_nombre: un, tipo: i.tipo_instalacion, instalacion: k, instalacion_nombre: etiqueta.get(k) || k, instalacion_tipo: tipoDe.get(k) || 'Otras', horario: r.horario, dias: r.dias, fecha_inicio: r.fecha_inicio, fecha_termino: r.fecha_termino, hora_pico: r.hora_pico, ocup_hora_pico: r.ocup_hora_pico }, r);
+    }
+    const r4 = (v) => Math.round(v * 10000) / 10000;
+    const out = [];
+    for (const { base, rows } of groups.values()) {
+      const n = rows.length;
+      const sum = (k) => rows.reduce((a, r) => a + Number(r[k] || 0), 0);
+      const ho = sum('horas_ocupadas'), hd = sum('horas_disponibles');
+      const heat = new Array(119).fill(0), mo = new Array(12).fill(0), md = new Array(12).fill(0);
+      rows.forEach((r) => {
+        L(r.heat, 119).forEach((v, i) => { heat[i] += v; });
+        L(r.mes_ocupadas, 12).forEach((v, i) => { mo[i] += v; });
+        L(r.mes_disponibles, 12).forEach((v, i) => { md[i] += v; });
+      });
+      const oc = (r) => Number(r.ocupacion);
+      out.push({
+        ...base,
+        instalaciones: n,
+        unidades: new Set(rows.map((r) => r.unidad)).size,
+        grupos: sum('grupos'),
+        horas_grupo: Math.round(sum('horas_grupo')),
+        horas_ocupadas: Math.round(ho),
+        horas_disponibles: Math.round(hd),
+        ocupacion: hd ? r4(ho / hd) : null,
+        horas_semana: Math.round(sum('horas_semana') / n * 10) / 10,
+        horas_semana_disp: Math.round(sum('horas_semana_disp') / n * 10) / 10,
+        alta: rows.filter((r) => oc(r) >= 0.8).length,
+        media: rows.filter((r) => oc(r) >= 0.5 && oc(r) < 0.8).length,
+        baja: rows.filter((r) => oc(r) < 0.5).length,
+        heat: heat.map((v) => Math.round(v / n)).join(','),
+        mes: mo.map((v, i) => (md[i] ? r4(v / md[i]) : '')).join(','),
+      });
+    }
+    return out;
+  },
+});
+
+window.PXU2 = {
+  MES: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+  DIAS: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+  lv: (v) => (v === null || v === undefined || Number.isNaN(v) ? '#B5BDBA' : v >= 0.8 ? '#1E5B4F' : v >= 0.5 ? '#A57F2C' : '#9B2247'),
+  lvn: (v) => (v >= 0.8 ? 'Alta' : v >= 0.5 ? 'Media' : 'Baja'),
+  data: () => { const d = dash.data('av_uso'); return d.status === 'ok' ? d.data : null; },
+  // Ámbito vigente; si hay una instalación elegida dentro de la Unidad Operativa, la devuelve en sel.
+  cur: () => {
+    const s = PXV.scope();
+    const d = PXU2.data();
+    if (!d) return null;
+    const p = dash.params();
+    const t = p.tinst || '';
+    const agg = d.find((r) => r.nivel === s.nivel && r.clave === s.clave && r.instalacion === t) || null;
+    const sel = s.nivel === 'Unidad Operativa' && p.inst ? d.find((r) => r.nivel === 'Instalación' && r.clave === p.inst && r.padre === s.clave && (!t || r.instalacion === t)) || null : null;
+    return { s, agg, sel, row: sel || agg };
+  },
+  where: (r) => 'nivel=' + PX.esc(r.nivel) + '&clave=' + PX.esc(r.clave),
+  fh1: d3.format(',.1f'),
+};
+
+dash.onData(() => {
+  const h = PXV.scope().hijos;
+  const lv = h === 'OOAD' ? 1 : h === 'Unidad Operativa' ? 2 : 3;
+  [1, 2, 3].forEach((i) => document.querySelectorAll('.px-ul2-' + i).forEach((n) => { n.hidden = i !== lv; }));
+  const p = dash.params();
+  document.querySelectorAll('.px-uso-back').forEach((b) => { b.hidden = !(p.uo && p.inst); });
+});
+document.querySelectorAll('.px-uso-back').forEach((b) => b.addEventListener('click', () => dash.setParams({ inst: null })));
+
+dash.draw('uso-t', (el) => {
+  const c = PXU2.cur();
+  if (!c || !c.row) { el.textContent = 'Ocupación de las instalaciones'; return; }
+  if (c.sel) { el.textContent = c.sel.nombre + ' · ' + c.sel.unidad_nombre; return; }
+  el.textContent = (c.agg.instalacion ? c.agg.instalacion_nombre : 'Ocupación de las instalaciones') + ' · ' + c.agg.nombre;
+});
+
+// Filtro de instalación: instalaciones homologadas con grupos en el ámbito, agrupadas por tipo.
+dash.draw('f-inst', (sel) => {
+  const d = PXU2.data();
+  const s = PXV.scope();
+  const t = dash.params().tinst || '';
+  const rows = d ? d.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.instalacion) : [];
+  const todas = new Option('Todas las instalaciones', '');
+  const grupos = d3.groups(rows, (r) => r.instalacion_tipo).sort((a, b) => a[0].localeCompare(b[0], 'es'));
+  const opts = grupos.map(([tipo, rs]) => {
+    const og = document.createElement('optgroup');
+    og.label = tipo;
+    rs.sort((a, b) => a.instalacion_nombre.localeCompare(b.instalacion_nombre, 'es')).forEach((r) => og.appendChild(new Option(r.instalacion_nombre + ' (' + PX.fmt(r.instalaciones) + ')', r.instalacion)));
+    return og;
+  });
+  sel.replaceChildren(todas, ...opts);
+  if (t && !rows.some((r) => r.instalacion === t)) {
+    const all = d ? d.find((r) => r.instalacion === t && r.nivel === 'Nacional') : null;
+    sel.appendChild(new Option((all ? all.instalacion_nombre : t) + ' (sin grupos en este ámbito)', t));
+  }
+  sel.value = t;
+  sel.onchange = () => dash.setParams({ tinst: sel.value || null, inst: null });
+});
+
+dash.draw('usok', (el) => {
+  const k = el.dataset.k;
+  el.classList.toggle('dash-skeleton', dash.data('av_uso').status === 'loading');
+  const c = PXU2.cur();
+  el.style.color = '';
+  if (!c || !c.row) { el.textContent = k === 'unidades' || k === 'horas_semana_disp' ? '' : '—'; return; }
+  const r = c.row;
+  if (k === 'unidades') { pxMark(el, 'av_uso', 'unidades', PXU2.where(r), PX.fmt(r.unidades) + (r.unidades === 1 ? ' Unidad Operativa' : ' Unidades Operativas')); return; }
+  if (k === 'horas_semana_disp') { pxMark(el, 'av_uso', k, PXU2.where(r), 'Promedio por instalación, de ' + PXU2.fh1(r[k]) + ' h disponibles en su horario'); return; }
+  const v = r[k];
+  if (v === null || v === undefined) { el.textContent = '—'; return; }
+  const t = k === 'ocupacion' ? PXV.pct(v) : k === 'horas_semana' ? PXU2.fh1(v) + ' h' : PX.fmt(v);
+  pxMark(el, 'av_uso', k, PXU2.where(r), t);
+  if (k === 'ocupacion') el.style.color = PXU2.lv(v);
+  if (k === 'baja') el.style.color = '#9B2247';
+});
+
+dash.draw('uso-heat', (el) => {
+  if (!PX.ready(el, ['av_uso'])) return;
+  const c = PXU2.cur();
+  if (!c || !c.row) { const p = document.createElement('p'); p.className = 'px-note'; p.textContent = dash.params().tinst ? 'Sin grupos registrados en esta instalación dentro del ámbito seleccionado.' : 'Sin grupos registrados en instalaciones del ámbito seleccionado.'; el.appendChild(p); return; }
+  const h = String(c.row.heat).split(',').map(Number);
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(640, el.clientWidth), lw = 84, top = 22, cw = (W - lw) / 17, ch = 26, H = top + 7 * ch + 2;
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Ocupación por día de la semana y hora');
+  const mx = Math.max(10, d3.max(h));
+  const fill = (v) => (v ? d3.interpolateRgb('#EEF3F1', '#1E5B4F')(v / mx) : 'color-mix(in srgb, #1E5B4F 6%, transparent)');
+  for (let hh = 0; hh < 17; hh++) if (hh % 2 === 0 || cw > 44) svg.append('text').attr('class', 'px-tick').attr('x', lw + hh * cw + cw / 2).attr('y', 13).attr('text-anchor', 'middle').text(String(6 + hh).padStart(2, '0') + ':00');
+  PXU2.DIAS.forEach((d, i) => svg.append('text').attr('class', 'px-lbl').attr('x', lw - 8).attr('y', top + i * ch + ch / 2 + 4).attr('text-anchor', 'end').text(d));
+  const cells = [];
+  for (let d = 0; d < 7; d++) for (let hh = 0; hh < 17; hh++) cells.push({ d, hh, v: h[d * 17 + hh] || 0 });
+  const g = svg.selectAll('rect.px-c').data(cells).join('rect').attr('class', 'px-c' + (anim ? ' px-fade-in' : ''))
+    .attr('x', (c2) => lw + c2.hh * cw).attr('y', (c2) => top + c2.d * ch).attr('width', cw).attr('height', ch).attr('rx', 2)
+    .attr('fill', (c2) => fill(c2.v)).style('animation-delay', (c2) => (anim ? (c2.hh * 18 + c2.d * 25) + 'ms' : null));
+  PX.hover(el, g, (c2) => [PXU2.DIAS[c2.d] + ' · ' + String(6 + c2.hh).padStart(2, '0') + ':00 a ' + String(7 + c2.hh).padStart(2, '0') + ':00', ['Fechas con grupo', c2.v + '%']]);
+  const sc = document.createElement('div');
+  sc.className = 'px-uso-scale';
+  const a = document.createElement('span'); a.textContent = '0%';
+  const i = document.createElement('i');
+  const b = document.createElement('span'); b.textContent = mx + '%';
+  sc.append(a, i, b);
+  el.appendChild(sc);
+});
+
+dash.draw('uso-mes', (el) => {
+  if (!PX.ready(el, ['av_uso'])) return;
+  const c = PXU2.cur();
+  if (!c || !c.row) return;
+  const m = String(c.row.mes).split(',').map((v) => (v === '' ? null : Number(v)));
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(280, el.clientWidth), H = 200, mg = { t: 18, r: 4, b: 22, l: 4 };
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Ocupación por mes');
+  const x = d3.scaleBand(d3.range(12), [mg.l, W - mg.r]).padding(0.25);
+  const y = d3.scaleLinear([0, Math.max(0.05, d3.max(m, (v) => v || 0))], [H - mg.b, mg.t]);
+  const rows = m.map((v, i) => ({ i, v }));
+  const g = svg.selectAll('g.px-m').data(rows).join('g').attr('class', 'px-m');
+  g.append('rect').attr('x', (r) => x(r.i) - 2).attr('width', x.bandwidth() + 4).attr('y', 0).attr('height', H).attr('fill', 'transparent');
+  g.append('rect').attr('x', (r) => x(r.i)).attr('width', x.bandwidth()).attr('y', (r) => y(r.v || 0)).attr('height', (r) => (r.v ? H - mg.b - y(r.v) : 0)).attr('rx', 2)
+    .attr('fill', (r) => PXU2.lv(r.v)).attr('class', anim ? 'px-grow' : null).style('animation-delay', (r) => (anim ? r.i * 35 + 'ms' : null));
+  g.append('text').attr('class', 'px-tick').attr('x', (r) => x(r.i) + x.bandwidth() / 2).attr('y', H - 6).attr('text-anchor', 'middle').text((r) => PXU2.MES[r.i]);
+  if (x.bandwidth() > 24) g.append('text').attr('class', 'px-tick').attr('x', (r) => x(r.i) + x.bandwidth() / 2).attr('y', (r) => y(r.v || 0) - 4).attr('text-anchor', 'middle').text((r) => (r.v === null ? '' : d3.format('.0%')(r.v)));
+  PX.hover(el, g, (r) => [PXP.MESES[r.i].replace(/^./, (ch) => ch.toUpperCase()), ['Ocupación', r.v === null ? 'Sin grupos en el periodo' : PXV.pct(r.v)]]);
+});
+
+dash.draw('uso-niv', (el) => {
+  const st = dash.data('av_uso').status;
+  el.replaceChildren();
+  if (st !== 'ok') { if (st === 'error' || st === 'missing') { const f = document.createElement('div'); f.className = 'px-fail'; f.textContent = 'No se pudo cargar'; el.appendChild(f); } return; }
+  const c = PXU2.cur();
+  if (!c || !c.row) return;
+  if (c.sel) {
+    const p = document.createElement('p');
+    p.className = 'px-note';
+    p.append('Nivel de ocupación de la instalación: ');
+    const b = document.createElement('b'); b.style.color = PXU2.lv(c.sel.ocupacion); b.textContent = PXU2.lvn(c.sel.ocupacion);
+    p.append(b, '. Hora de mayor uso: ' + (c.sel.hora_pico || '—') + (c.sel.ocup_hora_pico ? ' (' + PXV.pct(c.sel.ocup_hora_pico) + ' de las fechas).' : '.'));
+    el.appendChild(p);
+    return;
+  }
+  const a = c.agg, n = a.instalaciones || 1;
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  [['Alta', '80% o más', 'alta', '#1E5B4F'], ['Media', 'de 50% a 79.9%', 'media', '#A57F2C'], ['Baja', 'menos de 50%', 'baja', '#9B2247']].forEach(([t, d, k, col]) => {
+    const r = document.createElement('div'); r.className = 'px-r';
+    const l = document.createElement('span'); l.textContent = t + ' '; const sm = document.createElement('small'); sm.textContent = '· ' + d; l.appendChild(sm);
+    const b = document.createElement('span'); b.className = 'px-b';
+    const i = document.createElement('i'); i.style.width = (a[k] / n * 100) + '%'; i.style.background = col; if (anim) i.className = 'px-grow-x';
+    b.appendChild(i);
+    const v = document.createElement('span'); v.className = 'px-v';
+    const mk = document.createElement('span'); mk.dataset.source = 'av_uso'; mk.dataset.field = k; mk.dataset.where = PXU2.where(a); mk.textContent = PX.fmt(a[k]);
+    const sm2 = document.createElement('small'); sm2.textContent = ' (' + PXV.pct(a[k] / n) + ')';
+    v.append(mk, sm2);
+    r.append(l, b, v);
+    el.appendChild(r);
+  });
+});
+
+dash.draw('uso-ct', (el) => {
+  const c = PXU2.cur();
+  const s = PXV.scope();
+  const nom = c && c.agg ? c.agg.nombre : '';
+  const t = c && c.agg && c.agg.instalacion ? ' · ' + c.agg.instalacion_nombre : '';
+  el.textContent = (s.hijos === 'OOAD' ? 'Ocupación promedio por OOAD' : s.hijos === 'Unidad Operativa' ? 'Ocupación promedio por Unidad Operativa · ' + nom : 'Ocupación por instalación · ' + nom) + t;
+});
+
+dash.draw('uso-cmp', (el) => {
+  if (!PX.ready(el, ['av_uso'])) return;
+  const s = PXV.scope();
+  const sel = dash.params().inst || null;
+  const t = dash.params().tinst || '';
+  const rows = PXU2.data().filter((r) => r.nivel === s.hijos && r.padre === s.clave && (s.hijos === 'Instalación' ? !t || r.instalacion === t : r.instalacion === t)).sort((a, b) => (b.ocupacion ?? -1) - (a.ocupacion ?? -1));
+  if (!rows.length) { const p = document.createElement('p'); p.className = 'px-note'; p.textContent = dash.params().tinst ? 'Sin grupos registrados en esta instalación dentro del ámbito seleccionado.' : 'Sin grupos registrados en instalaciones del ámbito seleccionado.'; el.appendChild(p); return; }
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(280, el.clientWidth);
+  const narrow = W < 560;
+  const rh = narrow ? 40 : 26, H = rows.length * rh + 6;
+  el.style.minHeight = H + 'px';
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Ocupación por ' + s.hijos);
+  const unit = (r) => (r.instalaciones === 1 ? ' instalación' : ' instalaciones');
+  const vt = (r) => (r.ocupacion === null ? '—' : PXV.pct(r.ocupacion)) + (s.hijos === 'Instalación' ? ' · ' + PX.fmt(r.grupos) + (r.grupos === 1 ? ' grupo' : ' grupos') : ' · ' + PX.fmt(r.instalaciones) + unit(r));
+  const probe = svg.append('g');
+  const lw = narrow ? 0 : Math.min(W * 0.42, (d3.max(rows, (r) => probe.append('text').attr('class', 'px-lbl').text(r.nombre).node().getComputedTextLength()) || 0) + 14);
+  const vw = narrow ? 0 : d3.max(rows, (r) => probe.append('text').attr('class', 'px-val').text(vt(r)).node().getComputedTextLength()) + 10;
+  probe.remove();
+  const x = d3.scaleLinear([0, 1], [0, Math.max(40, W - lw - vw)]);
+  const by = narrow ? 20 : 6, bh = narrow ? 12 : rh - 12;
+  const g = svg.selectAll('g.px-uso-cmp-row').data(rows).join('g').attr('class', 'px-uso-cmp-row').attr('transform', (r, i) => `translate(0,${3 + i * rh})`)
+    .on('click', (ev, r) => {
+      if (r.nivel === 'OOAD') dash.setParams({ ooad: r.clave, uo: null, inst: null });
+      else if (r.nivel === 'Unidad Operativa') dash.setParams({ ooad: r.padre, uo: r.clave, inst: null });
+      else dash.setParams({ inst: sel === r.clave ? null : r.clave });
+    });
+  g.append('rect').attr('class', 'px-hit').attr('width', W).attr('height', rh).attr('fill', 'transparent');
+  if (narrow) {
+    g.append('text').attr('class', 'px-lbl').attr('x', 0).attr('y', 13).style('font-weight', (r) => (r.clave === sel ? 600 : null)).text((r) => r.nombre).each(function () { PX.fit(this, W * 0.58); });
+    g.append('text').attr('class', 'px-val').attr('x', W).attr('y', 13).attr('text-anchor', 'end').text(vt);
+  } else {
+    g.append('text').attr('class', 'px-lbl').attr('x', lw - 10).attr('y', rh / 2 + 4).attr('text-anchor', 'end').style('font-weight', (r) => (r.clave === sel ? 600 : null)).text((r) => r.nombre).each(function () { PX.fit(this, lw - 12); });
+  }
+  g.append('rect').attr('x', lw).attr('y', by).attr('height', bh).attr('rx', 2).attr('width', x(1)).attr('fill', 'color-mix(in srgb, #002F2A 6%, transparent)');
+  g.append('rect').attr('x', lw).attr('y', by).attr('height', bh).attr('rx', 2).attr('width', (r) => Math.max(2, x(r.ocupacion || 0))).attr('fill', (r) => PXU2.lv(r.ocupacion))
+    .attr('opacity', (r) => (sel && s.hijos === 'Instalación' && r.clave !== sel ? 0.3 : 1))
+    .attr('class', anim ? 'px-grow-x' : null).style('animation-delay', (r, i) => (anim ? Math.min(i * 20, 500) + 'ms' : null));
+  if (!narrow) g.append('text').attr('class', 'px-val').attr('x', lw + x(1) + 6).attr('y', rh / 2 + 4).text(vt);
+  PX.hover(el, g, (r) => {
+    const out = [r.nombre, ['Ocupación', r.ocupacion === null ? '—' : PXV.pct(r.ocupacion)], ['Horas ocupadas', PX.fmt(r.horas_ocupadas)], ['Horas disponibles', PX.fmt(r.horas_disponibles)], ['Horas de grupo', PX.fmt(r.horas_grupo)], ['Grupos', PX.fmt(r.grupos)]];
+    if (r.nivel === 'Instalación') out.push(['Horario con actividad', r.horario], ['Días con grupos', r.dias], ['Periodo', PXV.fecha(r.fecha_inicio) + ' al ' + PXV.fecha(r.fecha_termino)], ['Hora de mayor uso', r.hora_pico || '—']);
+    else out.push(['Instalaciones', PX.fmt(r.instalaciones)], ['Horas por semana (promedio)', PXU2.fh1(r.horas_semana) + ' h']);
+    return out;
+  });
+});
+</script>
+<script>
+// Seguimiento de inscripciones y asistencias lado a lado.
+document.querySelectorAll('.px-seg-btn').forEach((b) => b.addEventListener('click', () => {
+  const t = document.getElementById('tab-modulo-1');
+  if (t && t.getAttribute('aria-selected') !== 'true') t.click();
+  requestAnimationFrame(() => { const c = document.getElementById('seguimiento'); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+}));
+
+dash.draw('seg-amb', (el) => {
+  const s = PXV.scope();
+  const r = PXV.find('av_nivel', s.nivel, s.clave);
+  const a = PX.area();
+  el.textContent = (r ? r.nombre : s.nivel === 'Nacional' ? 'Nacional' : '—') + (a !== 'Todas' ? ' · ' + a : '');
+});
+
+dash.draw('segk', (el) => {
+  const k = el.dataset.k;
+  el.classList.toggle('dash-skeleton', dash.data('av_nivel').status === 'loading');
+  el.style.color = '';
+  const s = PXV.scope();
+  const r = PXV.find('av_nivel', s.nivel, s.clave);
+  if (!r || r[k] === null || r[k] === undefined) { el.textContent = '—'; return; }
+  const t = k === 'avance' ? PXV.pct(r[k]) : k === 'asistencias_por_inscripcion' ? d3.format(',.1f')(r[k]) : PX.fmt(Math.round(r[k]));
+  pxMark(el, 'av_nivel', k, PXV.where(r), t);
+  if (k === 'avance' && r.semaforo) {
+    el.style.color = PXS.color(r.semaforo);
+    const sem = document.createElement('span');
+    sem.className = 'px-kpi-sem';
+    const dot = document.createElement('i');
+    dot.className = 'px-dot';
+    dot.style.background = PXS.color(r.semaforo);
+    sem.append(dot, r.semaforo);
+    el.appendChild(sem);
+  }
+});
+
+dash.draw('ch-seg', (el) => {
+  if (!PX.ready(el, ['av_nivel'])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const rows = dash.data('av_nivel').data.filter((r) => r.nivel === s.hijos && r.padre === s.clave && r.area === a && (r.inscripciones > 0 || r.meta_2027))
+    .sort((x, y) => y.inscripciones - x.inscripciones || (y.meta_2027 || 0) - (x.meta_2027 || 0));
+  if (!rows.length) { const p = document.createElement('p'); p.className = 'px-note'; p.textContent = 'Sin registro en el ámbito y el área seleccionados.'; el.appendChild(p); return; }
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(300, el.clientWidth);
+  const narrow = W < 640;
+  const rh = narrow ? 52 : 28, top = 22, H = top + rows.length * rh + 4;
+  el.style.minHeight = H + 'px';
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Inscripciones contra meta y asistencias registradas por ' + s.hijos);
+  const probe = svg.append('g');
+  const lw = narrow ? 0 : Math.min(W * 0.26, (d3.max(rows, (r) => probe.append('text').attr('class', 'px-lbl').text(r.nombre).node().getComputedTextLength()) || 0) + 12);
+  const vw = probe.append('text').attr('class', 'px-val').text('100.0% · 999,999').node().getComputedTextLength() + 8;
+  probe.remove();
+  const gap = 18;
+  const pw = narrow ? (W - gap) / 2 : (W - lw - gap) / 2;
+  const x0 = lw, x1 = lw + pw + gap;
+  const bw = Math.max(30, pw - vw);
+  const xi = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.inscripciones, r.meta_2027 || 0)) || 1], [0, bw]);
+  const xa = d3.scaleLinear([0, d3.max(rows, (r) => r.asistencias) || 1], [0, bw]);
+  svg.append('text').attr('class', 'px-seg-t').attr('x', x0).attr('y', 12).style('font-size', '12px').style('font-weight', 600).attr('fill', '#1E5B4F').text(narrow ? 'INSCRIPCIONES' : 'INSCRIPCIONES · registro contra meta');
+  svg.append('text').attr('x', x1).attr('y', 12).style('font-size', '12px').style('font-weight', 600).attr('fill', '#9B2247').text(narrow ? 'ASISTENCIAS' : 'ASISTENCIAS · registro');
+  const g = svg.selectAll('g.px-seg-row').data(rows).join('g').attr('class', 'px-seg-row').attr('transform', (r, i) => `translate(0,${top + i * rh})`)
+    .style('cursor', s.hijos === 'Instalación' ? 'default' : 'pointer')
+    .on('click', (ev, r) => { if (r.nivel === 'OOAD') dash.setParams({ ooad: r.clave, uo: null, inst: null }); else if (r.nivel === 'Unidad Operativa') dash.setParams({ ooad: r.padre, uo: r.clave, inst: null }); });
+  g.append('rect').attr('class', 'px-hit').attr('width', W).attr('height', rh).attr('fill', 'transparent');
+  const by = narrow ? 22 : 7, bh = narrow ? 12 : rh - 14, ty = by + bh - 2;
+  if (narrow) g.append('text').attr('class', 'px-lbl').attr('x', 0).attr('y', 14).text((r) => r.nombre).each(function () { PX.fit(this, W - 4); });
+  else g.append('text').attr('class', 'px-lbl').attr('x', lw - 10).attr('y', rh / 2 + 4).attr('text-anchor', 'end').text((r) => r.nombre).each(function () { PX.fit(this, lw - 12); });
+  g.filter((r) => r.meta_2027).append('rect').attr('x', x0).attr('y', by).attr('height', bh).attr('rx', 2).attr('width', (r) => Math.max(2, xi(r.meta_2027))).attr('fill', 'color-mix(in srgb, #1E5B4F 16%, transparent)');
+  g.append('rect').attr('x', x0).attr('y', by + bh * 0.2).attr('height', bh * 0.6).attr('rx', 2).attr('width', (r) => Math.max(r.inscripciones ? 2 : 0, xi(r.inscripciones))).attr('fill', (r) => (r.semaforo ? PXS.color(r.semaforo) : '#1E5B4F'))
+    .attr('class', anim ? 'px-grow-x' : null).style('animation-delay', (r, i) => (anim ? Math.min(i * 20, 500) + 'ms' : null));
+  g.append('text').attr('class', 'px-val').attr('x', (r) => x0 + Math.max(xi(r.inscripciones), xi(r.meta_2027 || 0)) + 5).attr('y', ty).text((r) => (r.avance === null ? PX.fmt(r.inscripciones) : PXV.pct(r.avance) + ' · ' + PX.fmt(r.inscripciones)));
+  g.append('rect').attr('x', x1).attr('y', by + bh * 0.2).attr('height', bh * 0.6).attr('rx', 2).attr('width', (r) => Math.max(r.asistencias ? 2 : 0, xa(r.asistencias))).attr('fill', '#9B2247')
+    .attr('class', anim ? 'px-grow-x' : null).style('animation-delay', (r, i) => (anim ? Math.min(i * 20, 500) + 'ms' : null));
+  g.append('text').attr('class', 'px-val').attr('x', (r) => x1 + xa(r.asistencias) + 5).attr('y', ty).text((r) => PX.fmt(r.asistencias));
+  PX.hover(el, g, (r) => [r.nombre,
+    ['Meta de inscripciones 2027', r.meta_2027 ? PX.fmt(Math.round(r.meta_2027)) : 'Sin meta'],
+    ['Inscripciones registradas', PX.fmt(r.inscripciones)],
+    ['Avance', r.avance === null ? '—' : PXV.pct(r.avance) + (r.semaforo ? ' · ' + r.semaforo : '')],
+    ['Asistencias registradas', PX.fmt(r.asistencias)],
+    ['Asistencias por inscripción', r.asistencias_por_inscripcion === null ? '—' : d3.format(',.1f')(r.asistencias_por_inscripcion)],
+    ['Grupos', PX.fmt(r.grupos)]]);
+});
+
+dash.draw('ch-seg-mes', (el) => {
+  if (!PX.ready(el, ['av_dim'])) return;
+  const k = el.dataset.k;
+  const s = PXV.scope();
+  const a = PX.area();
+  const by = new Map(dash.data('av_dim').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.dimension === 'Mes de inicio').map((r) => [Number(r.valor), r]));
+  const rows = d3.range(1, 13).map((m) => ({ m, r: by.get(m) || null, v: by.get(m) ? by.get(m)[k] : 0 }));
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(260, el.clientWidth), H = 200, mg = { t: 18, b: 22 };
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', (k === 'inscripciones' ? 'Inscripciones' : 'Asistencias') + ' registradas por mes de inicio');
+  const x = d3.scaleBand(d3.range(12), [0, W]).padding(0.25);
+  const y = d3.scaleLinear([0, d3.max(rows, (r) => r.v) || 1], [H - mg.b, mg.t]);
+  const col = k === 'inscripciones' ? '#1E5B4F' : '#9B2247';
+  const g = svg.selectAll('g.px-m').data(rows).join('g').attr('class', 'px-m');
+  g.append('rect').attr('x', (r) => x(r.m - 1) - 2).attr('width', x.bandwidth() + 4).attr('y', 0).attr('height', H).attr('fill', 'transparent');
+  g.append('rect').attr('x', (r) => x(r.m - 1)).attr('width', x.bandwidth()).attr('y', (r) => y(r.v)).attr('height', (r) => H - mg.b - y(r.v)).attr('rx', 2).attr('fill', col)
+    .attr('class', anim ? 'px-grow' : null).style('animation-delay', (r) => (anim ? r.m * 30 + 'ms' : null));
+  g.append('text').attr('class', 'px-tick').attr('x', (r) => x(r.m - 1) + x.bandwidth() / 2).attr('y', H - 6).attr('text-anchor', 'middle').text((r) => PXU2.MES[r.m - 1]);
+  g.filter((r) => r.r && x.bandwidth() > 30).each(function (r) {
+    const t = d3.select(this).append('text').attr('class', 'px-tick').attr('x', x(r.m - 1) + x.bandwidth() / 2).attr('y', y(r.v) - 4).attr('text-anchor', 'middle');
+    const sp = t.append('tspan');
+    sp.attr('data-source', 'av_dim').attr('data-field', k).attr('data-where', PXV.where(r.r, '&dimension=Mes%20de%20inicio&valor=' + PX.esc(r.r.valor))).text(d3.format('.2~s')(r.v).replace('k', ' mil').replace('M', ' M'));
+  });
+  PX.hover(el, g, (r) => [PXP.MESES[r.m - 1].replace(/^./, (c) => c.toUpperCase()), ['Inscripciones registradas', PX.fmt(r.r ? r.r.inscripciones : 0)], ['Asistencias registradas', PX.fmt(r.r ? r.r.asistencias : 0)], ['Grupos', PX.fmt(r.r ? r.r.grupos : 0)]]);
+});
+</script>
+<script>
+// Módulo 2 · Seguimiento del registro de actividades complementarias (sin metas).
+const pxArea = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
+const pxUoKey = (u) => Math.floor(Number(u.cve_uo) / 1000) + '-' + (Number(u.cve_uo) % 1000);
+
+dash.calc('ac_nivel', {
+  title: 'Registro de actividades complementarias por nivel',
+  description: 'Asistencias registradas a nivel nacional, por OOAD, por Unidad Operativa y por lugar de realización (instalación, Centro de Extensión o sin instalación), por área normativa (CECART en Capacitación y Adiestramiento Técnico, CASSAAM en Promoción de la Salud) y en total; con su participación en las asistencias del nivel superior y las Unidades Operativas con registro frente al universo del catálogo.',
+  inputs: ['ac_instalacion', 'ac_lugares', 'unidades_operativas'],
+  fn: (ac_instalacion, ac_lugares, unidades_operativas) => {
+    const uo = new Map(unidades_operativas.map((u) => [pxUoKey(u), u]));
+    const lug = new Map(ac_lugares.map((l) => [l.unidad + '|' + l.lugar_clave, l]));
+    const acc = new Map();
+    const unis = new Map();
+    const add = (k, base, r) => {
+      const o = acc.get(k) || { ...base, grupos: 0, cupo: 0, asistencias: 0 };
+      o.grupos += Number(r.grupos); o.cupo += Number(r.cupo); o.asistencias += Number(r.asistencias);
+      acc.set(k, o);
+    };
+    for (const r of ac_instalacion) {
+      const u = uo.get(r.unidad);
+      if (!u) continue;
+      const l = lug.get(r.unidad + '|' + r.lugar_clave) || { nombre: r.lugar_clave, lugar: '' };
+      for (const area of ['Todas', pxArea(r.area)]) {
+        add('N|' + area, { nivel: 'Nacional', clave: 'Nacional', nombre: 'Nacional', padre: '', area }, r);
+        add('O|' + u.cve_ooad + '|' + area, { nivel: 'OOAD', clave: String(u.cve_ooad), nombre: u.ooad, padre: 'Nacional', area }, r);
+        add('U|' + r.unidad + '|' + area, { nivel: 'Unidad Operativa', clave: r.unidad, nombre: u.unidad_operativa || u.tipo_uo, padre: String(u.cve_ooad), area }, r);
+        add('I|' + r.unidad + '|' + r.lugar_clave + '|' + area, { nivel: 'Instalación', clave: r.unidad + ' · ' + r.lugar_clave, nombre: l.nombre, padre: r.unidad, lugar: l.lugar, area }, r);
+        for (const k of ['N|' + area, 'O|' + u.cve_ooad + '|' + area]) { if (!unis.has(k)) unis.set(k, new Set()); unis.get(k).add(r.unidad); }
+      }
+    }
+    const univ = new Map();
+    for (const u of unidades_operativas) { univ.set('N', (univ.get('N') || 0) + 1); univ.set('O|' + u.cve_ooad, (univ.get('O|' + u.cve_ooad) || 0) + 1); }
+    const padreDe = { OOAD: 'Nacional', 'Unidad Operativa': 'OOAD', 'Instalación': 'Unidad Operativa' };
+    const tot = new Map([...acc.values()].map((o) => [o.nivel + '|' + o.clave + '|' + o.area, o.asistencias]));
+    return [...acc.entries()].map(([k, o]) => {
+      const kk = o.nivel === 'Nacional' ? 'N' : o.nivel === 'OOAD' ? 'O|' + o.clave : null;
+      const tp = padreDe[o.nivel] ? tot.get(padreDe[o.nivel] + '|' + o.padre + '|' + o.area) : null;
+      return { ...o, participacion: tp ? o.asistencias / tp : null, unidades_con_registro: unis.has(k) ? unis.get(k).size : null, unidades_universo: kk ? univ.get(kk) ?? null : null };
+    });
+  },
+});
+
+dash.calc('ac_dim', {
+  title: 'Registro de actividades complementarias por dimensión',
+  description: 'Asistencias registradas por tipo de actividad, estrategia, bloque, actividad, mes, tipo de docente y lugar de realización; a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total, con la participación de cada valor en las asistencias del ámbito.',
+  inputs: ['ac_detalle', 'ac_catalogo', 'ac_instalacion', 'ac_lugares', 'unidades_operativas'],
+  fn: (ac_detalle, ac_catalogo, ac_instalacion, ac_lugares, unidades_operativas) => {
+    const uo = new Map(unidades_operativas.map((u) => [pxUoKey(u), u]));
+    const cat = new Map(ac_catalogo.map((c) => [String(c.clave_actividad), c]));
+    const lug = new Map(ac_lugares.map((l) => [l.unidad + '|' + l.lugar_clave, l]));
+    const acc = new Map();
+    const tot = new Map();
+    const put = (r, dims) => {
+      const u = uo.get(r.unidad);
+      if (!u) return;
+      for (const area of ['Todas', pxArea(r.area)]) {
+        for (const [nivel, clave] of [['Nacional', 'Nacional'], ['OOAD', String(u.cve_ooad)], ['Unidad Operativa', r.unidad]]) {
+          for (const [dimension, valor, extra] of dims) {
+            const g = nivel + '|' + clave + '|' + area + '|' + dimension;
+            const k = g + '|' + valor;
+            const o = acc.get(k) || { nivel, clave, area, dimension, valor, ...extra, grupos: 0, asistencias: 0 };
+            o.grupos += Number(r.grupos); o.asistencias += Number(r.asistencias);
+            acc.set(k, o);
+            tot.set(g, (tot.get(g) || 0) + Number(r.asistencias));
+          }
+        }
+      }
+    };
+    for (const r of ac_detalle) {
+      const c = cat.get(String(r.clave_actividad)) || { actividad: String(r.clave_actividad), tipo_actividad: 'Sin tipo', bloque: 'Sin bloque', estrategia: 'Sin estrategia' };
+      put(r, [
+        ['Tipo de actividad', c.tipo_actividad || 'Sin tipo', {}],
+        ['Estrategia', c.estrategia || 'Sin estrategia', {}],
+        ['Bloque', c.bloque || 'Sin bloque', {}],
+        ['Actividad', String(r.clave_actividad), { nombre: c.actividad, tipo_actividad: c.tipo_actividad, bloque: c.bloque }],
+        ['Mes', String(r.mes).padStart(2, '0'), {}],
+        ['Tipo de docente', r.tipo_docente || 'Sin tipo', {}],
+      ]);
+    }
+    for (const r of ac_instalacion) {
+      const l = lug.get(r.unidad + '|' + r.lugar_clave);
+      put(r, [['Lugar', l ? l.lugar : 'Sin dato', {}]]);
+    }
+    return [...acc.values()].map((o) => {
+      const t = tot.get(o.nivel + '|' + o.clave + '|' + o.area + '|' + o.dimension);
+      return { ...o, participacion: t ? o.asistencias / t : null };
+    });
+  },
+});
+
+window.PXA = {
+  find: (nivel, clave) => {
+    const d = dash.data('ac_nivel');
+    if (d.status !== 'ok') return null;
+    const a = PX.area();
+    return d.data.find((r) => r.nivel === nivel && r.clave === clave && r.area === a) || null;
+  },
+  where: (r) => 'nivel=' + PX.esc(r.nivel) + '&clave=' + PX.esc(r.clave) + '&area=' + PX.esc(r.area),
+  empty: (el, t) => { const p = document.createElement('p'); p.className = 'px-note'; p.textContent = t || 'Sin actividades registradas en el ámbito y el área seleccionados.'; el.appendChild(p); },
+};
+
+dash.draw('acamb', (el) => {
+  const s = PXV.scope();
+  const r = PXA.find(s.nivel, s.clave);
+  const a = PX.area();
+  el.textContent = (r ? r.nombre : s.nivel === 'Nacional' ? 'Nacional' : 'Ámbito seleccionado') + (a !== 'Todas' ? ' · ' + a : '');
+});
+
+dash.draw('ac-corte', (el) => {
+  const d = dash.data('ac_corte');
+  if (d.status !== 'ok' || !d.data.length) { el.textContent = '—'; return; }
+  const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
+  el.textContent = PXV.fecha(r.fecha_corte);
+});
+
+dash.draw('ack', (el) => {
+  const k = el.dataset.k;
+  el.classList.toggle('dash-skeleton', dash.data('ac_nivel').status === 'loading');
+  const s = PXV.scope();
+  const r = PXA.find(s.nivel, s.clave);
+  if (!r) { el.textContent = dash.data('ac_nivel').status === 'ok' ? '0' : '—'; return; }
+  const v = r[k];
+  if (v === null || v === undefined) { el.textContent = '—'; return; }
+  const t = PX.fmt(Math.round(v));
+  pxMark(el, 'ac_nivel', k, PXA.where(r), t);
+  if (k === 'unidades_con_registro' && r.unidades_universo) {
+    const de = document.createElement('span');
+    de.className = 'px-kpi-de';
+    de.textContent = ' de ' + PX.fmt(r.unidades_universo);
+    el.appendChild(de);
+  }
+});
+
+dash.draw('ch-ac-area', (el) => {
+  if (!PX.ready(el, ['ac_nivel'])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const rows = dash.data('ac_nivel').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area !== 'Todas').sort((x, y) => y.asistencias - x.asistencias);
+  if (!rows.length) { PXA.empty(el); return; }
+  PX.hbar(el, rows, {
+    aria: 'Asistencias registradas por área normativa',
+    label: (d) => d.area,
+    value: (d) => d.asistencias,
+    valueText: (d) => PX.fmt(d.asistencias),
+    color: (d) => PX.color(d.area),
+    dim: (d) => a !== 'Todas' && d.area !== a,
+    tip: (d) => [d.area, ['Asistencias registradas', PX.fmt(d.asistencias)]],
+  });
+});
+
+dash.draw('acd', (el) => {
+  if (!PX.ready(el, ['ac_dim'])) return;
+  const dim = el.dataset.dim;
+  const s = PXV.scope();
+  const a = PX.area();
+  let rows = dash.data('ac_dim').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.dimension === dim).sort((x, y) => y.asistencias - x.asistencias);
+  if (dim === 'Actividad') rows = rows.slice(0, 15);
+  if (dim === 'Bloque') rows = rows.slice(0, 10);
+  if (!rows.length) { PXA.empty(el); return; }
+  const pal = ['#1E5B4F', '#9B2247', '#A57F2C', '#002F2A', '#611232', '#BC955C'];
+  const label = (d) => (dim === 'Actividad' ? d.nombre : d.valor);
+  PX.hbar(el, rows, {
+    aria: 'Asistencias registradas por ' + dim.toLowerCase(),
+    label,
+    value: (d) => d.asistencias,
+    valueText: (d) => PX.fmt(d.asistencias) + (d.participacion === null ? '' : ' · ' + PXV.pct(d.participacion)),
+    color: (d) => (dim === 'Actividad' || dim === 'Bloque' ? '#1E5B4F' : pal[rows.indexOf(d) % pal.length]),
+    tip: (d) => {
+      const out = [label(d), ['Asistencias registradas', PX.fmt(d.asistencias)], ['Participación en las asistencias', d.participacion === null ? '' : PXV.pct(d.participacion)]];
+      if (dim === 'Actividad') out.push(['Clave', d.valor], ['Tipo', d.tipo_actividad || ''], ['Bloque', d.bloque || '']);
+      return out;
+    },
+  });
+});
+
+dash.draw('ch-ac-mes', (el) => {
+  if (!PX.ready(el, ['ac_dim'])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const by = new Map(dash.data('ac_dim').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.dimension === 'Mes').map((r) => [Number(r.valor), r]));
+  if (!by.size) { PXA.empty(el); return; }
+  const rows = d3.range(1, 13).map((m) => ({ m, r: by.get(m) || null, v: by.get(m) ? by.get(m).asistencias : 0 }));
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(260, el.clientWidth), H = 220, mg = { t: 18, b: 22 };
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Asistencias registradas por mes');
+  const x = d3.scaleBand(d3.range(12), [0, W]).padding(0.25);
+  const y = d3.scaleLinear([0, d3.max(rows, (r) => r.v) || 1], [H - mg.b, mg.t]);
+  const g = svg.selectAll('g.px-m').data(rows).join('g').attr('class', 'px-m');
+  g.append('rect').attr('x', (r) => x(r.m - 1) - 2).attr('width', x.bandwidth() + 4).attr('y', 0).attr('height', H).attr('fill', 'transparent');
+  g.append('rect').attr('x', (r) => x(r.m - 1)).attr('width', x.bandwidth()).attr('y', (r) => y(r.v)).attr('height', (r) => H - mg.b - y(r.v)).attr('rx', 2).attr('fill', '#1E5B4F')
+    .attr('class', anim ? 'px-grow' : null).style('animation-delay', (r) => (anim ? r.m * 30 + 'ms' : null));
+  g.append('text').attr('class', 'px-tick').attr('x', (r) => x(r.m - 1) + x.bandwidth() / 2).attr('y', H - 6).attr('text-anchor', 'middle').text((r) => PXU2.MES[r.m - 1]);
+  g.filter((r) => r.r && x.bandwidth() > 30).each(function (r) {
+    d3.select(this).append('text').attr('class', 'px-tick').attr('x', x(r.m - 1) + x.bandwidth() / 2).attr('y', y(r.v) - 4).attr('text-anchor', 'middle')
+      .append('tspan').attr('data-source', 'ac_dim').attr('data-field', 'asistencias').attr('data-where', PXA.where(r.r) + '&dimension=Mes&valor=' + PX.esc(r.r.valor))
+      .text(d3.format('.2~s')(r.v).replace('k', ' mil').replace('M', ' M'));
+  });
+  PX.hover(el, g, (r) => [PXP.MESES[r.m - 1].replace(/^./, (c) => c.toUpperCase()), ['Asistencias registradas', PX.fmt(r.r ? r.r.asistencias : 0)], ['Participación en las asistencias', r.r && r.r.participacion !== null ? PXV.pct(r.r.participacion) : '—']]);
+});
+
+dash.draw('ac-ct', (el) => {
+  const s = PXV.scope();
+  const r = PXA.find(s.nivel, s.clave);
+  const nom = r ? r.nombre : '';
+  el.textContent = s.hijos === 'OOAD' ? 'Asistencias registradas por OOAD' : s.hijos === 'Unidad Operativa' ? 'Asistencias registradas por Unidad Operativa · ' + nom : 'Asistencias registradas por lugar de realización · ' + nom;
+});
+
+dash.draw('ch-ac-nivel', (el) => {
+  if (!PX.ready(el, ['ac_nivel'])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const rows = dash.data('ac_nivel').data.filter((r) => r.nivel === s.hijos && r.padre === s.clave && r.area === a).sort((x, y) => y.asistencias - x.asistencias);
+  if (!rows.length) { PXA.empty(el); return; }
+  PX.hbar(el, rows, {
+    aria: 'Asistencias registradas por ' + s.hijos,
+    label: (d) => d.nombre + (d.lugar && d.lugar !== 'Instalación de la Unidad Operativa' ? ' · ' + d.lugar : ''),
+    value: (d) => d.asistencias,
+    valueText: (d) => PX.fmt(d.asistencias) + (d.participacion === null ? '' : ' · ' + PXV.pct(d.participacion)),
+    color: () => (a === 'Todas' ? '#1E5B4F' : PX.color(a)),
+    tip: (d) => {
+      const out = [d.nombre, ['Asistencias registradas', PX.fmt(d.asistencias)], ['Participación en las asistencias del ámbito', d.participacion === null ? '' : PXV.pct(d.participacion)]];
+      if (d.unidades_con_registro !== null && d.unidades_universo) out.push(['Unidades Operativas con registro', PX.fmt(d.unidades_con_registro) + ' de ' + PX.fmt(d.unidades_universo)]);
+      if (d.lugar) out.push(['Lugar', d.lugar]);
+      return out;
+    },
+  });
+  if (s.hijos !== 'Instalación') {
+    d3.select(el).selectAll('g.px-row').style('cursor', 'pointer').on('click', (ev, r) => {
+      if (r.nivel === 'OOAD') dash.setParams({ ooad: r.clave, uo: null, inst: null });
+      else dash.setParams({ ooad: r.padre, uo: r.clave, inst: null });
+    });
+  }
+});
+
+dash.draw('ch-ac-cortes', (el) => {
+  if (!PX.ready(el, ['ac_corte'])) return;
+  const rows = [...dash.data('ac_corte').data].sort((x, y) => String(x.fecha_corte).localeCompare(String(y.fecha_corte)));
+  if (!rows.length) return;
+  const W = Math.max(260, el.clientWidth), H = 220;
+  el.style.minHeight = H + 'px';
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Asistencias registradas por fecha de corte');
+  const fmtc = (v) => new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
+  const y = d3.scaleLinear([0, (d3.max(rows, (r) => r.asistencias) || 1) * 1.15], [H - 26, 18]).nice();
+  const ticks = y.ticks(4);
+  const probe = svg.append('text').attr('class', 'px-tick').text(fmtc(d3.max(ticks)));
+  const left = probe.node().getComputedTextLength() + 8;
+  probe.remove();
+  const x = d3.scaleBand(rows.map((r) => r.fecha_corte), [left, W - 4]).paddingInner(0.35).paddingOuter(0.2);
+  svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', left).attr('x2', W - 4).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'px-tick').attr('x', left - 6).attr('y', (t) => y(t) + 4).attr('text-anchor', 'end').text(fmtc);
+  const f = (iso) => { const [, mm, dd] = String(iso).split('-').map(Number); return dd + ' ' + PXP.MESES[mm - 1].slice(0, 3); };
+  let lastR = -Infinity;
+  svg.append('g').selectAll('text').data(rows).join('text').attr('class', 'px-tick').attr('text-anchor', 'middle').attr('x', (r) => x(r.fecha_corte) + x.bandwidth() / 2).attr('y', H - 8).text((r) => f(r.fecha_corte))
+    .each(function () { const w = this.getComputedTextLength(); const cx = Number(this.getAttribute('x')); if (cx - w / 2 < lastR + 6) this.remove(); else lastR = cx + w / 2; });
+  const bw = Math.min(40, x.bandwidth());
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('rect').attr('x', (r) => x(r.fecha_corte)).attr('width', x.bandwidth()).attr('y', 0).attr('height', H - 26).attr('fill', 'transparent');
+  g.append('rect').attr('x', (r) => x(r.fecha_corte) + (x.bandwidth() - bw) / 2).attr('width', bw).attr('rx', 3).attr('y', (r) => y(r.asistencias)).attr('height', (r) => y(0) - y(r.asistencias)).attr('fill', '#1E5B4F');
+  const lab = g.append('text').attr('class', 'px-val').attr('text-anchor', 'middle').attr('x', (r) => x(r.fecha_corte) + x.bandwidth() / 2).attr('y', (r) => y(r.asistencias) - 5).text((r) => PX.fmt(r.asistencias));
+  if ((d3.max(lab.nodes(), (n) => n.getComputedTextLength()) || 0) > x.step()) lab.remove();
+  PX.hover(el, g, (r) => [PXV.fecha(r.fecha_corte), ['Asistencias registradas', PX.fmt(r.asistencias)], ['Unidades Operativas con registro', PX.fmt(r.unidades)]]);
+});
+</script>
+<script>
+// Módulo 3 · Seguimiento del registro de asistencias en Teatros Cubiertos (sin metas).
+const pxTeArea = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
+const pxTeUo = (u) => Math.floor(Number(u.cve_uo) / 1000) + '-' + (Number(u.cve_uo) % 1000);
+
+dash.calc('te_nivel', {
+  title: 'Asistencias registradas en teatros por nivel',
+  description: 'Asistencias registradas en eventos de Teatros Cubiertos a nivel nacional, por OOAD y por teatro, por área normativa (del primer dígito de la clave de actividad; CECART en Capacitación y Adiestramiento Técnico, CASSAAM en Promoción de la Salud) y en total; con su participación en las asistencias del nivel superior y los teatros con registro frente a los Teatros Cubiertos del catálogo.',
+  inputs: ['te_registro', 'unidades_operativas'],
+  fn: (te_registro, unidades_operativas) => {
+    const uo = new Map(unidades_operativas.map((u) => [pxTeUo(u), u]));
+    const acc = new Map();
+    const tea = new Map();
+    const add = (k, base, r) => {
+      const o = acc.get(k) || { ...base, eventos: 0, asistencias: 0 };
+      o.eventos += Number(r.eventos); o.asistencias += Number(r.asistencias);
+      acc.set(k, o);
+    };
+    for (const r of te_registro) {
+      const u = uo.get(r.unidad);
+      if (!u) continue;
+      for (const area of ['Todas', pxTeArea(r.area)]) {
+        add('Nacional|Nacional|' + area, { nivel: 'Nacional', clave: 'Nacional', nombre: 'Nacional', padre: '', area }, r);
+        add('OOAD|' + u.cve_ooad + '|' + area, { nivel: 'OOAD', clave: String(u.cve_ooad), nombre: u.ooad, padre: 'Nacional', area }, r);
+        add('Unidad Operativa|' + r.unidad + '|' + area, { nivel: 'Unidad Operativa', clave: r.unidad, nombre: u.unidad_operativa || u.tipo_uo, padre: String(u.cve_ooad), area }, r);
+        for (const k of ['Nacional|Nacional|' + area, 'OOAD|' + u.cve_ooad + '|' + area]) { if (!tea.has(k)) tea.set(k, new Set()); tea.get(k).add(r.unidad); }
+      }
+    }
+    const univ = new Map();
+    for (const u of unidades_operativas) {
+      if (u.tipo_uo !== 'Teatro Cubierto') continue;
+      univ.set('Nacional|Nacional', (univ.get('Nacional|Nacional') || 0) + 1);
+      univ.set('OOAD|' + u.cve_ooad, (univ.get('OOAD|' + u.cve_ooad) || 0) + 1);
+    }
+    const padreDe = { OOAD: 'Nacional', 'Unidad Operativa': 'OOAD' };
+    const tot = new Map([...acc.values()].map((o) => [o.nivel + '|' + o.clave + '|' + o.area, o.asistencias]));
+    return [...acc.entries()].map(([k, o]) => {
+      const tp = padreDe[o.nivel] ? tot.get(padreDe[o.nivel] + '|' + o.padre + '|' + o.area) : null;
+      return { ...o, participacion: tp ? o.asistencias / tp : null, teatros_con_registro: tea.has(k) ? tea.get(k).size : null, teatros_universo: univ.get(o.nivel + '|' + o.clave) ?? null };
+    });
+  },
+});
+
+dash.calc('te_dim', {
+  title: 'Asistencias registradas en teatros por dimensión',
+  description: 'Asistencias registradas en eventos de Teatros Cubiertos por mes del evento, tipo de evento, detalle del evento, estrategia y actividad; a nivel nacional, por OOAD y por teatro, por área normativa y en total, con la participación de cada valor en las asistencias del ámbito.',
+  inputs: ['te_registro', 'te_catalogo', 'unidades_operativas'],
+  fn: (te_registro, te_catalogo, unidades_operativas) => {
+    const uo = new Map(unidades_operativas.map((u) => [pxTeUo(u), u]));
+    const cat = new Map(te_catalogo.map((c) => [String(c.clave_actividad), c]));
+    const acc = new Map();
+    const tot = new Map();
+    for (const r of te_registro) {
+      const u = uo.get(r.unidad);
+      if (!u) continue;
+      const c = cat.get(String(r.clave_actividad)) || { actividad: String(r.clave_actividad), estrategia: '' };
+      const dims = [['Mes', String(r.mes).padStart(2, '0'), {}], ['Tipo de evento', r.tipo_evento, {}], ['Detalle del evento', r.detalle_evento, {}], ['Estrategia', c.estrategia || 'Sin estrategia', {}], ['Actividad', String(r.clave_actividad), { nombre: c.actividad, bloque: c.bloque }]];
+      for (const area of ['Todas', pxTeArea(r.area)]) {
+        for (const [nivel, clave] of [['Nacional', 'Nacional'], ['OOAD', String(u.cve_ooad)], ['Unidad Operativa', r.unidad]]) {
+          for (const [dimension, valor, extra] of dims) {
+            const g = nivel + '|' + clave + '|' + area + '|' + dimension;
+            const o = acc.get(g + '|' + valor) || { nivel, clave, area, dimension, valor, ...extra, eventos: 0, asistencias: 0 };
+            o.eventos += Number(r.eventos); o.asistencias += Number(r.asistencias);
+            acc.set(g + '|' + valor, o);
+            tot.set(g, (tot.get(g) || 0) + Number(r.asistencias));
+          }
+        }
+      }
+    }
+    return [...acc.values()].map((o) => { const t = tot.get(o.nivel + '|' + o.clave + '|' + o.area + '|' + o.dimension); return { ...o, participacion: t ? o.asistencias / t : null }; });
+  },
+});
+
+window.PXT = {
+  find: (nivel, clave) => {
+    const d = dash.data('te_nivel');
+    if (d.status !== 'ok') return null;
+    const a = PX.area();
+    return d.data.find((r) => r.nivel === nivel && r.clave === clave && r.area === a) || null;
+  },
+  where: (r) => 'nivel=' + PX.esc(r.nivel) + '&clave=' + PX.esc(r.clave) + '&area=' + PX.esc(r.area),
+  noTeatro: () => {
+    const p = dash.params();
+    if (!p.uo) return false;
+    const d = dash.data('unidades_operativas');
+    if (d.status !== 'ok') return false;
+    const u = d.data.find((x) => pxTeUo(x) === p.uo);
+    return !!u && u.tipo_uo !== 'Teatro Cubierto';
+  },
+  empty: (el) => { const p = document.createElement('p'); p.className = 'px-note'; p.textContent = 'Sin asistencias registradas en el ámbito y el área seleccionados.'; el.appendChild(p); },
+};
+
+dash.onData(() => { document.querySelectorAll('.px-te-noteatro').forEach((n) => { n.hidden = !PXT.noTeatro(); }); });
+
+dash.draw('teamb', (el) => {
+  const s = PXV.scope();
+  const r = PXT.find(s.nivel, s.clave);
+  const a = PX.area();
+  el.textContent = (r ? r.nombre : s.nivel === 'Nacional' ? 'Nacional' : 'Ámbito seleccionado') + (a !== 'Todas' ? ' · ' + a : '');
+});
+
+dash.draw('te-corte', (el) => {
+  const d = dash.data('te_corte');
+  if (d.status !== 'ok' || !d.data.length) { el.textContent = '—'; return; }
+  el.textContent = PXV.fecha([...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0].fecha_corte);
+});
+
+dash.draw('tek', (el) => {
+  const k = el.dataset.k;
+  el.classList.toggle('dash-skeleton', dash.data('te_nivel').status === 'loading');
+  const s = PXV.scope();
+  const r = PXT.find(s.nivel, s.clave);
+  if (!r) { el.textContent = dash.data('te_nivel').status === 'ok' ? '0' : '—'; return; }
+  const v = r[k];
+  if (v === null || v === undefined) { el.textContent = '—'; return; }
+  pxMark(el, 'te_nivel', k, PXT.where(r), PX.fmt(Math.round(v)));
+  if (k === 'teatros_con_registro' && r.teatros_universo) {
+    const de = document.createElement('span');
+    de.className = 'px-kpi-de';
+    de.textContent = ' de ' + PX.fmt(r.teatros_universo);
+    el.appendChild(de);
+  }
+});
+
+dash.draw('ted', (el) => {
+  if (!PX.ready(el, ['te_dim'])) return;
+  const dim = el.dataset.dim;
+  const s = PXV.scope();
+  const a = PX.area();
+  let rows = dash.data('te_dim').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.dimension === dim).sort((x, y) => y.asistencias - x.asistencias);
+  if (dim === 'Actividad' || dim === 'Detalle del evento') rows = rows.slice(0, 12);
+  if (!rows.length) { PXT.empty(el); return; }
+  const pal = ['#1E5B4F', '#9B2247', '#A57F2C', '#002F2A', '#611232', '#BC955C'];
+  const label = (d) => (dim === 'Actividad' ? d.nombre : d.valor);
+  PX.hbar(el, rows, {
+    aria: 'Asistencias registradas por ' + dim.toLowerCase(),
+    label,
+    value: (d) => d.asistencias,
+    valueText: (d) => PX.fmt(d.asistencias) + (d.participacion === null ? '' : ' · ' + PXV.pct(d.participacion)),
+    color: (d) => (dim === 'Actividad' || dim === 'Detalle del evento' ? '#1E5B4F' : pal[rows.indexOf(d) % pal.length]),
+    tip: (d) => {
+      const out = [label(d), ['Asistencias registradas', PX.fmt(d.asistencias)], ['Participación en las asistencias', d.participacion === null ? '' : PXV.pct(d.participacion)]];
+      if (dim === 'Actividad') out.push(['Clave', d.valor]);
+      return out;
+    },
+  });
+});
+
+dash.draw('ch-te-mes', (el) => {
+  if (!PX.ready(el, ['te_dim'])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const by = new Map(dash.data('te_dim').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.dimension === 'Mes').map((r) => [Number(r.valor), r]));
+  if (!by.size) { PXT.empty(el); return; }
+  const rows = d3.range(1, 13).map((m) => ({ m, r: by.get(m) || null, v: by.get(m) ? by.get(m).asistencias : 0 }));
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(260, el.clientWidth), H = 220, mg = { t: 18, b: 22 };
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Asistencias registradas en teatros por mes');
+  const x = d3.scaleBand(d3.range(12), [0, W]).padding(0.25);
+  const y = d3.scaleLinear([0, d3.max(rows, (r) => r.v) || 1], [H - mg.b, mg.t]);
+  const g = svg.selectAll('g.px-m').data(rows).join('g').attr('class', 'px-m');
+  g.append('rect').attr('x', (r) => x(r.m - 1) - 2).attr('width', x.bandwidth() + 4).attr('y', 0).attr('height', H).attr('fill', 'transparent');
+  g.append('rect').attr('x', (r) => x(r.m - 1)).attr('width', x.bandwidth()).attr('y', (r) => y(r.v)).attr('height', (r) => H - mg.b - y(r.v)).attr('rx', 2).attr('fill', '#1E5B4F')
+    .attr('class', anim ? 'px-grow' : null).style('animation-delay', (r) => (anim ? r.m * 30 + 'ms' : null));
+  g.append('text').attr('class', 'px-tick').attr('x', (r) => x(r.m - 1) + x.bandwidth() / 2).attr('y', H - 6).attr('text-anchor', 'middle').text((r) => PXU2.MES[r.m - 1]);
+  g.filter((r) => r.r && x.bandwidth() > 30).each(function (r) {
+    d3.select(this).append('text').attr('class', 'px-tick').attr('x', x(r.m - 1) + x.bandwidth() / 2).attr('y', y(r.v) - 4).attr('text-anchor', 'middle')
+      .append('tspan').attr('data-source', 'te_dim').attr('data-field', 'asistencias').attr('data-where', PXT.where(r.r) + '&dimension=Mes&valor=' + PX.esc(r.r.valor))
+      .text(d3.format('.2~s')(r.v).replace('k', ' mil').replace('M', ' M'));
+  });
+  PX.hover(el, g, (r) => [PXP.MESES[r.m - 1].replace(/^./, (c) => c.toUpperCase()), ['Asistencias registradas', PX.fmt(r.r ? r.r.asistencias : 0)], ['Participación en las asistencias', r.r && r.r.participacion !== null ? PXV.pct(r.r.participacion) : '—']]);
+});
+
+dash.draw('te-ct', (el) => {
+  const s = PXV.scope();
+  const r = PXT.find(s.nivel, s.clave);
+  el.textContent = s.nivel === 'Nacional' ? 'Asistencias registradas por OOAD' : 'Asistencias registradas por teatro · ' + (r ? r.nombre : '');
+});
+
+dash.draw('ch-te-nivel', (el) => {
+  if (!PX.ready(el, ['te_nivel'])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const d = dash.data('te_nivel').data;
+  const rows = s.nivel === 'Unidad Operativa'
+    ? d.filter((r) => r.nivel === 'Unidad Operativa' && r.clave === s.clave && r.area === a)
+    : d.filter((r) => r.nivel === s.hijos && r.padre === s.clave && r.area === a).sort((x, y) => y.asistencias - x.asistencias);
+  if (!rows.length) { PXT.empty(el); return; }
+  PX.hbar(el, rows, {
+    aria: 'Asistencias registradas en teatros por ' + (s.nivel === 'Nacional' ? 'OOAD' : 'teatro'),
+    label: (r) => r.nombre,
+    value: (r) => r.asistencias,
+    valueText: (r) => PX.fmt(r.asistencias) + (r.participacion === null ? '' : ' · ' + PXV.pct(r.participacion)),
+    color: () => (a === 'Todas' ? '#1E5B4F' : PX.color(a)),
+    tip: (r) => {
+      const out = [r.nombre, ['Asistencias registradas', PX.fmt(r.asistencias)], ['Participación en las asistencias del ámbito', r.participacion === null ? '' : PXV.pct(r.participacion)]];
+      if (r.teatros_universo) out.push(['Teatros con registro', PX.fmt(r.teatros_con_registro || 0) + ' de ' + PX.fmt(r.teatros_universo)]);
+      return out;
+    },
+  });
+  if (s.nivel !== 'Unidad Operativa') {
+    d3.select(el).selectAll('g.px-row').style('cursor', 'pointer').on('click', (ev, r) => {
+      if (r.nivel === 'OOAD') dash.setParams({ ooad: r.clave, uo: null, inst: null });
+      else dash.setParams({ ooad: r.padre, uo: r.clave, inst: null });
+    });
+  }
+});
+
+dash.draw('ch-te-cortes', (el) => {
+  if (!PX.ready(el, ['te_corte'])) return;
+  const rows = [...dash.data('te_corte').data].sort((x, y) => String(x.fecha_corte).localeCompare(String(y.fecha_corte)));
+  if (!rows.length) return;
+  const W = Math.max(260, el.clientWidth), H = 220;
+  el.style.minHeight = H + 'px';
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Asistencias registradas en teatros por fecha de corte');
+  const fmtc = (v) => new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
+  const y = d3.scaleLinear([0, (d3.max(rows, (r) => r.asistencias) || 1) * 1.15], [H - 26, 18]).nice();
+  const ticks = y.ticks(4);
+  const probe = svg.append('text').attr('class', 'px-tick').text(fmtc(d3.max(ticks)));
+  const left = probe.node().getComputedTextLength() + 8;
+  probe.remove();
+  const x = d3.scaleBand(rows.map((r) => r.fecha_corte), [left, W - 4]).paddingInner(0.35).paddingOuter(0.2);
+  svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', left).attr('x2', W - 4).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'px-tick').attr('x', left - 6).attr('y', (t) => y(t) + 4).attr('text-anchor', 'end').text(fmtc);
+  const f = (iso) => { const [, mm, dd] = String(iso).split('-').map(Number); return dd + ' ' + PXP.MESES[mm - 1].slice(0, 3); };
+  let lastR = -Infinity;
+  svg.append('g').selectAll('text').data(rows).join('text').attr('class', 'px-tick').attr('text-anchor', 'middle').attr('x', (r) => x(r.fecha_corte) + x.bandwidth() / 2).attr('y', H - 8).text((r) => f(r.fecha_corte))
+    .each(function () { const w = this.getComputedTextLength(); const cx = Number(this.getAttribute('x')); if (cx - w / 2 < lastR + 6) this.remove(); else lastR = cx + w / 2; });
+  const bw = Math.min(40, x.bandwidth());
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('rect').attr('x', (r) => x(r.fecha_corte)).attr('width', x.bandwidth()).attr('y', 0).attr('height', H - 26).attr('fill', 'transparent');
+  g.append('rect').attr('x', (r) => x(r.fecha_corte) + (x.bandwidth() - bw) / 2).attr('width', bw).attr('rx', 3).attr('y', (r) => y(r.asistencias)).attr('height', (r) => y(0) - y(r.asistencias)).attr('fill', '#1E5B4F');
+  const lab = g.append('text').attr('class', 'px-val').attr('text-anchor', 'middle').attr('x', (r) => x(r.fecha_corte) + x.bandwidth() / 2).attr('y', (r) => y(r.asistencias) - 5).text((r) => PX.fmt(r.asistencias));
+  if ((d3.max(lab.nodes(), (n) => n.getComputedTextLength()) || 0) > x.step()) lab.remove();
+  PX.hover(el, g, (r) => [PXV.fecha(r.fecha_corte), ['Asistencias registradas', PX.fmt(r.asistencias)], ['Teatros con registro', PX.fmt(r.teatros)]]);
+});
+</script>
+<script>
+// Unidad de medida del registro (Módulo 1, apartado 02): inscripciones o asistencias.
+window.PXMED = {
+  m: () => (dash.params().medida === 'asistencias' ? 'asistencias' : 'inscripciones'),
+  t: () => (PXMED.m() === 'asistencias' ? 'Asistencias' : 'Inscripciones'),
+};
+document.querySelectorAll('.px-med-btn').forEach((b) => b.addEventListener('click', () => dash.setParams({ medida: b.dataset.m === 'asistencias' ? 'asistencias' : null })));
+dash.onData(() => {
+  const m = PXMED.m();
+  document.querySelectorAll('.px-med-btn').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.m === m)));
+  document.querySelectorAll('.px-mi').forEach((n) => { n.hidden = m !== 'inscripciones'; });
+  document.querySelectorAll('.px-ma').forEach((n) => { n.hidden = m !== 'asistencias'; });
+});
+</script>
+<script>
+// Fecha de actualización: fecha de corte del reporte más reciente de cada módulo (la del nombre del archivo en Drive).
+dash.draw('upd', (el) => {
+  const d = dash.data(el.dataset.src);
+  if (d.status !== 'ok' || !d.data.length) { el.textContent = d.status === 'loading' ? '—' : 'sin reporte'; return; }
+  const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
+  el.textContent = PXV.fecha(r.fecha_corte);
+});
+</script>
+</div>
+</body>
+</html>
