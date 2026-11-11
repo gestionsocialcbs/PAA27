@@ -1,0 +1,42 @@
+/* Variables de diseño del tablero PAA 2027 (equivalentes a las de claude.ai). Paleta institucional y Noto Sans. */
+:root {
+  --font-anthropic-sans: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-bg: #F7F7F5;
+  --color-panel: #FFFFFF;
+  --color-fg: #161A1D;
+  --color-fg-muted: #5B6166;
+  --color-border-line: #DCDFDD;
+  --color-bad: #9B2247;
+  --cds-text-secondary: #5B6166;
+  --cds-surface-popover: #FFFFFF;
+  --cds-border: #CDD2CF;
+  --cds-shadow-popover: 0 6px 20px rgba(0, 47, 42, .14);
+  --cds-chart-grid: #E6E9E7;
+  --cds-chart-muted: #B5BDBA;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 12px; --cds-gap-lg: 16px; --cds-gap-xl: 28px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 16px;
+  --cds-radius: 6px;
+  --cds-font-size-caption: 13px; --cds-font-size-body: 15px; --cds-font-size-heading: 19px; --cds-font-size-title: 28px;
+  --cds-font-weight-medium: 500;
+  --cds-dur-slow: .45s; --cds-ease-out: cubic-bezier(.2, .7, .2, 1);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #0F1513; --color-panel: #161E1B; --color-fg: #E9EEEC; --color-fg-muted: #A3ADA9; --color-border-line: #2A3632;
+    --cds-text-secondary: #A3ADA9; --cds-surface-popover: #1C2622; --cds-border: #33413C; --cds-chart-grid: #26312D; --cds-chart-muted: #56625E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: #0F1513; --color-panel: #161E1B; --color-fg: #E9EEEC; --color-fg-muted: #A3ADA9; --color-border-line: #2A3632;
+  --cds-text-secondary: #A3ADA9; --cds-surface-popover: #1C2622; --cds-border: #33413C; --cds-chart-grid: #26312D; --cds-chart-muted: #56625E;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--font-anthropic-sans); }
+#dash-root { padding: 24px var(--dash-gutter, 16px) 48px; }
+.dash-skeleton { position: relative; color: transparent !important; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-fg) 6%, transparent), transparent); background-size: 200% 100%; animation: dash-pulse 1.4s ease-in-out infinite; border-radius: var(--cds-radius); }
+@keyframes dash-pulse { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+@media (prefers-reduced-motion: reduce) { .dash-skeleton { animation: none; } }
