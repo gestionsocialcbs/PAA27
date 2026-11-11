@@ -1,0 +1,125 @@
+{
+ "tablero": "Programación Anual de Actividades 2027",
+ "datasets": {
+  "ac_catalogo": {
+   "archivo": "datos/ac_catalogo.json",
+   "titulo": "Actividades complementarias · catálogo",
+   "actualizado": "2026-11-11T18:30:00Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+  },
+  "ac_corte": {
+   "archivo": "datos/ac_corte.json",
+   "titulo": "Actividades complementarias · cortes del registro",
+   "actualizado": "2026-11-11T18:30:00Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+  },
+  "ac_detalle": {
+   "archivo": "datos/ac_detalle.json",
+   "titulo": "Actividades complementarias · registro por actividad",
+   "actualizado": "2026-11-11T18:30:00Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+  },
+  "ac_instalacion": {
+   "archivo": "datos/ac_instalacion.json",
+   "titulo": "Actividades complementarias · registro por lugar",
+   "actualizado": "2026-11-11T18:30:00Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+  },
+  "ac_lugares": {
+   "archivo": "datos/ac_lugares.json",
+   "titulo": "Actividades complementarias · lugares de realización",
+   "actualizado": "2026-11-11T18:30:00Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+  },
+  "avance_actividad": {
+   "archivo": "datos/avance_actividad.json",
+   "titulo": "Registro PAA por actividad",
+   "actualizado": "2026-11-10T23:05:00Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+  },
+  "avance_catalogo_actividades": {
+   "archivo": "datos/avance_catalogo_actividades.json",
+   "titulo": "Actividades del registro PAA",
+   "actualizado": "2026-11-10T23:05:00Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+  },
+  "avance_corte": {
+   "archivo": "datos/avance_corte.json",
+   "titulo": "Cortes del registro PAA",
+   "actualizado": "2026-11-10T23:05:00Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+  },
+  "avance_dimension": {
+   "archivo": "datos/avance_dimension.json",
+   "titulo": "Registro PAA por dimensión",
+   "actualizado": "2026-11-10T23:05:00Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+  },
+  "avance_instalacion": {
+   "archivo": "datos/avance_instalacion.json",
+   "titulo": "Registro PAA por instalación",
+   "actualizado": "2026-11-10T23:05:00Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+  },
+  "avance_instalaciones": {
+   "archivo": "datos/avance_instalaciones.json",
+   "titulo": "Instalaciones del registro PAA",
+   "actualizado": "2026-11-10T23:05:00Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+  },
+  "avance_uso": {
+   "archivo": "datos/avance_uso.json",
+   "titulo": "Tiempos de uso por instalación",
+   "actualizado": "2026-11-11T17:55:00Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+  },
+  "instalaciones": {
+   "archivo": "datos/instalaciones.json",
+   "titulo": "Instalaciones por Unidad Operativa",
+   "actualizado": "2026-10-30T18:10:00Z",
+   "fuente": "Jorge (General Catálogos, hoja Instalaciones)"
+  },
+  "layout_2027": {
+   "archivo": "datos/layout_2027.json",
+   "titulo": "Layout 2027 · CTPAA",
+   "actualizado": "2026-10-30T18:07:00Z",
+   "fuente": "Jorge (Layout 2027, 27 oct 2026)"
+  },
+  "metas_2027": {
+   "archivo": "datos/metas_2027.json",
+   "titulo": "Meta de inscripciones 2027",
+   "actualizado": "2026-11-10T19:50:00Z",
+   "fuente": "Jorge (Base_Metas_26_27.xlsx)"
+  },
+  "metas_2027_uopsi": {
+   "archivo": "datos/metas_2027_uopsi.json",
+   "titulo": "Meta de inscripciones 2027 por UOPSI",
+   "actualizado": "2026-11-10T20:05:00Z",
+   "fuente": "Jorge (Base_Metas_26_27.xlsx)"
+  },
+  "te_catalogo": {
+   "archivo": "datos/te_catalogo.json",
+   "titulo": "Teatros · catálogo de actividades",
+   "actualizado": "2026-11-11T18:40:00Z",
+   "fuente": "Jorge (Reporte_PAA_Teatros_10_11_2026.xls)"
+  },
+  "te_corte": {
+   "archivo": "datos/te_corte.json",
+   "titulo": "Teatros · cortes del registro",
+   "actualizado": "2026-11-11T18:40:00Z",
+   "fuente": "Jorge (Reporte_PAA_Teatros_10_11_2026.xls)"
+  },
+  "te_registro": {
+   "archivo": "datos/te_registro.json",
+   "titulo": "Teatros · registro de eventos",
+   "actualizado": "2026-11-11T18:40:00Z",
+   "fuente": "Jorge (Reporte_PAA_Teatros_10_11_2026.xls)"
+  },
+  "unidades_operativas": {
+   "archivo": "datos/unidades_operativas.json",
+   "titulo": "Unidades Operativas UOPSI",
+   "actualizado": "2026-10-30T18:10:00Z",
+   "fuente": "Jorge (General Catálogos, hoja UOPSI)"
+  }
+ }
+}
