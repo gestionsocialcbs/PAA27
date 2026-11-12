@@ -118,7 +118,7 @@
 .px-sem-item { display:inline-flex; align-items:center; gap:6px; }
 .px-dot { display:inline-block; width:.7rem; height:.7rem; border-radius:50%; flex:none; vertical-align:-1px; margin-right:6px; }
 .px-sem-item .px-dot { margin-right:0; }
-.px-dot-v { background:#1E5B4F; } .px-dot-a { background:#A57F2C; } .px-dot-r { background:#9B2247; }
+.px-dot-v { background:#1E5B4F; } .px-dot-a { background:#A57F2C; } .px-dot-r { background:#9B2247; } .px-dot-m { background:#5B2C83; }
 .px-tbl td.px-sem { white-space:nowrap; }
 .px-kpi-sem { display:inline-flex; align-items:center; gap:4px; margin-left:10px; font-size:var(--cds-font-size-caption); color:var(--color-fg-muted); font-weight:400; vertical-align:middle; }
 .px-kpi-sem .px-dot { margin-right:0; }
@@ -193,7 +193,7 @@
 .px-tbl-compact td:first-child { white-space:normal; min-width:9rem; }
 .px-tbl-compact th.px-num { max-width:7.5rem; }
 .px-two-c { display:flex; flex-direction:column; gap:var(--cds-gap-sm); min-width:0; }
-.px-sw-meta { background:color-mix(in srgb, #1E5B4F 22%, transparent); outline:1px solid color-mix(in srgb, #1E5B4F 45%, transparent); margin-left:0; } .px-sw-reg { background:linear-gradient(90deg, #9B2247 33%, #A57F2C 33% 66%, #1E5B4F 66%); margin-left:12px; }
+.px-sw-meta { background:color-mix(in srgb, #1E5B4F 22%, transparent); outline:1px solid color-mix(in srgb, #1E5B4F 45%, transparent); margin-left:0; } .px-sw-reg { background:linear-gradient(90deg, #9B2247 25%, #A57F2C 25% 50%, #1E5B4F 50% 75%, #5B2C83 75%); margin-left:12px; }
 .px-tbl tr.px-tot-row td { font-weight:600; border-top:1px solid var(--color-fg-muted); }
 .px-card-h { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:var(--cds-gap-sm); }
 .px-card-h > div:first-child { flex:1 1 18rem; display:flex; flex-direction:column; gap:var(--cds-gap-xs); }
@@ -269,7 +269,7 @@
     <p class="px-note px-meta-na" hidden>El área seleccionada no tiene meta en la base.</p>
     <div class="px-card" id="metas-area">
       <h3><span class="px-mi">Meta por área normativa</span><span class="px-ma" hidden>Asistencias registradas por área normativa</span> · <span data-draw="m-amb">—</span></h3>
-      <p class="px-note"><span class="px-mi">Avance del registro del PAA 2027 contra la meta de inscripciones de cada área, con el semáforo de avance (Verde ≥ 80%, Amarillo 60% a 79.99%, Rojo &lt; 60%).</span><span class="px-ma" hidden>Asistencias registradas en el PAA 2027 por área normativa, con su participación en las asistencias del ámbito. No hay meta de asistencias.</span></p>
+      <p class="px-note"><span class="px-mi">Avance del registro del PAA 2027 contra la meta de inscripciones de cada área, con el semáforo de avance (Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%).</span><span class="px-ma" hidden>Asistencias registradas en el PAA 2027 por área normativa, con su participación en las asistencias del ámbito. No hay meta de asistencias.</span></p>
       <p class="px-note px-legend-static px-mi"><span class="px-sw px-sw-meta"></span>Meta de inscripciones 2027 <span class="px-sw px-sw-reg"></span>Inscripciones registradas, con el color del semáforo</p>
       <div class="px-chart dash-skeleton" data-draw="ch-metas-area" data-source="av_nivel" style="min-height:212px"></div>
     </div>
@@ -279,9 +279,10 @@
       <p class="px-note px-ma" hidden>Asistencias registradas en el PAA 2027 del área seleccionada, de mayor a menor, con su participación en las asistencias del ámbito. Haz clic en una barra para filtrar el tablero.</p>
       <p class="px-note px-mi">Cada barra clara es la meta de inscripciones 2027 del área seleccionada y la barra de color, las inscripciones registradas en el PAA 2027, con el color del semáforo; a la derecha, el avance. Meta de <span data-draw="mtot2-n">—</span>: <span data-draw="mtot2" data-k="meta_2027">—</span> inscripciones. Haz clic en una barra para filtrar el tablero.</p>
       <div class="px-sem-bar px-mi">
-        <span class="px-sem-item"><i class="px-dot px-dot-v"></i><b class="px-strong" data-draw="semk" data-k="verde">—</b> Verde · 80% o más de la meta</span>
-        <span class="px-sem-item"><i class="px-dot px-dot-a"></i><b class="px-strong" data-draw="semk" data-k="amarillo">—</b> Amarillo · de 60% a 79.99%</span>
-        <span class="px-sem-item"><i class="px-dot px-dot-r"></i><b class="px-strong" data-draw="semk" data-k="rojo">—</b> Rojo · menos de 60%</span>
+        <span class="px-sem-item"><i class="px-dot px-dot-m"></i><b class="px-strong" data-draw="semk" data-k="morado">—</b> Morado · más de 125% de la meta</span>
+        <span class="px-sem-item"><i class="px-dot px-dot-v"></i><b class="px-strong" data-draw="semk" data-k="verde">—</b> Verde · más de 85% y menos de 115%</span>
+        <span class="px-sem-item"><i class="px-dot px-dot-a"></i><b class="px-strong" data-draw="semk" data-k="amarillo">—</b> Amarillo · de 75% a 85% o de 115% a 125%</span>
+        <span class="px-sem-item"><i class="px-dot px-dot-r"></i><b class="px-strong" data-draw="semk" data-k="rojo">—</b> Rojo · menos de 75%</span>
       </div>
       <div class="px-chart dash-skeleton" data-draw="ch-metas-ooad" data-source="av_nivel metas_nivel" style="min-height:420px"></div>
     </div>
@@ -296,7 +297,7 @@
     <div class="px-kpis" id="kpi-avance">
       <div class="px-kpi"><div class="px-kpi-l">Grupos registrados</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="grupos">—</div></div>
       <div class="px-kpi"><div class="px-kpi-l">Inscripciones registradas</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="inscripciones">—</div></div>
-      <div class="px-kpi"><div class="px-kpi-l">Avance contra la meta de inscripciones 2027 · Verde ≥ 80%, Amarillo 60% a 79.99%, Rojo &lt; 60%</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="avance">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Avance contra la meta de inscripciones 2027 · Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="avance">—</div></div>
       <div class="px-kpi"><div class="px-kpi-l">Asistencias registradas</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="asistencias">—</div></div>
       <div class="px-kpi"><div class="px-kpi-l">Unidades Operativas con registro</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="unidades_con_registro">—</div></div>
     </div>
@@ -488,7 +489,7 @@
     </section>
   </div>
 
-  <footer class="px-foot">Fuentes: REPORTE PAA CURSOS (registro del PAA 2027; inscripciones = CAN_CUPO, asistencias = CAN_ASISTENCIAS; tiempos de uso por bloques de 15 minutos dentro del horario con actividad), Base de metas 2026–2027 de inscripciones por OOAD, UOPSI y área normativa, catálogo UOPSI (sin tiendas ni velatorios) y Layout 2027 de los Criterios Técnicos. Áreas normativas: CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Semáforo: Verde ≥ 80% de la meta, Amarillo de 60% a 79.99%, Rojo &lt; 60%. Tiempos de uso: niveles de ocupación baja &lt; 50%, media de 50% a 79.9% y alta ≥ 80% del horario con actividad. División de Apoyo Técnico y Mejora de Procesos.</footer>
+  <footer class="px-foot">Fuentes: REPORTE PAA CURSOS (registro del PAA 2027; inscripciones = CAN_CUPO, asistencias = CAN_ASISTENCIAS; tiempos de uso por bloques de 15 minutos dentro del horario con actividad), Base de metas 2026–2027 de inscripciones por OOAD, UOPSI y área normativa, catálogo UOPSI (sin tiendas ni velatorios) y Layout 2027 de los Criterios Técnicos. Áreas normativas: CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Semáforo de avance contra la meta: Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%. Tiempos de uso: niveles de ocupación baja &lt; 50%, media de 50% a 79.9% y alta ≥ 80% del horario con actividad. División de Apoyo Técnico y Mejora de Procesos.</footer>
 </div>
 
 <script>
@@ -875,7 +876,7 @@ dash.draw('m-amb', (el) => {
   pxMark(el, 'metas_nivel', 'nombre', PXM.where(r), r.nombre);
 });
 
-window.PXS = { color: (s) => ({ Verde: '#1E5B4F', Amarillo: '#A57F2C', Rojo: '#9B2247' }[s] || '#6F7271') };
+window.PXS = { color: (s) => ({ Morado: '#5B2C83', Verde: '#1E5B4F', Amarillo: '#A57F2C', Rojo: '#9B2247' }[s] || '#6F7271') };
 
 dash.draw('ch-metas-area', (el) => {
   if (!PX.ready(el, ['av_nivel'])) return;
@@ -997,7 +998,7 @@ dash.draw('ch-metas-ooad', (el) => {
 // Avance del registro del PAA: REPORTE PAA CURSOS frente a la meta 2027.
 dash.calc('av_nivel', {
   title: 'Avance del registro por nivel',
-  description: 'Grupos, inscripciones (CAN_CUPO), asistencias (CAN_ASISTENCIAS) y clases registradas a nivel nacional, por OOAD, por Unidad Operativa y por instalación, por área normativa (CECART en Capacitación y Adiestramiento Técnico, CASSAAM en Promoción de la Salud) y en total; con la meta de inscripciones 2027, el avance (inscripciones registradas ÷ meta), las asistencias por inscripción (asistencias ÷ inscripciones registradas), las Unidades Operativas con registro y el semáforo del avance contra la meta de inscripciones 2027 (nacional, de cada OOAD y de cada Unidad Operativa): Verde de 80% en adelante, Amarillo de 60% a 79.99% y Rojo por debajo de 60%.',
+  description: 'Grupos, inscripciones (CAN_CUPO), asistencias (CAN_ASISTENCIAS) y clases registradas a nivel nacional, por OOAD, por Unidad Operativa y por instalación, por área normativa (CECART en Capacitación y Adiestramiento Técnico, CASSAAM en Promoción de la Salud) y en total; con la meta de inscripciones 2027, el avance (inscripciones registradas ÷ meta), las asistencias por inscripción (asistencias ÷ inscripciones registradas), las Unidades Operativas con registro y el semáforo del avance contra la meta de inscripciones 2027 (nacional, de cada OOAD y de cada Unidad Operativa): Morado por encima de 125%, Verde por encima de 85% y por debajo de 115%, Amarillo de 75% a 85% y de 115% a 125% y Rojo por debajo de 75%.',
   inputs: ['avance_instalacion', 'avance_instalaciones', 'unidades_operativas', 'metas_nivel'],
   fn: (avance_instalacion, avance_instalaciones, unidades_operativas, metas_nivel) => {
     const areaNormativa = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
@@ -1049,23 +1050,23 @@ dash.calc('av_nivel', {
       return { ...o, meta_2027: mt, avance: mt ? o.inscripciones / mt : null, asistencias_por_inscripcion: o.inscripciones ? o.asistencias / o.inscripciones : null, unidades_con_registro: un ? un.size : (o.nivel === 'Nacional' || o.nivel === 'OOAD' ? 0 : null), unidades_universo: uv ?? null };
     });
     // Semáforo con umbrales fijos sobre el avance contra la meta de inscripciones 2027 de cada ámbito
-    // (la nacional es 1,267,527): Verde de 80% en adelante, Amarillo de 60% a 79.99% y Rojo por debajo de 60%.
-    const VERDE = 0.8;
-    const AMARILLO = 0.6;
-    return filas.map((f) => ({ ...f, semaforo: f.avance === null ? null : f.avance >= VERDE ? 'Verde' : f.avance >= AMARILLO ? 'Amarillo' : 'Rojo' }));
+    // (la nacional es 1,267,527): Morado por encima de 125%; Verde por encima de 85% y por debajo de 115%;
+    // Amarillo de 75% a 85% y de 115% a 125%; Rojo por debajo de 75%.
+    const sem = (v) => (v > 1.25 ? 'Morado' : v > 0.85 && v < 1.15 ? 'Verde' : v >= 0.75 ? 'Amarillo' : 'Rojo');
+    return filas.map((f) => ({ ...f, semaforo: f.avance === null ? null : sem(f.avance) }));
   },
 });
 
 dash.calc('av_sem', {
   title: 'Resumen del semáforo de avance',
-  description: 'Por ámbito (nacional u OOAD) y área: número de OOAD o Unidades Operativas en Verde, Amarillo y Rojo según el semáforo de avance del registro.',
+  description: 'Por ámbito (nacional u OOAD) y área: número de OOAD o Unidades Operativas en Morado, Verde, Amarillo y Rojo según el semáforo de avance del registro.',
   inputs: ['av_nivel'],
   fn: (av_nivel) => {
     const acc = new Map();
     for (const r of av_nivel) {
       if (!r.semaforo) continue;
       const k = r.nivel + '|' + r.padre + '|' + r.area;
-      const o = acc.get(k) || { nivel_hijos: r.nivel, padre: r.padre, area: r.area, verde: 0, amarillo: 0, rojo: 0 };
+      const o = acc.get(k) || { nivel_hijos: r.nivel, padre: r.padre, area: r.area, morado: 0, verde: 0, amarillo: 0, rojo: 0 };
       o[r.semaforo.toLowerCase()] += 1;
       acc.set(k, o);
     }
