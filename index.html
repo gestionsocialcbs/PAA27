@@ -278,6 +278,13 @@
 
 .px-adv-chip { display:inline-block; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--c); border:1px solid var(--c); border-radius:999px; padding:0 8px; white-space:nowrap; }
 #advertencias .px-kpi:nth-child(2) { border-top-color:var(--px-guinda); } #advertencias .px-kpi:nth-child(3) { border-top-color:var(--px-oro); }
+
+.px-pdf { display:inline-flex; align-items:center; gap:6px; font:inherit; font-size:var(--cds-font-size-caption); font-weight:600; color:var(--px-verde-osc); background:var(--color-panel); border:1px solid var(--px-oro); border-radius:999px; padding:3px 12px 3px 9px; cursor:pointer; margin-right:auto; margin-left:var(--cds-gap-sm); }
+.px-pdf svg { width:14px; height:14px; color:var(--px-oro); }
+.px-pdf:hover { background:var(--px-crema); }
+.px-pdf:disabled { opacity:.6; cursor:progress; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .px-pdf { color:var(--color-fg); } }
+:root[data-theme="dark"] .px-pdf { color:var(--color-fg); }
 </style>
 
 <div class="px">
@@ -315,7 +322,7 @@
 
   <div class="px-mod" id="modulo-1" role="tabpanel" aria-labelledby="tab-modulo-1" data-mod="1">
     <div class="px-mod-h">
-      <div class="px-mod-top"><div class="px-sec-n">Módulo 1</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_CURSOS de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="ri_corte" data-source="ri_corte" data-field="fecha_corte">—</b> · archivo Inscritos</span></div>
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 1</div><button type="button" class="px-pdf" data-mod="1" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_CURSOS de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="ri_corte" data-source="ri_corte" data-field="fecha_corte">—</b> · archivo Inscritos</span></div>
       <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">1</span><span>Programa Anual de Inscripciones y Asistencias <em class="px-acc">a Cursos y Talleres</em></span></h2>
       <p class="px-lead"><b data-draw="amb">—</b>: <b data-draw="avk" data-k="inscripciones">—</b> inscripciones registradas de una meta de <b data-draw="mk" data-k="meta_2027">—</b> inscripciones 2027 · avance <b data-draw="avk" data-k="avance">—</b>.</p>
       <div class="px-med-bar"><div class="px-med" role="group" aria-label="Unidad de medida"><span class="px-med-l">Unidad de medida</span><button type="button" class="px-btn px-med-btn" data-m="inscripciones" aria-pressed="true">Inscripciones</button><button type="button" class="px-btn px-med-btn" data-m="asistencias" aria-pressed="false">Asistencias</button></div><span class="px-note">Cambia la unidad de medida de los apartados 01 y 02: metas y registro por área y por OOAD, reportes del registro, instalaciones, actividades y evolución por corte. La meta 2027 y el semáforo existen solo para inscripciones; con Asistencias se muestran las asistencias registradas, sin meta.</span></div>
@@ -545,7 +552,7 @@
 
   <div class="px-mod" id="modulo-2" role="tabpanel" aria-labelledby="tab-modulo-2" data-mod="2" hidden>
     <div class="px-mod-h">
-      <div class="px-mod-top"><div class="px-sec-n">Módulo 2</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_ACOMPLEMENTARIA de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rac_corte" data-source="rac_corte" data-field="fecha_corte">—</b> · archivo Reporte_Activ_Complem</span></div>
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 2</div><button type="button" class="px-pdf" data-mod="2" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_ACOMPLEMENTARIA de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rac_corte" data-source="rac_corte" data-field="fecha_corte">—</b> · archivo Reporte_Activ_Complem</span></div>
       <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">2</span><span>Programa Anual de Asistencias <em class="px-acc">en Actividades Complementarias</em></span></h2>
       <p class="px-lead">Seguimiento del registro de las actividades complementarias (campañas, pláticas y eventos) en el REPORTE PAA ACTIVIDADES COMPLEMENTARIAS. <b data-draw="acamb">—</b>: <b data-draw="ack" data-k="asistencias">—</b> asistencias registradas (programado) y <b data-draw="prk" data-m="ac" data-k="real">—</b> asistencias reales.</p>
     </div>
@@ -604,7 +611,7 @@
 
   <div class="px-mod" id="modulo-3" role="tabpanel" aria-labelledby="tab-modulo-3" data-mod="3" hidden>
     <div class="px-mod-h">
-      <div class="px-mod-top"><div class="px-sec-n">Módulo 3</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b> · archivo Reporte_PAA_Teatros de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rte_corte" data-source="rte_corte" data-field="fecha_corte">—</b> · archivo Reporte_Teatros</span></div>
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 3</div><button type="button" class="px-pdf" data-mod="3" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b> · archivo Reporte_PAA_Teatros de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rte_corte" data-source="rte_corte" data-field="fecha_corte">—</b> · archivo Reporte_Teatros</span></div>
       <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">3</span><span>Programa Anual de Asistencias <em class="px-acc">en Teatros</em></span></h2>
       <p class="px-lead">Seguimiento del registro de los eventos en los Teatros Cubiertos del IMSS, en el Reporte PAA Teatros. <b data-draw="teamb">—</b>: <b data-draw="tek" data-k="asistencias">—</b> asistencias registradas (programado) y <b data-draw="prk" data-m="te" data-k="real">—</b> asistencias reales.</p>
     </div>
@@ -2484,6 +2491,7 @@ dash.draw('upd', (el) => {
 });
 </script><script src="pxr.js"></script>
 <script src="pxadv.js"></script>
+<script src="pxpdf.js"></script>
 </div>
 </body>
 </html>
