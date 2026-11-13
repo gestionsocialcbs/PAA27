@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-13T20:08:55Z",
+ "ejecucion": "2026-11-13T20:22:31Z",
  "carpetas": {
   "PAA": "12112026",
   "Real": "12112026"
@@ -30,6 +30,36 @@
    "estado": "sin cambios (ya publicado)"
   },
   {
+   "id": "R1",
+   "reporte": "Cursos y talleres (real)",
+   "archivo": "Inscritos_12112026.xlsx",
+   "tamano_mb": 77.4,
+   "fecha_corte": "2026-11-12",
+   "estado": "actualizado",
+   "corte": {
+    "fecha_corte": "2026-11-12",
+    "grupos": 81762,
+    "inscripciones": 1043073,
+    "asistencias": 17583437,
+    "unidades": 153,
+    "anios": [
+     2026
+    ],
+    "registros_fuera_universo": 598,
+    "metodo_inscripciones": "max",
+    "diagnostico": {
+     "renglones": 244890,
+     "grupos": 81762,
+     "grupos_en_varios_meses": 72261,
+     "grupos_con_inscritos_distintos_por_mes": 71727,
+     "inscripciones_suma_meses": 1175356,
+     "inscripciones_maximo_grupo": 1043073,
+     "inscripciones_primer_mes_mas_altas": 1175356
+    }
+   },
+   "corte_anterior": null
+  },
+  {
    "id": "R2",
    "reporte": "Actividades complementarias (real)",
    "archivo": "Reporte_Activ_Complem_12112026.xlsx",
@@ -46,90 +76,5 @@
    "estado": "sin cambios (ya publicado)"
   }
  ],
- "pendientes": [
-  {
-   "id": "R1",
-   "reporte": "Inscripciones y asistencias reales a cursos y talleres",
-   "archivo": "Inscritos_12112026.xlsx",
-   "tamano_mb": 77.4,
-   "estado": "aún no se procesa; se registran solo los nombres de columna",
-   "encabezado": [
-    {
-     "hoja": "Reporte_Cursos_Distribucion_121",
-     "columnas": [
-      "NUM_UNIDAD_INFORMACION",
-      "CVE_OOAD",
-      "DES_OOAD",
-      "CVE_UOPSI",
-      "DES_UOPSI",
-      "CVE_CEC",
-      "DES_CEC",
-      "CVE_INSTALACION",
-      "DES_INSTALACION",
-      "CVE_AREA",
-      "DES_AREA",
-      "CVE_ACTIVIDAD",
-      "DES_ACTIVIDAD",
-      "CVE_GRUPO",
-      "CVE_TIPO_CURSO",
-      "DES_TIPO_CURSO",
-      "CVE_INSTRUCTOR_ID",
-      "DES_INSTRUCTOR",
-      "DES_TIPO_INSTRUCTOR",
-      "FEC_FECHA_INICIO",
-      "FEC_FECHA_TERMINO",
-      "REF_HORA_INICIO",
-      "REF_HORA_TERMINO",
-      "DES_DIAS_SEMANA_NOM",
-      "CAN_CUPO",
-      "EXCLUSIVIDAD",
-      "NUM_EDAD_MIN_O",
-      "NUM_EDAD_MAX_O",
-      "NUM_PORCENTAJE_PAGO",
-      "META",
-      "CAN_DISPONIBILIDAD",
-      "CAN_PREINSCRITOS",
-      "CAN_INSCRITOS",
-      "CAN_MASCULINOS",
-      "CAN_FEMENINOS",
-      "CAN_NO_BINARIO",
-      "CAN_00_A_02",
-      "CAN_03_A_05",
-      "CAN_06_A_07",
-      "CAN_08_A_09",
-      "CAN_10_A_12",
-      "CAN_13_A_15",
-      "CAN_16_A_19",
-      "CAN_20_A_59",
-      "CAN_MAS_DE_60",
-      "CAN_DERECHOHABIENTE",
-      "CAN_NODERECHOHABIENTE",
-      "CAN_JUBILADOIMSS",
-      "CAN_JUBILADONOIMSS",
-      "CAN_PENSIONADOIMSS",
-      "CAN_PENSIONADONOIMSS",
-      "CAN_GRUPOREPRESENTATIVOIMSS",
-      "CAN_GRUPOREPRESENTATIVONOIMSS",
-      "CAN_PERSONALVOLUNTARIODERECHO",
-      "CAN_PERSONALVOLUNTARIONODERECHO",
-      "CAN_TRABAJADORIMSS",
-      "CAN_PERSONAL_DISC_DERER",
-      "CAN_PERSONAL_DISC_NODERER",
-      "CAN_REFERIDOS_AREA_MEDICA",
-      "CAN_ADULTO_MAYOR_DERER",
-      "CAN_ADULTO_MAYOR_NODERER",
-      "CAN_ASISTENCIAS",
-      "CVE_MES",
-      "DES_MES",
-      "CAN_CLASES",
-      "NUM_ALTAS",
-      "NUM_BAJAS",
-      "CVE_GRUPO_ID",
-      "TIPO",
-      "UNIDAD"
-     ]
-    }
-   ]
-  }
- ]
+ "pendientes": []
 }
