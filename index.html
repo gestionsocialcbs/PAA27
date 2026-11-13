@@ -219,12 +219,60 @@
 .px-mod-top .px-upd-chip + .px-upd-chip { margin-left:var(--cds-gap-sm); }
 .px-pr-aviso { color:var(--px-guinda); }
 .px-pr-leg { margin-top:var(--cds-gap-sm); }
+
+/* ── Identidad CTPAA 2027 (Criterios Técnicos): portada verde oscuro con filo oro, franja de áreas, números en círculo, títulos a dos tonos ── */
+.px { --px-oro-cl:#E6D194; --px-teal:#2F8AA3; --px-a-ps:#9B2247; --px-a-dc:#A57F2C; --px-a-cfd:#1E5B4F; --px-a-cat:#2F8AA3; --px-surf2:color-mix(in srgb, var(--px-verde) 5%, var(--color-panel)); --px-crema:color-mix(in srgb, var(--px-oro-cl) 22%, var(--color-panel)); }
+.px-stripe, .px-head::after, .px-foot::before { background:linear-gradient(90deg, var(--px-a-dc) 0 25%, var(--px-a-cfd) 25% 50%, var(--px-a-ps) 50% 75%, var(--px-a-cat) 75% 100%); }
+.px-head { position:relative; border-top:none; background:var(--px-verde-osc); color:#fff; border-radius:var(--cds-radius) var(--cds-radius) 0 0; padding:clamp(20px, 3.4vw, 36px) clamp(16px, 3.4vw, 40px) clamp(22px, 3.4vw, 34px); box-shadow:inset 0 -3px 0 0 var(--px-oro); gap:var(--cds-gap-md); margin-bottom:6px; }
+.px-head::after { content:''; position:absolute; left:0; right:0; bottom:-6px; height:6px; border-radius:0 0 var(--cds-radius) var(--cds-radius); }
+.px-head .px-eyebrow { color:var(--px-oro-cl); letter-spacing:.16em; font-size:12px; }
+.px-head .px-title { color:#fff; font-weight:300; font-size:clamp(26px, 3.6vw, 38px); }
+.px-title-y { color:var(--px-oro-cl); font-weight:700; letter-spacing:-.02em; }
+.px-head .px-lead { color:#A9C1BB; }
+.px-head .px-upd { background:rgba(255,255,255,.06); border-left-color:var(--px-oro); color:#A9C1BB; }
+.px-head .px-upd-t { color:var(--px-oro-cl); }
+.px-head .px-upd b { color:#fff; }
+.px-tabs { border-bottom:1px solid var(--color-border-line); gap:var(--cds-gap-sm); }
+.px-tab { display:grid; grid-template-columns:auto 1fr; grid-template-rows:auto auto; column-gap:var(--cds-gap-sm); align-items:center; }
+.px-tab::before { content:attr(data-mod); grid-row:1 / span 2; width:28px; height:28px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:13px; color:var(--px-verde-osc); border:1.5px solid color-mix(in srgb, var(--px-verde-osc) 35%, transparent); }
+.px-tab[aria-selected="true"]::before { background:var(--px-guinda); border-color:var(--px-guinda); color:#fff; }
+.px-tab-n { color:var(--px-guinda); }
+.px-mod-top .px-sec-n { color:var(--px-guinda); letter-spacing:.16em; }
+.px-mod-t { display:flex; align-items:flex-start; gap:var(--cds-gap-md); font-weight:600; letter-spacing:-.01em; color:var(--color-fg); }
+.px-mod-num { flex:none; width:2.1em; height:2.1em; margin-top:-.15em; border-radius:50%; background:var(--px-guinda); color:#fff; display:grid; place-items:center; font-size:.82em; font-weight:700; }
+.px-acc { font-style:normal; color:var(--px-guinda); }
+.px-sec-h { background:var(--px-surf2); border-left:5px solid var(--px-verde-osc); border-radius:0 var(--cds-radius) var(--cds-radius) 0; padding:var(--cds-pad-md) var(--cds-pad-lg); }
+.px-sec-n { letter-spacing:.16em; font-size:11px; }
+.px-sec-t { font-size:clamp(18px, 2.2vw, 22px); font-weight:600; letter-spacing:-.01em; }
+.px-kpi { border-left:1px solid var(--color-border-line); border-top:3px solid var(--px-verde); background:var(--px-surf2); }
+.px-kpi:nth-child(2) { border-top-color:var(--px-guinda); } .px-kpi:nth-child(3) { border-top-color:var(--px-oro); } .px-kpi:nth-child(4) { border-top-color:var(--px-teal); } .px-kpi:nth-child(5) { border-top-color:var(--px-guinda); }
+.px-kpis > .px-kpi:first-child { background:var(--px-verde-osc); border-color:var(--px-verde-osc); color:#fff; }
+.px-kpis > .px-kpi:first-child .px-kpi-l, .px-kpis > .px-kpi:first-child .px-kpi-de { color:#A9C1BB; }
+.px-kpis > .px-kpi:first-child .px-kpi-v { font-weight:600; }
+.px-card { border-top:3px solid color-mix(in srgb, var(--px-verde-osc) 85%, transparent); }
+.px-card > h3 { display:flex; align-items:baseline; gap:.5em; font-weight:600; }
+.px-card > h3::before { content:''; flex:none; width:.62em; height:.62em; background:var(--px-guinda); border-radius:1px; transform:translateY(-.02em); }
+.px-upd { background:var(--px-crema); }
+.px-foot { position:relative; border-top:none; padding-top:calc(var(--cds-pad-md) + 6px); }
+.px-foot::before { content:''; position:absolute; left:0; right:0; top:0; height:4px; border-radius:2px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .px { --px-guinda:#C2416A; } }
+:root[data-theme="dark"] .px { --px-guinda:#C2416A; }
+@media (max-width: 720px) { .px-mod-num { width:1.9em; height:1.9em; } .px-tab::before { width:24px; height:24px; font-size:12px; } }
+
+@media (max-width: 720px) {
+  .px-sticky { position:static; box-shadow:none; }
+  .px-tabs { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+  .px-tabs::-webkit-scrollbar { display:none; }
+  .px-tab { flex:0 0 auto; max-width:15rem; white-space:normal; padding:var(--cds-pad-sm); }
+  .px-mod-t { font-size:22px; }
+  .px-mod-top .px-upd-chip + .px-upd-chip { margin-left:0; }
+}
 </style>
 
 <div class="px">
   <header class="px-head" id="inicio">
     <div class="px-eyebrow">Coordinación de Bienestar Social · DATMP · Seguimiento del PAA</div>
-    <h1 class="px-title">Programación Anual de Actividades 2027</h1>
+    <h1 class="px-title">Programación Anual de Actividades <span class="px-title-y">2027</span></h1>
     <p class="px-lead">Seguimiento del registro del Programa Anual de Actividades 2027 contra la meta programada, para Jefes de Departamento y directores de las UOPSI. Elige tu OOAD y tu Unidad Operativa en los filtros.</p>
     <div class="px-upd" aria-label="Fecha de actualización">
       <span class="px-upd-t">Fecha de actualización</span>
@@ -253,7 +301,7 @@
   <div class="px-mod" id="modulo-1" role="tabpanel" aria-labelledby="tab-modulo-1" data-mod="1">
     <div class="px-mod-h">
       <div class="px-mod-top"><div class="px-sec-n">Módulo 1</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_CURSOS de Google Drive</span></div>
-      <h2 class="px-mod-t">Programa Anual de Inscripciones y Asistencias a Cursos y Talleres</h2>
+      <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">1</span><span>Programa Anual de Inscripciones y Asistencias <em class="px-acc">a Cursos y Talleres</em></span></h2>
       <p class="px-lead"><b data-draw="amb">—</b>: <b data-draw="avk" data-k="inscripciones">—</b> inscripciones registradas de una meta de <b data-draw="mk" data-k="meta_2027">—</b> inscripciones 2027 · avance <b data-draw="avk" data-k="avance">—</b>.</p>
       <div class="px-med-bar"><div class="px-med" role="group" aria-label="Unidad de medida"><span class="px-med-l">Unidad de medida</span><button type="button" class="px-btn px-med-btn" data-m="inscripciones" aria-pressed="true">Inscripciones</button><button type="button" class="px-btn px-med-btn" data-m="asistencias" aria-pressed="false">Asistencias</button></div><span class="px-note">Cambia la unidad de medida de los apartados 01 y 02: metas y registro por área y por OOAD, reportes del registro, instalaciones, actividades y evolución por corte. La meta 2027 y el semáforo existen solo para inscripciones; con Asistencias se muestran las asistencias registradas, sin meta.</span></div>
     </div>
@@ -300,7 +348,7 @@
     <div class="px-kpis" id="kpi-avance">
       <div class="px-kpi"><div class="px-kpi-l">Grupos registrados</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="grupos">—</div></div>
       <div class="px-kpi"><div class="px-kpi-l">Inscripciones registradas</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="inscripciones">—</div></div>
-      <div class="px-kpi"><div class="px-kpi-l">Avance contra la meta de inscripciones 2027 · Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="avance">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l" title="Semáforo: Morado más de 125%; Verde más de 85% y menos de 115%; Amarillo de 75% a 85% o de 115% a 125%; Rojo menos de 75%">Avance contra la meta de inscripciones 2027</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="avance">—</div></div>
       <div class="px-kpi"><div class="px-kpi-l">Asistencias registradas</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="asistencias">—</div></div>
       <div class="px-kpi"><div class="px-kpi-l">Unidades Operativas con registro</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="unidades_con_registro">—</div></div>
     </div>
@@ -425,7 +473,7 @@
   <div class="px-mod" id="modulo-2" role="tabpanel" aria-labelledby="tab-modulo-2" data-mod="2" hidden>
     <div class="px-mod-h">
       <div class="px-mod-top"><div class="px-sec-n">Módulo 2</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_ACOMPLEMENTARIA de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rac_corte" data-source="rac_corte" data-field="fecha_corte">—</b> · archivo Reporte_Activ_Complem</span></div>
-      <h2 class="px-mod-t">Programa Anual de Asistencias en Actividades Complementarias</h2>
+      <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">2</span><span>Programa Anual de Asistencias <em class="px-acc">en Actividades Complementarias</em></span></h2>
       <p class="px-lead">Seguimiento del registro de las actividades complementarias (campañas, pláticas y eventos) en el REPORTE PAA ACTIVIDADES COMPLEMENTARIAS. <b data-draw="acamb">—</b>: <b data-draw="ack" data-k="asistencias">—</b> asistencias registradas (programado) y <b data-draw="prk" data-m="ac" data-k="real">—</b> asistencias reales.</p>
     </div>
     <section class="px-sec" id="ac-registro">
@@ -484,7 +532,7 @@
   <div class="px-mod" id="modulo-3" role="tabpanel" aria-labelledby="tab-modulo-3" data-mod="3" hidden>
     <div class="px-mod-h">
       <div class="px-mod-top"><div class="px-sec-n">Módulo 3</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b> · archivo Reporte_PAA_Teatros de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rte_corte" data-source="rte_corte" data-field="fecha_corte">—</b> · archivo Reporte_Teatros</span></div>
-      <h2 class="px-mod-t">Programa Anual de Asistencias en Teatros</h2>
+      <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">3</span><span>Programa Anual de Asistencias <em class="px-acc">en Teatros</em></span></h2>
       <p class="px-lead">Seguimiento del registro de los eventos en los Teatros Cubiertos del IMSS, en el Reporte PAA Teatros. <b data-draw="teamb">—</b>: <b data-draw="tek" data-k="asistencias">—</b> asistencias registradas (programado) y <b data-draw="prk" data-m="te" data-k="real">—</b> asistencias reales.</p>
     </div>
     <section class="px-sec" id="te-registro">
@@ -571,7 +619,7 @@ window.PX = (() => {
     'Cultura Física y Deporte': '#1E5B4F',
     'Promoción de la Salud': '#9B2247',
     'Desarrollo Cultural': '#A57F2C',
-    'Capacitación y Adiestramiento Técnico': '#002F2A',
+    'Capacitación y Adiestramiento Técnico': '#2F8AA3',
     'CASSAAM': '#611232',
     'CECART': '#BC955C',
   };
