@@ -28,21 +28,21 @@ def filas(path):
         p = os.path.join(tmp, 'reporte.xlsx')
         shutil.copyfile(path, p)
         wb = openpyxl.load_workbook(p, read_only=True, data_only=True)
-        ws = wb.worksheets[0]
-        ws.reset_dimensions()
-        yield from ws.iter_rows(values_only=True)
+        for ws in wb.worksheets:  # se recorren todas las hojas; el encabezado se busca en cualquiera
+            ws.reset_dimensions()
+            yield from ws.iter_rows(values_only=True)
     else:
         import xlrd  # .xls binario (pip install --break-system-packages xlrd)
         wb = xlrd.open_workbook(path)
-        ws = wb.sheet_by_index(0)
-        for i in range(ws.nrows):
-            row = []
-            for c in ws.row(i):
-                if c.ctype == xlrd.XL_CELL_DATE:
-                    row.append(xlrd.xldate.xldate_as_datetime(c.value, wb.datemode))
-                else:
-                    row.append(c.value)
-            yield row
+        for ws in wb.sheets():
+            for i in range(ws.nrows):
+                row = []
+                for c in ws.row(i):
+                    if c.ctype == xlrd.XL_CELL_DATE:
+                        row.append(xlrd.xldate.xldate_as_datetime(c.value, wb.datemode))
+                    else:
+                        row.append(c.value)
+                yield row
 
 norm = lambda v: re.sub(r'\s+', '_', str(v or '').strip().upper())
 it = filas(src)

@@ -31,13 +31,15 @@ inst = {r['cve_instalacion']: r for r in json.load(open(f_inst))}
 prev = json.load(open(f_prev)) if f_prev != '-' else []
 
 wb = openpyxl.load_workbook(xlsx, read_only=True, data_only=True)
-ws = wb.worksheets[0]
-ws.reset_dimensions()
-it = ws.iter_rows(values_only=True)
 hdr = None
-for r in it:
-    if r and any(norm(c) == 'CAN_CUPO' for c in r) and any(norm(c) == 'CVE_OOAD' for c in r):
-        hdr = [norm(c) for c in r]
+for ws in wb.worksheets:  # el encabezado puede estar en cualquier hoja
+    ws.reset_dimensions()
+    it = ws.iter_rows(values_only=True)
+    for r in it:
+        if r and any(norm(c) == 'CAN_CUPO' for c in r) and any(norm(c) == 'CVE_OOAD' for c in r):
+            hdr = [norm(c) for c in r]
+            break
+    if hdr:
         break
 if not hdr:
     sys.exit('No encontré el encabezado (CVE_OOAD, CAN_CUPO): el archivo no es un REPORTE PAA ACTIVIDADES COMPLEMENTARIAS.')

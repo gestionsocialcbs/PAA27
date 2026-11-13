@@ -31,13 +31,15 @@ lay = {r['clave']: r for r in json.load(open(f_lay))}
 prev = json.load(open(f_prev)) if f_prev != '-' else []
 
 wb = openpyxl.load_workbook(xlsx, read_only=True, data_only=True)
-ws = wb.worksheets[0]
-ws.reset_dimensions()
-it = ws.iter_rows(values_only=True)
 hdr = None
-for r in it:
-    if r and 'CAN_CUPO' in r and 'CVE_OOAD' in r:
-        hdr = list(r)
+for ws in wb.worksheets:  # el encabezado puede estar en cualquier hoja (p. ej. si hay una tabla dinámica antes)
+    ws.reset_dimensions()
+    it = ws.iter_rows(values_only=True)
+    for r in it:
+        if r and 'CAN_CUPO' in r and 'CVE_OOAD' in r:
+            hdr = list(r)
+            break
+    if hdr:
         break
 if not hdr:
     sys.exit('No encontré el encabezado (CVE_OOAD, CAN_CUPO): el archivo no es un REPORTE PAA CURSOS.')
