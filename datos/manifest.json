@@ -156,26 +156,6 @@
    "titulo": "Teatros · cortes del avance real",
    "actualizado": "2026-11-13T18:20:00Z",
    "fuente": "Jorge (Reporte_Teatros_12112026.xlsx)"
-  },
-  "ri_registro": {
-   "archivo": "datos/ri_registro.json",
-   "actualizado": "2026-11-13T20:22:31Z",
-   "fuente": "Jorge (Inscritos_12112026.xlsx)"
-  },
-  "ri_actividad": {
-   "archivo": "datos/ri_actividad.json",
-   "actualizado": "2026-11-13T20:22:31Z",
-   "fuente": "Jorge (Inscritos_12112026.xlsx)"
-  },
-  "ri_catalogo": {
-   "archivo": "datos/ri_catalogo.json",
-   "actualizado": "2026-11-13T20:22:31Z",
-   "fuente": "Jorge (Inscritos_12112026.xlsx)"
-  },
-  "ri_corte": {
-   "archivo": "datos/ri_corte.json",
-   "actualizado": "2026-11-13T20:22:31Z",
-   "fuente": "Jorge (Inscritos_12112026.xlsx)"
   }
  }
 }
