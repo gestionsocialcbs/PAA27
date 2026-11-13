@@ -37,7 +37,10 @@ REPORTES = [
          refs=['unidades_operativas'], corte='rte_corte', principal='rte_registro', medida='asistencias',
          tablas=['rte_registro', 'rte_catalogo', 'rte_corte']),
 ]
-PENDIENTES = [dict(id='R1', nombre='Inscripciones y asistencias reales a cursos y talleres', carpeta='Real', prefijo='INSCRITOS')]
+REPORTES.insert(3, dict(id='R1', nombre='Cursos y talleres (real)', carpeta='Real', prefijo='INSCRITOS', script='procesar_real_cursos.py',
+         refs=['unidades_operativas'], corte='ri_corte', principal='ri_registro', medida='asistencias',
+         tablas=['ri_registro', 'ri_actividad', 'ri_catalogo', 'ri_corte']))
+PENDIENTES = []
 LIMITE_MB = 12  # tamaño máximo de cada archivo de salida (el tablero de claude.ai los carga como archivos)
 
 
