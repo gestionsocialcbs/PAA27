@@ -23,7 +23,7 @@ REF = lambda n: os.path.join(DATOS, n + '.json')
 REPORTES = [
     dict(id='M1', nombre='Cursos y talleres (PAA)', carpeta='PAA', prefijo='REPORTE_PAA_CURSOS', script='procesar_avance.py',
          refs=['unidades_operativas', 'instalaciones', 'layout_2027'], corte='avance_corte', principal='avance_instalacion', medida='grupos',
-         tablas=['avance_instalacion', 'avance_instalaciones', 'avance_dimension', 'avance_actividad', 'avance_catalogo_actividades', 'avance_corte', 'avance_uso']),
+         tablas=['avance_instalacion', 'avance_instalaciones', 'avance_dimension', 'avance_actividad', 'avance_catalogo_actividades', 'avance_corte', 'avance_uso', 'avance_alertas']),
     dict(id='M2', nombre='Actividades complementarias (PAA)', carpeta='PAA', prefijo='REPORTE_PAA_ACOMPLEMENTARIA', script='procesar_complementarias.py',
          refs=['unidades_operativas', 'instalaciones'], corte='ac_corte', principal='ac_instalacion', medida='asistencias',
          tablas=['ac_instalacion', 'ac_detalle', 'ac_catalogo', 'ac_lugares', 'ac_corte']),

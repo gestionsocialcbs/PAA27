@@ -7,6 +7,8 @@ Salidas: avance_instalacion.json (unidad, instalación, área), avance_dimension
   avance_actividad.json (unidad, área, actividad, con validaciones contra el Layout 2027), avance_catalogo_actividades.json,
   avance_uso.json (tiempos de uso por instalación con mapa de calor por día y hora y horas por mes, sin Centros de Extensión) y avance_corte.json (historial por fecha de corte).
 - Si la clave de instalación no está en el catálogo de Instalaciones, el tipo se toma del nombre sin su número final.
+- avance_alertas.json: notas de advertencia por grupo (espacio no apto por su nombre, actividad acuática fuera de alberca, actividad no
+  acuática en alberca, área de paso u oficina, grupo sin instalación), con la clave del grupo para corregirlo. Sin datos del instructor.
 """
 import sys, json, re, os, datetime, collections, openpyxl
 
@@ -23,7 +25,7 @@ AREA = {'CULTURA FÍSICA Y DEPORTE': 'Cultura Física y Deporte', 'PROMOCIÓN DE
 NEED = ['REF_HORA_TERMINO', 'DES_DIAS_SEMANA_NOM', 'CVE_OOAD', 'CVE_UOPSI', 'CVE_CEC', 'CVE_INSTALACION', 'DES_INSTALACION', 'DES_AREA', 'CVE_ACTIVIDAD', 'DES_ACTIVIDAD',
         'DES_TIPO_ACTIVIDAD', 'DES_TIPO_CURSO', 'TIPO_INSTRUCTOR', 'FEC_FECHA_INICIO', 'FEC_FECHA_TERMINO', 'REF_HORA_INICIO',
         'CAN_CUPO', 'CAN_ASISTENCIAS', 'CVE_MES', 'CAN_CLASES', 'NUM_EDAD_MIN', 'NUM_EDAD_MAX']
-OPC = ['DES_BLOQUE', 'NOM_ESTRATEGIA', 'CVE_ESTRATEGIA', 'NUM_PORCENTAJE_PAGO']
+OPC = ['DES_BLOQUE', 'NOM_ESTRATEGIA', 'CVE_ESTRATEGIA', 'NUM_PORCENTAJE_PAGO', 'CVE_GRUPO_ID', 'CVE_GRUPO']
 
 uo = {r['cve_uo']: r for r in json.load(open(f_uo))}
 inst = {r['cve_instalacion']: r for r in json.load(open(f_inst))}
@@ -92,6 +94,37 @@ Z = lambda: dict(grupos=0, inscripciones=0, asistencias=0, clases=0)
 AGG_I, AGG_D, AGG_A = collections.defaultdict(Z), collections.defaultdict(Z), collections.defaultdict(Z)
 AGG_V = collections.defaultdict(lambda: dict(grupos_clave_vigente=0, grupos_cumplen_meta_minima=0, grupos_edad_en_rango=0, grupos_con_pago=0))
 acts, insts = {}, {}
+ALERTAS = []
+
+# Notas de advertencia del registro: reglas sobre el nombre del espacio y el tipo de actividad (ver el apartado en el tablero).
+SIN_AC = str.maketrans('ÁÉÍÓÚÜáéíóúü', 'AEIOUUaeiouu')
+low = lambda v: ' ' + re.sub(r'\s+', ' ', str(v or '').translate(SIN_AC).lower()) + ' '
+RX_NO_APTO = re.compile(r'sanitari|\bbanos?\b|\bwc\b|regadera|vestidor|bodega|almacen|estacionamiento|cuarto de maquinas|caseta|cisterna|azotea|cuarto de aseo|intendencia|basura')
+RX_PASO = re.compile(r'vestibulo|pasillo|escalera|recepcion|oficina|cubiculo|\bdireccion\b|administraci|sala de espera')
+RX_ALBERCA = re.compile(r'alberca|chapoteadero|fosa de clavados|piscina')
+RX_ACUATICA = re.compile(r'natacion|clavados|polo acuatic|acuatic|aquaer|acuaer|hidrogimnasia|hidroterapia|matronatacion|nado sincronizado|buceo|salvavidas|aquazumba|acuazumba')
+REGLAS = {
+    'no_apto': ('Alerta', 'Espacio no apto por su nombre (sanitarios, bodegas, estacionamiento u otros servicios)'),
+    'acuatica_fuera': ('Alerta', 'Actividad acuática fuera de alberca'),
+    'no_acuatica_alberca': ('Revisar', 'Actividad no acuática en alberca'),
+    'paso': ('Revisar', 'Área de paso u oficina (vestíbulo, pasillo, oficina, cubículo)'),
+    'sin_instalacion': ('Revisar', 'Grupo sin instalación asignada'),
+}
+def reglas_de(nom_rep, cat, es_cec, actividad, agrupacion):
+    """Devuelve las reglas que incumple un grupo según el nombre de su espacio y su actividad."""
+    n = low(nom_rep) + (low(cat.get('nombre_instalacion')) + low(cat.get('servicio')) + low(cat.get('subtipo_instalacion')) if cat else '')
+    acuatica = bool(RX_ACUATICA.search(low(actividad))) or low(agrupacion).strip() == 'actividades acuaticas'
+    alberca = bool(RX_ALBERCA.search(n)) or (cat or {}).get('tipo_instalacion') == 'Instalaciones Deportivas Acuáticas'
+    out = []
+    if es_cec:
+        return out  # en los Centros de Extensión el espacio no está en el catálogo de instalaciones
+    if low(nom_rep).strip() in ('', 'sin instalacion', 'none'):
+        out.append('sin_instalacion')
+    if RX_NO_APTO.search(n): out.append('no_apto')
+    elif RX_PASO.search(n): out.append('paso')
+    if acuatica and not alberca and 'sin_instalacion' not in out: out.append('acuatica_fuera')
+    if alberca and not acuatica: out.append('no_acuatica_alberca')
+    return out
 n = fuera = 0
 for r in it:
     if not r or r[I['CVE_OOAD']] in (None, ''): continue
@@ -132,6 +165,12 @@ for r in it:
             USO[(unidad, key)].append((ini, max(fin, ini), ds, hi, hf))
     mes = int(num(r[I['CVE_MES']], ini.month if ini else 0)) or (ini.month if ini else 0)
     cupo = num(r[I['CAN_CUPO']])
+    for rg in reglas_de(r[I['DES_INSTALACION']], inst.get(ck), key == 'CEC', r[I['DES_ACTIVIDAD']], L['agrupacion'] if L else ''):
+        ALERTAS.append(dict(unidad=unidad, area=area, regla=rg, nivel=REGLAS[rg][0],
+                            grupo=str(r[I['CVE_GRUPO_ID']]).strip() if 'CVE_GRUPO_ID' in I else (str(r[I['CVE_GRUPO']]).strip() if 'CVE_GRUPO' in I else ''),
+                            cve_instalacion=key, instalacion=re.sub(r'\s+', ' ', str(r[I['DES_INSTALACION']] or '')).strip().capitalize(),
+                            clave_actividad=clave, actividad=str(r[I['DES_ACTIVIDAD']] or '').strip().capitalize().replace('Imss', 'IMSS').replace(' imss', ' IMSS'),
+                            mes=mes, inscripciones=int(cupo) if float(cupo).is_integer() else cupo))
     emin, emax = num(r[I['NUM_EDAD_MIN']], None), num(r[I['NUM_EDAD_MAX']], None)
     vals = dict(grupos=1, inscripciones=cupo, asistencias=num(r[I['CAN_ASISTENCIAS']]), clases=num(r[I['CAN_CLASES']]))
     def acum(d, k):
@@ -223,11 +262,13 @@ dump('avance_dimension.json', [dict(unidad=k[0], area=k[1], dimension=k[2], valo
 dump('avance_actividad.json', [dict(unidad=k[0], area=k[1], clave_actividad=k[2], **{x: ent(v) for x, v in b.items()}, **AGG_V[k]) for k, b in AGG_A.items()])
 dump('avance_catalogo_actividades.json', list(acts.values()))
 dump('avance_uso.json', uso_rows)
+dump('avance_alertas.json', ALERTAS)
 dump('avance_instalaciones.json', [dict(unidad=k[0], cve_instalacion=k[1], instalacion=v[0], tipo_instalacion=v[1]) for k, v in insts.items()])
 T = lambda f: sum(r[f] for r in rows)
 corte = dict(fecha_corte=fecha, grupos=T('grupos'), inscripciones=T('inscripciones'), asistencias=T('asistencias'),
              unidades=len({r['unidad'] for r in rows}), instalaciones=len({(r['unidad'], r['cve_instalacion']) for r in rows}),
-             grupos_fuera_universo=fuera)
+             grupos_fuera_universo=fuera, grupos_con_advertencia=len({(a['unidad'], a['grupo'], a['clave_actividad']) for a in ALERTAS}),
+             advertencias={k: sum(1 for a in ALERTAS if a['regla'] == k) for k in REGLAS})
 hist = [p for p in prev if p.get('fecha_corte') != fecha] + [corte]
 hist.sort(key=lambda p: p['fecha_corte'])
 dump('avance_corte.json', hist)

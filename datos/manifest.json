@@ -46,7 +46,7 @@
   "avance_corte": {
    "archivo": "datos/avance_corte.json",
    "titulo": "Cortes del registro PAA",
-   "actualizado": "2026-11-13T17:56:54Z",
+   "actualizado": "2026-11-13T20:48:35Z",
    "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
   },
   "avance_dimension": {
@@ -180,6 +180,12 @@
    "actualizado": "2026-11-13T20:26:20Z",
    "fuente": "Jorge (Inscritos_12112026.xlsx)",
    "titulo": "Cursos y talleres · cortes del avance real"
+  },
+  "avance_alertas": {
+   "archivo": "datos/avance_alertas.json",
+   "titulo": "Cursos y talleres · notas de advertencia del registro",
+   "actualizado": "2026-11-13T20:48:35Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
   }
  }
 }
