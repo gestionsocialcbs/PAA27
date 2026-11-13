@@ -1959,7 +1959,7 @@ dash.draw('ch-seg-mes', (el) => {
   g.filter((r) => r.r && x.bandwidth() > 30).each(function (r) {
     const t = d3.select(this).append('text').attr('class', 'px-tick').attr('x', x(r.m - 1) + x.bandwidth() / 2).attr('y', y(r.v) - 4).attr('text-anchor', 'middle');
     const sp = t.append('tspan');
-    sp.attr('data-source', 'av_dim').attr('data-field', k).attr('data-where', PXV.where(r.r, '&dimension=Mes%20de%20inicio&valor=' + PX.esc(r.r.valor))).text(d3.format('.2~s')(r.v).replace('k', ' mil').replace('M', ' M'));
+    sp.attr('data-source', 'av_dim').attr('data-field', k).attr('data-where', PXV.where(r.r, '&dimension=Mes%20de%20inicio&valor=' + PX.esc(r.r.valor))).text((r.v < 10000 ? PX.fmt(Math.round(r.v)) : d3.format('.3~s')(r.v)).replace('k', ' mil').replace('M', ' M'));
   });
   PX.hover(el, g, (r) => [PXP.MESES[r.m - 1].replace(/^./, (c) => c.toUpperCase()), ['Inscripciones registradas', PX.fmt(r.r ? r.r.inscripciones : 0)], ['Asistencias registradas', PX.fmt(r.r ? r.r.asistencias : 0)], ['Grupos', PX.fmt(r.r ? r.r.grupos : 0)]]);
 });
@@ -2161,7 +2161,7 @@ dash.draw('ch-ac-mes', (el) => {
   g.filter((r) => r.r && x.bandwidth() > 30).each(function (r) {
     d3.select(this).append('text').attr('class', 'px-tick').attr('x', x(r.m - 1) + x.bandwidth() / 2).attr('y', y(r.v) - 4).attr('text-anchor', 'middle')
       .append('tspan').attr('data-source', 'ac_dim').attr('data-field', 'asistencias').attr('data-where', PXA.where(r.r) + '&dimension=Mes&valor=' + PX.esc(r.r.valor))
-      .text(d3.format('.2~s')(r.v).replace('k', ' mil').replace('M', ' M'));
+      .text((r.v < 10000 ? PX.fmt(Math.round(r.v)) : d3.format('.3~s')(r.v)).replace('k', ' mil').replace('M', ' M'));
   });
   PX.hover(el, g, (r) => [PXP.MESES[r.m - 1].replace(/^./, (c) => c.toUpperCase()), ['Asistencias registradas', PX.fmt(r.r ? r.r.asistencias : 0)], ['Participación en las asistencias', r.r && r.r.participacion !== null ? PXV.pct(r.r.participacion) : '—']]);
 });
@@ -2398,7 +2398,7 @@ dash.draw('ch-te-mes', (el) => {
   g.filter((r) => r.r && x.bandwidth() > 30).each(function (r) {
     d3.select(this).append('text').attr('class', 'px-tick').attr('x', x(r.m - 1) + x.bandwidth() / 2).attr('y', y(r.v) - 4).attr('text-anchor', 'middle')
       .append('tspan').attr('data-source', 'te_dim').attr('data-field', 'asistencias').attr('data-where', PXT.where(r.r) + '&dimension=Mes&valor=' + PX.esc(r.r.valor))
-      .text(d3.format('.2~s')(r.v).replace('k', ' mil').replace('M', ' M'));
+      .text((r.v < 10000 ? PX.fmt(Math.round(r.v)) : d3.format('.3~s')(r.v)).replace('k', ' mil').replace('M', ' M'));
   });
   PX.hover(el, g, (r) => [PXP.MESES[r.m - 1].replace(/^./, (c) => c.toUpperCase()), ['Asistencias registradas', PX.fmt(r.r ? r.r.asistencias : 0)], ['Participación en las asistencias', r.r && r.r.participacion !== null ? PXV.pct(r.r.participacion) : '—']]);
 });
