@@ -96,8 +96,16 @@ def ultimo(corte):
 
 def encabezado(path):
     """Solo los nombres de columna (sin datos), para preparar el procesamiento de un reporte nuevo."""
-    import openpyxl
+    import openpyxl, zipfile, csv
     try:
+        if not zipfile.is_zipfile(path):
+            raw = open(path, 'rb').read(200000)
+            try: txt = raw.decode('utf-8-sig')
+            except UnicodeDecodeError: txt = raw.decode('latin-1')
+            linea = txt.splitlines()[0] if txt else ''
+            try: sep = csv.Sniffer().sniff(linea + '\n', delimiters=',;|\t').delimiter
+            except csv.Error: sep = ','
+            return [dict(hoja='CSV', separador=sep, columnas=[c.strip() for c in next(csv.reader([linea], delimiter=sep))])]
         wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
         hojas = []
         for ws in wb.worksheets:

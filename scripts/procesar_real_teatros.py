@@ -1,5 +1,5 @@
-"""Procesa el Reporte de Teatros REAL (Reporte_Teatros_DDMMAAAA.xlsx) para el comparativo PAA vs. Real del tablero PAA 2027 (Módulo 3).
-Uso: python3 -I procesar_real_teatros.py REPORTE.xlsx unidades_operativas.json corte_anterior.json|- SALIDA_DIR [AAAA-MM-DD]
+"""Procesa el Reporte de Teatros REAL (Reporte_Teatros_DDMMAAAA.csv o .xlsx) para el comparativo PAA vs. Real del tablero PAA 2027 (Módulo 3).
+Uso: python3 -I procesar_real_teatros.py REPORTE.csv|xlsx unidades_operativas.json corte_anterior.json|- SALIDA_DIR [AAAA-MM-DD]
 - Un renglón es un evento. Asistencias reales = NUM_TOTAL_ASISTENCIAS (asistencias + ELSSA); si no viene, NUM_ASISTENCIA.
 - Área del primer dígito de la clave de actividad (1 Promoción de la Salud, 2 CASSAAM, 3 Desarrollo Cultural, 4 Cultura Física y Deporte, 5 Capacitación y Adiestramiento Técnico, 6 CECART).
 - Solo Unidades Operativas del catálogo. No guarda nombres de eventos ni datos personales.
@@ -20,16 +20,33 @@ norm = lambda v: re.sub(r'\s+', '_', str(v or '').strip().upper())
 uo = {r['cve_uo'] for r in json.load(open(f_uo))}
 prev = json.load(open(f_prev)) if f_prev != '-' else []
 
-wb = openpyxl.load_workbook(src, read_only=True, data_only=True)
-hdr = it = None
-for ws in wb.worksheets:
-    ws.reset_dimensions()
-    it = ws.iter_rows(values_only=True)
-    for r in it:
-        h = [norm(c) for c in r] if r else []
-        if 'CVE_OOAD' in h and ('NUM_TOTAL_ASISTENCIAS' in h or 'NUM_ASISTENCIA' in h):
-            hdr = h; break
-    if hdr: break
+def filas_de(path):
+    """Renglones del reporte: CSV (cualquier separador , ; | o tabulador; UTF-8 o Latin-1) o Excel (todas las hojas)."""
+    import csv, zipfile
+    if not zipfile.is_zipfile(path):
+        raw = open(path, 'rb').read(200000)
+        enc = 'utf-8-sig'
+        try: raw.decode('utf-8')
+        except UnicodeDecodeError: enc = 'latin-1'
+        muestra = raw.decode(enc, errors='ignore')
+        try: sep = csv.Sniffer().sniff(muestra.split('\n', 1)[0] + '\n', delimiters=',;|\t').delimiter
+        except csv.Error: sep = ','
+        csv.field_size_limit(10 ** 8)
+        with open(path, newline='', encoding=enc, errors='replace') as fh:
+            for r in csv.reader(fh, delimiter=sep):
+                yield [c.strip() if c.strip() != '' else None for c in r]
+        return
+    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    for ws in wb.worksheets:
+        ws.reset_dimensions()
+        yield from ws.iter_rows(values_only=True)
+
+hdr = None
+it = filas_de(src)
+for r in it:
+    h = [norm(c) for c in r] if r else []
+    if 'CVE_OOAD' in h and ('NUM_TOTAL_ASISTENCIAS' in h or 'NUM_ASISTENCIA' in h):
+        hdr = h; break
 if not hdr:
     sys.exit('No encontré el encabezado (CVE_OOAD, NUM_TOTAL_ASISTENCIAS): el archivo no es un Reporte de Teatros.')
 ASIS = 'NUM_TOTAL_ASISTENCIAS' if 'NUM_TOTAL_ASISTENCIAS' in hdr else 'NUM_ASISTENCIA'
