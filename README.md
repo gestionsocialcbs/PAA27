@@ -7,6 +7,7 @@ Tablero de la Coordinación de Bienestar Social (IMSS) · División de Apoyo Té
 | 1 · Inscripciones y asistencias a cursos y talleres | Inscripciones (CAN_CUPO) contra la meta 2027 y asistencias (CAN_ASISTENCIAS); tiempos de uso de las instalaciones | `REPORTE_PAA_CURSOS_DDMMAAAA_*.xlsx` |
 | 2 · Asistencias en actividades complementarias | Asistencias registradas (CAN_ASISTENCIA), sin metas | `REPORTE_PAA_ACOMPLEMENTARIA_DDMMAAAA_*.xlsx` |
 | 3 · Asistencias en teatros | Asistencias registradas (NUM_ASISTENCIA), sin metas | `Reporte_PAA_Teatros_DD_MM_AAAA.xls` |
+| 2 y 3 · Programado contra real | Asistencias reales (TOTAL_ASISTENCIAS y NUM_TOTAL_ASISTENCIAS, incluyen ELSSA) contra las registradas en el PAA; cumplimiento = real ÷ programado | `Reporte_Activ_Complem_DDMMAAAA.xlsx` y `Reporte_Teatros_DDMMAAAA.xlsx` (carpeta Reportes Real) |
 
 ## Estructura del repositorio
 
@@ -21,12 +22,15 @@ datos/
   avance_*.json          Módulo 1 (7 archivos).
   ac_*.json              Módulo 2 (5 archivos).
   te_*.json              Módulo 3 (3 archivos).
+  rac_*.json, rte_*.json Avance real de los Módulos 2 y 3 (3 archivos cada uno).
   unidades_operativas.json, instalaciones.json, layout_2027.json,
   metas_2027.json, metas_2027_uopsi.json        Catálogos y metas (cambian rara vez).
 scripts/
   procesar_avance.py             Convierte el REPORTE PAA CURSOS en los archivos avance_*.json.
   procesar_complementarias.py    Convierte el REPORTE PAA ACTIVIDADES COMPLEMENTARIAS en ac_*.json.
   procesar_teatros.py            Convierte el Reporte PAA Teatros en te_*.json.
+  procesar_real_complementarias.py  Convierte el Reporte_Activ_Complem (Reportes Real) en rac_*.json.
+  procesar_real_teatros.py          Convierte el Reporte_Teatros (Reportes Real) en rte_*.json.
 .nojekyll                Indica a GitHub Pages que publique los archivos tal cual.
 ```
 
@@ -52,7 +56,7 @@ y abre `http://localhost:8000`.
 
 Cada actualización cambia **solo los archivos de `datos/`**; `index.html` y `assets/` no se tocan.
 
-1. En Google Drive, dentro de `PAA_2027`, se crea una carpeta por día de actualización con los tres reportes (por ejemplo `PAA_2027/12112026/`). No se cambia el nombre de los archivos: de ahí sale la fecha de corte.
+1. En Google Drive, dentro de `PAA_2027/Reportes PAA`, se crea una carpeta por día de actualización con los tres reportes del registro (por ejemplo `PAA_2027/Reportes PAA/12112026/`); en `PAA_2027/Reportes Real` va otra carpeta por día con los reportes del avance real. No se cambia el nombre de los archivos: de ahí sale la fecha de corte.
 2. Se procesa cada reporte con su script (Python 3 y `openpyxl`; `xlrd` solo si el de teatros es un .xls binario):
 
 ```

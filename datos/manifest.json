@@ -120,6 +120,42 @@
    "titulo": "Unidades Operativas UOPSI",
    "actualizado": "2026-10-30T18:10:00Z",
    "fuente": "Jorge (General Catálogos, hoja UOPSI)"
+  },
+  "rac_registro": {
+   "archivo": "datos/rac_registro.json",
+   "titulo": "Actividades complementarias · asistencias reales",
+   "actualizado": "2026-11-13T18:20:00Z",
+   "fuente": "Jorge (Reporte_Activ_Complem_12112026.xlsx)"
+  },
+  "rac_catalogo": {
+   "archivo": "datos/rac_catalogo.json",
+   "titulo": "Actividades complementarias · catálogo del reporte real",
+   "actualizado": "2026-11-13T18:20:00Z",
+   "fuente": "Jorge (Reporte_Activ_Complem_12112026.xlsx)"
+  },
+  "rac_corte": {
+   "archivo": "datos/rac_corte.json",
+   "titulo": "Actividades complementarias · cortes del avance real",
+   "actualizado": "2026-11-13T18:20:00Z",
+   "fuente": "Jorge (Reporte_Activ_Complem_12112026.xlsx)"
+  },
+  "rte_registro": {
+   "archivo": "datos/rte_registro.json",
+   "titulo": "Teatros · asistencias reales",
+   "actualizado": "2026-11-13T18:20:00Z",
+   "fuente": "Jorge (Reporte_Teatros_12112026.xlsx)"
+  },
+  "rte_catalogo": {
+   "archivo": "datos/rte_catalogo.json",
+   "titulo": "Teatros · catálogo del reporte real",
+   "actualizado": "2026-11-13T18:20:00Z",
+   "fuente": "Jorge (Reporte_Teatros_12112026.xlsx)"
+  },
+  "rte_corte": {
+   "archivo": "datos/rte_corte.json",
+   "titulo": "Teatros · cortes del avance real",
+   "actualizado": "2026-11-13T18:20:00Z",
+   "fuente": "Jorge (Reporte_Teatros_12112026.xlsx)"
   }
  }
 }

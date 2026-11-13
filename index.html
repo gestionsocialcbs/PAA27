@@ -216,6 +216,9 @@
 .px-niv tbody tr.px-click:hover td { background:color-mix(in srgb, var(--px-verde) 8%, transparent); }
 [data-dash-source-state=empty] { color:transparent; }
 [data-dash-source-state=refreshing] { opacity:.5; transition:opacity var(--cds-dur-slow); }
+.px-mod-top .px-upd-chip + .px-upd-chip { margin-left:var(--cds-gap-sm); }
+.px-pr-aviso { color:var(--px-guinda); }
+.px-pr-leg { margin-top:var(--cds-gap-sm); }
 </style>
 
 <div class="px">
@@ -421,9 +424,9 @@
 
   <div class="px-mod" id="modulo-2" role="tabpanel" aria-labelledby="tab-modulo-2" data-mod="2" hidden>
     <div class="px-mod-h">
-      <div class="px-mod-top"><div class="px-sec-n">Módulo 2</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_ACOMPLEMENTARIA de Google Drive</span></div>
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 2</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_ACOMPLEMENTARIA de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rac_corte" data-source="rac_corte" data-field="fecha_corte">—</b> · archivo Reporte_Activ_Complem</span></div>
       <h2 class="px-mod-t">Programa Anual de Asistencias en Actividades Complementarias</h2>
-      <p class="px-lead">Seguimiento del registro de las actividades complementarias (campañas, pláticas y eventos) en el REPORTE PAA ACTIVIDADES COMPLEMENTARIAS. <b data-draw="acamb">—</b>: <b data-draw="ack" data-k="asistencias">—</b> asistencias registradas.</p>
+      <p class="px-lead">Seguimiento del registro de las actividades complementarias (campañas, pláticas y eventos) en el REPORTE PAA ACTIVIDADES COMPLEMENTARIAS. <b data-draw="acamb">—</b>: <b data-draw="ack" data-k="asistencias">—</b> asistencias registradas (programado) y <b data-draw="prk" data-m="ac" data-k="real">—</b> asistencias reales.</p>
     </div>
     <section class="px-sec" id="ac-registro">
       <div class="px-sec-h">
@@ -454,13 +457,35 @@
       <div class="px-card"><h3>Actividades con más asistencias registradas</h3><p class="px-note">Las 15 actividades del ámbito con más asistencias registradas; al pasar el cursor se ven su clave, su tipo y su bloque.</p><div class="px-chart dash-skeleton" data-draw="acd" data-dim="Actividad" data-source="ac_dim" style="min-height:240px"></div></div>
       <div class="px-card"><h3>Evolución del registro por fecha de corte</h3><p class="px-note">Asistencias registradas a nivel nacional en cada corte procesado; la actualización diaria agrega un corte cada vez que llega un reporte nuevo.</p><div class="px-chart dash-skeleton" data-draw="ch-ac-cortes" data-source="ac_corte" style="min-height:220px"></div></div>
     </section>
+    <section class="px-sec" id="ac-real">
+      <div class="px-sec-h">
+        <div class="px-sec-n">02 · Programado contra real</div>
+        <h2 class="px-sec-t">Asistencias programadas en el PAA 2027 y asistencias reales</h2>
+        <p class="px-sec-d">Compara las asistencias registradas en el PAA (programado) con las asistencias reales del Reporte de actividades complementarias (Reporte_Activ_Complem), con corte al <b class="px-strong" data-draw="pr-corte" data-m="ac">—</b>. Asistencias reales = TOTAL_ASISTENCIAS (incluye las de ELSSA). Cumplimiento = real ÷ programado, con el semáforo de avance. Responde a los filtros de ámbito y de área. <span class="px-pr-aviso" data-draw="pr-anios" data-m="ac"></span></p>
+      </div>
+      <div class="px-kpis">
+        <div class="px-kpi"><div class="px-kpi-l">Asistencias programadas (PAA)</div><div class="px-kpi-v dash-skeleton" data-draw="prk" data-m="ac" data-k="prog">—</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="prk" data-m="ac" data-k="real">—</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="prk" data-m="ac" data-k="cumplimiento">—</div></div>
+      </div>
+      <p class="px-note px-legend px-pr-leg"><span><i style="background:#A57F2C"></i>Asistencias programadas (PAA)</span><span><i style="background:#1E5B4F"></i>Asistencias reales</span><span><span class="px-dot px-dot-m"></span>Más de 125%</span><span><span class="px-dot px-dot-v"></span>Más de 85% y menos de 115%</span><span><span class="px-dot px-dot-a"></span>75%–85% o 115%–125%</span><span><span class="px-dot px-dot-r"></span>Menos de 75%</span></p>
+      <div class="px-card"><h3>Por mes</h3><p class="px-note">Asistencias programadas y reales según el mes de la actividad; al pasar el cursor se ve el cumplimiento del mes.</p><div class="px-chart dash-skeleton" data-draw="ch-pr-mes" data-m="ac" style="min-height:240px"></div></div>
+      <div class="px-card"><h3>Por área normativa</h3><p class="px-note">CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Arriba lo programado y abajo lo real, con el cumplimiento a color del semáforo.</p><div class="px-chart dash-skeleton" data-draw="ch-pr-area" data-m="ac" style="min-height:160px"></div></div>
+      <div class="px-card">
+        <h3 data-draw="pr-ct" data-m="ac">—</h3>
+        <p class="px-note">Haz clic en una OOAD para ver sus Unidades Operativas, y en una Unidad Operativa para ver solo su comparativo. Arriba lo programado y abajo lo real, con el cumplimiento a color del semáforo.</p>
+        <div class="px-chart dash-skeleton" data-draw="ch-pr-nivel" data-m="ac" style="min-height:240px"></div>
+      </div>
+      <div class="px-card"><h3>Actividades con más asistencias</h3><p class="px-note">Las 15 actividades del ámbito con más asistencias programadas o reales.</p><div class="px-chart dash-skeleton" data-draw="ch-pr-act" data-m="ac" style="min-height:240px"></div></div>
+      <div class="px-card"><h3>Asistencias reales por fecha de corte</h3><p class="px-note">Asistencias reales a nivel nacional en cada corte procesado del Reporte de actividades complementarias (Reporte_Activ_Complem).</p><div class="px-chart dash-skeleton" data-draw="ch-pr-cortes" data-m="ac" style="min-height:220px"></div></div>
+    </section>
   </div>
 
   <div class="px-mod" id="modulo-3" role="tabpanel" aria-labelledby="tab-modulo-3" data-mod="3" hidden>
     <div class="px-mod-h">
-      <div class="px-mod-top"><div class="px-sec-n">Módulo 3</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b> · archivo Reporte_PAA_Teatros de Google Drive</span></div>
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 3</div><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b> · archivo Reporte_PAA_Teatros de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rte_corte" data-source="rte_corte" data-field="fecha_corte">—</b> · archivo Reporte_Teatros</span></div>
       <h2 class="px-mod-t">Programa Anual de Asistencias en Teatros</h2>
-      <p class="px-lead">Seguimiento del registro de los eventos en los Teatros Cubiertos del IMSS, en el Reporte PAA Teatros. <b data-draw="teamb">—</b>: <b data-draw="tek" data-k="asistencias">—</b> asistencias registradas.</p>
+      <p class="px-lead">Seguimiento del registro de los eventos en los Teatros Cubiertos del IMSS, en el Reporte PAA Teatros. <b data-draw="teamb">—</b>: <b data-draw="tek" data-k="asistencias">—</b> asistencias registradas (programado) y <b data-draw="prk" data-m="te" data-k="real">—</b> asistencias reales.</p>
     </div>
     <section class="px-sec" id="te-registro">
       <div class="px-sec-h">
@@ -487,9 +512,31 @@
       </div>
       <div class="px-card"><h3>Evolución del registro por fecha de corte</h3><p class="px-note">Asistencias registradas a nivel nacional en cada corte procesado; la actualización diaria agrega un corte cada vez que llega un reporte nuevo.</p><div class="px-chart dash-skeleton" data-draw="ch-te-cortes" data-source="te_corte" style="min-height:220px"></div></div>
     </section>
+    <section class="px-sec" id="te-real">
+      <div class="px-sec-h">
+        <div class="px-sec-n">02 · Programado contra real</div>
+        <h2 class="px-sec-t">Asistencias programadas en el PAA 2027 y asistencias reales</h2>
+        <p class="px-sec-d">Compara las asistencias registradas en el PAA (programado) con las asistencias reales del Reporte de Teatros (Reporte_Teatros), con corte al <b class="px-strong" data-draw="pr-corte" data-m="te">—</b>. Asistencias reales = NUM_TOTAL_ASISTENCIAS (incluye las de ELSSA). Cumplimiento = real ÷ programado, con el semáforo de avance. Responde a los filtros de ámbito y de área. <span class="px-pr-aviso" data-draw="pr-anios" data-m="te"></span></p>
+      </div>
+      <div class="px-kpis">
+        <div class="px-kpi"><div class="px-kpi-l">Asistencias programadas (PAA)</div><div class="px-kpi-v dash-skeleton" data-draw="prk" data-m="te" data-k="prog">—</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="prk" data-m="te" data-k="real">—</div></div>
+        <div class="px-kpi"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="prk" data-m="te" data-k="cumplimiento">—</div></div>
+      </div>
+      <p class="px-note px-legend px-pr-leg"><span><i style="background:#A57F2C"></i>Asistencias programadas (PAA)</span><span><i style="background:#1E5B4F"></i>Asistencias reales</span><span><span class="px-dot px-dot-m"></span>Más de 125%</span><span><span class="px-dot px-dot-v"></span>Más de 85% y menos de 115%</span><span><span class="px-dot px-dot-a"></span>75%–85% o 115%–125%</span><span><span class="px-dot px-dot-r"></span>Menos de 75%</span></p>
+      <div class="px-card"><h3>Por mes</h3><p class="px-note">Asistencias programadas y reales según el mes de la actividad; al pasar el cursor se ve el cumplimiento del mes.</p><div class="px-chart dash-skeleton" data-draw="ch-pr-mes" data-m="te" style="min-height:240px"></div></div>
+      <div class="px-card"><h3>Por área normativa</h3><p class="px-note">CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Arriba lo programado y abajo lo real, con el cumplimiento a color del semáforo.</p><div class="px-chart dash-skeleton" data-draw="ch-pr-area" data-m="te" style="min-height:160px"></div></div>
+      <div class="px-card">
+        <h3 data-draw="pr-ct" data-m="te">—</h3>
+        <p class="px-note">Haz clic en una OOAD para ver sus teatros, y en un teatro para ver solo su comparativo. Arriba lo programado y abajo lo real, con el cumplimiento a color del semáforo.</p>
+        <div class="px-chart dash-skeleton" data-draw="ch-pr-nivel" data-m="te" style="min-height:240px"></div>
+      </div>
+      <div class="px-card"><h3>Actividades con más asistencias</h3><p class="px-note">Las 15 actividades del ámbito con más asistencias programadas o reales.</p><div class="px-chart dash-skeleton" data-draw="ch-pr-act" data-m="te" style="min-height:240px"></div></div>
+      <div class="px-card"><h3>Asistencias reales por fecha de corte</h3><p class="px-note">Asistencias reales a nivel nacional en cada corte procesado del Reporte de Teatros (Reporte_Teatros).</p><div class="px-chart dash-skeleton" data-draw="ch-pr-cortes" data-m="te" style="min-height:220px"></div></div>
+    </section>
   </div>
 
-  <footer class="px-foot">Fuentes: REPORTE PAA CURSOS (registro del PAA 2027; inscripciones = CAN_CUPO, asistencias = CAN_ASISTENCIAS; tiempos de uso por bloques de 15 minutos dentro del horario con actividad), Base de metas 2026–2027 de inscripciones por OOAD, UOPSI y área normativa, catálogo UOPSI (sin tiendas ni velatorios) y Layout 2027 de los Criterios Técnicos. Áreas normativas: CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Semáforo de avance contra la meta: Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%. Tiempos de uso: niveles de ocupación baja &lt; 50%, media de 50% a 79.9% y alta ≥ 80% del horario con actividad. División de Apoyo Técnico y Mejora de Procesos.</footer>
+  <footer class="px-foot">Fuentes: REPORTE PAA CURSOS (registro del PAA 2027; inscripciones = CAN_CUPO, asistencias = CAN_ASISTENCIAS; tiempos de uso por bloques de 15 minutos dentro del horario con actividad), Base de metas 2026–2027 de inscripciones por OOAD, UOPSI y área normativa, catálogo UOPSI (sin tiendas ni velatorios) y Layout 2027 de los Criterios Técnicos. Áreas normativas: CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Semáforo de avance contra la meta: Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%. Tiempos de uso: niveles de ocupación baja &lt; 50%, media de 50% a 79.9% y alta ≥ 80% del horario con actividad. Programado contra real: asistencias reales del Reporte_Activ_Complem (TOTAL_ASISTENCIAS) y del Reporte_Teatros (NUM_TOTAL_ASISTENCIAS), carpeta Reportes Real; cumplimiento = real ÷ programado, con el mismo semáforo. División de Apoyo Técnico y Mejora de Procesos.</footer>
 </div>
 
 <script>
@@ -2313,6 +2360,297 @@ dash.draw('upd', (el) => {
   if (d.status !== 'ok' || !d.data.length) { el.textContent = d.status === 'loading' ? '—' : 'sin reporte'; return; }
   const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
   el.textContent = PXV.fecha(r.fecha_corte);
+});
+</script><script>
+// Módulos 2 y 3 · Programado (registro del PAA) contra real (reportes de operación). Cumplimiento = real ÷ programado, con el semáforo de avance.
+window.PXR = (() => {
+  const areaN = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
+  const uoKey = (u) => Math.floor(Number(u.cve_uo) / 1000) + '-' + (Number(u.cve_uo) % 1000);
+  const sem = (v) => (v === null || v === undefined || !isFinite(v) ? null : v > 1.25 ? 'Morado' : v > 0.85 && v < 1.15 ? 'Verde' : (v >= 0.75 && v <= 0.85) || (v >= 1.15 && v <= 1.25) ? 'Amarillo' : 'Rojo');
+  const C = { prog: '#A57F2C', real: '#1E5B4F' };
+  const CFG = {
+    ac: { niv: 'pr_ac', act: 'pr_ac_act', corte: 'rac_corte', hijo: 'Unidades Operativas', uni: 'unidad' },
+    te: { niv: 'pr_te', act: 'pr_te_act', corte: 'rte_corte', hijo: 'teatros', uni: 'teatro' },
+  };
+  // Agrega programado y real por nivel (Nacional, OOAD, Unidad Operativa), área y mes (0 = todo el año).
+  const niveles = (prog, real, uos, soloTeatros) => {
+    const uo = new Map(uos.map((u) => [uoKey(u), u]));
+    const acc = new Map();
+    const conReal = new Map();
+    const add = (lado, r) => {
+      const u = uo.get(r.unidad);
+      if (!u) return;
+      const v = Number(r.asistencias) || 0;
+      const mes = Number(r.mes) || 0;
+      for (const area of ['Todas', areaN(r.area)]) {
+        for (const [nivel, clave, nombre, padre] of [['Nacional', 'Nacional', 'Nacional', ''], ['OOAD', String(u.cve_ooad), u.ooad, 'Nacional'], ['Unidad Operativa', r.unidad, u.unidad_operativa || u.tipo_uo, String(u.cve_ooad)]]) {
+          for (const m of mes ? [0, mes] : [0]) {
+            const k = nivel + '|' + clave + '|' + area + '|' + m;
+            const o = acc.get(k) || { nivel, clave, nombre, padre, area, mes: m, prog: 0, real: 0 };
+            o[lado] += v;
+            acc.set(k, o);
+          }
+          if (lado === 'real' && v > 0) { const kk = nivel + '|' + clave + '|' + area; if (!conReal.has(kk)) conReal.set(kk, new Set()); conReal.get(kk).add(r.unidad); }
+        }
+      }
+    };
+    for (const r of prog) add('prog', r);
+    for (const r of real) add('real', r);
+    const univ = new Map();
+    for (const u of uos) {
+      if (soloTeatros && u.tipo_uo !== 'Teatro Cubierto') continue;
+      univ.set('Nacional|Nacional', (univ.get('Nacional|Nacional') || 0) + 1);
+      univ.set('OOAD|' + u.cve_ooad, (univ.get('OOAD|' + u.cve_ooad) || 0) + 1);
+    }
+    return [...acc.values()].map((o) => {
+      const c = o.prog ? o.real / o.prog : null;
+      const s = conReal.get(o.nivel + '|' + o.clave + '|' + o.area);
+      return { ...o, cumplimiento: c, semaforo: sem(c), diferencia: o.real - o.prog, unidades_real: o.mes === 0 && s ? s.size : null, unidades_universo: o.mes === 0 ? univ.get(o.nivel + '|' + o.clave) ?? null : null };
+    });
+  };
+  // Programado y real por actividad, por nivel y área.
+  const actividades = (prog, real, catP, catR, uos) => {
+    const uo = new Map(uos.map((u) => [uoKey(u), u]));
+    const nom = new Map();
+    for (const c of catR) nom.set(String(c.clave_actividad), c);
+    for (const c of catP) if (!nom.has(String(c.clave_actividad))) nom.set(String(c.clave_actividad), c);
+    const acc = new Map();
+    const add = (lado, r) => {
+      const u = uo.get(r.unidad);
+      if (!u) return;
+      const cl = String(r.clave_actividad);
+      const c = nom.get(cl) || {};
+      for (const area of ['Todas', areaN(r.area)]) {
+        for (const [nivel, clave] of [['Nacional', 'Nacional'], ['OOAD', String(u.cve_ooad)], ['Unidad Operativa', r.unidad]]) {
+          const k = nivel + '|' + clave + '|' + area + '|' + cl;
+          const o = acc.get(k) || { nivel, clave, area, clave_actividad: cl, actividad: c.actividad || cl, tipo_actividad: c.tipo_actividad || '', prog: 0, real: 0 };
+          o[lado] += Number(r.asistencias) || 0;
+          acc.set(k, o);
+        }
+      }
+    };
+    for (const r of prog) add('prog', r);
+    for (const r of real) add('real', r);
+    return [...acc.values()].map((o) => { const c = o.prog ? o.real / o.prog : null; return { ...o, cumplimiento: c, semaforo: sem(c) }; });
+  };
+  const where = (r, extra) => 'nivel=' + PX.esc(r.nivel) + '&clave=' + PX.esc(r.clave) + '&area=' + PX.esc(r.area) + (extra || '');
+  const find = (m, nivel, clave, mes) => {
+    const d = dash.data(CFG[m].niv);
+    if (d.status !== 'ok') return null;
+    const a = PX.area();
+    return d.data.find((r) => r.nivel === nivel && r.clave === clave && r.area === a && r.mes === (mes || 0)) || null;
+  };
+  const empty = (el, t) => { const p = document.createElement('p'); p.className = 'px-note'; p.textContent = t || 'Sin asistencias programadas ni reales en el ámbito y el área seleccionados.'; el.appendChild(p); };
+  const pctG = d3.format(',.1%');
+  const cumpTxt = (r) => (r.cumplimiento === null ? 'Sin programado' : pctG(r.cumplimiento));
+  const fmtc = (v) => new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
+  const tip = (head, r) => {
+    const out = [head, ['Asistencias programadas (PAA)', PX.fmt(Math.round(r.prog))], ['Asistencias reales', PX.fmt(Math.round(r.real))], ['Cumplimiento', cumpTxt(r)]];
+    if (r.semaforo) out.push(['Semáforo', r.semaforo]);
+    return out;
+  };
+  // Pares de barras: programado (arriba) y real (abajo), con el cumplimiento a la derecha.
+  const pair = (el, rows, o) => {
+    const anim = !el.dataset.pxDrawn && rows.length > 0;
+    if (anim) el.dataset.pxDrawn = '1';
+    const W = Math.max(260, el.clientWidth);
+    const step = 50;
+    const H = Math.max(step, rows.length * step);
+    el.style.minHeight = H + 'px';
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', o.aria || '');
+    const mx = d3.max(rows, (d) => Math.max(d.prog, d.real)) || 1;
+    const probe = svg.append('text').attr('class', 'px-val').attr('font-weight', 600);
+    let valW = 0;
+    for (const d of rows) { probe.text(PX.fmt(Math.round(d.real)) + ' · ' + cumpTxt(d)); valW = Math.max(valW, probe.node().getComputedTextLength()); }
+    valW += 14;
+    probe.remove();
+    const x = d3.scaleLinear([0, mx], [0, Math.max(40, W - valW)]);
+    const g = svg.selectAll('g.px-row').data(rows).join('g').attr('class', 'px-row').attr('transform', (d, i) => `translate(0,${i * step})`);
+    g.append('rect').attr('width', W).attr('height', step).attr('fill', 'transparent');
+    g.append('text').attr('class', 'px-lbl').attr('y', 13).text(o.label).each(function () { PX.fit(this, W - 4); });
+    for (const [lado, y] of [['prog', 19], ['real', 32]]) {
+      g.append('rect').attr('y', y).attr('height', 10).attr('rx', 2).attr('width', (d) => (d[lado] > 0 ? Math.max(2, x(d[lado])) : 0)).attr('fill', C[lado])
+        .attr('class', anim ? 'px-grow-x' : null).style('animation-delay', (d, i) => (anim ? i * 35 + 'ms' : null));
+    }
+    g.append('text').attr('class', 'px-val').attr('y', 28).attr('x', (d) => Math.max(2, x(d.prog)) + 6).text((d) => PX.fmt(Math.round(d.prog)));
+    const t = g.append('text').attr('class', 'px-val').attr('y', 41).attr('x', (d) => Math.max(2, x(d.real)) + 6);
+    t.append('tspan').text((d) => PX.fmt(Math.round(d.real)) + ' · ');
+    t.append('tspan').attr('font-weight', 600).attr('fill', (d) => (d.semaforo ? PXS.color(d.semaforo) : 'currentColor')).text((d) => cumpTxt(d));
+    PX.hover(el, g, (d) => tip(o.label(d), d));
+    return g;
+  };
+  return { C, CFG, sem, niveles, actividades, where, find, empty, cumpTxt, fmtc, tip, pair };
+})();
+
+dash.calc('pr_ac', {
+  title: 'Actividades complementarias: programado contra real por nivel y mes',
+  description: 'Asistencias programadas (registro del PAA 2027, CAN_ASISTENCIA) y asistencias reales (Reporte de actividades complementarias, TOTAL_ASISTENCIAS) a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total, por mes (0 = todo el año); cumplimiento = real ÷ programado, con su semáforo, y Unidades Operativas con asistencias reales.',
+  inputs: ['ac_detalle', 'rac_registro', 'unidades_operativas'],
+  fn: (ac_detalle, rac_registro, unidades_operativas) => PXR.niveles(ac_detalle, rac_registro, unidades_operativas, false),
+});
+dash.calc('pr_ac_act', {
+  title: 'Actividades complementarias: programado contra real por actividad',
+  description: 'Asistencias programadas y reales por actividad, a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total, con su cumplimiento y semáforo.',
+  inputs: ['ac_detalle', 'rac_registro', 'ac_catalogo', 'rac_catalogo', 'unidades_operativas'],
+  fn: (ac_detalle, rac_registro, ac_catalogo, rac_catalogo, unidades_operativas) => PXR.actividades(ac_detalle, rac_registro, ac_catalogo, rac_catalogo, unidades_operativas),
+});
+dash.calc('pr_te', {
+  title: 'Teatros: programado contra real por nivel y mes',
+  description: 'Asistencias programadas (Reporte PAA Teatros, NUM_ASISTENCIA) y asistencias reales (Reporte de Teatros, NUM_TOTAL_ASISTENCIAS) a nivel nacional, por OOAD y por teatro, por área normativa y en total, por mes (0 = todo el año); cumplimiento = real ÷ programado, con su semáforo, y teatros con asistencias reales frente a los Teatros Cubiertos del catálogo.',
+  inputs: ['te_registro', 'rte_registro', 'unidades_operativas'],
+  fn: (te_registro, rte_registro, unidades_operativas) => PXR.niveles(te_registro, rte_registro, unidades_operativas, true),
+});
+dash.calc('pr_te_act', {
+  title: 'Teatros: programado contra real por actividad',
+  description: 'Asistencias programadas y reales en teatros por actividad, a nivel nacional, por OOAD y por teatro, por área normativa y en total, con su cumplimiento y semáforo.',
+  inputs: ['te_registro', 'rte_registro', 'te_catalogo', 'rte_catalogo', 'unidades_operativas'],
+  fn: (te_registro, rte_registro, te_catalogo, rte_catalogo, unidades_operativas) => PXR.actividades(te_registro, rte_registro, te_catalogo, rte_catalogo, unidades_operativas),
+});
+
+dash.draw('pr-corte', (el) => {
+  const d = dash.data(PXR.CFG[el.dataset.m].corte);
+  if (d.status !== 'ok' || !d.data.length) { el.textContent = '—'; return; }
+  const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
+  el.textContent = PXV.fecha(r.fecha_corte);
+});
+
+dash.draw('pr-anios', (el) => {
+  const d = dash.data(PXR.CFG[el.dataset.m].corte);
+  el.textContent = '';
+  if (d.status !== 'ok' || !d.data.length) return;
+  const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
+  const an = (r.anios || []).filter((y) => y !== 2027);
+  if (an.length) el.textContent = 'Aviso: el reporte real de este corte trae registros de ' + an.join(' y ') + '; el comparativo cobra sentido con la operación de 2027.';
+});
+
+dash.draw('prk', (el) => {
+  const m = el.dataset.m, k = el.dataset.k;
+  const st = dash.data(PXR.CFG[m].niv).status;
+  el.classList.toggle('dash-skeleton', st === 'loading');
+  const s = PXV.scope();
+  const r = PXR.find(m, s.nivel, s.clave);
+  if (!r) { el.textContent = st === 'ok' ? (k === 'cumplimiento' ? '—' : '0') : '—'; return; }
+  if (k === 'cumplimiento') {
+    el.textContent = '';
+    if (r.semaforo) { const dot = document.createElement('span'); dot.className = 'px-dot'; dot.style.background = PXS.color(r.semaforo); dot.title = r.semaforo; el.appendChild(dot); }
+    const sp = document.createElement('span');
+    el.appendChild(sp);
+    if (r.cumplimiento === null) { sp.textContent = 'Sin programado'; return; }
+    pxMark(sp, PXR.CFG[m].niv, 'cumplimiento', PXR.where(r, '&mes=0'), PXR.cumpTxt(r));
+    return;
+  }
+  pxMark(el, PXR.CFG[m].niv, k, PXR.where(r, '&mes=0'), PX.fmt(Math.round(r[k])));
+  if (k === 'real' && r.unidades_real !== null && r.unidades_universo) {
+    const de = document.createElement('span');
+    de.className = 'px-kpi-de';
+    de.textContent = ' · ' + PX.fmt(r.unidades_real) + ' de ' + PX.fmt(r.unidades_universo) + ' ' + PXR.CFG[m].hijo;
+    el.appendChild(de);
+  }
+});
+
+dash.draw('ch-pr-mes', (el) => {
+  const m = el.dataset.m;
+  if (!PX.ready(el, [PXR.CFG[m].niv])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const by = new Map(dash.data(PXR.CFG[m].niv).data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.mes > 0).map((r) => [r.mes, r]));
+  if (!by.size) { PXR.empty(el); return; }
+  const rows = d3.range(1, 13).map((mm) => by.get(mm) || { mes: mm, prog: 0, real: 0, cumplimiento: null, semaforo: null });
+  const anim = !el.dataset.pxDrawn;
+  el.dataset.pxDrawn = '1';
+  const W = Math.max(280, el.clientWidth), H = 240, mg = { t: 18, b: 22 };
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Asistencias programadas y reales por mes');
+  const mx = d3.max(rows, (r) => Math.max(r.prog, r.real)) || 1;
+  const ticks = d3.scaleLinear([0, mx], [0, 1]).nice().ticks(4);
+  const probe = svg.append('text').attr('class', 'px-tick').text(PXR.fmtc(d3.max(ticks)));
+  const left = probe.node().getComputedTextLength() + 8;
+  probe.remove();
+  const y = d3.scaleLinear([0, mx], [H - mg.b, mg.t]).nice();
+  const x = d3.scaleBand(d3.range(12), [left, W]).padding(0.22);
+  const xi = d3.scaleBand(['prog', 'real'], [0, x.bandwidth()]).padding(0.08);
+  svg.append('g').selectAll('line').data(y.ticks(4)).join('line').attr('x1', left).attr('x2', W).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(y.ticks(4)).join('text').attr('class', 'px-tick').attr('x', left - 6).attr('y', (t) => y(t) + 4).attr('text-anchor', 'end').text(PXR.fmtc);
+  const g = svg.selectAll('g.px-m').data(rows).join('g').attr('class', 'px-m');
+  g.append('rect').attr('x', (r) => x(r.mes - 1) - 2).attr('width', x.bandwidth() + 4).attr('y', 0).attr('height', H).attr('fill', 'transparent');
+  for (const lado of ['prog', 'real']) {
+    g.append('rect').attr('x', (r) => x(r.mes - 1) + xi(lado)).attr('width', xi.bandwidth()).attr('y', (r) => y(r[lado])).attr('height', (r) => y(0) - y(r[lado])).attr('rx', 2).attr('fill', PXR.C[lado])
+      .attr('class', anim ? 'px-grow' : null).style('animation-delay', (r) => (anim ? r.mes * 30 + 'ms' : null));
+  }
+  g.append('text').attr('class', 'px-tick').attr('x', (r) => x(r.mes - 1) + x.bandwidth() / 2).attr('y', H - 6).attr('text-anchor', 'middle').text((r) => PXU2.MES[r.mes - 1]);
+  PX.hover(el, g, (r) => PXR.tip(PXP.MESES[r.mes - 1].replace(/^./, (c) => c.toUpperCase()), r));
+});
+
+dash.draw('ch-pr-area', (el) => {
+  const m = el.dataset.m;
+  if (!PX.ready(el, [PXR.CFG[m].niv])) return;
+  const s = PXV.scope();
+  const rows = dash.data(PXR.CFG[m].niv).data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area !== 'Todas' && r.mes === 0).sort((x, y) => Math.max(y.prog, y.real) - Math.max(x.prog, x.real));
+  if (!rows.length) { PXR.empty(el); return; }
+  PXR.pair(el, rows, { aria: 'Asistencias programadas y reales por área normativa', label: (d) => d.area });
+});
+
+dash.draw('ch-pr-act', (el) => {
+  const m = el.dataset.m;
+  if (!PX.ready(el, [PXR.CFG[m].act])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const rows = dash.data(PXR.CFG[m].act).data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a).sort((x, y) => Math.max(y.prog, y.real) - Math.max(x.prog, x.real)).slice(0, 15);
+  if (!rows.length) { PXR.empty(el); return; }
+  PXR.pair(el, rows, { aria: 'Asistencias programadas y reales por actividad', label: (d) => d.actividad });
+});
+
+dash.draw('pr-ct', (el) => {
+  const m = el.dataset.m;
+  const s = PXV.scope();
+  const r = PXR.find(m, s.nivel, s.clave);
+  const hijo = m === 'te' ? 'teatro' : 'Unidad Operativa';
+  el.textContent = s.nivel === 'Nacional' ? 'Programado contra real por OOAD' : s.nivel === 'OOAD' ? 'Programado contra real por ' + hijo + ' · ' + (r ? r.nombre : '') : 'Programado contra real · ' + (r ? r.nombre : '');
+});
+
+dash.draw('ch-pr-nivel', (el) => {
+  const m = el.dataset.m;
+  if (!PX.ready(el, [PXR.CFG[m].niv])) return;
+  const s = PXV.scope();
+  const a = PX.area();
+  const d = dash.data(PXR.CFG[m].niv).data;
+  const rows = s.nivel === 'Unidad Operativa'
+    ? d.filter((r) => r.nivel === 'Unidad Operativa' && r.clave === s.clave && r.area === a && r.mes === 0)
+    : d.filter((r) => r.nivel === (s.nivel === 'Nacional' ? 'OOAD' : 'Unidad Operativa') && r.padre === s.clave && r.area === a && r.mes === 0).sort((x, y) => Math.max(y.prog, y.real) - Math.max(x.prog, x.real));
+  if (!rows.length) { PXR.empty(el); return; }
+  const g = PXR.pair(el, rows, { aria: 'Asistencias programadas y reales por ' + (s.nivel === 'Nacional' ? 'OOAD' : 'Unidad Operativa'), label: (r) => r.nombre });
+  if (s.nivel !== 'Unidad Operativa') {
+    g.style('cursor', 'pointer').on('click', (ev, r) => {
+      if (r.nivel === 'OOAD') dash.setParams({ ooad: r.clave, uo: null, inst: null });
+      else dash.setParams({ ooad: r.padre, uo: r.clave, inst: null });
+    });
+  }
+});
+
+dash.draw('ch-pr-cortes', (el) => {
+  const m = el.dataset.m;
+  if (!PX.ready(el, [PXR.CFG[m].corte])) return;
+  const rows = [...dash.data(PXR.CFG[m].corte).data].sort((x, y) => String(x.fecha_corte).localeCompare(String(y.fecha_corte)));
+  if (!rows.length) return;
+  const W = Math.max(260, el.clientWidth), H = 220;
+  el.style.minHeight = H + 'px';
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Asistencias reales por fecha de corte');
+  const y = d3.scaleLinear([0, (d3.max(rows, (r) => r.asistencias) || 1) * 1.15], [H - 26, 18]).nice();
+  const ticks = y.ticks(4);
+  const probe = svg.append('text').attr('class', 'px-tick').text(PXR.fmtc(d3.max(ticks)));
+  const left = probe.node().getComputedTextLength() + 8;
+  probe.remove();
+  const x = d3.scaleBand(rows.map((r) => r.fecha_corte), [left, W - 4]).paddingInner(0.35).paddingOuter(0.2);
+  svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', left).attr('x2', W - 4).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'px-tick').attr('x', left - 6).attr('y', (t) => y(t) + 4).attr('text-anchor', 'end').text(PXR.fmtc);
+  const f = (iso) => { const [, mm, dd] = String(iso).split('-').map(Number); return dd + ' ' + PXP.MESES[mm - 1].slice(0, 3); };
+  svg.append('g').selectAll('text').data(rows).join('text').attr('class', 'px-tick').attr('text-anchor', 'middle').attr('x', (r) => x(r.fecha_corte) + x.bandwidth() / 2).attr('y', H - 8).text((r) => f(r.fecha_corte));
+  const bw = Math.min(40, x.bandwidth());
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('rect').attr('x', (r) => x(r.fecha_corte)).attr('width', x.bandwidth()).attr('y', 0).attr('height', H - 26).attr('fill', 'transparent');
+  g.append('rect').attr('x', (r) => x(r.fecha_corte) + (x.bandwidth() - bw) / 2).attr('width', bw).attr('rx', 3).attr('y', (r) => y(r.asistencias)).attr('height', (r) => y(0) - y(r.asistencias)).attr('fill', PXR.C.real);
+  const lab = g.append('text').attr('class', 'px-val').attr('text-anchor', 'middle').attr('x', (r) => x(r.fecha_corte) + x.bandwidth() / 2).attr('y', (r) => y(r.asistencias) - 5).text((r) => PX.fmt(r.asistencias));
+  if ((d3.max(lab.nodes(), (n) => n.getComputedTextLength()) || 0) > x.step()) lab.remove();
+  PX.hover(el, g, (r) => [PXV.fecha(r.fecha_corte), ['Asistencias reales', PX.fmt(r.asistencias)], [m === 'te' ? 'Teatros con asistencias' : 'Unidades Operativas con asistencias', PX.fmt(m === 'te' ? r.teatros : r.unidades)]]);
 });
 </script>
 </div>
