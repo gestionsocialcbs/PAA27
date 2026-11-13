@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-13T20:22:31Z",
+ "ejecucion": "2026-11-13T20:26:20Z",
  "carpetas": {
   "PAA": "12112026",
   "Real": "12112026"
@@ -39,14 +39,14 @@
    "corte": {
     "fecha_corte": "2026-11-12",
     "grupos": 81762,
-    "inscripciones": 1043073,
+    "inscripciones": 1175356,
     "asistencias": 17583437,
     "unidades": 153,
     "anios": [
      2026
     ],
     "registros_fuera_universo": 598,
-    "metodo_inscripciones": "max",
+    "metodo_inscripciones": "suma",
     "diagnostico": {
      "renglones": 244890,
      "grupos": 81762,
