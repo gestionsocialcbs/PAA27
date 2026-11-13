@@ -7,6 +7,7 @@ Tablero de la Coordinación de Bienestar Social (IMSS) · División de Apoyo Té
 | 1 · Inscripciones y asistencias a cursos y talleres | Inscripciones (CAN_CUPO) contra la meta 2027 y asistencias (CAN_ASISTENCIAS); tiempos de uso de las instalaciones | `REPORTE_PAA_CURSOS_DDMMAAAA_*.xlsx` |
 | 2 · Asistencias en actividades complementarias | Asistencias registradas (CAN_ASISTENCIA), sin metas | `REPORTE_PAA_ACOMPLEMENTARIA_DDMMAAAA_*.xlsx` |
 | 3 · Asistencias en teatros | Asistencias registradas (NUM_ASISTENCIA), sin metas | `Reporte_PAA_Teatros_DD_MM_AAAA.xls` |
+| 1 · Programado contra real | Inscripciones reales (CAN_INSCRITOS, inscripciones nuevas de cada mes) y asistencias reales (CAN_ASISTENCIAS) contra las registradas en el PAA y contra la meta 2027 | `Inscritos_DDMMAAAA.xlsx` o `.csv` (carpeta Reportes Real) |
 | 2 y 3 · Programado contra real | Asistencias reales (TOTAL_ASISTENCIAS y NUM_TOTAL_ASISTENCIAS, incluyen ELSSA) contra las registradas en el PAA; cumplimiento = real ÷ programado | `Reporte_Activ_Complem_DDMMAAAA.xlsx` y `Reporte_Teatros_DDMMAAAA.xlsx` (carpeta Reportes Real) |
 
 ## Estructura del repositorio
@@ -22,7 +23,7 @@ datos/
   avance_*.json          Módulo 1 (7 archivos).
   ac_*.json              Módulo 2 (5 archivos).
   te_*.json              Módulo 3 (3 archivos).
-  rac_*.json, rte_*.json Avance real de los Módulos 2 y 3 (3 archivos cada uno).
+  ri_*.json, rac_*.json, rte_*.json  Avance real de los Módulos 1, 2 y 3.
   unidades_operativas.json, instalaciones.json, layout_2027.json,
   metas_2027.json, metas_2027_uopsi.json        Catálogos y metas (cambian rara vez).
 scripts/
@@ -31,6 +32,8 @@ scripts/
   procesar_teatros.py            Convierte el Reporte PAA Teatros en te_*.json.
   procesar_real_complementarias.py  Convierte el Reporte_Activ_Complem (Reportes Real) en rac_*.json.
   procesar_real_teatros.py          Convierte el Reporte_Teatros (Reportes Real) en rte_*.json.
+  procesar_real_cursos.py           Convierte el reporte de Inscritos (Reportes Real) en ri_*.json.
+  actualizar_desde_drive.py         Descarga los reportes del día de Drive y los procesa (acción diaria de GitHub, 06:25 h).
 .nojekyll                Indica a GitHub Pages que publique los archivos tal cual.
 ```
 

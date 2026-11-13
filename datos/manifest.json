@@ -160,22 +160,26 @@
   "ri_registro": {
    "archivo": "datos/ri_registro.json",
    "actualizado": "2026-11-13T20:26:20Z",
-   "fuente": "Jorge (Inscritos_12112026.xlsx)"
+   "fuente": "Jorge (Inscritos_12112026.xlsx)",
+   "titulo": "Cursos y talleres · inscripciones y asistencias reales por mes"
   },
   "ri_actividad": {
    "archivo": "datos/ri_actividad.json",
    "actualizado": "2026-11-13T20:26:20Z",
-   "fuente": "Jorge (Inscritos_12112026.xlsx)"
+   "fuente": "Jorge (Inscritos_12112026.xlsx)",
+   "titulo": "Cursos y talleres · inscripciones y asistencias reales por actividad"
   },
   "ri_catalogo": {
    "archivo": "datos/ri_catalogo.json",
    "actualizado": "2026-11-13T20:26:20Z",
-   "fuente": "Jorge (Inscritos_12112026.xlsx)"
+   "fuente": "Jorge (Inscritos_12112026.xlsx)",
+   "titulo": "Cursos y talleres · catálogo del reporte real"
   },
   "ri_corte": {
    "archivo": "datos/ri_corte.json",
    "actualizado": "2026-11-13T20:26:20Z",
-   "fuente": "Jorge (Inscritos_12112026.xlsx)"
+   "fuente": "Jorge (Inscritos_12112026.xlsx)",
+   "titulo": "Cursos y talleres · cortes del avance real"
   }
  }
 }
