@@ -121,7 +121,16 @@ def encabezado(path):
 
 
 def main():
-    cred = service_account.Credentials.from_service_account_info(json.loads(os.environ['GDRIVE_SA_JSON']), scopes=['https://www.googleapis.com/auth/drive.readonly'])
+    llave = os.environ.get('GDRIVE_SA_JSON', '').strip()
+    if not llave:
+        sys.exit('No encontré el secreto GDRIVE_SA_JSON. Debe estar en Settings › Secrets and variables › Actions › pestaña «Secrets» › «Repository secrets», con ese nombre exacto.')
+    try:
+        info = json.loads(llave)
+    except json.JSONDecodeError:
+        sys.exit('El secreto GDRIVE_SA_JSON no es un JSON válido: pega el contenido completo del archivo .json de la llave, desde la primera { hasta la última }.')
+    if info.get('type') != 'service_account':
+        sys.exit('El secreto GDRIVE_SA_JSON no es la llave de una cuenta de servicio (falta "type": "service_account").')
+    cred = service_account.Credentials.from_service_account_info(info, scopes=['https://www.googleapis.com/auth/drive.readonly'])
     svc = build('drive', 'v3', credentials=cred, cache_discovery=False)
     manifest = json.load(open(os.path.join(DATOS, 'manifest.json')))
     ahora = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
