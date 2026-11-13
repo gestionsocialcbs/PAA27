@@ -4,74 +4,74 @@
   "ac_catalogo": {
    "archivo": "datos/ac_catalogo.json",
    "titulo": "Actividades complementarias · catálogo",
-   "actualizado": "2026-11-11T18:30:00Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:13:57Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
   },
   "ac_corte": {
    "archivo": "datos/ac_corte.json",
    "titulo": "Actividades complementarias · cortes del registro",
-   "actualizado": "2026-11-11T18:30:00Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:13:57Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
   },
   "ac_detalle": {
    "archivo": "datos/ac_detalle.json",
    "titulo": "Actividades complementarias · registro por actividad",
-   "actualizado": "2026-11-11T18:30:00Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:13:57Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
   },
   "ac_instalacion": {
    "archivo": "datos/ac_instalacion.json",
    "titulo": "Actividades complementarias · registro por lugar",
-   "actualizado": "2026-11-11T18:30:00Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:13:57Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
   },
   "ac_lugares": {
    "archivo": "datos/ac_lugares.json",
    "titulo": "Actividades complementarias · lugares de realización",
-   "actualizado": "2026-11-11T18:30:00Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_10112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:13:57Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
   },
   "avance_actividad": {
    "archivo": "datos/avance_actividad.json",
    "titulo": "Registro PAA por actividad",
-   "actualizado": "2026-11-10T23:05:00Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:56:54Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
   },
   "avance_catalogo_actividades": {
    "archivo": "datos/avance_catalogo_actividades.json",
    "titulo": "Actividades del registro PAA",
-   "actualizado": "2026-11-10T23:05:00Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:56:54Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
   },
   "avance_corte": {
    "archivo": "datos/avance_corte.json",
    "titulo": "Cortes del registro PAA",
-   "actualizado": "2026-11-10T23:05:00Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:56:54Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
   },
   "avance_dimension": {
    "archivo": "datos/avance_dimension.json",
    "titulo": "Registro PAA por dimensión",
-   "actualizado": "2026-11-10T23:05:00Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:56:54Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
   },
   "avance_instalacion": {
    "archivo": "datos/avance_instalacion.json",
    "titulo": "Registro PAA por instalación",
-   "actualizado": "2026-11-10T23:05:00Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:56:54Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
   },
   "avance_instalaciones": {
    "archivo": "datos/avance_instalaciones.json",
    "titulo": "Instalaciones del registro PAA",
-   "actualizado": "2026-11-10T23:05:00Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:56:54Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
   },
   "avance_uso": {
    "archivo": "datos/avance_uso.json",
    "titulo": "Tiempos de uso por instalación",
-   "actualizado": "2026-11-11T17:55:00Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_09112026_2061.xlsx)"
+   "actualizado": "2026-11-13T17:56:54Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
   },
   "instalaciones": {
    "archivo": "datos/instalaciones.json",
@@ -100,20 +100,20 @@
   "te_catalogo": {
    "archivo": "datos/te_catalogo.json",
    "titulo": "Teatros · catálogo de actividades",
-   "actualizado": "2026-11-11T18:40:00Z",
-   "fuente": "Jorge (Reporte_PAA_Teatros_10_11_2026.xls)"
+   "actualizado": "2026-11-13T17:13:57Z",
+   "fuente": "Jorge (Reporte_PAA_Teatros_12112026.xls)"
   },
   "te_corte": {
    "archivo": "datos/te_corte.json",
    "titulo": "Teatros · cortes del registro",
-   "actualizado": "2026-11-11T18:40:00Z",
-   "fuente": "Jorge (Reporte_PAA_Teatros_10_11_2026.xls)"
+   "actualizado": "2026-11-13T17:13:57Z",
+   "fuente": "Jorge (Reporte_PAA_Teatros_12112026.xls)"
   },
   "te_registro": {
    "archivo": "datos/te_registro.json",
    "titulo": "Teatros · registro de eventos",
-   "actualizado": "2026-11-11T18:40:00Z",
-   "fuente": "Jorge (Reporte_PAA_Teatros_10_11_2026.xls)"
+   "actualizado": "2026-11-13T17:13:57Z",
+   "fuente": "Jorge (Reporte_PAA_Teatros_12112026.xls)"
   },
   "unidades_operativas": {
    "archivo": "datos/unidades_operativas.json",
