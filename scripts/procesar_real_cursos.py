@@ -2,17 +2,17 @@
 para el comparativo programado contra real del tablero PAA 2027 (Módulo 1).
 Uso: python3 -I procesar_real_cursos.py REPORTE.csv|xlsx unidades_operativas.json corte_anterior.json|- SALIDA_DIR [AAAA-MM-DD] [--inscripciones=max|suma|altas]
 - Un renglón es un grupo en un mes (CVE_MES). Asistencias reales = CAN_ASISTENCIAS, sumadas por mes.
-- Inscripciones reales por grupo (CAN_INSCRITOS): el reporte repite el grupo en cada mes, por lo que se toma por omisión el
-  máximo de CAN_INSCRITOS del grupo en el año (--inscripciones=max); también se calculan la suma de todos los meses y el primer mes
-  más las altas posteriores, para validar el criterio. Las inscripciones se asignan al mes de inicio del grupo.
+- Inscripciones reales (CAN_INSCRITOS): en el reporte, CAN_INSCRITOS de cada mes son las inscripciones nuevas de ese mes
+  (la suma de los meses coincide con el primer mes más las altas posteriores), por lo que se suman por mes (--inscripciones=suma,
+  criterio por omisión). Se registran además el máximo por grupo y el primer mes más altas, para vigilar el criterio.
 - Solo Unidades Operativas del catálogo. No guarda nombres ni claves de instructores ni otros datos personales.
-Salidas: ri_registro.json (unidad, área, mes), ri_actividad.json (unidad, área, actividad), ri_catalogo.json y ri_corte.json.
+Salidas: ri_registro.json (unidad, área, mes: grupos por mes de inicio, inscripciones y asistencias por mes), ri_actividad.json (unidad, área, actividad), ri_catalogo.json y ri_corte.json.
 """
 import sys, json, re, os, datetime, collections, openpyxl
 
 args = [a for a in sys.argv[1:] if not a.startswith('--')]
 opts = dict(a[2:].split('=', 1) for a in sys.argv[1:] if a.startswith('--') and '=' in a)
-METODO = opts.get('inscripciones', 'max')
+METODO = opts.get('inscripciones', 'suma')
 src, f_uo, f_prev, out = args[:4]
 fecha = args[4] if len(args) > 4 else None
 if not fecha:
@@ -125,9 +125,12 @@ for g in G.values():
     insc = {'suma': s_suma, 'altas': s_altas}.get(METODO, s_max)
     mi = g['inicio'] or (ms[0] if ms else 0)
     REG[(g['unidad'], g['area'], mi)]['grupos'] += 1
-    REG[(g['unidad'], g['area'], mi)]['inscripciones'] += insc
+    if METODO != 'suma':
+        REG[(g['unidad'], g['area'], mi)]['inscripciones'] += insc
     for m in ms:
         REG[(g['unidad'], g['area'], m)]['asistencias'] += g['meses'][m]['asistencias']
+        if METODO == 'suma':
+            REG[(g['unidad'], g['area'], m)]['inscripciones'] += g['meses'][m]['inscritos']
     a = ACT[(g['unidad'], g['area'], g['clave'])]
     a['grupos'] += 1; a['inscripciones'] += insc; a['asistencias'] += sum(g['meses'][m]['asistencias'] for m in ms)
 
