@@ -25,7 +25,7 @@ jobs:
         run: pip install openpyxl xlrd google-api-python-client google-auth
       - name: Descargar y procesar los reportes del día
         env:
-          GDRIVE_SA_JSON: ${{ secrets.GDRIVE_SA_JSON }}
+          GDRIVE_SA_JSON: ${{ secrets.GDRIVESAJSON || secrets.GDRIVE_SA_JSON }}
         run: python scripts/actualizar_desde_drive.py
       - name: Publicar los datos
         run: |

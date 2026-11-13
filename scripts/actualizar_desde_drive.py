@@ -123,7 +123,7 @@ def encabezado(path):
 def main():
     llave = os.environ.get('GDRIVE_SA_JSON', '').strip()
     if not llave:
-        sys.exit('No encontré el secreto GDRIVE_SA_JSON. Debe estar en Settings › Secrets and variables › Actions › pestaña «Secrets» › «Repository secrets», con ese nombre exacto.')
+        sys.exit('No encontré el secreto GDRIVESAJSON. Debe estar en Settings › Secrets and variables › Actions › pestaña «Secrets» › «Repository secrets», con ese nombre exacto.')
     try:
         info = json.loads(llave)
     except json.JSONDecodeError:
