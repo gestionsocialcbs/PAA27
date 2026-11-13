@@ -2634,7 +2634,9 @@ dash.draw('pr-anios', (el) => {
   el.textContent = '';
   if (d.status !== 'ok' || !d.data.length) return;
   const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
-  const an = (r.anios || []).filter((y) => y !== 2027);
+  // En el tablero, una lista dentro de un renglón llega como texto JSON ("[2026, 2027]").
+  const lista = Array.isArray(r.anios) ? r.anios : String(r.anios || '').replace(/[\[\]\s]/g, '').split(',').filter(Boolean);
+  const an = lista.map(Number).filter((y) => y && y !== 2027);
   if (an.length) el.textContent = 'Aviso: el reporte real de este corte trae registros de ' + an.join(' y ') + '; el comparativo cobra sentido con la operación de 2027.';
 });
 
