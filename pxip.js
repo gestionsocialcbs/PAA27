@@ -60,10 +60,12 @@ window.PXIP = (() => {
     const rows = base();
     if (!rows) return;
     const F = { todas: (r) => r.programable === 'SI', con: (r) => r.programable === 'SI' && r.con, sin: (r) => r.programable === 'SI' && !r.con, nop: (r) => r.programable === 'NO' && r.con };
-    const L = rows.filter(F[filtro]).sort((a, b) => (b.con - a.con) || String(a.ooad).localeCompare(String(b.ooad)) || String(a.unidad_operativa).localeCompare(String(b.unidad_operativa)) || String(a.cec).localeCompare(String(b.cec)) || String(a.instalacion).localeCompare(String(b.instalacion), 'es', { numeric: true }));
+    const az = (x, y) => String(x || '').localeCompare(String(y || ''), 'es', { sensitivity: 'base', numeric: true });
+    // Solo instalaciones de Centros de Extensión (las que en la base no son «SIN CEC»), en orden alfabético.
+    const L = rows.filter((r) => Number(r.cve_cec) > 0 && F[filtro](r)).sort((a, b) => az(a.unidad_operativa, b.unidad_operativa) || az(a.cec, b.cec) || az(a.instalacion, b.instalacion));
     const mas = document.getElementById('ip-mas');
-    if (mas) mas.textContent = L.length > 300 ? 'Se muestran 300 de ' + PX.fmt(L.length) + ' instalaciones; elige una OOAD o una Unidad Operativa para ver el resto.' : PX.fmt(L.length) + (L.length === 1 ? ' instalación.' : ' instalaciones.');
-    if (!L.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 10; td.className = 'px-note'; td.textContent = 'Sin instalaciones en esta selección.'; tr.appendChild(td); el.appendChild(tr); return; }
+    if (mas) mas.textContent = L.length > 300 ? 'Se muestran 300 de ' + PX.fmt(L.length) + ' instalaciones de Centros de Extensión; elige una OOAD o una Unidad Operativa para ver el resto.' : PX.fmt(L.length) + (L.length === 1 ? ' instalación de Centro de Extensión.' : ' instalaciones de Centros de Extensión.');
+    if (!L.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 10; td.className = 'px-note'; td.textContent = 'Sin instalaciones de Centros de Extensión en esta selección.'; tr.appendChild(td); el.appendChild(tr); return; }
     const frag = document.createDocumentFragment();
     for (const r of L.slice(0, 300)) {
       const tr = document.createElement('tr');
@@ -157,15 +159,6 @@ dash.draw('ch-ip-nivel', (el) => {
     .map(([k, o]) => ({ k, ...o })).sort((a, b) => b.con / b.prog - a.con / a.prog || b.prog - a.prog);
   PXIP.barras(el, T, 'Instalaciones programables con registro por ' + (s.nivel === 'Nacional' ? 'OOAD' : 'Unidad Operativa'),
     s.nivel === 'Unidad Operativa' ? null : (d) => (s.nivel === 'Nacional' ? dash.setParams({ ooad: d.k, uo: null, inst: null }) : dash.setParams({ ooad: d.ooad, uo: d.k, inst: null })));
-});
-
-dash.draw('ch-ip-servicio', (el) => {
-  if (!PX.ready(el, ['ip_base', 'ip_registro'])) return;
-  const rows = PXIP.base().filter((r) => r.programable === 'SI');
-  if (!rows.length) { PXR.empty(el, 'Sin instalaciones programables en el ámbito seleccionado.'); return; }
-  const T = d3.rollups(rows, (v) => ({ prog: v.length, con: v.filter((r) => r.con).length }), (r) => r.servicio || 'Sin servicio')
-    .map(([k, o]) => ({ k, nombre: k, ...o })).sort((a, b) => b.prog - a.prog).slice(0, 15);
-  PXIP.barras(el, T, 'Instalaciones programables con registro por servicio', null);
 });
 
 dash.draw('ip-tabla', (el) => PXIP.tabla(el));
