@@ -295,6 +295,9 @@
 .px-kpis-2 > .px-kpi:first-child .px-kpi-v { font-weight:inherit; }
 /* Comparación contra el avance real 2026: oculta por ahora (quitar esta regla para mostrarla). */
 .px-real { display:none !important; }
+.px-pulse { animation: px-pulse 1.8s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes px-pulse { from { transform: scale(1); opacity: .7; } to { transform: scale(3.2); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .px-pulse { animation: none; } }
 </style>
 
 <div class="px">
@@ -311,7 +314,7 @@
       <span class="px-upd-i">Cursos y talleres: <b data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b></span>
       <span class="px-upd-i">Actividades complementarias: <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b></span>
       <span class="px-upd-i">Teatros: <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b></span>
-      <span class="px-upd-n">Corresponde a la fecha de corte que trae el nombre de cada reporte en Google Drive.</span>
+      <span class="px-upd-n">Corresponde a la fecha de corte y a la hora de consulta que trae el nombre de cada reporte en Google Drive.</span>
     </div>
   </header>
   <div class="px-sticky" id="barra-fija">
@@ -358,14 +361,14 @@
     <div class="px-card" id="metas-area">
       <h3><span class="px-mi">Meta por área normativa</span><span class="px-ma" hidden>Asistencias registradas por área normativa</span> · <span data-draw="m-amb">—</span></h3>
       <p class="px-note"><span class="px-mi">Avance del registro del PAA 2027 contra la meta de inscripciones de cada área, con el semáforo de avance (Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%).</span><span class="px-ma" hidden>Asistencias registradas en el PAA 2027 por área normativa, con su participación en las asistencias del ámbito. No hay meta de asistencias.</span></p>
-      <p class="px-note px-legend-static px-mi"><span class="px-sw px-sw-meta"></span>Meta de inscripciones 2027 <span class="px-sw px-sw-reg"></span>Inscripciones registradas, con el color del semáforo</p>
+      <p class="px-note px-mi">Cada anillo es un área normativa: la vuelta completa es su meta de inscripciones 2027 y el arco de color, lo registrado en el PAA 2027; al centro, el avance del ámbito.</p>
       <div class="px-chart dash-skeleton" data-draw="ch-metas-area" data-source="av_nivel" style="min-height:212px"></div>
     </div>
     <p class="px-note px-meta-fuera" hidden>Esta Unidad Operativa está en la base de metas pero no en el catálogo UOPSI del tablero.</p>
     <div class="px-card" id="metas-ooad">
       <h3><span class="px-ml px-ml-1"><span class="px-mi">Meta y registro</span><span class="px-ma" hidden>Asistencias registradas</span> por OOAD</span><span class="px-ml px-ml-2" hidden><span class="px-mi">Meta y registro</span><span class="px-ma" hidden>Asistencias registradas</span> por Unidad Operativa</span></h3>
       <p class="px-note px-ma" hidden>Asistencias registradas en el PAA 2027 del área seleccionada, de mayor a menor, con su participación en las asistencias del ámbito. Haz clic en una barra para filtrar el tablero.</p>
-      <p class="px-note px-mi">Cada barra clara es la meta de inscripciones 2027 del área seleccionada y la barra de color, las inscripciones registradas en el PAA 2027, con el color del semáforo; a la derecha, el avance. Meta de <span data-draw="mtot2-n">—</span>: <span data-draw="mtot2" data-k="meta_2027">—</span> inscripciones. Haz clic en una barra para filtrar el tablero.</p>
+      <p class="px-note px-mi">El tamaño de cada burbuja es su meta de inscripciones 2027 del área seleccionada; se llena desde abajo con el avance del registro y toma el color del semáforo. Meta de <span data-draw="mtot2-n">—</span>: <span data-draw="mtot2" data-k="meta_2027">—</span> inscripciones. Haz clic en una burbuja para filtrar el tablero.</p>
       <div class="px-sem-bar px-mi">
         <span class="px-sem-item"><i class="px-dot px-dot-m"></i><b class="px-strong" data-draw="semk" data-k="morado">—</b> Morado · más de 125% de la meta</span>
         <span class="px-sem-item"><i class="px-dot px-dot-v"></i><b class="px-strong" data-draw="semk" data-k="verde">—</b> Verde · más de 85% y menos de 115%</span>
@@ -406,7 +409,7 @@
         </div>
       </div>
       <h4 class="px-uso-h"><span class="px-al-1">Por OOAD</span><span class="px-al-2" hidden>Por Unidad Operativa</span><span class="px-al-3" hidden>Por instalación</span></h4>
-      <p class="px-note">Cada renglón muestra a la izquierda las inscripciones registradas contra la meta (barra clara: meta; barra de color: registro con el color del semáforo) y a la derecha las asistencias registradas. Ordenado por inscripciones registradas. Haz clic en un renglón para bajar de nivel.</p>
+      <p class="px-note">Cada punto es una OOAD o Unidad Operativa: a la derecha, más inscripciones registradas; arriba, más asistencias. El tamaño es su meta de inscripciones 2027 y el color, su semáforo de avance. Se nombran las seis con más registro; haz clic en un punto para bajar de nivel.</p>
       <div class="px-chart dash-skeleton" data-draw="ch-seg" data-source="av_nivel" style="min-height:240px"></div>
       <h4 class="px-uso-h">Por mes de inicio de los grupos</h4>
       <div class="px-seg-two">
@@ -1468,7 +1471,7 @@ dash.draw('av-corte', (el) => {
   const d = dash.data('avance_corte');
   if (d.status !== 'ok' || !d.data.length) { el.textContent = '—'; return; }
   const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
-  el.textContent = PXV.fecha(r.fecha_corte);
+  el.textContent = PXV.fecha(r.fecha_corte) + (r.hora_consulta ? ', ' + r.hora_consulta + ' h' : '');
 });
 
 dash.draw('avk', (el) => {
@@ -2205,7 +2208,7 @@ dash.draw('ac-corte', (el) => {
   const d = dash.data('ac_corte');
   if (d.status !== 'ok' || !d.data.length) { el.textContent = '—'; return; }
   const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
-  el.textContent = PXV.fecha(r.fecha_corte);
+  el.textContent = PXV.fecha(r.fecha_corte) + (r.hora_consulta ? ', ' + r.hora_consulta + ' h' : '');
 });
 
 dash.draw('ack', (el) => {
@@ -2617,12 +2620,13 @@ dash.draw('upd', (el) => {
   const d = dash.data(el.dataset.src);
   if (d.status !== 'ok' || !d.data.length) { el.textContent = d.status === 'loading' ? '—' : 'sin reporte'; return; }
   const r = [...d.data].sort((x, y) => String(y.fecha_corte).localeCompare(String(x.fecha_corte)))[0];
-  el.textContent = PXV.fecha(r.fecha_corte);
+  el.textContent = PXV.fecha(r.fecha_corte) + (r.hora_consulta ? ', ' + r.hora_consulta + ' h' : '');
 });
 </script><script src="pxr.js"></script>
 <script src="pxadv.js"></script>
 <script src="pxpdf.js"></script>
 <script src="pxseg.js"></script>
+<script src="pxviz.js"></script>
 </div>
 </body>
 </html>

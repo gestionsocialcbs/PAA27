@@ -44,6 +44,14 @@ PENDIENTES = []
 LIMITE_MB = 12  # tamaño máximo de cada archivo de salida (el tablero de claude.ai los carga como archivos)
 
 
+def hora_de_nombre(nombre):
+    """Hora de consulta del reporte, si el nombre la trae después de la fecha (p. ej. REPORTE_PAA_CURSOS_17112026_1324.xlsx → 13:24)."""
+    m = re.search(r'\d{8}[_-](\d{2})(\d{2})(?!\d)', os.path.splitext(nombre)[0])
+    if m and int(m[1]) < 24 and int(m[2]) < 60:
+        return f'{m[1]}:{m[2]}'
+    return None
+
+
 def fecha_de_nombre(nombre):
     n = os.path.splitext(nombre)[0]
     for rx, orden in ((r'(\d{4})-(\d{2})-(\d{2})', 'ymd'), (r'(\d{2})[_-](\d{2})[_-](\d{4})', 'dmy'), (r'(\d{8})', 'x')):
@@ -211,6 +219,16 @@ def main():
             d = manifest['datasets'].setdefault(t, dict(archivo=f'datos/{t}.json'))
             d['actualizado'] = bit['ejecucion']
             d['fuente'] = f"Jorge ({f['name']})"
+        # Hora de consulta del reporte (del nombre del archivo) en el corte publicado.
+        hc = hora_de_nombre(f['name'])
+        cortes = json.load(open(REF(rep['corte'])))
+        for c in cortes:
+            if c.get('fecha_corte') == fc.isoformat():
+                c['archivo'] = f['name']
+                if hc: c['hora_consulta'] = hc
+                else: c.pop('hora_consulta', None)
+        json.dump(cortes, open(REF(rep['corte']), 'w'), ensure_ascii=False, separators=(',', ':'))
+        nuevo_c = ultimo_de(REF(rep['corte']))
         res.update(estado='actualizado', corte=nuevo_c, corte_anterior=prev)
     programables(manifest, bit, tmp)
     json.dump(manifest, open(os.path.join(DATOS, 'manifest.json'), 'w'), ensure_ascii=False, indent=1)
