@@ -288,9 +288,6 @@
 .px-tseg-cl { display:inline-block; font-size:11px; letter-spacing:.08em; font-weight:600; color:#fff; background:var(--px-verde-osc); border-radius:3px; padding:1px 6px; margin-right:6px; vertical-align:2px; }
 .px-tseg + .px-tseg { margin-top:var(--cds-gap-md); }
 .px-tseg .px-kpis { margin:var(--cds-gap-sm) 0 var(--cds-gap-md); }
-.px-ip-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:var(--cds-gap-sm); }
-.px-ip-f { font:inherit; font-size:var(--cds-font-size-caption); border:1px solid var(--color-border-line); background:none; color:var(--color-fg); border-radius:999px; padding:4px 12px; cursor:pointer; }
-.px-ip-f[aria-pressed="true"] { background:var(--px-verde-osc); border-color:var(--px-verde-osc); color:#fff; }
 .px-lead [data-draw="prk"] .px-kpi-de, .px-lead [data-draw="prk"] .px-dot { display:none; }
 .px-kpis-2 { grid-template-columns:repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); margin-top:var(--cds-gap-md); }
 .px-kpis-2 > .px-kpi:first-child { background:var(--px-surf2); border-color:var(--color-border-line); border-top-color:var(--px-verde); color:inherit; }
@@ -327,7 +324,6 @@
         <button type="button" role="tab" class="px-tab" id="tab-modulo-1" data-mod="1" aria-selected="true" aria-controls="modulo-1"><span class="px-tab-n">Módulo 1</span>Inscripciones y asistencias a cursos y talleres</button>
         <button type="button" role="tab" class="px-tab" id="tab-modulo-2" data-mod="2" aria-selected="false" aria-controls="modulo-2"><span class="px-tab-n">Módulo 2</span>Asistencias en actividades complementarias</button>
         <button type="button" role="tab" class="px-tab" id="tab-modulo-3" data-mod="3" aria-selected="false" aria-controls="modulo-3"><span class="px-tab-n">Módulo 3</span>Asistencias en teatros</button>
-        <button type="button" role="tab" class="px-tab" id="tab-modulo-4" data-mod="4" aria-selected="false" aria-controls="modulo-4"><span class="px-tab-n">Módulo 4</span>Registro en instalaciones programables</button>
       </nav>
   </div>
 
@@ -730,47 +726,8 @@
       </div>
     </section>
   </div>
-  <div class="px-mod" id="modulo-4" role="tabpanel" aria-labelledby="tab-modulo-4" data-mod="4" hidden>
-    <div class="px-mod-h">
-      <div class="px-mod-top"><div class="px-sec-n">Módulo 4</div><button type="button" class="px-pdf" data-mod="4" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Registro al <b data-draw="upd" data-src="ip_corte" data-source="ip_corte" data-field="fecha_corte">—</b> · REPORTE_PAA_CURSOS y REPORTE_PAA_ACOMPLEMENTARIA</span><span class="px-upd-chip">Base de instalaciones HRI 2027 (SIPSI)</span></div>
-      <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">4</span><span>Registro del Programa Anual <em class="px-acc">en Instalaciones Programables</em></span></h2>
-      <p class="px-lead"><b data-draw="ip-lead" data-source="ip_base">—</b> tienen registro en el Programa Anual 2027, en cursos y talleres o en actividades complementarias.</p>
-    </div>
-    <section class="px-sec" id="ip-cobertura">
-      <div class="px-sec-h">
-        <div class="px-sec-n">01 · Cobertura del registro</div>
-        <h2 class="px-sec-t">Instalaciones programables con y sin registro</h2>
-        <p class="px-sec-d">Universo: instalaciones de la base HRI 2027 con INSTALACIÓN PROGRAMABLE = SI, en las Unidades Operativas del catálogo. Una instalación tiene registro si al menos un grupo de cursos y talleres o una actividad complementaria del Programa Anual 2027 se registró en ella. La base no comparte clave con los reportes, así que se une por clave de OOAD, clave de UOPSI, Centro de Extensión y nombre de la instalación. Responde a los filtros de ámbito y de área; el universo de programables no cambia con el área.</p>
-      </div>
-      <div class="px-kpis">
-        <div class="px-kpi"><div class="px-kpi-l">Instalaciones programables</div><div class="px-kpi-v dash-skeleton" data-draw="ipk" data-k="prog" data-source="ip_base">—</div></div>
-        <div class="px-kpi"><div class="px-kpi-l">Con registro</div><div class="px-kpi-v dash-skeleton" data-draw="ipk" data-k="con" data-source="ip_base">—</div></div>
-        <div class="px-kpi"><div class="px-kpi-l">Sin registro</div><div class="px-kpi-v dash-skeleton" data-draw="ipk" data-k="sin" data-source="ip_base">—</div></div>
-        <div class="px-kpi"><div class="px-kpi-l">No programables con registro</div><div class="px-kpi-v dash-skeleton" data-draw="ipk" data-k="nop" data-source="ip_base">—</div></div>
-      </div>
-      <p class="px-note px-legend"><span><i style="background:#1E5B4F"></i>Con registro</span><span><i style="background:color-mix(in srgb, var(--color-fg-muted) 22%, transparent)"></i>Sin registro</span></p>
-      <div class="px-card"><h3 data-draw="ip-ct">—</h3><p class="px-note">Ordenado de mayor a menor cobertura; elige una barra para entrar al siguiente nivel.</p><div class="px-chart dash-skeleton" data-draw="ch-ip-nivel" data-source="ip_base" style="min-height:240px"></div></div>
-    </section>
-    <section class="px-sec" id="ip-detalle">
-      <div class="px-sec-h">
-        <div class="px-sec-n">02 · Detalle por instalación</div>
-        <h2 class="px-sec-t">Registro de cada instalación</h2>
-        <p class="px-sec-d">Instalaciones de los Centros de Extensión (las que en la base no son «SIN CEC»), en orden alfabético por Unidad Operativa, Centro de Extensión e instalación. Grupos, inscripciones y asistencias de cursos y talleres, y asistencias de actividades complementarias registradas en cada instalación, en el área elegida. «No programable con registro» señala instalaciones que la base marca como no programables y que sí tienen actividades registradas.</p>
-      </div>
-      <div class="px-card" id="ip-lista">
-        <div class="px-ip-chips" role="group" aria-label="Situación de la instalación"><button type="button" class="px-ip-f" data-f="todas" aria-pressed="true">Todas las programables</button><button type="button" class="px-ip-f" data-f="con" aria-pressed="false">Con registro</button><button type="button" class="px-ip-f" data-f="sin" aria-pressed="false">Sin registro</button><button type="button" class="px-ip-f" data-f="nop" aria-pressed="false">No programables con registro</button></div>
-        <div class="px-tbl-wrap" style="max-height:560px"><table class="px-tbl" data-source="ip_base" data-row-key="id"><thead><tr><th data-field="situacion">Situación</th><th data-field="unidad_operativa">Unidad Operativa</th><th data-field="cec">Centro de Extensión</th><th data-field="instalacion">Instalación</th><th data-field="servicio">Servicio</th><th data-field="estatus">Estatus</th><th data-field="cu_grupos" class="px-num">Grupos de cursos y talleres</th><th data-field="cu_inscripciones" class="px-num">Inscripciones</th><th data-field="cu_asistencias" class="px-num">Asistencias en cursos y talleres</th><th data-field="ac_asistencias" class="px-num">Asistencias en actividades complementarias</th></tr></thead><tbody data-draw="ip-tabla"></tbody></table></div>
-        <p class="px-note" id="ip-mas"></p>
-      </div>
-      <div class="px-card">
-        <h3>Registro que no se pudo ligar con una instalación de la base</h3>
-        <p class="px-note">Grupos sin instalación asignada, en Centros de Extensión que no registran instalación, o con un nombre de instalación que no está en la base de su unidad. Grupos en el ámbito y el área: <b data-draw="ipk" data-k="sincat" data-source="ip_sin">—</b>.</p>
-        <div class="px-tbl-wrap" style="max-height:360px"><table class="px-tbl" data-source="ip_sin" data-row-key="unidad,cve_cec,instalacion,area,modulo"><thead><tr><th data-field="unidad_operativa">Unidad Operativa</th><th data-field="cve_cec">Centro de Extensión</th><th data-field="instalacion">Instalación reportada</th><th data-field="modulo">Registro</th><th data-field="motivo">Motivo</th><th data-field="grupos" class="px-num">Grupos</th></tr></thead><tbody data-draw="ip-sin-tabla"></tbody></table></div>
-      </div>
-    </section>
-  </div>
 
-  <footer class="px-foot">Fuentes: REPORTE PAA CURSOS (registro del PAA 2027; inscripciones = CAN_CUPO, asistencias = CAN_ASISTENCIAS; tiempos de uso por bloques de 15 minutos dentro del horario con actividad), Base de metas 2026–2027 de inscripciones por OOAD, UOPSI y área normativa, catálogo UOPSI (sin tiendas ni velatorios) y Layout 2027 de los Criterios Técnicos. Áreas normativas: CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Semáforo de avance contra la meta: Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%. Tiempos de uso: niveles de ocupación baja &lt; 50%, media de 50% a 79.9% y alta ≥ 80% del horario con actividad. Programado contra real: inscripciones reales del reporte de Inscritos (CAN_INSCRITOS, inscripciones nuevas de cada mes) y asistencias reales de ese reporte (CAN_ASISTENCIAS), del Reporte_Activ_Complem (TOTAL_ASISTENCIAS) y del Reporte_Teatros (NUM_TOTAL_ASISTENCIAS), carpeta Reportes Real; cumplimiento = real ÷ programado, con el mismo semáforo. Instalaciones programables: base HRI 2027 del SIPSI (INSTALACIÓN PROGRAMABLE), unida con el registro por OOAD, UOPSI, Centro de Extensión y nombre de la instalación. División de Apoyo Técnico y Mejora de Procesos.</footer>
+  <footer class="px-foot">Fuentes: REPORTE PAA CURSOS (registro del PAA 2027; inscripciones = CAN_CUPO, asistencias = CAN_ASISTENCIAS; tiempos de uso por bloques de 15 minutos dentro del horario con actividad), Base de metas 2026–2027 de inscripciones por OOAD, UOPSI y área normativa, catálogo UOPSI (sin tiendas ni velatorios) y Layout 2027 de los Criterios Técnicos. Áreas normativas: CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Semáforo de avance contra la meta: Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%. Tiempos de uso: niveles de ocupación baja &lt; 50%, media de 50% a 79.9% y alta ≥ 80% del horario con actividad. Programado contra real: inscripciones reales del reporte de Inscritos (CAN_INSCRITOS, inscripciones nuevas de cada mes) y asistencias reales de ese reporte (CAN_ASISTENCIAS), del Reporte_Activ_Complem (TOTAL_ASISTENCIAS) y del Reporte_Teatros (NUM_TOTAL_ASISTENCIAS), carpeta Reportes Real; cumplimiento = real ÷ programado, con el mismo semáforo. División de Apoyo Técnico y Mejora de Procesos.</footer>
 </div>
 
 <script>
@@ -1049,7 +1006,7 @@ document.querySelectorAll('.px-tab').forEach((t) => t.addEventListener('click', 
   const bar = document.getElementById('barra-fija');
   if (m && bar && m.getBoundingClientRect().top < bar.getBoundingClientRect().bottom) m.scrollIntoView({ block: 'start' });
 }));
-const pxHash = (location.hash || '').match(/^#modulo-([1234])$/);
+const pxHash = (location.hash || '').match(/^#modulo-([123])$/);
 if (pxHash) pxShowMod(pxHash[1]);
 </script>
 <script>
@@ -2599,7 +2556,6 @@ dash.draw('upd', (el) => {
 <script src="pxadv.js"></script>
 <script src="pxpdf.js"></script>
 <script src="pxseg.js"></script>
-<script src="pxip.js"></script>
 </div>
 </body>
 </html>
