@@ -191,8 +191,7 @@ window.PXZ = (() => {
     PX.hover(el, g, (d) => o.tip(d.data));
   };
 
-
-  // 5b · Mapa de burbujas de México (cartograma de Dorling): cada OOAD en su lugar geográfico, tamaño = valor,
+  // 5b · Mapa de burbujas de México (cartograma de Dorling, sin silueta): cada OOAD cerca de su lugar geográfico, tamaño = valor,
   // llenado = avance; las burbujas se separan con una simulación de fuerzas para que no se encimen.
   const GEO = { 1: [-102.3, 21.9], 2: [-115.3, 30.6], 3: [-111.7, 25.4], 4: [-90.4, 18.8], 5: [-102.0, 27.3], 6: [-103.9, 19.1], 7: [-92.6, 16.5], 8: [-106.1, 28.8], 10: [-104.8, 24.6],
     11: [-101.0, 20.9], 12: [-99.9, 17.6], 13: [-98.8, 20.5], 14: [-103.6, 20.6], 15: [-98.7, 19.4], 16: [-99.9, 19.4], 17: [-101.9, 19.2], 18: [-99.1, 18.75], 19: [-104.8, 21.8], 20: [-99.9, 25.6],
@@ -200,33 +199,28 @@ window.PXZ = (() => {
     31: [-97.5, 20.6], 32: [-95.5, 18.3], 33: [-89.0, 20.8], 34: [-102.6, 23.3], 39: [-99.15, 19.52], 40: [-99.15, 19.25] };
   const CORTO = { 'Norte del Distrito Federal': 'CDMX Norte', 'Sur del Distrito Federal': 'CDMX Sur', 'Estado de México Oriente': 'Edomex Oriente', 'Estado de México Poniente': 'Edomex Poniente',
     'Baja California Sur': 'BCS', 'Baja California': 'Baja California', 'San Luis Potosí': 'SLP', 'Quintana Roo': 'Quintana Roo', 'Veracruz Norte': 'Veracruz N.', 'Veracruz Sur': 'Veracruz S.' };
-  const CONTORNO = [[-117.1, 32.5], [-114.7, 32.7], [-111.0, 31.3], [-108.2, 31.3], [-108.2, 31.8], [-106.5, 31.8], [-104.9, 30.6], [-104.4, 29.6], [-103.3, 29.0], [-102.4, 29.8], [-101.4, 29.8], [-100.3, 28.3],
-    [-99.5, 27.5], [-99.1, 26.4], [-97.4, 25.9], [-97.7, 24.3], [-97.8, 22.4], [-97.2, 20.6], [-96.3, 19.3], [-95.2, 18.7], [-94.5, 18.2], [-92.8, 18.5], [-91.4, 18.9], [-90.7, 19.7], [-90.4, 21.0], [-88.6, 21.5],
-    [-87.0, 21.5], [-86.8, 20.6], [-87.5, 19.0], [-88.3, 18.4], [-89.1, 17.8], [-90.9, 17.8], [-91.4, 17.3], [-90.4, 16.3], [-91.7, 16.1], [-92.2, 15.3], [-92.2, 14.6], [-93.4, 15.7], [-94.7, 16.2], [-96.5, 15.7],
-    [-98.0, 16.1], [-99.7, 16.7], [-101.6, 17.7], [-103.5, 18.3], [-104.3, 19.0], [-105.3, 20.0], [-105.6, 20.8], [-105.3, 21.6], [-105.8, 22.8], [-106.9, 23.8], [-108.0, 25.0], [-109.1, 25.6], [-109.4, 26.7],
-    [-110.6, 27.9], [-111.1, 28.9], [-112.2, 29.6], [-112.8, 30.4], [-113.1, 31.2], [-114.8, 31.8], [-114.5, 30.9], [-113.4, 29.3], [-112.4, 27.6], [-111.3, 26.0], [-110.4, 24.2], [-109.4, 23.1], [-110.1, 22.9],
-    [-111.7, 24.4], [-112.1, 25.4], [-112.8, 26.4], [-114.1, 27.8], [-115.2, 29.6], [-115.9, 30.4], [-116.6, 31.8], [-117.1, 32.5]];
   const mapa = (el, rows, o) => {
     if (!rows.length) { empty(el, o.vacio); return; }
     const anim = !el.dataset.pxDrawn && !reduce();
     el.dataset.pxDrawn = '1';
-    const W = Math.max(280, el.clientWidth), H = Math.round(W * 0.64);
-    el.style.minHeight = H + 'px';
-    const svg = svgOf(el, W, H, o.aria);
+    const W = Math.max(280, el.clientWidth), H0 = Math.round(W * 0.64);
     const k = Math.cos((23 * Math.PI) / 180), pad = W * 0.04;
     const lon = [-117.3, -86.6], lat = [14.4, 32.8];
-    const sx = (W - 2 * pad) / ((lon[1] - lon[0]) * k), sy = (H - 2 * pad) / (lat[1] - lat[0]), sc = Math.min(sx, sy);
-    const ox = (W - (lon[1] - lon[0]) * k * sc) / 2, oy = (H - (lat[1] - lat[0]) * sc) / 2;
+    const sx = (W - 2 * pad) / ((lon[1] - lon[0]) * k), sy = (H0 - 2 * pad) / (lat[1] - lat[0]), sc = Math.min(sx, sy);
+    const ox = (W - (lon[1] - lon[0]) * k * sc) / 2, oy = (H0 - (lat[1] - lat[0]) * sc) / 2;
     const proj = ([a, b]) => [ox + (a - lon[0]) * k * sc, oy + (lat[1] - b) * sc];
-    svg.append('path').attr('d', 'M' + CONTORNO.map((p) => proj(p).join(',')).join('L') + 'Z').attr('fill', 'var(--cds-chart-grid)').attr('fill-opacity', 0.35)
-      .attr('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1.2).attr('stroke-linejoin', 'round');
-    const rmax = Math.max(14, W * 0.052);
-    const rs = d3.scaleSqrt([0, d3.max(rows, o.size) || 1], [Math.max(5, W * 0.009), rmax]);
+    const rmax = Math.max(16, W * 0.066);
+    const rs = d3.scaleSqrt([0, d3.max(rows, o.size) || 1], [Math.max(6, W * 0.012), rmax]);
     const nodes = rows.map((d) => { const g = GEO[Number(o.cve(d))] || [-102, 23]; const [x, y] = proj(g); return { d, x, y, tx: x, ty: y, r: rs(o.size(d)) }; });
-    const sim = d3.forceSimulation(nodes).force('x', d3.forceX((n) => n.tx).strength(0.35)).force('y', d3.forceY((n) => n.ty).strength(0.35))
-      .force('c', d3.forceCollide((n) => n.r + 1.5).strength(0.9).iterations(3)).stop();
-    for (let i = 0; i < 320; i++) sim.tick();
-    for (const n of nodes) { n.x = Math.max(n.r + 1, Math.min(W - n.r - 1, n.x)); n.y = Math.max(n.r + 1, Math.min(H - n.r - 1, n.y)); }
+    const sim = d3.forceSimulation(nodes).force('x', d3.forceX((n) => n.tx).strength(0.12)).force('y', d3.forceY((n) => n.ty).strength(0.12))
+      .force('g', d3.forceX(W / 2).strength(0.015)).force('c', d3.forceCollide((n) => n.r + 0.6).strength(1).iterations(4)).stop();
+    for (let i = 0; i < 400; i++) sim.tick();
+    // Encuadre: el conjunto de burbujas se escala para ocupar todo el ancho, sin recortar ni encimar.
+    const bx0 = d3.min(nodes, (n) => n.x - n.r), bx1 = d3.max(nodes, (n) => n.x + n.r), by0 = d3.min(nodes, (n) => n.y - n.r), by1 = d3.max(nodes, (n) => n.y + n.r);
+    const f = Math.min((W - 4) / (bx1 - bx0), (H0 * 1.15) / (by1 - by0), 1.4), H = Math.ceil((by1 - by0) * f + 4), dx = (W - (bx1 - bx0) * f) / 2;
+    for (const n of nodes) { n.x = (n.x - bx0) * f + dx; n.y = (n.y - by0) * f + 2; n.r *= f; }
+    el.style.minHeight = H + 'px';
+    const svg = svgOf(el, W, H, o.aria);
     const defs = svg.append('defs');
     const g = svg.selectAll('g.px-bub').data(nodes).join('g').attr('class', 'px-bub').attr('transform', (n) => `translate(${n.x},${n.y})`).style('cursor', o.click ? 'pointer' : null);
     g.each(function (n) {
