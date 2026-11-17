@@ -189,7 +189,9 @@ def main():
         nuevo_c = ultimo_de(os.path.join(sal, rep['corte'] + '.json'))
         # Validación
         motivo = None
-        if not nuevo_c or not nuevo_c.get(rep['medida']):
+        if nuevo_c and nuevo_c.get('registros_otro_anio') and not nuevo_c.get(rep['medida']):
+            motivo = f"el reporte trae {nuevo_c['registros_otro_anio']:,} eventos de otro año y ninguno de 2027"
+        elif not nuevo_c or not nuevo_c.get(rep['medida']):
             motivo = 'el reporte no trae registros'
         elif prev and prev.get(rep['medida']) and nuevo_c[rep['medida']] < 0.7 * prev[rep['medida']]:
             motivo = f"la medida ({rep['medida']}) baja más de 30 % respecto del corte anterior: {prev[rep['medida']]:,} → {nuevo_c[rep['medida']]:,}"

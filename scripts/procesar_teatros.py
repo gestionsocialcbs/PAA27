@@ -4,6 +4,7 @@ Uso: python3 -I procesar_teatros.py REPORTE.xls[x] unidades_operativas.json cort
 - La fecha de corte se toma del nombre del archivo (..._DD_MM_AAAA o ..._DDMMAAAA_...) o del último argumento.
 - Solo Unidades Operativas del catálogo. El área se toma del primer dígito de la clave de actividad
   (1 Promoción de la Salud, 2 CASSAAM, 3 Desarrollo Cultural, 4 Cultura Física y Deporte, 5 Capacitación y Adiestramiento Técnico, 6 CECART).
+- Solo cuenta eventos de 2027 (por FEC_EVENTO): los de otro año se cuentan aparte (registros_otro_anio) y no se publican.
 Salidas: te_registro.json (unidad, área, actividad, mes, tipo y detalle del evento), te_catalogo.json y te_corte.json.
 """
 import sys, json, re, os, datetime, collections, zipfile, shutil, tempfile
@@ -83,7 +84,7 @@ txt = lambda v: re.sub(r'\s+', ' ', str(v or '')).strip()
 Z = lambda: dict(eventos=0, asistencias=0, aforo=0)
 AGG = collections.defaultdict(Z)
 cat = {}
-n = fuera = 0
+n = fuera = otro = 0
 for r in it:
     if not r or r[I['OOAD']] in (None, ''): continue
     r = list(r) + [None] * (len(hdr) - len(r))
@@ -95,6 +96,10 @@ for r in it:
     if o * 1000 + u not in uo:
         fuera += 1
         continue
+    fe = fecha_de(r[I['FEC_EVENTO']])
+    if fe and fe.year != 2027:
+        otro += 1
+        continue
     n += 1
     clave, nom = clave_de(r[I['DES_ACTIVIDAD']])
     area = AREAS.get(clave[:1], 'Sin área')
@@ -102,7 +107,6 @@ for r in it:
         cat[clave] = dict(clave_actividad=clave, actividad=nom.capitalize().replace('Imss', 'IMSS').replace(' imss', ' IMSS'),
                           bloque=txt(r[I['DES_BLOQUE']]).capitalize() if 'DES_BLOQUE' in I else '',
                           estrategia=txt(r[I['NOM_ESTRATEGIA']]) if 'NOM_ESTRATEGIA' in I else '')
-    fe = fecha_de(r[I['FEC_EVENTO']])
     mes = fe.month if fe else (MESES.index(norm(r[I['DES_MES']])) + 1 if 'DES_MES' in I and norm(r[I['DES_MES']]) in MESES else 0)
     k = (f'{o}-{u}', area, clave, mes, txt(r[I['TIPO_EVENTO']]) or 'Sin tipo', txt(r[I['DETALLE_EVENTO']]).capitalize() or 'Sin detalle')
     AGG[k]['eventos'] += 1
@@ -116,7 +120,7 @@ rows = [dict(unidad=k[0], area=k[1], clave_actividad=k[2], mes=k[3], tipo_evento
 dump('te_registro.json', rows)
 dump('te_catalogo.json', list(cat.values()))
 corte = dict(fecha_corte=fecha, eventos=sum(r['eventos'] for r in rows), asistencias=e(sum(r['asistencias'] for r in rows)),
-             teatros=len({r['unidad'] for r in rows}), registros_fuera_universo=fuera)
+             teatros=len({r['unidad'] for r in rows}), registros_fuera_universo=fuera, registros_otro_anio=otro)
 hist = sorted([c for c in prev if c.get('fecha_corte') != fecha] + [corte], key=lambda c: c['fecha_corte'])
 dump('te_corte.json', hist)
 print(json.dumps(dict(**corte, tamanos={f: os.path.getsize(out + '/' + f) for f in os.listdir(out)}), ensure_ascii=False))
