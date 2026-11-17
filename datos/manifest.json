@@ -4,74 +4,74 @@
   "ac_catalogo": {
    "archivo": "datos/ac_catalogo.json",
    "titulo": "Actividades complementarias · catálogo",
-   "actualizado": "2026-11-13T17:13:57Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_17112026_1324.xlsx)"
   },
   "ac_corte": {
    "archivo": "datos/ac_corte.json",
    "titulo": "Actividades complementarias · cortes del registro",
-   "actualizado": "2026-11-13T17:13:57Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_17112026_1324.xlsx)"
   },
   "ac_detalle": {
    "archivo": "datos/ac_detalle.json",
    "titulo": "Actividades complementarias · registro por actividad",
-   "actualizado": "2026-11-13T17:13:57Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_17112026_1324.xlsx)"
   },
   "ac_instalacion": {
    "archivo": "datos/ac_instalacion.json",
    "titulo": "Actividades complementarias · registro por lugar",
-   "actualizado": "2026-11-13T17:13:57Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_17112026_1324.xlsx)"
   },
   "ac_lugares": {
    "archivo": "datos/ac_lugares.json",
    "titulo": "Actividades complementarias · lugares de realización",
-   "actualizado": "2026-11-13T17:13:57Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_17112026_1324.xlsx)"
   },
   "avance_actividad": {
    "archivo": "datos/avance_actividad.json",
    "titulo": "Registro PAA por actividad",
-   "actualizado": "2026-11-13T17:56:54Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_17112026_1324.xlsx)"
   },
   "avance_catalogo_actividades": {
    "archivo": "datos/avance_catalogo_actividades.json",
    "titulo": "Actividades del registro PAA",
-   "actualizado": "2026-11-13T17:56:54Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_17112026_1324.xlsx)"
   },
   "avance_corte": {
    "archivo": "datos/avance_corte.json",
    "titulo": "Cortes del registro PAA",
-   "actualizado": "2026-11-13T20:48:35Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_17112026_1324.xlsx)"
   },
   "avance_dimension": {
    "archivo": "datos/avance_dimension.json",
    "titulo": "Registro PAA por dimensión",
-   "actualizado": "2026-11-13T17:56:54Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_17112026_1324.xlsx)"
   },
   "avance_instalacion": {
    "archivo": "datos/avance_instalacion.json",
    "titulo": "Registro PAA por instalación",
-   "actualizado": "2026-11-13T17:56:54Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_17112026_1324.xlsx)"
   },
   "avance_instalaciones": {
    "archivo": "datos/avance_instalaciones.json",
    "titulo": "Instalaciones del registro PAA",
-   "actualizado": "2026-11-13T17:56:54Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_17112026_1324.xlsx)"
   },
   "avance_uso": {
    "archivo": "datos/avance_uso.json",
    "titulo": "Tiempos de uso por instalación",
-   "actualizado": "2026-11-13T17:56:54Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_17112026_1324.xlsx)"
   },
   "instalaciones": {
    "archivo": "datos/instalaciones.json",
@@ -100,20 +100,20 @@
   "te_catalogo": {
    "archivo": "datos/te_catalogo.json",
    "titulo": "Teatros · catálogo de actividades",
-   "actualizado": "2026-11-13T17:13:57Z",
-   "fuente": "Jorge (Reporte_PAA_Teatros_12112026.xls)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (Reporte_PAA_Teatros_17_11_2026.xls)"
   },
   "te_corte": {
    "archivo": "datos/te_corte.json",
    "titulo": "Teatros · cortes del registro",
-   "actualizado": "2026-11-13T17:13:57Z",
-   "fuente": "Jorge (Reporte_PAA_Teatros_12112026.xls)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (Reporte_PAA_Teatros_17_11_2026.xls)"
   },
   "te_registro": {
    "archivo": "datos/te_registro.json",
    "titulo": "Teatros · registro de eventos",
-   "actualizado": "2026-11-13T17:13:57Z",
-   "fuente": "Jorge (Reporte_PAA_Teatros_12112026.xls)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (Reporte_PAA_Teatros_17_11_2026.xls)"
   },
   "unidades_operativas": {
    "archivo": "datos/unidades_operativas.json",
@@ -184,8 +184,8 @@
   "avance_alertas": {
    "archivo": "datos/avance_alertas.json",
    "titulo": "Cursos y talleres · notas de advertencia del registro",
-   "actualizado": "2026-11-13T20:48:35Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_17112026_1324.xlsx)"
   },
   "hri_2027": {
    "archivo": "datos/hri_2027.json",
@@ -196,37 +196,37 @@
   "avance_inst_reg": {
    "archivo": "datos/avance_inst_reg.json",
    "titulo": "Cursos y talleres · registro por nombre de instalación",
-   "actualizado": "2026-11-17T17:31:12Z",
-   "fuente": "Jorge (REPORTE_PAA_CURSOS_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_CURSOS_17112026_1324.xlsx)"
   },
   "ac_inst_reg": {
    "archivo": "datos/ac_inst_reg.json",
    "titulo": "Actividades complementarias · registro por nombre de instalación",
-   "actualizado": "2026-11-17T17:31:12Z",
-   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_12112026.xlsx)"
+   "actualizado": "2026-11-17T17:43:42Z",
+   "fuente": "Jorge (REPORTE_PAA_ACOMPLEMENTARIA_17112026_1324.xlsx)"
   },
   "ip_instalaciones": {
    "archivo": "datos/ip_instalaciones.json",
    "titulo": "Instalaciones programables · catálogo cruzado con el registro",
-   "actualizado": "2026-11-17T17:31:12Z",
+   "actualizado": "2026-11-17T17:43:42Z",
    "fuente": "Cruce del registro del PAA con la base HRI 2027"
   },
   "ip_registro": {
    "archivo": "datos/ip_registro.json",
    "titulo": "Instalaciones programables · registro por instalación y área",
-   "actualizado": "2026-11-17T17:31:12Z",
+   "actualizado": "2026-11-17T17:43:42Z",
    "fuente": "Cruce del registro del PAA con la base HRI 2027"
   },
   "ip_sin_catalogo": {
    "archivo": "datos/ip_sin_catalogo.json",
    "titulo": "Instalaciones programables · registro sin instalación en la HRI",
-   "actualizado": "2026-11-17T17:31:12Z",
+   "actualizado": "2026-11-17T17:43:42Z",
    "fuente": "Cruce del registro del PAA con la base HRI 2027"
   },
   "ip_corte": {
    "archivo": "datos/ip_corte.json",
    "titulo": "Instalaciones programables · corte",
-   "actualizado": "2026-11-17T17:31:12Z",
+   "actualizado": "2026-11-17T17:43:42Z",
    "fuente": "Cruce del registro del PAA con la base HRI 2027"
   }
  }
