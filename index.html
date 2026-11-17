@@ -587,9 +587,9 @@
       <div class="px-card"><h3>Por mes de la actividad</h3><p class="px-note">Asistencias registradas según el mes de la actividad.</p><div class="px-chart dash-skeleton" data-draw="ch-ac-mes" data-source="ac_dim" style="min-height:220px"></div></div>
       <div class="px-grid px-grid-2">
         <div class="px-card"><h3>Estrategia 2027</h3><div data-draw="acd" data-dim="Estrategia" data-source="ac_dim"></div></div>
+        <div class="px-card"><h3>Avance por bloque</h3><div data-draw="acd" data-dim="Bloque" data-source="ac_dim"></div></div>
         <div class="px-card"><h3>Tipo de docente</h3><div data-draw="acd" data-dim="Tipo de docente" data-source="ac_dim"></div></div>
         <div class="px-card"><h3>Lugar de realización</h3><div data-draw="acd" data-dim="Lugar" data-source="ac_dim"></div></div>
-        <div class="px-card"><h3>Bloques con más asistencias</h3><div data-draw="acd" data-dim="Bloque" data-source="ac_dim"></div></div>
       </div>
       <div class="px-card">
         <h3 data-draw="ac-ct">—</h3>
@@ -642,10 +642,11 @@
       <p class="px-note px-te-noteatro" hidden>La Unidad Operativa elegida en el filtro no es un Teatro Cubierto; elige un teatro en UOPSI o regresa a su OOAD.</p>
       <div class="px-card"><h3>Por mes del evento</h3><p class="px-note">Asistencias registradas según la fecha del evento.</p><div class="px-chart dash-skeleton" data-draw="ch-te-mes" data-source="te_dim" style="min-height:220px"></div></div>
       <div class="px-grid px-grid-2">
+        <div class="px-card"><h3>Estrategia 2027</h3><div data-draw="ted" data-dim="Estrategia" data-source="te_dim"></div></div>
+        <div class="px-card"><h3>Avance por bloque</h3><div data-draw="ted" data-dim="Bloque" data-source="te_dim"></div></div>
         <div class="px-card"><h3>Tipo de evento</h3><div data-draw="ted" data-dim="Tipo de evento" data-source="te_dim"></div></div>
         <div class="px-card"><h3>Detalle del evento</h3><div data-draw="ted" data-dim="Detalle del evento" data-source="te_dim"></div></div>
-        <div class="px-card"><h3>Estrategia 2027</h3><div data-draw="ted" data-dim="Estrategia" data-source="te_dim"></div></div>
-        <div class="px-card"><h3>Actividades con más asistencias</h3><div data-draw="ted" data-dim="Actividad" data-source="te_dim"></div></div>
+        <div class="px-card" style="grid-column:1 / -1"><h3>Actividades con más asistencias</h3><div data-draw="ted" data-dim="Actividad" data-source="te_dim"></div></div>
       </div>
       <div class="px-card">
         <h3 data-draw="te-ct">—</h3>
@@ -2132,11 +2133,13 @@ dash.calc('ac_nivel', {
 
 dash.calc('ac_dim', {
   title: 'Registro de actividades complementarias por dimensión',
-  description: 'Asistencias registradas por tipo de actividad, estrategia, bloque, actividad, mes, tipo de docente y lugar de realización; a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total, con la participación de cada valor en las asistencias del ámbito.',
-  inputs: ['ac_detalle', 'ac_catalogo', 'ac_instalacion', 'ac_lugares', 'unidades_operativas'],
-  fn: (ac_detalle, ac_catalogo, ac_instalacion, ac_lugares, unidades_operativas) => {
+  description: 'Asistencias registradas por tipo de actividad, estrategia 2027 y bloque (del Layout Criterios 2027: Nom_Estratégia y Nom_agrupación Información), actividad, mes, tipo de docente y lugar de realización; a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total, con la participación de cada valor en las asistencias del ámbito.',
+  inputs: ['ac_detalle', 'ac_catalogo', 'ac_instalacion', 'ac_lugares', 'unidades_operativas', 'layout_criterios_27'],
+  fn: (ac_detalle, ac_catalogo, ac_instalacion, ac_lugares, unidades_operativas, layout_criterios_27) => {
     const uo = new Map(unidades_operativas.map((u) => [pxUoKey(u), u]));
-    const cat = new Map(ac_catalogo.map((c) => [String(c.clave_actividad), c]));
+    // Estrategia y bloque de cada actividad según el Layout Criterios 2027 (Nom_Estratégia y Nom_agrupación Información).
+    const crit = new Map(layout_criterios_27.map((l) => [String(l.clave), l]));
+    const cat = new Map(ac_catalogo.map((c) => { const l = crit.get(String(c.clave_actividad)); return [String(c.clave_actividad), l ? { ...c, estrategia: l.estrategia, bloque: l.bloque } : { ...c, estrategia: 'Sin clave en el Layout Criterios 2027', bloque: 'Sin clave en el Layout Criterios 2027' }]; }));
     const lug = new Map(ac_lugares.map((l) => [l.unidad + '|' + l.lugar_clave, l]));
     const acc = new Map();
     const tot = new Map();
@@ -2397,18 +2400,20 @@ dash.calc('te_nivel', {
 
 dash.calc('te_dim', {
   title: 'Asistencias registradas en teatros por dimensión',
-  description: 'Asistencias registradas en eventos de Teatros Cubiertos por mes del evento, tipo de evento, detalle del evento, estrategia y actividad; a nivel nacional, por OOAD y por teatro, por área normativa y en total, con la participación de cada valor en las asistencias del ámbito.',
-  inputs: ['te_registro', 'te_catalogo', 'unidades_operativas'],
-  fn: (te_registro, te_catalogo, unidades_operativas) => {
+  description: 'Asistencias registradas en eventos de Teatros Cubiertos por mes del evento, tipo de evento, detalle del evento, estrategia 2027 y bloque (del Layout Criterios 2027) y actividad; a nivel nacional, por OOAD y por teatro, por área normativa y en total, con la participación de cada valor en las asistencias del ámbito.',
+  inputs: ['te_registro', 'te_catalogo', 'unidades_operativas', 'layout_criterios_27'],
+  fn: (te_registro, te_catalogo, unidades_operativas, layout_criterios_27) => {
     const uo = new Map(unidades_operativas.map((u) => [pxTeUo(u), u]));
-    const cat = new Map(te_catalogo.map((c) => [String(c.clave_actividad), c]));
+    // Estrategia y bloque de cada actividad según el Layout Criterios 2027.
+    const crit = new Map(layout_criterios_27.map((l) => [String(l.clave), l]));
+    const cat = new Map(te_catalogo.map((c) => { const l = crit.get(String(c.clave_actividad)); return [String(c.clave_actividad), l ? { ...c, estrategia: l.estrategia, bloque: l.bloque } : { ...c, estrategia: 'Sin clave en el Layout Criterios 2027', bloque: 'Sin clave en el Layout Criterios 2027' }]; }));
     const acc = new Map();
     const tot = new Map();
     for (const r of te_registro) {
       const u = uo.get(r.unidad);
       if (!u) continue;
       const c = cat.get(String(r.clave_actividad)) || { actividad: String(r.clave_actividad), estrategia: '' };
-      const dims = [['Mes', String(r.mes).padStart(2, '0'), {}], ['Tipo de evento', r.tipo_evento, {}], ['Detalle del evento', r.detalle_evento, {}], ['Estrategia', c.estrategia || 'Sin estrategia', {}], ['Actividad', String(r.clave_actividad), { nombre: c.actividad, bloque: c.bloque }]];
+      const dims = [['Mes', String(r.mes).padStart(2, '0'), {}], ['Tipo de evento', r.tipo_evento, {}], ['Detalle del evento', r.detalle_evento, {}], ['Estrategia', c.estrategia || 'Sin estrategia', {}], ['Bloque', c.bloque || 'Sin bloque', {}], ['Actividad', String(r.clave_actividad), { nombre: c.actividad, bloque: c.bloque }]];
       for (const area of ['Todas', pxTeArea(r.area)]) {
         for (const [nivel, clave] of [['Nacional', 'Nacional'], ['OOAD', String(u.cve_ooad)], ['Unidad Operativa', r.unidad]]) {
           for (const [dimension, valor, extra] of dims) {
