@@ -436,9 +436,9 @@
     </div>
     <div class="px-grid">
       <div class="px-card" id="rep-instalaciones">
-        <h3>Instalaciones con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas</h3>
-        <p class="px-note">Las 15 instalaciones del ámbito con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas; al pasar el cursor se ven los grupos, las inscripciones y las asistencias.</p>
-        <div class="px-chart dash-skeleton" data-draw="ch-av-inst" data-source="av_nivel" style="min-height:300px"></div>
+        <h3>Instalaciones programables con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas</h3>
+        <p class="px-note">Las 15 instalaciones del ámbito con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas, entre todas las instalaciones susceptibles de programación de la base HRI 2027 (INSTALACIÓN PROGRAMABLE = SI); al pasar el cursor se ven el servicio, los grupos, las inscripciones y las asistencias. La base se une con el registro por OOAD, UOPSI, Centro de Extensión y nombre de la instalación.</p>
+        <div class="px-chart dash-skeleton" data-draw="ch-av-inst" data-source="av_inst_prog" style="min-height:300px"></div>
       </div>
       <div class="px-card" id="rep-actividades">
         <h3>Actividades con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas</h3>
@@ -1507,23 +1507,44 @@ dash.draw('avd', (el) => {
   });
 });
 
+// Instalaciones programables de la base HRI 2027 (INSTALACIÓN PROGRAMABLE = SI) con su registro de cursos y talleres.
+dash.calc('av_inst_prog', {
+  title: 'Registro de cursos y talleres en instalaciones programables',
+  description: 'Instalaciones con INSTALACIÓN PROGRAMABLE = SI en la base HRI 2027 y los grupos, inscripciones y asistencias de cursos y talleres registrados en cada una, por área normativa (CECART en Capacitación y Adiestramiento Técnico, CASSAAM en Promoción de la Salud). La base se une con el REPORTE PAA CURSOS por OOAD, UOPSI, Centro de Extensión y nombre de la instalación.',
+  inputs: ['ip_instalaciones', 'ip_registro', 'unidades_operativas'],
+  fn: (ip_instalaciones, ip_registro, unidades_operativas) => {
+    const areaN = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
+    const uo = new Map(unidades_operativas.map((u) => [Math.floor(Number(u.cve_uo) / 1000) + '-' + (Number(u.cve_uo) % 1000), u]));
+    const inst = new Map(ip_instalaciones.filter((r) => r.programable === 'SI').map((r) => [Number(r.id), r]));
+    const cap = (s) => String(s || '').toLowerCase().replace(/^./, (c) => c.toUpperCase());
+    const out = [];
+    for (const g of ip_registro) {
+      const r = inst.get(Number(g.id));
+      if (!r || !(Number(g.cu_grupos) > 0)) continue;
+      const u = uo.get(r.unidad) || {};
+      out.push({ id: Number(g.id), unidad: r.unidad, cve_ooad: String(r.cve_ooad), unidad_operativa: u.unidad_operativa || r.unidad, cec: r.cec || '', instalacion: cap(r.instalacion), servicio: r.servicio, area: areaN(g.area), grupos: Number(g.cu_grupos) || 0, inscripciones: Number(g.cu_inscripciones) || 0, asistencias: Number(g.cu_asistencias) || 0 });
+    }
+    return out;
+  },
+});
+
 dash.draw('ch-av-inst', (el) => {
-  if (!PX.ready(el, ['av_nivel'])) return;
+  if (!PX.ready(el, ['av_inst_prog'])) return;
   const s = PXV.scope();
   const a = PX.area();
-  const p = dash.params();
-  const rows = dash.data('av_nivel').data.filter((r) => r.nivel === 'Instalación' && r.area === a && r.grupos > 0 &&
-    (s.nivel === 'Nacional' || (s.nivel === 'OOAD' && String(r.padre).split('-')[0] === s.clave) || (s.nivel === 'Unidad Operativa' && r.padre === p.uo)))
-    
-    .sort((x, y) => y[PXMED.m()] - x[PXMED.m()]).slice(0, 15);
-  if (!rows.length) return;
-  const uo = new Map(dash.data('av_nivel').data.filter((r) => r.nivel === 'Unidad Operativa' && r.area === 'Todas').map((r) => [r.clave, r.nombre]));
+  const m = PXMED.m();
+  const sel = dash.data('av_inst_prog').data.filter((r) => (a === 'Todas' || r.area === a) &&
+    (s.nivel === 'Nacional' || (s.nivel === 'OOAD' ? r.cve_ooad === String(s.clave) : r.unidad === s.clave)));
+  const rows = d3.rollups(sel, (v) => ({ ...v[0], grupos: d3.sum(v, (r) => r.grupos), inscripciones: d3.sum(v, (r) => r.inscripciones), asistencias: d3.sum(v, (r) => r.asistencias) }), (r) => r.id)
+    .map(([, o]) => o).sort((x, y) => y[m] - x[m]).slice(0, 15);
+  if (!rows.length) { const p = document.createElement('p'); p.className = 'px-note'; p.textContent = 'Sin registro de cursos y talleres en instalaciones programables en el ámbito y el área seleccionados.'; el.appendChild(p); el.style.minHeight = ''; return; }
+  const nom = (d) => d.instalacion + (d.cec ? ' · ' + d.cec : '');
   PX.hbar(el, rows, {
-    aria: 'Instalaciones con más ' + PXMED.t().toLowerCase() + ' registradas',
-    label: (d) => d.nombre + (s.nivel === 'Unidad Operativa' ? '' : ' · ' + (uo.get(d.padre) || d.padre)),
-    value: (d) => d[PXMED.m()],
+    aria: 'Instalaciones programables con más ' + PXMED.t().toLowerCase() + ' registradas',
+    label: (d) => nom(d) + (s.nivel === 'Unidad Operativa' ? '' : ' · ' + d.unidad_operativa),
+    value: (d) => d[m],
     color: () => '#1E5B4F',
-    tip: (d) => [d.nombre + ' · ' + (uo.get(d.padre) || d.padre), ['Tipo', d.tipo || ''], ['Grupos registrados', PX.fmt(d.grupos)], ['Inscripciones registradas', PX.fmt(Math.round(d.inscripciones))], ['Asistencias registradas', PX.fmt(Math.round(d.asistencias))]],
+    tip: (d) => [nom(d) + ' · ' + d.unidad_operativa, ['Servicio', d.servicio || ''], ['Grupos registrados', PX.fmt(d.grupos)], ['Inscripciones registradas', PX.fmt(Math.round(d.inscripciones))], ['Asistencias registradas', PX.fmt(Math.round(d.asistencias))]],
   });
 });
 
