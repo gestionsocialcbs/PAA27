@@ -430,9 +430,10 @@
     </div>
     <div class="px-grid px-grid-rep">
       <div class="px-card" id="rep-estrategia"><h3>Estrategia 2027</h3><div data-draw="avd" data-dim="Estrategia 2027" data-calc="av_crit" data-source="av_crit"></div></div>
+      <div class="px-card" id="rep-bloque"><h3>Avance por bloque</h3><div data-draw="avd" data-dim="Bloque" data-calc="av_crit" data-source="av_crit"></div></div>
+      <div class="px-card" id="rep-tipo"><h3>Tipo de actividad</h3><div data-draw="avd" data-dim="Tipo de actividad" data-calc="av_crit" data-source="av_crit"></div></div>
       <div class="px-card" id="rep-docente"><h3>Tipo de docente</h3><div data-draw="avd" data-dim="Tipo de docente" data-source="av_dim"></div></div>
       <div class="px-card" id="rep-lugar"><h3>Lugar de impartición</h3><div data-draw="avd" data-dim="Lugar" data-source="av_dim"></div></div>
-      <div class="px-card" id="rep-bloque"><h3>Avance por bloque</h3><div data-draw="avd" data-dim="Bloque" data-calc="av_crit" data-source="av_crit"></div></div>
     </div>
     <div class="px-grid">
       <div class="px-card" id="rep-instalaciones">
@@ -1346,8 +1347,8 @@ dash.calc('av_dim', {
 });
 
 dash.calc('av_crit', {
-  title: 'Registro por estrategia y bloque del Layout Criterios 2027',
-  description: 'Grupos, inscripciones y asistencias registradas en el REPORTE PAA CURSOS por estrategia 2027 (Nom_Estratégia) y por bloque (Nom_agrupación Información) de cada actividad según el Layout Criterios 2027, unidas por clave de actividad; a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total, con la participación de cada valor en las inscripciones y en las asistencias del ámbito.',
+  title: 'Registro por estrategia, bloque y tipo de actividad del Layout Criterios 2027',
+  description: 'Grupos, inscripciones y asistencias registradas en el REPORTE PAA CURSOS por estrategia 2027 (Nom_Estratégia) y por bloque (Nom_agrupación Información) y por tipo de actividad (Tipo Actividad) de cada actividad según el Layout Criterios 2027, unidas por clave de actividad; a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total, con la participación de cada valor en las inscripciones y en las asistencias del ámbito.',
   inputs: ['avance_actividad', 'layout_criterios_27', 'unidades_operativas'],
   fn: (avance_actividad, layout_criterios_27, unidades_operativas) => {
     const areaNormativa = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
@@ -1358,7 +1359,8 @@ dash.calc('av_crit', {
       const u = uo.get(r.unidad);
       if (!u) continue;
       const l = lay.get(String(r.clave_actividad));
-      const dims = { 'Estrategia 2027': (l && l.estrategia) || 'Sin clave en el Layout Criterios 2027', Bloque: (l && l.bloque) || 'Sin clave en el Layout Criterios 2027' };
+      const sin = 'Sin clave en el Layout Criterios 2027';
+      const dims = { 'Estrategia 2027': (l && l.estrategia) || sin, Bloque: (l && l.bloque) || sin, 'Tipo de actividad': (l && l.tipo_actividad) || sin };
       for (const area of ['Todas', areaNormativa(r.area)]) {
         for (const [nivel, clave] of [['Nacional', 'Nacional'], ['OOAD', String(u.cve_ooad)], ['Unidad Operativa', r.unidad]]) {
           for (const [dimension, valor] of Object.entries(dims)) {
