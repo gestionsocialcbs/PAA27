@@ -9,6 +9,8 @@ Salidas: avance_instalacion.json (unidad, instalación, área), avance_dimension
 - Si la clave de instalación no está en el catálogo de Instalaciones, el tipo se toma del nombre sin su número final.
 - avance_alertas.json: notas de advertencia por grupo (espacio no apto por su nombre, actividad acuática fuera de alberca, actividad no
   acuática en alberca, área de paso u oficina, grupo sin instalación), con la clave del grupo para corregirlo. Sin datos del instructor.
+- avance_inst_reg.json: grupos, inscripciones y asistencias por OOAD, UOPSI, Centro de Extensión, nombre de la instalación (DES_INSTALACION)
+  y área, para cruzarlo con la base de instalaciones (HRI), que no comparte la clave de instalación con el reporte.
 """
 import sys, json, re, os, datetime, collections, openpyxl
 
@@ -92,6 +94,7 @@ def duracion(ini, fin):
 
 Z = lambda: dict(grupos=0, inscripciones=0, asistencias=0, clases=0)
 AGG_I, AGG_D, AGG_A = collections.defaultdict(Z), collections.defaultdict(Z), collections.defaultdict(Z)
+AGG_N = collections.defaultdict(lambda: dict(grupos=0, inscripciones=0, asistencias=0, clases=0))
 AGG_V = collections.defaultdict(lambda: dict(grupos_clave_vigente=0, grupos_cumplen_meta_minima=0, grupos_edad_en_rango=0, grupos_con_pago=0))
 acts, insts = {}, {}
 ALERTAS = []
@@ -176,6 +179,8 @@ for r in it:
     def acum(d, k):
         for x, v in vals.items(): d[k][x] += v
     acum(AGG_I, (unidad, key, area))
+    cec_c = str(r[I['CVE_CEC']] if r[I['CVE_CEC']] is not None else 0).strip() or '0'
+    acum(AGG_N, (o, u, int(float(cec_c)) if cec_c.replace('.', '', 1).isdigit() else 0, re.sub(r'\s+', ' ', str(r[I['DES_INSTALACION']] or '')).strip(), area))
     dims = {'Tipo de docente': str(r[I['TIPO_INSTRUCTOR']] or 'Sin tipo').strip().capitalize(),
             'Mes de inicio': f'{mes:02d}', 'Franja horaria': franja(r[I['REF_HORA_INICIO']]),
             'Duración del grupo': duracion(ini, fin), 'Tipo de curso': str(r[I['DES_TIPO_CURSO']] or 'Sin tipo').strip().capitalize(),
@@ -263,6 +268,7 @@ dump('avance_actividad.json', [dict(unidad=k[0], area=k[1], clave_actividad=k[2]
 dump('avance_catalogo_actividades.json', list(acts.values()))
 dump('avance_uso.json', uso_rows)
 dump('avance_alertas.json', ALERTAS)
+dump('avance_inst_reg.json', [dict(cve_ooad=k[0], cve_uopsi=k[1], cve_cec=k[2], instalacion=k[3], area=k[4], grupos=ent(b['grupos']), inscripciones=ent(b['inscripciones']), asistencias=ent(b['asistencias'])) for k, b in AGG_N.items()])
 dump('avance_instalaciones.json', [dict(unidad=k[0], cve_instalacion=k[1], instalacion=v[0], tipo_instalacion=v[1]) for k, v in insts.items()])
 T = lambda f: sum(r[f] for r in rows)
 corte = dict(fecha_corte=fecha, grupos=T('grupos'), inscripciones=T('inscripciones'), asistencias=T('asistencias'),

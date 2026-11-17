@@ -23,10 +23,10 @@ REF = lambda n: os.path.join(DATOS, n + '.json')
 REPORTES = [
     dict(id='M1', nombre='Cursos y talleres (PAA)', carpeta='PAA', prefijo='REPORTE_PAA_CURSOS', script='procesar_avance.py',
          refs=['unidades_operativas', 'instalaciones', 'layout_2027'], corte='avance_corte', principal='avance_instalacion', medida='grupos',
-         tablas=['avance_instalacion', 'avance_instalaciones', 'avance_dimension', 'avance_actividad', 'avance_catalogo_actividades', 'avance_corte', 'avance_uso', 'avance_alertas']),
+         tablas=['avance_instalacion', 'avance_instalaciones', 'avance_dimension', 'avance_actividad', 'avance_catalogo_actividades', 'avance_corte', 'avance_uso', 'avance_alertas', 'avance_inst_reg']),
     dict(id='M2', nombre='Actividades complementarias (PAA)', carpeta='PAA', prefijo='REPORTE_PAA_ACOMPLEMENTARIA', script='procesar_complementarias.py',
          refs=['unidades_operativas', 'instalaciones'], corte='ac_corte', principal='ac_instalacion', medida='asistencias',
-         tablas=['ac_instalacion', 'ac_detalle', 'ac_catalogo', 'ac_lugares', 'ac_corte']),
+         tablas=['ac_instalacion', 'ac_detalle', 'ac_catalogo', 'ac_lugares', 'ac_corte', 'ac_inst_reg']),
     dict(id='M3', nombre='Teatros (PAA)', carpeta='PAA', prefijo='REPORTE_PAA_TEATROS', script='procesar_teatros.py',
          refs=['unidades_operativas'], corte='te_corte', principal='te_registro', medida='asistencias',
          tablas=['te_registro', 'te_catalogo', 'te_corte']),
@@ -210,6 +210,7 @@ def main():
             d['actualizado'] = bit['ejecucion']
             d['fuente'] = f"Jorge ({f['name']})"
         res.update(estado='actualizado', corte=nuevo_c, corte_anterior=prev)
+    programables(manifest, bit, tmp)
     json.dump(manifest, open(os.path.join(DATOS, 'manifest.json'), 'w'), ensure_ascii=False, indent=1)
     json.dump(bit, open(os.path.join(DATOS, 'bitacora.json'), 'w'), ensure_ascii=False, indent=1)
     # Resumen para la página de la ejecución en GitHub
@@ -220,6 +221,36 @@ def main():
     s = os.environ.get('GITHUB_STEP_SUMMARY')
     if s: open(s, 'a').write('\n'.join(lin) + '\n')
     print('\n'.join(lin))
+
+
+def programables(manifest, bit, tmp):
+    """Cruce del registro (cursos y talleres, actividades complementarias) con la base de instalaciones HRI 2027.
+    Se rehace cuando cambia alguno de los dos registros o la base HRI, o si aún no existe."""
+    IP = ['ip_instalaciones', 'ip_registro', 'ip_sin_catalogo', 'ip_corte']
+    res = dict(id='IP', reporte='Instalaciones programables (cruce con la HRI 2027)')
+    bit['reportes'].append(res)
+    fuentes = ['hri_2027', 'avance_inst_reg', 'ac_inst_reg']
+    if not all(os.path.exists(REF(t)) for t in fuentes):
+        res['estado'] = 'faltan ' + ', '.join(t for t in fuentes if not os.path.exists(REF(t)))
+        return
+    act = lambda t: manifest['datasets'].get(t, {}).get('actualizado') or ''
+    if all(os.path.exists(REF(t)) for t in IP) and max(act(t) for t in fuentes) <= act('ip_corte'):
+        res['estado'] = 'sin cambios (ya publicado)'
+        return
+    sal = os.path.join(tmp, 'salida_IP')
+    prev = REF('ip_corte') if os.path.exists(REF('ip_corte')) else '-'
+    r = subprocess.run([sys.executable, '-I', os.path.join(SCRIPTS, 'procesar_programables.py'), REF('hri_2027'), REF('unidades_operativas'),
+                        REF('avance_inst_reg'), REF('ac_inst_reg'), REF('avance_corte'), prev, sal], capture_output=True, text=True)
+    if r.returncode != 0:
+        res['estado'] = 'error del script: ' + (r.stderr.strip().splitlines() or ['sin mensaje'])[-1][:300]
+        return
+    for t in IP:
+        shutil.copyfile(os.path.join(sal, t + '.json'), REF(t))
+        d = manifest['datasets'].setdefault(t, dict(archivo=f'datos/{t}.json'))
+        d['actualizado'] = bit['ejecucion']
+        d['fuente'] = 'Cruce del registro del PAA con la base HRI 2027'
+    c = ultimo_de(REF('ip_corte'))
+    res.update(estado='actualizado', fecha_corte=c['fecha_corte'], corte=c)
 
 
 def ultimo_de(path):

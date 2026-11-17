@@ -271,6 +271,11 @@ window.PXPDF = (() => {
 
   async function bloque(doc, el) {
     if (!visible(el) || el.matches('details, .px-tip, script, style, button, select, .px-med, .px-med-bar')) return;
+    if (el.matches('.px-ip-chips')) {
+      const b = el.querySelector('[aria-pressed="true"]');
+      if (b) { doc.parrafo('Situación mostrada: ' + limpia(b.textContent), 7.6, true, RGB.tinta, M, CW, 10.4); doc.y += 3; }
+      return;
+    }
     if (el.matches('.px-sec-h')) {
       doc.cabe(60);
       doc.y += 6;

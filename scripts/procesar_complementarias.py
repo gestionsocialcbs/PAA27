@@ -6,6 +6,8 @@ Uso: python3 -I procesar_complementarias.py REPORTE.xlsx unidades_operativas.jso
 - Es seguimiento del registro: no compara contra metas.
 Salidas: ac_instalacion.json (unidad, lugar, área), ac_detalle.json (unidad, área, actividad, mes, tipo de docente),
   ac_catalogo.json (actividades), ac_lugares.json (nombres de instalaciones y Centros de Extensión) y ac_corte.json (historial por fecha de corte).
+- ac_inst_reg.json: actividades (grupos), cupo y asistencias por OOAD, UOPSI, Centro de Extensión, nombre de la instalación y área,
+  para cruzarlo con la base de instalaciones (HRI).
 """
 import sys, json, re, os, datetime, collections, openpyxl
 
@@ -71,7 +73,7 @@ def txt(v):
     return s
 
 Z = lambda: dict(grupos=0, cupo=0, asistencias=0, clases=0)
-AGG_L, AGG_D = collections.defaultdict(Z), collections.defaultdict(Z)
+AGG_L, AGG_D, AGG_N = collections.defaultdict(Z), collections.defaultdict(Z), collections.defaultdict(Z)
 cat, lugares = {}, {}
 n = fuera = 0
 for r in it:
@@ -107,7 +109,7 @@ for r in it:
     mes = int(num(r[I['CVE_MES']], ini.month if ini else 0)) or (ini.month if ini else 0)
     doc = txt(r[I['TIPO_INSTRUCTOR']]).capitalize() or 'Sin tipo'
     vals = dict(grupos=1, cupo=num(r[I['CAN_CUPO']]), asistencias=num(r[I[ASIS]]), clases=num(r[I['CAN_CLASES']]))
-    for d, k in ((AGG_L, (unidad, key, area)), (AGG_D, (unidad, area, clave, mes, doc))):
+    for d, k in ((AGG_L, (unidad, key, area)), (AGG_D, (unidad, area, clave, mes, doc)), (AGG_N, (o, u, int(cec) if str(cec).isdigit() else 0, ni, area))):
         for x, v in vals.items(): d[k][x] += v
 
 e = lambda v: int(v) if float(v).is_integer() else round(v, 2)
@@ -117,6 +119,7 @@ rl = [dict(unidad=k[0], lugar_clave=k[1], area=k[2], **{x: e(v) for x, v in b.it
 dump('ac_instalacion.json', rl)
 dump('ac_detalle.json', [dict(unidad=k[0], area=k[1], clave_actividad=k[2], mes=k[3], tipo_docente=k[4], **{x: e(v) for x, v in b.items()}) for k, b in AGG_D.items()])
 dump('ac_catalogo.json', list(cat.values()))
+dump('ac_inst_reg.json', [dict(cve_ooad=k[0], cve_uopsi=k[1], cve_cec=k[2], instalacion=k[3], area=k[4], grupos=e(b['grupos']), cupo=e(b['cupo']), asistencias=e(b['asistencias'])) for k, b in AGG_N.items()])
 dump('ac_lugares.json', [dict(unidad=k[0], lugar_clave=k[1], nombre=v[0], tipo=v[1], lugar=v[2]) for k, v in lugares.items()])
 T = lambda f: e(sum(r[f] for r in rl))
 corte = dict(fecha_corte=fecha, actividades=T('grupos'), asistencias=T('asistencias'), cupo=T('cupo'),
