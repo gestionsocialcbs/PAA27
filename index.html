@@ -291,7 +291,11 @@
 .px-ip-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:var(--cds-gap-sm); }
 .px-ip-f { font:inherit; font-size:var(--cds-font-size-caption); border:1px solid var(--color-border-line); background:none; color:var(--color-fg); border-radius:999px; padding:4px 12px; cursor:pointer; }
 .px-ip-f[aria-pressed="true"] { background:var(--px-verde-osc); border-color:var(--px-verde-osc); color:#fff; }
-.px-lead .px-kpi-de, .px-lead .px-dot { display:none; }
+.px-lead [data-draw="prk"] .px-kpi-de, .px-lead [data-draw="prk"] .px-dot { display:none; }
+.px-kpis-2 { grid-template-columns:repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); margin-top:var(--cds-gap-md); }
+.px-kpis-2 > .px-kpi:first-child { background:var(--px-surf2); border-color:var(--color-border-line); border-top-color:var(--px-verde); color:inherit; }
+.px-kpis-2 > .px-kpi:first-child .px-kpi-l, .px-kpis-2 > .px-kpi:first-child .px-kpi-de { color:var(--color-fg-muted); }
+.px-kpis-2 > .px-kpi:first-child .px-kpi-v { font-weight:inherit; }
 </style>
 
 <div class="px">
@@ -346,6 +350,11 @@
       <div class="px-kpi"><div class="px-kpi-l">Meta de inscripciones 2027</div><div class="px-kpi-v dash-skeleton" data-draw="mk" data-k="meta_2027">—</div></div>
       <div class="px-kpi"><div class="px-kpi-l">Incremento de inscripciones</div><div class="px-kpi-v dash-skeleton" data-draw="mk" data-k="incremento">—</div></div>
       <div class="px-kpi"><div class="px-kpi-l">Variación</div><div class="px-kpi-v dash-skeleton" data-draw="mk" data-k="variacion">—</div></div>
+    </div>
+    <div class="px-kpis px-kpis-2" id="kpi-registro-2027">
+      <div class="px-kpi"><div class="px-kpi-l">Inscripciones 2027 registradas en el PAA</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="inscripciones">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Asistencias 2027 registradas en el PAA</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="asistencias">—</div></div>
+      <div class="px-kpi"><div class="px-kpi-l">Avance contra la meta de inscripciones 2027</div><div class="px-kpi-v dash-skeleton" data-draw="avk" data-k="avance">—</div></div>
     </div>
     <p class="px-note px-meta-na" hidden>El área seleccionada no tiene meta en la base.</p>
     <div class="px-card" id="metas-area">
