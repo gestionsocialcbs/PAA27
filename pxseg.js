@@ -1,4 +1,6 @@
 // Módulo 3 · Seguimiento por actividad de teatro (33501, 33502 y 33504): programado contra real, meta mínima del Layout 2027.
+// REAL = false: por ahora no se muestra la comparación contra el avance real (Reporte_Teatros 2026).
+window.PXSEG_REAL = false;
 window.PXSEG = (() => {
   const ACTS = ['33501', '33502', '33504'];
   const areaN = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
@@ -82,7 +84,7 @@ dash.draw('tseg-k', (el) => {
   if (k === 'meta') {
     if (!r.meta_asistencias) { txt('—'); de(' · sin aforo programado'); return; }
     txt(PX.fmt(r.meta_asistencias));
-    de(' · reales ' + PXR.cumpTxt({ cumplimiento: r.avance_meta }) + ' de la meta');
+    de(window.PXSEG_REAL ? ' · reales ' + PXR.cumpTxt({ cumplimiento: r.avance_meta }) + ' de la meta' : ' · ' + Math.round((r.meta_pct || 0) * 100) + '% del aforo programado');
     return;
   }
 });
@@ -94,29 +96,32 @@ dash.draw('ch-tseg-mes', (el) => {
   const s = PXV.scope();
   const a = PX.area();
   const by = new Map(dash.data('te_seg').data.filter((r) => r.clave_actividad === act && r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.mes > 0).map((r) => [r.mes, r]));
-  if (!by.size) { PXR.empty(el, 'Sin asistencias programadas ni reales de esta actividad en el ámbito y el área seleccionados.'); return; }
+  if (!by.size || (!window.PXSEG_REAL && ![...by.values()].some((r) => r.prog > 0))) { PXR.empty(el, window.PXSEG_REAL ? 'Sin asistencias programadas ni reales de esta actividad en el ámbito y el área seleccionados.' : 'Sin asistencias programadas de esta actividad en el ámbito y el área seleccionados.'); return; }
   const rows = d3.range(1, 13).map((mm) => by.get(mm) || { mes: mm, prog: 0, real: 0, cumplimiento: null, semaforo: null });
   const anim = !el.dataset.pxDrawn;
   el.dataset.pxDrawn = '1';
   const W = Math.max(260, el.clientWidth), H = 190, mg = { t: 14, b: 22 };
   const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Asistencias programadas y reales por mes, actividad ' + act);
-  const mx = d3.max(rows, (r) => Math.max(r.prog, r.real)) || 1;
+  const R = window.PXSEG_REAL;
+  const lados = R ? ['prog', 'real'] : ['prog'];
+  const mx = d3.max(rows, (r) => Math.max(r.prog, R ? r.real : 0)) || 1;
   const y = d3.scaleLinear([0, mx], [H - mg.b, mg.t]).nice();
   const probe = svg.append('text').attr('class', 'px-tick').text(PXR.fmtc(d3.max(y.ticks(3))));
   const left = probe.node().getComputedTextLength() + 8;
   probe.remove();
   const x = d3.scaleBand(d3.range(12), [left, W]).padding(0.22);
-  const xi = d3.scaleBand(['prog', 'real'], [0, x.bandwidth()]).padding(0.08);
+  const xi = d3.scaleBand(lados, [0, x.bandwidth()]).padding(R ? 0.08 : 0.15);
   svg.append('g').selectAll('line').data(y.ticks(3)).join('line').attr('x1', left).attr('x2', W).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
   svg.append('g').selectAll('text').data(y.ticks(3)).join('text').attr('class', 'px-tick').attr('x', left - 6).attr('y', (t) => y(t) + 4).attr('text-anchor', 'end').text(PXR.fmtc);
   const g = svg.selectAll('g.px-m').data(rows).join('g').attr('class', 'px-m');
   g.append('rect').attr('x', (r) => x(r.mes - 1) - 2).attr('width', x.bandwidth() + 4).attr('y', 0).attr('height', H).attr('fill', 'transparent');
-  for (const lado of ['prog', 'real']) {
+  for (const lado of lados) {
     g.append('rect').attr('x', (r) => x(r.mes - 1) + xi(lado)).attr('width', xi.bandwidth()).attr('y', (r) => y(r[lado])).attr('height', (r) => y(0) - y(r[lado])).attr('rx', 2).attr('fill', PXR.C[lado])
       .attr('class', anim ? 'px-grow' : null).style('animation-delay', (r) => (anim ? r.mes * 30 + 'ms' : null));
   }
   g.append('text').attr('class', 'px-tick').attr('x', (r) => x(r.mes - 1) + x.bandwidth() / 2).attr('y', H - 6).attr('text-anchor', 'middle').text((r) => PXU2.MES[r.mes - 1]);
-  PX.hover(el, g, (r) => PXR.tip(PXP.MESES[r.mes - 1].replace(/^./, (c) => c.toUpperCase()), r, 'Asistencias'));
+  const mesN = (r) => PXP.MESES[r.mes - 1].replace(/^./, (c) => c.toUpperCase());
+  PX.hover(el, g, (r) => (R ? PXR.tip(mesN(r), r, 'Asistencias') : [mesN(r), ['Asistencias programadas', PX.fmt(Math.round(r.prog))], ['Eventos programados', PX.fmt(r.eventos_prog || 0)]]));
 });
 
 // Por OOAD (nivel nacional) o por teatro (dentro de una OOAD): las 8 con más asistencias.
@@ -128,12 +133,17 @@ dash.draw('ch-tseg-nivel', (el) => {
   const d = dash.data('te_seg').data.filter((r) => r.clave_actividad === act && r.area === a && r.mes === 0);
   const rows = s.nivel === 'Unidad Operativa'
     ? d.filter((r) => r.nivel === 'Unidad Operativa' && r.clave === s.clave)
-    : d.filter((r) => r.nivel === (s.nivel === 'Nacional' ? 'OOAD' : 'Unidad Operativa') && r.padre === s.clave).sort((x, y) => Math.max(y.prog, y.real) - Math.max(x.prog, x.real)).slice(0, 8);
-  if (!rows.length) { PXR.empty(el, 'Sin asistencias programadas ni reales de esta actividad en el ámbito y el área seleccionados.'); return; }
+    : d.filter((r) => r.nivel === (s.nivel === 'Nacional' ? 'OOAD' : 'Unidad Operativa') && r.padre === s.clave).filter((r) => window.PXSEG_REAL || r.prog > 0).sort((x, y) => Math.max(y.prog, window.PXSEG_REAL ? y.real : 0) - Math.max(x.prog, window.PXSEG_REAL ? x.real : 0)).slice(0, 8);
+  if (!rows.length || (!window.PXSEG_REAL && !d3.sum(rows, (r) => r.prog))) { PXR.empty(el, window.PXSEG_REAL ? 'Sin asistencias programadas ni reales de esta actividad en el ámbito y el área seleccionados.' : 'Sin asistencias programadas de esta actividad en el ámbito y el área seleccionados.'); return; }
+  if (!window.PXSEG_REAL) {
+    PX.hbar(el, rows, { aria: 'Asistencias programadas por ' + (s.nivel === 'Nacional' ? 'OOAD' : 'teatro') + ', actividad ' + act, label: (r) => r.nombre, value: (r) => r.prog, color: () => '#A57F2C',
+      tip: (r) => [r.nombre, ['Asistencias programadas', PX.fmt(Math.round(r.prog))], ['Eventos programados', PX.fmt(r.eventos_prog)]] });
+    return;
+  }
   PXR.pair(el, rows, { aria: 'Asistencias programadas y reales por ' + (s.nivel === 'Nacional' ? 'OOAD' : 'teatro') + ', actividad ' + act, label: (r) => r.nombre, med: 'Asistencias' });
 });
 
 dash.draw('tseg-nivel-t', (el) => {
   const s = PXV.scope();
-  el.textContent = s.nivel === 'Nacional' ? 'Las 8 OOAD con más asistencias' : s.nivel === 'OOAD' ? 'Los 8 teatros de la OOAD con más asistencias' : 'Teatro elegido';
+  el.textContent = s.nivel === 'Nacional' ? 'Las 8 OOAD con más asistencias programadas' : s.nivel === 'OOAD' ? 'Los 8 teatros de la OOAD con más asistencias programadas' : 'Teatro elegido';
 });

@@ -293,6 +293,8 @@
 .px-kpis-2 > .px-kpi:first-child { background:var(--px-surf2); border-color:var(--color-border-line); border-top-color:var(--px-verde); color:inherit; }
 .px-kpis-2 > .px-kpi:first-child .px-kpi-l, .px-kpis-2 > .px-kpi:first-child .px-kpi-de { color:var(--color-fg-muted); }
 .px-kpis-2 > .px-kpi:first-child .px-kpi-v { font-weight:inherit; }
+/* Comparación contra el avance real 2026: oculta por ahora (quitar esta regla para mostrarla). */
+.px-real { display:none !important; }
 </style>
 
 <div class="px">
@@ -330,7 +332,7 @@
 
   <div class="px-mod" id="modulo-1" role="tabpanel" aria-labelledby="tab-modulo-1" data-mod="1">
     <div class="px-mod-h">
-      <div class="px-mod-top"><div class="px-sec-n">Módulo 1</div><button type="button" class="px-pdf" data-mod="1" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_CURSOS de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="ri_corte" data-source="ri_corte" data-field="fecha_corte">—</b> · archivo Inscritos</span></div>
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 1</div><button type="button" class="px-pdf" data-mod="1" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_CURSOS de Google Drive</span><span class="px-upd-chip px-real">Real al <b data-draw="upd" data-src="ri_corte" data-source="ri_corte" data-field="fecha_corte">—</b> · archivo Inscritos</span></div>
       <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">1</span><span>Programa Anual de Inscripciones y Asistencias <em class="px-acc">a Cursos y Talleres</em></span></h2>
       <p class="px-lead"><b data-draw="amb">—</b>: <b data-draw="avk" data-k="inscripciones">—</b> inscripciones registradas de una meta de <b data-draw="mk" data-k="meta_2027">—</b> inscripciones 2027 · avance <b data-draw="avk" data-k="avance">—</b>.</p>
       <div class="px-med-bar"><div class="px-med" role="group" aria-label="Unidad de medida"><span class="px-med-l">Unidad de medida</span><button type="button" class="px-btn px-med-btn" data-m="inscripciones" aria-pressed="true">Inscripciones</button><button type="button" class="px-btn px-med-btn" data-m="asistencias" aria-pressed="false">Asistencias</button></div><span class="px-note">Cambia la unidad de medida de los apartados 01 y 02: metas y registro por área y por OOAD, reportes del registro, instalaciones, actividades y evolución por corte. La meta 2027 y el semáforo existen solo para inscripciones; con Asistencias se muestran las asistencias registradas, sin meta.</span></div>
@@ -454,7 +456,7 @@
     </div>
   </section>
 
-  <section class="px-sec" id="cu-real">
+  <section class="px-sec px-real" id="cu-real">
     <div class="px-sec-h">
       <div class="px-sec-n">03 · Programado contra real</div>
       <h2 class="px-sec-t"><span class="px-mi">Inscripciones</span><span class="px-ma" hidden>Asistencias</span> programadas en el PAA 2027 y <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> reales</h2>
@@ -480,7 +482,7 @@
 
   <section class="px-sec" id="advertencias">
     <div class="px-sec-h">
-      <div class="px-sec-n">04 · Notas de advertencia</div>
+      <div class="px-sec-n">03 · Notas de advertencia</div>
       <h2 class="px-sec-t">Notas de advertencia en el registro de cursos y talleres</h2>
       <p class="px-sec-d">Grupos del REPORTE PAA CURSOS, con corte al <b class="px-strong" data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b>, cuyo registro conviene revisar por el nombre del espacio o por la combinación de actividad y espacio. <b class="px-strong">Alerta</b>: registro que no debería existir así; <b class="px-strong">Revisar</b>: registro que puede ser correcto pero conviene confirmar. Cada nota trae la clave del grupo para corregirlo en SIPSI. Responde a los filtros de ámbito y de área.</p>
     </div>
@@ -514,7 +516,7 @@
 
   <section class="px-sec" id="tiempos-uso">
     <div class="px-sec-h">
-      <div class="px-sec-n">05 · Tiempos de uso de las instalaciones</div>
+      <div class="px-sec-n">04 · Tiempos de uso de las instalaciones</div>
       <h2 class="px-sec-t">Ocupación de las instalaciones según el horario de los grupos registrados</h2>
       <p class="px-sec-d">Cuántas horas se ocupa cada instalación según el horario de los grupos registrados en el PAA 2027, medido solo dentro del horario en que la instalación tiene actividad: de su primera a su última hora con grupos, en los días de la semana con grupos y entre su primera y su última fecha con grupos. El resto del tiempo no se considera. Incluye los grupos de las cuatro áreas normativas, por lo que no cambia con el filtro de área; no incluye los grupos en Centros de Extensión ni los registrados sin instalación.</p>
     </div>
@@ -566,9 +568,9 @@
 
   <div class="px-mod" id="modulo-2" role="tabpanel" aria-labelledby="tab-modulo-2" data-mod="2" hidden>
     <div class="px-mod-h">
-      <div class="px-mod-top"><div class="px-sec-n">Módulo 2</div><button type="button" class="px-pdf" data-mod="2" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_ACOMPLEMENTARIA de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rac_corte" data-source="rac_corte" data-field="fecha_corte">—</b> · archivo Reporte_Activ_Complem</span></div>
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 2</div><button type="button" class="px-pdf" data-mod="2" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="ac_corte" data-source="ac_corte" data-field="fecha_corte">—</b> · archivo REPORTE_PAA_ACOMPLEMENTARIA de Google Drive</span><span class="px-upd-chip px-real">Real al <b data-draw="upd" data-src="rac_corte" data-source="rac_corte" data-field="fecha_corte">—</b> · archivo Reporte_Activ_Complem</span></div>
       <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">2</span><span>Programa Anual de Asistencias <em class="px-acc">en Actividades Complementarias</em></span></h2>
-      <p class="px-lead">Seguimiento del registro de las actividades complementarias (campañas, pláticas y eventos) en el REPORTE PAA ACTIVIDADES COMPLEMENTARIAS. <b data-draw="acamb">—</b>: <b data-draw="ack" data-k="asistencias">—</b> asistencias registradas (programado) y <b data-draw="prk" data-m="ac" data-k="real">—</b> asistencias reales.</p>
+      <p class="px-lead">Seguimiento del registro de las actividades complementarias (campañas, pláticas y eventos) en el REPORTE PAA ACTIVIDADES COMPLEMENTARIAS. <b data-draw="acamb">—</b>: <b data-draw="ack" data-k="asistencias">—</b> asistencias registradas (programado)<span class="px-real"> y <b data-draw="prk" data-m="ac" data-k="real">—</b> asistencias reales</span>.</p>
     </div>
     <section class="px-sec" id="ac-registro">
       <div class="px-sec-h">
@@ -599,7 +601,7 @@
       <div class="px-card"><h3>Actividades con más asistencias registradas</h3><p class="px-note">Las 15 actividades del ámbito con más asistencias registradas; al pasar el cursor se ven su clave, su tipo y su bloque.</p><div class="px-chart dash-skeleton" data-draw="acd" data-dim="Actividad" data-source="ac_dim" style="min-height:240px"></div></div>
       <div class="px-card"><h3>Evolución del registro por fecha de corte</h3><p class="px-note">Asistencias registradas a nivel nacional en cada corte procesado; la actualización diaria agrega un corte cada vez que llega un reporte nuevo.</p><div class="px-chart dash-skeleton" data-draw="ch-ac-cortes" data-source="ac_corte" style="min-height:220px"></div></div>
     </section>
-    <section class="px-sec" id="ac-real">
+    <section class="px-sec px-real" id="ac-real">
       <div class="px-sec-h">
         <div class="px-sec-n">02 · Programado contra real</div>
         <h2 class="px-sec-t">Asistencias programadas en el PAA 2027 y asistencias reales</h2>
@@ -625,9 +627,9 @@
 
   <div class="px-mod" id="modulo-3" role="tabpanel" aria-labelledby="tab-modulo-3" data-mod="3" hidden>
     <div class="px-mod-h">
-      <div class="px-mod-top"><div class="px-sec-n">Módulo 3</div><button type="button" class="px-pdf" data-mod="3" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b> · archivo Reporte_PAA_Teatros de Google Drive</span><span class="px-upd-chip">Real al <b data-draw="upd" data-src="rte_corte" data-source="rte_corte" data-field="fecha_corte">—</b> · archivo Reporte_Teatros</span></div>
+      <div class="px-mod-top"><div class="px-sec-n">Módulo 3</div><button type="button" class="px-pdf" data-mod="3" title="Descarga este módulo en PDF, con los filtros elegidos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar PDF</button><span class="px-upd-chip">Actualizado al <b data-draw="upd" data-src="te_corte" data-source="te_corte" data-field="fecha_corte">—</b> · archivo Reporte_PAA_Teatros de Google Drive</span><span class="px-upd-chip px-real">Real al <b data-draw="upd" data-src="rte_corte" data-source="rte_corte" data-field="fecha_corte">—</b> · archivo Reporte_Teatros</span></div>
       <h2 class="px-mod-t"><span class="px-mod-num" aria-hidden="true">3</span><span>Programa Anual de Asistencias <em class="px-acc">en Teatros</em></span></h2>
-      <p class="px-lead">Seguimiento del registro de los eventos en los Teatros Cubiertos del IMSS, en el Reporte PAA Teatros. <b data-draw="teamb">—</b>: <b data-draw="tek" data-k="asistencias">—</b> asistencias registradas (programado) y <b data-draw="prk" data-m="te" data-k="real">—</b> asistencias reales.</p>
+      <p class="px-lead">Seguimiento del registro de los eventos en los Teatros Cubiertos del IMSS, en el Reporte PAA Teatros. <b data-draw="teamb">—</b>: <b data-draw="tek" data-k="asistencias">—</b> asistencias registradas (programado)<span class="px-real"> y <b data-draw="prk" data-m="te" data-k="real">—</b> asistencias reales</span>.</p>
     </div>
     <section class="px-sec" id="te-registro">
       <div class="px-sec-h">
@@ -655,7 +657,7 @@
       </div>
       <div class="px-card"><h3>Evolución del registro por fecha de corte</h3><p class="px-note">Asistencias registradas a nivel nacional en cada corte procesado; la actualización diaria agrega un corte cada vez que llega un reporte nuevo.</p><div class="px-chart dash-skeleton" data-draw="ch-te-cortes" data-source="te_corte" style="min-height:220px"></div></div>
     </section>
-    <section class="px-sec" id="te-real">
+    <section class="px-sec px-real" id="te-real">
       <div class="px-sec-h">
         <div class="px-sec-n">02 · Programado contra real</div>
         <h2 class="px-sec-t">Asistencias programadas en el PAA 2027 y asistencias reales</h2>
@@ -679,18 +681,18 @@
     </section>
     <section class="px-sec" id="te-seguimiento">
       <div class="px-sec-h">
-        <div class="px-sec-n">03 · Seguimiento por actividad</div>
+        <div class="px-sec-n">02 · Seguimiento por actividad</div>
         <h2 class="px-sec-t">Actividades Institucionales, Función Comercial y Escenarios IMSS Cultura</h2>
-        <p class="px-sec-d">Un tablero por actividad: asistencias y eventos programados en el PAA 2027 (Reporte PAA Teatros) frente a los reales (Reporte_Teatros), cumplimiento = real ÷ programado con el semáforo de avance, y la meta mínima del Layout 2027 (porcentaje del aforo de los eventos programados). El Reporte de Teatros aún trae las claves del catálogo 2026 (32501, 32502 y 32504); se cuentan en su equivalente 2027. Responde a los filtros de ámbito y de área.</p>
+        <p class="px-sec-d">Un tablero por actividad: asistencias y eventos programados en el PAA 2027 (Reporte PAA Teatros) y la meta mínima del Layout 2027 (porcentaje del aforo de los eventos programados). Responde a los filtros de ámbito y de área.</p>
       </div>
-      <p class="px-note px-legend"><span><i style="background:#A57F2C"></i>Asistencias programadas (PAA)</span><span><i style="background:#1E5B4F"></i>Asistencias reales</span></p>
+      <p class="px-note px-legend"><span><i style="background:#A57F2C"></i>Asistencias programadas (PAA)</span><span class="px-real"><i style="background:#1E5B4F"></i>Asistencias reales</span></p>
       <div class="px-card px-tseg" id="tseg-33501">
         <h3><span class="px-tseg-cl">33501</span> Actividades Institucionales en Teatro</h3>
         <p class="px-note" data-draw="tseg-meta" data-act="33501" data-source="layout_2027">—</p>
         <div class="px-kpis">
           <div class="px-kpi"><div class="px-kpi-l">Asistencias programadas (PAA)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="prog" data-source="te_seg">—</div></div>
-          <div class="px-kpi"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="real" data-source="te_seg">—</div></div>
-          <div class="px-kpi"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="cumplimiento" data-source="te_seg">—</div></div>
+          <div class="px-kpi px-real"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="real" data-source="te_seg">—</div></div>
+          <div class="px-kpi px-real"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="cumplimiento" data-source="te_seg">—</div></div>
           <div class="px-kpi"><div class="px-kpi-l">Meta mínima de asistencias</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="meta" data-source="te_seg">—</div></div>
         </div>
         <div class="px-grid px-grid-2">
@@ -703,8 +705,8 @@
         <p class="px-note" data-draw="tseg-meta" data-act="33502" data-source="layout_2027">—</p>
         <div class="px-kpis">
           <div class="px-kpi"><div class="px-kpi-l">Asistencias programadas (PAA)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="prog" data-source="te_seg">—</div></div>
-          <div class="px-kpi"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="real" data-source="te_seg">—</div></div>
-          <div class="px-kpi"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="cumplimiento" data-source="te_seg">—</div></div>
+          <div class="px-kpi px-real"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="real" data-source="te_seg">—</div></div>
+          <div class="px-kpi px-real"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="cumplimiento" data-source="te_seg">—</div></div>
           <div class="px-kpi"><div class="px-kpi-l">Meta mínima de asistencias</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="meta" data-source="te_seg">—</div></div>
         </div>
         <div class="px-grid px-grid-2">
@@ -717,8 +719,8 @@
         <p class="px-note" data-draw="tseg-meta" data-act="33504" data-source="layout_2027">—</p>
         <div class="px-kpis">
           <div class="px-kpi"><div class="px-kpi-l">Asistencias programadas (PAA)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="prog" data-source="te_seg">—</div></div>
-          <div class="px-kpi"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="real" data-source="te_seg">—</div></div>
-          <div class="px-kpi"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="cumplimiento" data-source="te_seg">—</div></div>
+          <div class="px-kpi px-real"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="real" data-source="te_seg">—</div></div>
+          <div class="px-kpi px-real"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="cumplimiento" data-source="te_seg">—</div></div>
           <div class="px-kpi"><div class="px-kpi-l">Meta mínima de asistencias</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="meta" data-source="te_seg">—</div></div>
         </div>
         <div class="px-grid px-grid-2">
@@ -729,7 +731,7 @@
     </section>
   </div>
 
-  <footer class="px-foot">Fuentes: REPORTE PAA CURSOS (registro del PAA 2027; inscripciones = CAN_CUPO, asistencias = CAN_ASISTENCIAS; tiempos de uso por bloques de 15 minutos dentro del horario con actividad), Base de metas 2026–2027 de inscripciones por OOAD, UOPSI y área normativa, catálogo UOPSI (sin tiendas ni velatorios) y Layout 2027 de los Criterios Técnicos. Áreas normativas: CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Semáforo de avance contra la meta: Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%. Tiempos de uso: niveles de ocupación baja &lt; 50%, media de 50% a 79.9% y alta ≥ 80% del horario con actividad. Programado contra real: inscripciones reales del reporte de Inscritos (CAN_INSCRITOS, inscripciones nuevas de cada mes) y asistencias reales de ese reporte (CAN_ASISTENCIAS), del Reporte_Activ_Complem (TOTAL_ASISTENCIAS) y del Reporte_Teatros (NUM_TOTAL_ASISTENCIAS), carpeta Reportes Real; cumplimiento = real ÷ programado, con el mismo semáforo. División de Apoyo Técnico y Mejora de Procesos.</footer>
+  <footer class="px-foot">Fuentes: REPORTE PAA CURSOS (registro del PAA 2027; inscripciones = CAN_CUPO, asistencias = CAN_ASISTENCIAS; tiempos de uso por bloques de 15 minutos dentro del horario con actividad), Base de metas 2026–2027 de inscripciones por OOAD, UOPSI y área normativa, catálogo UOPSI (sin tiendas ni velatorios) y Layout 2027 de los Criterios Técnicos. Áreas normativas: CECART se agrupa en Capacitación y Adiestramiento Técnico y CASSAAM en Promoción de la Salud. Semáforo de avance contra la meta: Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%. Tiempos de uso: niveles de ocupación baja &lt; 50%, media de 50% a 79.9% y alta ≥ 80% del horario con actividad.<span class="px-real"> Programado contra real: inscripciones reales del reporte de Inscritos (CAN_INSCRITOS, inscripciones nuevas de cada mes) y asistencias reales de ese reporte (CAN_ASISTENCIAS), del Reporte_Activ_Complem (TOTAL_ASISTENCIAS) y del Reporte_Teatros (NUM_TOTAL_ASISTENCIAS), carpeta Reportes Real; cumplimiento = real ÷ programado, con el mismo semáforo.</span> División de Apoyo Técnico y Mejora de Procesos.</footer>
 </div>
 
 <script>

@@ -32,7 +32,7 @@ window.PXPDF = (() => {
     let o = '';
     const walk = (n) => {
       if (n.nodeType === 3) { o += n.nodeValue; return; }
-      if (n.nodeType !== 1 || n.hidden || n.matches('script, style, .px-tip')) return;
+      if (n.nodeType !== 1 || n.hidden || n.matches('script, style, .px-tip') || getComputedStyle(n).display === 'none') return;
       for (const c of n.childNodes) walk(c);
       o += /^(P|DIV|LI|TR|H\d)$/.test(n.tagName) ? '\n' : ' ';
     };
