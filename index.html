@@ -285,6 +285,9 @@
 .px-pdf:disabled { opacity:.6; cursor:progress; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .px-pdf { color:var(--color-fg); } }
 :root[data-theme="dark"] .px-pdf { color:var(--color-fg); }
+.px-tseg-cl { display:inline-block; font-size:11px; letter-spacing:.08em; font-weight:600; color:#fff; background:var(--px-verde-osc); border-radius:3px; padding:1px 6px; margin-right:6px; vertical-align:2px; }
+.px-tseg + .px-tseg { margin-top:var(--cds-gap-md); }
+.px-tseg .px-kpis { margin:var(--cds-gap-sm) 0 var(--cds-gap-md); }
 </style>
 
 <div class="px">
@@ -661,6 +664,56 @@
       </div>
       <div class="px-card"><h3>Actividades con más asistencias</h3><p class="px-note">Las 15 actividades del ámbito con más asistencias programadas o reales.</p><div class="px-chart dash-skeleton" data-draw="ch-pr-act" data-m="te" style="min-height:240px"></div></div>
       <div class="px-card"><h3>Asistencias reales por fecha de corte</h3><p class="px-note">Asistencias reales a nivel nacional en cada corte procesado del Reporte de Teatros (Reporte_Teatros).</p><div class="px-chart dash-skeleton" data-draw="ch-pr-cortes" data-m="te" style="min-height:220px"></div></div>
+    </section>
+    <section class="px-sec" id="te-seguimiento">
+      <div class="px-sec-h">
+        <div class="px-sec-n">03 · Seguimiento por actividad</div>
+        <h2 class="px-sec-t">Actividades Institucionales, Función Comercial y Escenarios IMSS Cultura</h2>
+        <p class="px-sec-d">Un tablero por actividad: asistencias y eventos programados en el PAA 2027 (Reporte PAA Teatros) frente a los reales (Reporte_Teatros), cumplimiento = real ÷ programado con el semáforo de avance, y la meta mínima del Layout 2027 (porcentaje del aforo de los eventos programados). El Reporte de Teatros aún trae las claves del catálogo 2026 (32501, 32502 y 32504); se cuentan en su equivalente 2027. Responde a los filtros de ámbito y de área.</p>
+      </div>
+      <p class="px-note px-legend"><span><i style="background:#A57F2C"></i>Asistencias programadas (PAA)</span><span><i style="background:#1E5B4F"></i>Asistencias reales</span></p>
+      <div class="px-card px-tseg" id="tseg-33501">
+        <h3><span class="px-tseg-cl">33501</span> Actividades Institucionales en Teatro</h3>
+        <p class="px-note" data-draw="tseg-meta" data-act="33501" data-source="layout_2027">—</p>
+        <div class="px-kpis">
+          <div class="px-kpi"><div class="px-kpi-l">Asistencias programadas (PAA)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="prog" data-source="te_seg">—</div></div>
+          <div class="px-kpi"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="real" data-source="te_seg">—</div></div>
+          <div class="px-kpi"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="cumplimiento" data-source="te_seg">—</div></div>
+          <div class="px-kpi"><div class="px-kpi-l">Meta mínima de asistencias</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33501" data-k="meta" data-source="te_seg">—</div></div>
+        </div>
+        <div class="px-grid px-grid-2">
+          <section><h4 class="px-uso-h">Por mes</h4><div class="px-chart dash-skeleton" data-draw="ch-tseg-mes" data-act="33501" data-source="te_seg" style="min-height:190px"></div></section>
+          <section><h4 class="px-uso-h" data-draw="tseg-nivel-t">—</h4><div class="px-chart dash-skeleton" data-draw="ch-tseg-nivel" data-act="33501" data-source="te_seg" style="min-height:190px"></div></section>
+        </div>
+      </div>
+      <div class="px-card px-tseg" id="tseg-33502">
+        <h3><span class="px-tseg-cl">33502</span> Función Comercial en Teatro</h3>
+        <p class="px-note" data-draw="tseg-meta" data-act="33502" data-source="layout_2027">—</p>
+        <div class="px-kpis">
+          <div class="px-kpi"><div class="px-kpi-l">Asistencias programadas (PAA)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="prog" data-source="te_seg">—</div></div>
+          <div class="px-kpi"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="real" data-source="te_seg">—</div></div>
+          <div class="px-kpi"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="cumplimiento" data-source="te_seg">—</div></div>
+          <div class="px-kpi"><div class="px-kpi-l">Meta mínima de asistencias</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33502" data-k="meta" data-source="te_seg">—</div></div>
+        </div>
+        <div class="px-grid px-grid-2">
+          <section><h4 class="px-uso-h">Por mes</h4><div class="px-chart dash-skeleton" data-draw="ch-tseg-mes" data-act="33502" data-source="te_seg" style="min-height:190px"></div></section>
+          <section><h4 class="px-uso-h" data-draw="tseg-nivel-t">—</h4><div class="px-chart dash-skeleton" data-draw="ch-tseg-nivel" data-act="33502" data-source="te_seg" style="min-height:190px"></div></section>
+        </div>
+      </div>
+      <div class="px-card px-tseg" id="tseg-33504">
+        <h3><span class="px-tseg-cl">33504</span> Escenarios IMSS Cultura</h3>
+        <p class="px-note" data-draw="tseg-meta" data-act="33504" data-source="layout_2027">—</p>
+        <div class="px-kpis">
+          <div class="px-kpi"><div class="px-kpi-l">Asistencias programadas (PAA)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="prog" data-source="te_seg">—</div></div>
+          <div class="px-kpi"><div class="px-kpi-l">Asistencias reales</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="real" data-source="te_seg">—</div></div>
+          <div class="px-kpi"><div class="px-kpi-l">Cumplimiento (real ÷ programado)</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="cumplimiento" data-source="te_seg">—</div></div>
+          <div class="px-kpi"><div class="px-kpi-l">Meta mínima de asistencias</div><div class="px-kpi-v dash-skeleton" data-draw="tseg-k" data-act="33504" data-k="meta" data-source="te_seg">—</div></div>
+        </div>
+        <div class="px-grid px-grid-2">
+          <section><h4 class="px-uso-h">Por mes</h4><div class="px-chart dash-skeleton" data-draw="ch-tseg-mes" data-act="33504" data-source="te_seg" style="min-height:190px"></div></section>
+          <section><h4 class="px-uso-h" data-draw="tseg-nivel-t">—</h4><div class="px-chart dash-skeleton" data-draw="ch-tseg-nivel" data-act="33504" data-source="te_seg" style="min-height:190px"></div></section>
+        </div>
+      </div>
     </section>
   </div>
 
@@ -2492,6 +2545,7 @@ dash.draw('upd', (el) => {
 </script><script src="pxr.js"></script>
 <script src="pxadv.js"></script>
 <script src="pxpdf.js"></script>
+<script src="pxseg.js"></script>
 </div>
 </body>
 </html>

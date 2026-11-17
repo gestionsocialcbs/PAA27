@@ -89,6 +89,7 @@ window.PXPDF = (() => {
       this.y = y;
     }
     abajo() { return H - M - 14; }
+    inicio() { return 42; }
     cabe(h) { if (this.y + h > this.abajo()) this.nueva(false); }
     txt(t, x, y, size, bold, c) { this.ops.push(`BT /${bold ? 'F2' : 'F1'} ${size} Tf ${col(c || RGB.tinta)} rg ${x.toFixed(2)} ${(H - y).toFixed(2)} Td ${lit(t)} Tj ET`); }
     rect(x, y, w, h, c) { this.ops.push(`${col(c)} rg ${x.toFixed(2)} ${(H - y - h).toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)} re f`); }
@@ -196,10 +197,21 @@ window.PXPDF = (() => {
     const wPt = r.w * k;
     let hPt = r.h * k, srcY = 0;
     const pxPorPt = r.cv.height / (r.h * k);
+    // Cortes permitidos: el inicio de cada fila de barras, para no partir una fila entre dos páginas.
+    const top = svg.getBoundingClientRect().top;
+    const cortes = [...svg.querySelectorAll('g.px-row')].map((g) => (g.getBoundingClientRect().top - top) * k).filter((y) => y > 0).sort((a, b) => a - b);
+    const alto = doc.abajo() - doc.y;
+    if (hPt > alto && hPt <= doc.abajo() - doc.inicio()) doc.nueva(false);
+    let hecho = 0;
     while (hPt > 0.5) {
       let disp = doc.abajo() - doc.y;
       if (disp < 40) { doc.nueva(false); disp = doc.abajo() - doc.y; }
-      const tomar = Math.min(hPt, disp);
+      let tomar = Math.min(hPt, disp);
+      if (tomar < hPt) {
+        const c = cortes.filter((y) => y > hecho + 20 && y <= hecho + tomar).pop();
+        if (c !== undefined) tomar = c - hecho;
+      }
+      hecho += tomar;
       const altoPx = Math.max(1, Math.round(tomar * pxPorPt));
       const cv = document.createElement('canvas');
       cv.width = r.cv.width; cv.height = altoPx;
@@ -290,6 +302,14 @@ window.PXPDF = (() => {
     const t = vtext(el).trim();
     if (!t || t === '—') return;
     const nota = el.matches('.px-note, .px-legend, .px-sec-d');
+    // Un título que va antes de una gráfica pasa de página junto con ella.
+    const sig = el.nextElementSibling;
+    const g = sig && (sig.matches('svg') ? sig : sig.querySelector('svg'));
+    if (g && !nota) {
+      const b = g.getBoundingClientRect();
+      const alto = b.width ? b.height * Math.min(CW / b.width, 0.8) + 24 : 60;
+      doc.cabe(alto <= doc.abajo() - doc.inicio() ? alto : 80);
+    }
     const ls = t.split('\n').map(limpia).filter(Boolean).slice(0, 80);
     doc.parrafo(ls.join('\n'), nota ? 7.2 : 8, false, nota ? RGB.gris : RGB.tinta, M, CW, nota ? 9.8 : 10.8);
     doc.y += 3;
