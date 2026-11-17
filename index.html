@@ -429,10 +429,10 @@
       </div>
     </div>
     <div class="px-grid px-grid-rep">
-      <div class="px-card" id="rep-ventanas"><h3>Ventanas de programación · mes de inicio</h3><div data-draw="avd" data-dim="Mes de inicio" data-source="av_dim"></div></div>
+      <div class="px-card" id="rep-estrategia"><h3>Estrategia 2027</h3><div data-draw="avd" data-dim="Estrategia 2027" data-calc="av_crit" data-source="av_crit"></div></div>
       <div class="px-card" id="rep-docente"><h3>Tipo de docente</h3><div data-draw="avd" data-dim="Tipo de docente" data-source="av_dim"></div></div>
       <div class="px-card" id="rep-lugar"><h3>Lugar de impartición</h3><div data-draw="avd" data-dim="Lugar" data-source="av_dim"></div></div>
-      <div class="px-card" id="rep-estrategia"><h3>Estrategia 2027</h3><div data-draw="avd" data-dim="Estrategia" data-source="av_dim"></div></div>
+      <div class="px-card" id="rep-bloque"><h3>Avance por bloque</h3><div data-draw="avd" data-dim="Bloque" data-calc="av_crit" data-source="av_crit"></div></div>
     </div>
     <div class="px-grid">
       <div class="px-card" id="rep-instalaciones">
@@ -1345,6 +1345,42 @@ dash.calc('av_dim', {
   },
 });
 
+dash.calc('av_crit', {
+  title: 'Registro por estrategia y bloque del Layout Criterios 2027',
+  description: 'Grupos, inscripciones y asistencias registradas en el REPORTE PAA CURSOS por estrategia 2027 (Nom_Estratégia) y por bloque (Nom_agrupación Información) de cada actividad según el Layout Criterios 2027, unidas por clave de actividad; a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total, con la participación de cada valor en las inscripciones y en las asistencias del ámbito.',
+  inputs: ['avance_actividad', 'layout_criterios_27', 'unidades_operativas'],
+  fn: (avance_actividad, layout_criterios_27, unidades_operativas) => {
+    const areaNormativa = (a) => (a === 'CECART' ? 'Capacitación y Adiestramiento Técnico' : a === 'CASSAAM' ? 'Promoción de la Salud' : a);
+    const uo = new Map(unidades_operativas.map((u) => [Math.floor(Number(u.cve_uo) / 1000) + '-' + (Number(u.cve_uo) % 1000), u]));
+    const lay = new Map(layout_criterios_27.map((l) => [String(l.clave), l]));
+    const acc = new Map(), tot = new Map(), totA = new Map();
+    for (const r of avance_actividad) {
+      const u = uo.get(r.unidad);
+      if (!u) continue;
+      const l = lay.get(String(r.clave_actividad));
+      const dims = { 'Estrategia 2027': (l && l.estrategia) || 'Sin clave en el Layout Criterios 2027', Bloque: (l && l.bloque) || 'Sin clave en el Layout Criterios 2027' };
+      for (const area of ['Todas', areaNormativa(r.area)]) {
+        for (const [nivel, clave] of [['Nacional', 'Nacional'], ['OOAD', String(u.cve_ooad)], ['Unidad Operativa', r.unidad]]) {
+          for (const [dimension, valor] of Object.entries(dims)) {
+            const g = nivel + '|' + clave + '|' + area + '|' + dimension;
+            const k = g + '|' + valor;
+            const o = acc.get(k) || { nivel, clave, area, dimension, valor, grupos: 0, inscripciones: 0, asistencias: 0 };
+            o.grupos += Number(r.grupos) || 0; o.inscripciones += Number(r.inscripciones) || 0; o.asistencias += Number(r.asistencias) || 0;
+            acc.set(k, o);
+            tot.set(g, (tot.get(g) || 0) + (Number(r.inscripciones) || 0));
+            totA.set(g, (totA.get(g) || 0) + (Number(r.asistencias) || 0));
+          }
+        }
+      }
+    }
+    return [...acc.values()].map((o) => {
+      const g = o.nivel + '|' + o.clave + '|' + o.area + '|' + o.dimension;
+      const t = tot.get(g), ta = totA.get(g);
+      return { ...o, participacion: t ? o.inscripciones / t : null, participacion_asistencias: ta ? o.asistencias / ta : null };
+    });
+  },
+});
+
 dash.calc('av_act', {
   title: 'Registro por actividad y apego a criterios',
   description: 'Por actividad, a nivel nacional, por OOAD y por Unidad Operativa, por área normativa y en total: grupos, inscripciones y asistencias registradas, y grupos con clave vigente en el Layout 2027, que alcanzan la meta mínima, con edad dentro del rango y con cuota de recuperación.',
@@ -1480,11 +1516,12 @@ dash.draw('semk', (el) => {
 
 
 dash.draw('avd', (el) => {
-  if (!PX.ready(el, ['av_dim'])) return;
+  const src = el.dataset.calc || 'av_dim';
+  if (!PX.ready(el, [src])) return;
   const dim = el.dataset.dim;
   const s = PXV.scope();
   const a = PX.area();
-  let rows = dash.data('av_dim').data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.dimension === dim);
+  let rows = dash.data(src).data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.dimension === dim);
   const m = PXMED.m();
   const pf = m === 'asistencias' ? 'participacion_asistencias' : 'participacion';
   rows = dim === 'Mes de inicio' ? rows.sort((x, y) => String(x.valor).localeCompare(String(y.valor))) : rows.sort((x, y) => y[m] - x[m]);
