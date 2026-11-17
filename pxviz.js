@@ -246,6 +246,58 @@ window.PXZ = (() => {
     PX.hover(el, g, (n) => o.tip(n.d));
   };
 
+
+  // 5c · Rejilla de México: cada OOAD ocupa una celda de un panal acomodado como el país (todas las celdas del mismo tamaño);
+  // dentro, una burbuja del tamaño de su meta que se llena con el avance y toma el color del semáforo.
+  const REJ = { 2: [0, 0, 'BC'], 27: [1, 0, 'SON'], 8: [2, 0, 'CHIH'], 5: [3, 0, 'COAH'], 20: [4, 0, 'NL'],
+    3: [0.5, 1, 'BCS'], 26: [1.5, 1, 'SIN'], 10: [2.5, 1, 'DGO'], 34: [3.5, 1, 'ZAC'], 29: [4.5, 1, 'TAMS'],
+    19: [2, 2, 'NAY'], 1: [3, 2, 'AGS'], 25: [4, 2, 'SLP'],
+    14: [2.5, 3, 'JAL'], 11: [3.5, 3, 'GTO'], 23: [4.5, 3, 'QRO'], 13: [5.5, 3, 'HGO'], 31: [6.5, 3, 'VER N'],
+    6: [2, 4, 'COL'], 17: [3, 4, 'MICH'], 16: [4, 4, 'MEX P'], 39: [5, 4, 'CDMX N'], 15: [6, 4, 'MEX O'], 30: [7, 4, 'TLAX'],
+    12: [3.5, 5, 'GRO'], 40: [4.5, 5, 'CDMX S'], 18: [5.5, 5, 'MOR'], 22: [6.5, 5, 'PUE'], 32: [7.5, 5, 'VER S'], 28: [8.5, 5, 'TAB'], 4: [9.5, 5, 'CAM'], 33: [10.5, 5, 'YUC'],
+    21: [6, 6, 'OAX'], 7: [8, 6, 'CHIS'], 24: [10, 6, 'QROO'] };
+  const rejilla = (el, rows, o) => {
+    if (!rows.length) { empty(el, o.vacio); return; }
+    const anim = !el.dataset.pxDrawn && !reduce();
+    el.dataset.pxDrawn = '1';
+    const W = Math.max(280, el.clientWidth), cols = 11.6, cs = Math.min(W / cols, 96), dy = cs * 0.9;
+    const H = Math.ceil(dy * 6 + cs + 6), x0 = (W - cs * cols) / 2 + cs * 0.55, y0 = cs * 0.5 + 3;
+    el.style.minHeight = H + 'px';
+    const svg = svgOf(el, W, H, o.aria);
+    const R = cs * 0.47;
+    const rs = d3.scaleSqrt([0, d3.max(rows, o.size) || 1], [R * 0.34, R * 0.92]);
+    const by = new Map(rows.map((d) => [Number(o.cve(d)), d]));
+    const celdas = Object.entries(REJ).map(([k, [c, r, cod]]) => ({ k: Number(k), cod, x: x0 + c * cs, y: y0 + r * dy, d: by.get(Number(k)) || null }));
+    const defs = svg.append('defs');
+    const g = svg.selectAll('g.px-cel').data(celdas).join('g').attr('class', 'px-cel').attr('transform', (n) => `translate(${n.x},${n.y})`)
+      .style('cursor', (n) => (o.click && n.d ? 'pointer' : null));
+    g.append('circle').attr('r', R).attr('fill', 'none').attr('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1.2);
+    g.each(function (n, i) {
+      const s = d3.select(this);
+      if (!n.d) return;
+      const c = o.color(n.d), r = rs(o.size(n.d)), cid = id('r');
+      defs.append('clipPath').attr('id', cid).append('circle').attr('r', r);
+      const f = o.fill ? Math.max(0, Math.min(1, o.fill(n.d) ?? 0)) : 1;
+      const b = s.append('g');
+      b.append('circle').attr('r', r).attr('fill', mix(c, 18)).attr('stroke', c).attr('stroke-width', 1.4);
+      const lvl = b.append('rect').attr('clip-path', `url(#${cid})`).attr('x', -r).attr('width', 2 * r).attr('fill', c)
+        .attr('y', anim ? r : r - 2 * r * f).attr('height', anim ? 0 : 2 * r * f);
+      if (anim) {
+        b.attr('transform', 'scale(0)').transition().duration(600).delay(i * 22).ease(d3.easeBackOut).attr('transform', 'scale(1)');
+        lvl.transition().duration(1000).delay(500 + i * 22).ease(d3.easeCubicOut).attr('y', r - 2 * r * f).attr('height', 2 * r * f);
+      }
+    });
+    const fs = Math.max(7, Math.min(12, cs / 6.2));
+    const C3 = { 'CDMX N': 'CDN', 'CDMX S': 'CDS', 'MEX P': 'MXP', 'MEX O': 'MXO', 'VER N': 'VRN', 'VER S': 'VRS', TAMS: 'TAM', CHIH: 'CHI', COAH: 'COA', MICH: 'MIC', TLAX: 'TLX', QROO: 'QRR', CHIS: 'CHS' };
+    const cod = (n) => (cs < 48 ? C3[n.cod] || n.cod : n.cod);
+    g.append('text').attr('text-anchor', 'middle').attr('y', (n) => (n.d && cs > 52 ? -fs * 0.15 : fs * 0.35)).style('font-size', fs + 'px').style('font-weight', 700).style('letter-spacing', '.02em')
+      .style('fill', (n) => (n.d ? 'var(--color-fg, #1d1d1b)' : 'var(--color-fg-muted, #6f7271)')).style('paint-order', 'stroke').style('stroke', 'var(--color-bg, #fff)').style('stroke-width', '3px').text(cod);
+    if (cs > 52) g.filter((n) => n.d).append('text').attr('text-anchor', 'middle').attr('y', fs * 1.05).style('font-size', fs * 0.9 + 'px')
+      .style('fill', 'var(--color-fg, #1d1d1b)').style('paint-order', 'stroke').style('stroke', 'var(--color-bg, #fff)').style('stroke-width', '3px').text((n) => o.sub(n.d));
+    if (o.click) g.filter((n) => n.d).on('click', (ev, n) => o.click(n.d));
+    PX.hover(el, g.filter((n) => n.d), (n) => o.tip(n.d));
+  };
+
   // 6 · Dispersión: inscripciones (x) contra asistencias (y), burbuja = meta, color = semáforo.
   const dispersion = (el, rows, o) => {
     if (!rows.length) { empty(el, o.vacio); return; }
@@ -329,7 +381,7 @@ window.PXZ = (() => {
     PX.hover(el, g, o.tip);
   };
 
-  return { hbar, rosa, anillos, mosaico, reparto, burbujas, mapa, dispersion, linea, pct, fmt, compact, PAL, empty };
+  return { hbar, rosa, anillos, mosaico, reparto, burbujas, mapa, rejilla, dispersion, linea, pct, fmt, compact, PAL, empty };
 })();
 
 // Todas las gráficas de barras horizontales pasan al estilo cápsula.
@@ -375,8 +427,8 @@ dash.draw('ch-metas-ooad', (el) => {
   const ins = m !== 'asistencias';
   const rows = dash.data('av_nivel').data.filter((r) => r.nivel === l.nivel && r.padre === l.padre && r.area === a && (ins ? r.meta_2027 : r.asistencias > 0));
   const tot = d3.sum(rows, (r) => r.asistencias);
-  // A nivel nacional, las OOAD se acomodan como mapa de México; dentro de una OOAD, burbujas agrupadas.
-  (l.nivel === 'OOAD' ? PXZ.mapa : PXZ.burbujas)(el, rows, {
+  // A nivel nacional, las OOAD se acomodan en un panal con la forma de México; dentro de una OOAD, burbujas agrupadas.
+  (l.nivel === 'OOAD' ? PXZ.rejilla : PXZ.burbujas)(el, rows, {
     cve: (r) => r.clave,
     aria: (ins ? 'Avance contra la meta de inscripciones 2027' : 'Asistencias registradas') + ' por ' + (l.nivel === 'OOAD' ? 'OOAD' : 'Unidad Operativa'),
     size: (r) => (ins ? r.meta_2027 : r.asistencias), fill: ins ? (r) => r.avance || 0 : null,
