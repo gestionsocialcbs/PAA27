@@ -19,6 +19,17 @@ window.PXZ = (() => {
     lg.append('stop').attr('offset', '100%').attr('stop-color', color).attr('stop-opacity', 1);
     return `url(#${g})`;
   };
+  // Altura de llenado (fracción del diámetro) para que el ÁREA llena del círculo sea proporcional al avance.
+  const nivel = (f) => {
+    f = Math.max(0, Math.min(1, f || 0));
+    if (f <= 0 || f >= 1) return f;
+    let lo = 0, hi = 1;
+    for (let i = 0; i < 30; i++) {
+      const h = (lo + hi) / 2, t = 2 * h, a = Math.acos(1 - t) - (1 - t) * Math.sqrt(Math.max(0, 2 * t - t * t));
+      if (a / Math.PI < f) lo = h; else hi = h;
+    }
+    return (lo + hi) / 2;
+  };
   const empty = (el, t) => { const p = document.createElement('p'); p.className = 'px-note'; p.textContent = t || 'Sin registro en el ámbito y el área seleccionados.'; el.appendChild(p); el.style.minHeight = ''; };
 
   // 1 · Barras cápsula: carril tenue, barra con degradado y remate circular. Sustituye a PX.hbar (mismas opciones).
@@ -150,10 +161,22 @@ window.PXZ = (() => {
   const reparto = (el, rows, o) => {
     if (!rows.length) { empty(el, o.vacio); return; }
     const tot = d3.sum(rows, o.value) || 1;
-    if (rows.length <= 6) {
+    if (rows.length <= 6 && !o.barras) {
       anillos(el, rows.map((d, i) => ({ d, label: o.label(d), frac: (o.value(d) || 0) / tot, color: PAL[i % PAL.length], valueText: o.valueText(d) })),
         { aria: o.aria, tip: (it) => o.tip(it.d), centro: [compact(tot), o.unidad || 'en total'] });
-    } else mosaico(el, rows, o);
+    } else {
+      // Muchas categorías (o bloques): ranking de barras cápsula, de mayor a menor, con cifra y porcentaje.
+      // Más de 12 categorías: las 11 mayores y el resto sumado en «Otros».
+      let R = rows;
+      if (rows.length > 12) {
+        const resto = rows.slice(11), v = d3.sum(resto, o.value);
+        R = rows.slice(0, 11).concat([{ _otros: true, n: resto.length, v, p: v / tot }]);
+      }
+      const lab = (d) => (d._otros ? 'Otros ' + d.n + (o.otros ? ' ' + o.otros : '') : o.label(d));
+      hbar(el, R, { aria: o.aria, label: lab, value: (d) => (d._otros ? d.v : o.value(d)),
+        valueText: (d) => (d._otros ? fmt(d.v) + ' · ' + pct(d.p) : o.valueText(d)), color: (d) => (d._otros ? '#98989A' : o.color || '#1E5B4F'),
+        tip: (d) => (d._otros ? ['Otros ' + d.n, ['Suma', fmt(d.v)], ['Participación', pct(d.p)]] : o.tip(d)) });
+    }
   };
 
   // 5 · Burbujas con nivel de llenado: tamaño = valor, llenado = avance contra la meta (si lo hay), color = semáforo.
@@ -175,7 +198,7 @@ window.PXZ = (() => {
       const cid = id('c');
       defs.append('clipPath').attr('id', cid).append('circle').attr('r', d.r);
       s.append('circle').attr('r', d.r).attr('fill', mix(c, 14)).attr('stroke', mix(c, 55)).attr('stroke-width', 1.2);
-      const f = o.fill ? Math.max(0, Math.min(1, o.fill(d.data) ?? 0)) : 1;
+      const f = o.fill ? nivel(o.fill(d.data) ?? 0) : 1;
       const lvl = s.append('rect').attr('clip-path', `url(#${cid})`).attr('x', -d.r).attr('width', d.r * 2).attr('fill', c).attr('opacity', o.fill ? 0.9 : 0.85)
         .attr('y', anim ? d.r : d.r - 2 * d.r * f).attr('height', anim ? 0 : 2 * d.r * f);
       if (anim) lvl.transition().duration(1100).delay(Math.random() * 350).ease(d3.easeCubicOut).attr('y', d.r - 2 * d.r * f).attr('height', 2 * d.r * f);
@@ -228,7 +251,7 @@ window.PXZ = (() => {
       defs.append('clipPath').attr('id', cid).append('circle').attr('r', n.r);
       s.append('circle').attr('r', n.r).attr('fill', 'var(--color-bg, #fff)');
       s.append('circle').attr('r', n.r).attr('fill', mix(c, 16)).attr('stroke', mix(c, 70)).attr('stroke-width', 1.3);
-      const f = o.fill ? Math.max(0, Math.min(1, o.fill(n.d) ?? 0)) : 1;
+      const f = o.fill ? nivel(o.fill(n.d) ?? 0) : 1;
       const lvl = s.append('rect').attr('clip-path', `url(#${cid})`).attr('x', -n.r).attr('width', n.r * 2).attr('fill', c).attr('opacity', 0.9)
         .attr('y', anim ? n.r : n.r - 2 * n.r * f).attr('height', anim ? 0 : 2 * n.r * f);
       if (anim) lvl.transition().duration(1100).delay(300 + Math.random() * 400).ease(d3.easeCubicOut).attr('y', n.r - 2 * n.r * f).attr('height', 2 * n.r * f);
@@ -277,7 +300,7 @@ window.PXZ = (() => {
       if (!n.d) return;
       const c = o.color(n.d), r = o.size ? rs(o.size(n.d)) : R * 0.86, cid = id('r');
       defs.append('clipPath').attr('id', cid).append('circle').attr('r', r);
-      const f = o.fill ? Math.max(0, Math.min(1, o.fill(n.d) ?? 0)) : 1;
+      const f = o.fill ? nivel(o.fill(n.d) ?? 0) : 1;
       const b = s.append('g');
       b.append('circle').attr('r', r).attr('fill', mix(c, 18)).attr('stroke', c).attr('stroke-width', 1.4);
       const lvl = b.append('rect').attr('clip-path', `url(#${cid})`).attr('x', -r).attr('width', 2 * r).attr('fill', c)
@@ -417,6 +440,7 @@ dash.draw('avd', (el) => {
   const dim = el.dataset.dim, s = PXV.scope(), a = PX.area(), m = PXMED.m();
   const rows = pxRep(src, dim, m, dash.data(src).data.filter((r) => r.nivel === s.nivel && r.clave === s.clave && r.area === a && r.dimension === dim)).sort((x, y) => y[m] - x[m]);
   PXZ.reparto(el, rows, {
+    barras: dim === 'Bloque', otros: 'bloques',
     aria: PXMED.t() + ' registradas por ' + dim.toLowerCase(), unidad: m + ' registradas', vacio: 'Sin grupos registrados en el ámbito seleccionado.',
     label: (d) => d.valor, value: (d) => d[m], valueText: (d) => PX.fmt(Math.round(d[m])) + (d._p === null || d._p === undefined ? '' : ' · ' + PXZ.pct(d._p)),
     tip: (d) => [d.valor, ['Grupos registrados', PX.fmt(d.grupos)], ['Inscripciones registradas', PX.fmt(Math.round(d.inscripciones))], ['Asistencias registradas', PX.fmt(Math.round(d.asistencias))], ['Participación en las ' + PXMED.t().toLowerCase(), PXZ.pct(d._p)]],
@@ -434,7 +458,7 @@ dash.draw('ch-metas-ooad', (el) => {
   (l.nivel === 'OOAD' ? PXZ.rejilla : PXZ.burbujas)(el, rows, {
     cve: (r) => r.clave,
     aria: (ins ? 'Avance contra la meta de inscripciones 2027' : 'Asistencias registradas') + ' por ' + (l.nivel === 'OOAD' ? 'OOAD' : 'Unidad Operativa'),
-    size: l.nivel === 'OOAD' ? null : () => 1, fill: null,
+    size: l.nivel === 'OOAD' ? null : () => 1, fill: ins ? (r) => Math.min(1, r.avance || 0) : null,
     color: (r) => (ins ? (r.inscripciones > 0 ? PXS.color(r.semaforo) : '#98989A') : d3.interpolateRgb('#D9B5C0', '#9B2247')(Math.sqrt(r.asistencias / (d3.max(rows, (x) => x.asistencias) || 1)))),
     label: (r) => r.nombre, sub: (r) => (ins ? PXZ.pct(r.avance) : PXZ.compact(r.asistencias)),
     click: (r) => dash.setParams(r.nivel === 'OOAD' ? { ooad: r.clave, uo: null } : { ooad: r.padre, uo: r.clave }),
@@ -536,7 +560,7 @@ dash.draw('acd', (el) => {
     PXZ.hbar(el, rows, { aria: 'Actividades con más asistencias', label, value: (d) => d.asistencias, valueText: (d) => PX.fmt(d.asistencias) + ' · ' + PXZ.pct(d.participacion), color: '#1E5B4F', tip });
     return;
   }
-  PXZ.reparto(el, rows, { aria: 'Asistencias registradas por ' + dim.toLowerCase(), unidad: 'asistencias', vacio: 'Sin asistencias registradas en el ámbito y el área seleccionados.', label, value: (d) => d.asistencias, valueText: (d) => PX.fmt(d.asistencias) + ' · ' + PXZ.pct(d.participacion), tip });
+  PXZ.reparto(el, rows, { barras: dim === 'Bloque', otros: 'bloques', aria: 'Asistencias registradas por ' + dim.toLowerCase(), unidad: 'asistencias', vacio: 'Sin asistencias registradas en el ámbito y el área seleccionados.', label, value: (d) => d.asistencias, valueText: (d) => PX.fmt(d.asistencias) + ' · ' + PXZ.pct(d.participacion), tip });
 });
 
 dash.draw('ch-ac-nivel', (el) => {
@@ -586,7 +610,7 @@ dash.draw('ted', (el) => {
     PXZ.hbar(el, rows, { aria: 'Actividades con más asistencias en teatros', label, value: (d) => d.asistencias, valueText: (d) => PX.fmt(d.asistencias) + ' · ' + PXZ.pct(d.participacion), color: '#A57F2C', tip });
     return;
   }
-  PXZ.reparto(el, rows, { aria: 'Asistencias registradas en teatros por ' + dim.toLowerCase(), unidad: 'asistencias', color: '#A57F2C', vacio: 'Sin asistencias registradas en el ámbito y el área seleccionados.', label, value: (d) => d.asistencias, valueText: (d) => PX.fmt(d.asistencias) + ' · ' + PXZ.pct(d.participacion), tip });
+  PXZ.reparto(el, rows, { barras: dim === 'Bloque', otros: 'bloques', aria: 'Asistencias registradas en teatros por ' + dim.toLowerCase(), unidad: 'asistencias', color: '#A57F2C', vacio: 'Sin asistencias registradas en el ámbito y el área seleccionados.', label, value: (d) => d.asistencias, valueText: (d) => PX.fmt(d.asistencias) + ' · ' + PXZ.pct(d.participacion), tip });
 });
 
 dash.draw('ch-te-nivel', (el) => {
