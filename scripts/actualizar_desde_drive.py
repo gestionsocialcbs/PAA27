@@ -220,7 +220,9 @@ def main():
             d['actualizado'] = bit['ejecucion']
             d['fuente'] = f"Jorge ({f['name']})"
         # Hora de consulta del reporte (del nombre del archivo) en el corte publicado.
-        hc = hora_de_nombre(f['name'])
+        # Hora de actualización: la hora (Ciudad de México, UTC-6) en que el reporte se guardó en Google Drive.
+        # La hora que trae el nombre del archivo no es confiable (se repite de un día a otro).
+        hc = (iso(f['modifiedTime']) - datetime.timedelta(hours=6)).strftime('%H:%M') if f.get('modifiedTime') else None
         cortes = json.load(open(REF(rep['corte'])))
         for c in cortes:
             if c.get('fecha_corte') == fc.isoformat():
