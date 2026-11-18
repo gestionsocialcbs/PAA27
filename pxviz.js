@@ -265,7 +265,7 @@ window.PXZ = (() => {
     el.style.minHeight = H + 'px';
     const svg = svgOf(el, W, H, o.aria);
     const R = cs * 0.47;
-    const rs = d3.scaleSqrt([0, d3.max(rows, o.size) || 1], [R * 0.34, R * 0.92]);
+    const rs = o.size ? d3.scaleSqrt([0, d3.max(rows, o.size) || 1], [R * 0.34, R * 0.92]) : null;
     const by = new Map(rows.map((d) => [Number(o.cve(d)), d]));
     const celdas = Object.entries(REJ).map(([k, [c, r, cod]]) => ({ k: Number(k), cod, x: x0 + c * cs, y: y0 + r * dy, d: by.get(Number(k)) || null }));
     const defs = svg.append('defs');
@@ -275,7 +275,7 @@ window.PXZ = (() => {
     g.each(function (n, i) {
       const s = d3.select(this);
       if (!n.d) return;
-      const c = o.color(n.d), r = rs(o.size(n.d)), cid = id('r');
+      const c = o.color(n.d), r = o.size ? rs(o.size(n.d)) : R * 0.86, cid = id('r');
       defs.append('clipPath').attr('id', cid).append('circle').attr('r', r);
       const f = o.fill ? Math.max(0, Math.min(1, o.fill(n.d) ?? 0)) : 1;
       const b = s.append('g');
@@ -290,10 +290,13 @@ window.PXZ = (() => {
     const fs = Math.max(7, Math.min(12, cs / 6.2));
     const C3 = { 'CDMX N': 'CDN', 'CDMX S': 'CDS', 'MEX P': 'MXP', 'MEX O': 'MXO', 'VER N': 'VRN', 'VER S': 'VRS', TAMS: 'TAM', CHIH: 'CHI', COAH: 'COA', MICH: 'MIC', TLAX: 'TLX', QROO: 'QRR', CHIS: 'CHS' };
     const cod = (n) => (cs < 48 ? C3[n.cod] || n.cod : n.cod);
-    g.append('text').attr('text-anchor', 'middle').attr('y', (n) => (n.d && cs > 52 ? -fs * 0.15 : fs * 0.35)).style('font-size', fs + 'px').style('font-weight', 700).style('letter-spacing', '.02em')
-      .style('fill', (n) => (n.d ? 'var(--color-fg, #1d1d1b)' : 'var(--color-fg-muted, #6f7271)')).style('paint-order', 'stroke').style('stroke', 'var(--color-bg, #fff)').style('stroke-width', '3px').text(cod);
-    if (cs > 52) g.filter((n) => n.d).append('text').attr('text-anchor', 'middle').attr('y', fs * 1.05).style('font-size', fs * 0.9 + 'px')
-      .style('fill', 'var(--color-fg, #1d1d1b)').style('paint-order', 'stroke').style('stroke', 'var(--color-bg, #fff)').style('stroke-width', '3px').text((n) => o.sub(n.d));
+    const solido = !o.size && !o.fill;
+    const tx = (n) => (solido && n.d ? '#fff' : n.d ? 'var(--color-fg, #1d1d1b)' : 'var(--color-fg-muted, #6f7271)');
+    const halo = (sel) => (solido ? sel : sel.style('paint-order', 'stroke').style('stroke', 'var(--color-bg, #fff)').style('stroke-width', '3px'));
+    halo(g.append('text').attr('text-anchor', 'middle').attr('y', (n) => (n.d && cs > 52 ? -fs * 0.15 : fs * 0.35)).style('font-size', fs + 'px').style('font-weight', 700).style('letter-spacing', '.02em')
+      .style('fill', tx)).text(cod);
+    if (cs > 52) halo(g.filter((n) => n.d).append('text').attr('text-anchor', 'middle').attr('y', fs * 1.05).style('font-size', fs * 0.9 + 'px')
+      .style('fill', tx)).text((n) => o.sub(n.d));
     if (o.click) g.filter((n) => n.d).on('click', (ev, n) => o.click(n.d));
     PX.hover(el, g.filter((n) => n.d), (n) => o.tip(n.d));
   };
@@ -431,8 +434,8 @@ dash.draw('ch-metas-ooad', (el) => {
   (l.nivel === 'OOAD' ? PXZ.rejilla : PXZ.burbujas)(el, rows, {
     cve: (r) => r.clave,
     aria: (ins ? 'Avance contra la meta de inscripciones 2027' : 'Asistencias registradas') + ' por ' + (l.nivel === 'OOAD' ? 'OOAD' : 'Unidad Operativa'),
-    size: (r) => (ins ? r.meta_2027 : r.asistencias), fill: ins ? (r) => r.avance || 0 : null,
-    color: (r) => (ins ? (r.inscripciones > 0 ? PXS.color(r.semaforo) : '#6F7271') : '#9B2247'),
+    size: l.nivel === 'OOAD' ? null : () => 1, fill: null,
+    color: (r) => (ins ? (r.inscripciones > 0 ? PXS.color(r.semaforo) : '#98989A') : d3.interpolateRgb('#D9B5C0', '#9B2247')(Math.sqrt(r.asistencias / (d3.max(rows, (x) => x.asistencias) || 1)))),
     label: (r) => r.nombre, sub: (r) => (ins ? PXZ.pct(r.avance) : PXZ.compact(r.asistencias)),
     click: (r) => dash.setParams(r.nivel === 'OOAD' ? { ooad: r.clave, uo: null } : { ooad: r.padre, uo: r.clave }),
     tip: (r) => (ins
@@ -466,27 +469,38 @@ dash.draw('ch-metas-area', (el) => {
 });
 
 // Avance del registro por OOAD o Unidad Operativa: dispersión de inscripciones contra asistencias.
+// Avance del registro por OOAD, Unidad Operativa o instalación: ranking por avance contra la meta, con el semáforo.
+const pxSegClick = (r) => { if (r.nivel === 'OOAD') dash.setParams({ ooad: r.clave, uo: null, inst: null }); else if (r.nivel === 'Unidad Operativa') dash.setParams({ ooad: r.padre, uo: r.clave, inst: null }); };
+const pxSegRows = () => { const s = PXV.scope(), a = PX.area(); return { s, rows: dash.data('av_nivel').data.filter((r) => r.nivel === s.hijos && r.padre === s.clave && r.area === a && (r.inscripciones > 0 || r.asistencias > 0 || r.meta_2027 > 0)) }; };
 dash.draw('ch-seg', (el) => {
   if (!PX.ready(el, ['av_nivel'])) return;
-  const s = PXV.scope(), a = PX.area();
-  const rows = dash.data('av_nivel').data.filter((r) => r.nivel === s.hijos && r.padre === s.clave && r.area === a && (r.inscripciones > 0 || r.asistencias > 0));
-  if (s.hijos === 'Instalación' || rows.length < 3) {
-    // Pocas filas o instalaciones: barras cápsula de inscripciones.
-    if (!rows.length) { PXZ.empty(el); return; }
-    PXZ.hbar(el, rows.sort((x, y) => y.inscripciones - x.inscripciones), {
-      aria: 'Inscripciones registradas por ' + s.hijos, label: (r) => r.nombre, value: (r) => r.inscripciones,
-      valueText: (r) => PX.fmt(r.inscripciones) + (r.avance === null || r.avance === undefined ? '' : ' · ' + PXZ.pct(r.avance)) + ' · ' + PX.fmt(r.asistencias) + ' asistencias',
-      color: (r) => (r.semaforo ? PXS.color(r.semaforo) : '#1E5B4F'),
-      tip: (r) => [r.nombre, ['Meta de inscripciones 2027', r.meta_2027 ? PX.fmt(Math.round(r.meta_2027)) : 'Sin meta'], ['Inscripciones registradas', PX.fmt(r.inscripciones)], ['Avance', PXZ.pct(r.avance)], ['Asistencias registradas', PX.fmt(r.asistencias)], ['Grupos', PX.fmt(r.grupos)]],
-    });
-    return;
-  }
-  PXZ.dispersion(el, rows, {
-    aria: 'Inscripciones contra asistencias registradas por ' + s.hijos, xt: 'Inscripciones registradas', yt: 'Asistencias registradas',
-    x: (r) => r.inscripciones, y: (r) => r.asistencias, r: (r) => r.meta_2027 || r.inscripciones, color: (r) => (r.semaforo ? PXS.color(r.semaforo) : '#6F7271'), label: (r) => r.nombre,
-    click: (r) => { if (r.nivel === 'OOAD') dash.setParams({ ooad: r.clave, uo: null, inst: null }); else if (r.nivel === 'Unidad Operativa') dash.setParams({ ooad: r.padre, uo: r.clave, inst: null }); },
-    tip: (r) => [r.nombre, ['Meta de inscripciones 2027', r.meta_2027 ? PX.fmt(Math.round(r.meta_2027)) : 'Sin meta'], ['Inscripciones registradas', PX.fmt(r.inscripciones)], ['Avance', r.avance === null ? '—' : PXZ.pct(r.avance) + (r.semaforo ? ' · ' + r.semaforo : '')], ['Asistencias registradas', PX.fmt(r.asistencias)], ['Asistencias por inscripción', r.asistencias_por_inscripcion === null ? '—' : d3.format(',.1f')(r.asistencias_por_inscripcion)], ['Grupos', PX.fmt(r.grupos)]],
+  const { s, rows } = pxSegRows();
+  if (!rows.length) { PXZ.empty(el); return; }
+  const conMeta = rows.some((r) => r.meta_2027 > 0);
+  rows.sort((x, y) => (conMeta ? (y.avance || 0) - (x.avance || 0) || y.inscripciones - x.inscripciones : y.inscripciones - x.inscripciones));
+  const g = PXZ.hbar(el, rows, {
+    aria: 'Avance contra la meta de inscripciones 2027 por ' + s.hijos,
+    label: (r) => r.nombre + (r.meta_2027 ? ' · meta ' + PX.fmt(Math.round(r.meta_2027)) + ' · ' + PX.fmt(r.inscripciones) + ' registradas' : ''),
+    value: (r) => (conMeta ? r.avance || 0 : r.inscripciones),
+    valueText: (r) => (r.meta_2027 ? PXZ.pct(r.avance) : PX.fmt(r.inscripciones)),
+    color: (r) => (r.semaforo ? PXS.color(r.semaforo) : r.inscripciones > 0 ? '#1E5B4F' : '#98989A'),
+    tip: (r) => [r.nombre, ['Meta de inscripciones 2027', r.meta_2027 ? PX.fmt(Math.round(r.meta_2027)) : 'Sin meta'], ['Inscripciones registradas', PX.fmt(r.inscripciones)], ['Avance', r.meta_2027 ? PXZ.pct(r.avance) + (r.semaforo ? ' · ' + r.semaforo : '') : '—'], ['Grupos', PX.fmt(r.grupos)]],
   });
+  if (s.hijos !== 'Instalación') g.style('cursor', 'pointer').on('click', (ev, r) => pxSegClick(r));
+});
+
+dash.draw('ch-seg-asis', (el) => {
+  if (!PX.ready(el, ['av_nivel'])) return;
+  const { s, rows } = pxSegRows();
+  const R = rows.filter((r) => r.asistencias > 0).sort((x, y) => y.asistencias - x.asistencias);
+  if (!R.length) { PXZ.empty(el); return; }
+  const tot = d3.sum(R, (r) => r.asistencias);
+  const g = PXZ.hbar(el, R, {
+    aria: 'Asistencias registradas por ' + s.hijos, label: (r) => r.nombre, value: (r) => r.asistencias,
+    valueText: (r) => PX.fmt(r.asistencias) + ' · ' + PXZ.pct(r.asistencias / tot), color: '#9B2247',
+    tip: (r) => [r.nombre, ['Asistencias registradas', PX.fmt(r.asistencias)], ['Participación en las asistencias', PXZ.pct(r.asistencias / tot)], ['Asistencias por inscripción', r.asistencias_por_inscripcion === null || r.asistencias_por_inscripcion === undefined ? '—' : d3.format(',.1f')(r.asistencias_por_inscripcion)], ['Grupos', PX.fmt(r.grupos)]],
+  });
+  if (s.hijos !== 'Instalación') g.style('cursor', 'pointer').on('click', (ev, r) => pxSegClick(r));
 });
 
 dash.draw('ch-cortes', (el) => {
