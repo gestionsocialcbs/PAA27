@@ -295,6 +295,7 @@
 .px-kpis-2 > .px-kpi:first-child .px-kpi-v { font-weight:inherit; }
 /* Comparación contra el avance real 2026: oculta por ahora (quitar esta regla para mostrarla). */
 .px-real { display:none !important; }
+.px-oculto { display:none !important; }
 .px-pulse { animation: px-pulse 1.8s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes px-pulse { from { transform: scale(1); opacity: .7; } to { transform: scale(3.2); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .px-pulse { animation: none; } }
@@ -486,28 +487,10 @@
     <div class="px-card"><h3>Avance real por fecha de corte</h3><p class="px-note">Registro real a nivel nacional en cada corte procesado del reporte de Inscritos.</p><div class="px-chart dash-skeleton" data-draw="ch-pr-cortes" data-m="cu" style="min-height:220px"></div></div>
   </section>
 
-  <section class="px-sec" id="pronostico">
-    <div class="px-sec-h">
-      <div class="px-sec-n">03 · Pronóstico de cumplimiento</div>
-      <h2 class="px-sec-t">¿Llegaremos a la meta de inscripciones 2027?</h2>
-      <p class="px-sec-d"><span data-draw="pred-lead" data-source="pred_corte">—</span> Dos estimaciones: cuánto quedaría registrado al cierre del registro si se mantiene el ritmo de los últimos cortes, y cuántas inscripciones y asistencias reales podrían lograrse en 2027 si cada unidad cumple su programa como lo hizo en 2026. Responde a los filtros de ámbito y de área.</p>
-    </div>
-    <div class="px-kpis">
-      <div class="px-kpi"><div class="px-kpi-l">Inscripciones proyectadas al cierre del registro</div><div class="px-kpi-v dash-skeleton" data-draw="pred-k" data-k="proy" data-source="pred_registro">—</div></div>
-      <div class="px-kpi"><div class="px-kpi-l">Ritmo de registro: actual y necesario</div><div class="px-kpi-v dash-skeleton" data-draw="pred-k" data-k="ritmo" data-source="pred_registro">—</div></div>
-      <div class="px-kpi"><div class="px-kpi-l">Inscripciones reales 2027 estimadas</div><div class="px-kpi-v dash-skeleton" data-draw="pred-k" data-k="real-i" data-source="pred_registro">—</div></div>
-      <div class="px-kpi"><div class="px-kpi-l">Asistencias 2027: proyectadas al cierre y reales estimadas</div><div class="px-kpi-v dash-skeleton" data-draw="pred-k" data-k="real-a" data-source="pred_registro">—</div></div>
-    </div>
-    <div class="px-grid px-grid-2">
-      <div class="px-card"><h3>Trayectoria del registro y proyección al cierre</h3><p class="px-note">Línea verde: inscripciones registradas en cada corte; verde punteada: proyección al ritmo actual; guinda punteada: ritmo necesario para alcanzar la meta (línea oro).</p><div class="px-chart dash-skeleton" data-draw="ch-pred-tray" data-source="pred_registro" style="min-height:260px"></div></div>
-      <div class="px-card"><h3>Avance proyectado al cierre</h3><p class="px-note">Proyección al cierre contra la meta 2027, con el color del semáforo; al pasar el cursor, el ritmo actual y el necesario y el estimado real 2027. Haz clic para bajar de nivel.</p><div class="px-chart dash-skeleton" data-draw="ch-pred-nivel" data-source="pred_registro" style="min-height:260px"></div></div>
-    </div>
-    <p class="px-note px-metodo"><b>Cómo se calcula.</b> Ritmo actual: aumento de inscripciones registradas por día hábil entre los últimos cortes (hasta cuatro). Proyección al cierre: registrado + ritmo × días hábiles que faltan, sin superar la meta de cada Unidad Operativa y área; las unidades sin registro se proyectan en cero. Ritmo necesario: lo que falta para la meta ÷ días hábiles que faltan. Real 2027 estimado: proyección × factor de cumplimiento 2026 de la unidad y área (inscripciones reales 2026 del reporte de Inscritos ÷ inscripciones programadas 2026; si no hay dato, el de su OOAD o el nacional); asistencias reales estimadas con las asistencias por inscripción reales 2026. Con pocos cortes el pronóstico es preliminar y se recalcula con cada actualización.</p>
-  </section>
 
   <section class="px-sec" id="advertencias">
     <div class="px-sec-h">
-      <div class="px-sec-n">04 · Notas de advertencia</div>
+      <div class="px-sec-n">03 · Notas de advertencia</div>
       <h2 class="px-sec-t">Notas de advertencia en el registro de cursos y talleres</h2>
       <p class="px-sec-d">Grupos del REPORTE PAA CURSOS, con corte al <b class="px-strong" data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b>, cuyo registro conviene revisar por el nombre del espacio o por la combinación de actividad y espacio. <b class="px-strong">Alerta</b>: registro que no debería existir así; <b class="px-strong">Revisar</b>: registro que puede ser correcto pero conviene confirmar. Cada nota trae la clave del grupo para corregirlo en SIPSI. Responde a los filtros de ámbito y de área.</p>
     </div>
@@ -541,7 +524,7 @@
 
   <section class="px-sec" id="tiempos-uso">
     <div class="px-sec-h">
-      <div class="px-sec-n">05 · Tiempos de uso de las instalaciones</div>
+      <div class="px-sec-n">04 · Tiempos de uso de las instalaciones</div>
       <h2 class="px-sec-t">Ocupación de las instalaciones según el horario de los grupos registrados</h2>
       <p class="px-sec-d">Cuántas horas se ocupa cada instalación según el horario de los grupos registrados en el PAA 2027, medido solo dentro del horario en que la instalación tiene actividad: de su primera a su última hora con grupos, en los días de la semana con grupos y entre su primera y su última fecha con grupos. El resto del tiempo no se considera. Incluye los grupos de las cuatro áreas normativas, por lo que no cambia con el filtro de área; no incluye los grupos en Centros de Extensión ni los registrados sin instalación.</p>
     </div>
@@ -2649,7 +2632,6 @@ dash.draw('upd', (el) => {
 <script src="pxpdf.js"></script>
 <script src="pxseg.js"></script>
 <script src="pxviz.js"></script>
-<script src="pxpred.js"></script>
 </div>
 </body>
 </html>
