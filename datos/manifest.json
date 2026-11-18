@@ -234,6 +234,24 @@
    "titulo": "Layout Criterios 2027 · descripción de actividades",
    "actualizado": "2026-11-17T19:14:28Z",
    "fuente": "Jorge (Layout_Criterios_27.xlsx)"
+  },
+  "avance_hist": {
+   "archivo": "datos/avance_hist.json",
+   "titulo": "Historial del registro por unidad y área",
+   "actualizado": "2026-11-18T22:47:02Z",
+   "fuente": "Pronóstico con el historial del registro, las metas 2027 y el avance real 2026"
+  },
+  "pred_registro": {
+   "archivo": "datos/pred_registro.json",
+   "titulo": "Pronóstico de cumplimiento por nivel y área",
+   "actualizado": "2026-11-18T22:47:02Z",
+   "fuente": "Pronóstico con el historial del registro, las metas 2027 y el avance real 2026"
+  },
+  "pred_corte": {
+   "archivo": "datos/pred_corte.json",
+   "titulo": "Pronóstico de cumplimiento · resumen por corte",
+   "actualizado": "2026-11-18T22:47:02Z",
+   "fuente": "Pronóstico con el historial del registro, las metas 2027 y el avance real 2026"
   }
  }
 }

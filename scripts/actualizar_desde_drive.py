@@ -233,6 +233,7 @@ def main():
         nuevo_c = ultimo_de(REF(rep['corte']))
         res.update(estado='actualizado', corte=nuevo_c, corte_anterior=prev)
     programables(manifest, bit, tmp)
+    prediccion(manifest, bit, tmp)
     json.dump(manifest, open(os.path.join(DATOS, 'manifest.json'), 'w'), ensure_ascii=False, indent=1)
     json.dump(bit, open(os.path.join(DATOS, 'bitacora.json'), 'w'), ensure_ascii=False, indent=1)
     # Resumen para la página de la ejecución en GitHub
@@ -243,6 +244,30 @@ def main():
     s = os.environ.get('GITHUB_STEP_SUMMARY')
     if s: open(s, 'a').write('\n'.join(lin) + '\n')
     print('\n'.join(lin))
+
+
+def prediccion(manifest, bit, tmp):
+    """Pronóstico de cumplimiento (cierre del registro y cumplimiento real 2027 estimado). Se rehace cuando cambia
+    el registro de cursos y talleres o el avance real de Inscritos, o si aún no existe."""
+    T = ['avance_hist', 'pred_registro', 'pred_corte']
+    res = dict(id='PR', reporte='Pronóstico de cumplimiento del Programa Anual 2027')
+    bit['reportes'].append(res)
+    act = lambda t: manifest['datasets'].get(t, {}).get('actualizado') or ''
+    if all(os.path.exists(REF(t)) for t in T) and max(act('avance_instalacion'), act('ri_registro')) <= act('pred_registro'):
+        res['estado'] = 'sin cambios (ya publicado)'
+        return
+    sal = os.path.join(tmp, 'salida_PR')
+    r = subprocess.run([sys.executable, '-I', os.path.join(SCRIPTS, 'procesar_prediccion.py'), DATOS, sal], capture_output=True, text=True)
+    if r.returncode != 0:
+        res['estado'] = 'error del script: ' + (r.stderr.strip().splitlines() or ['sin mensaje'])[-1][:300]
+        return
+    for t in T:
+        shutil.copyfile(os.path.join(sal, t + '.json'), REF(t))
+        d = manifest['datasets'].setdefault(t, dict(archivo=f'datos/{t}.json'))
+        d['actualizado'] = bit['ejecucion']
+        d['fuente'] = 'Pronóstico con el historial del registro, las metas 2027 y el avance real 2026'
+    c = ultimo_de(REF('pred_corte'))
+    res.update(estado='actualizado', fecha_corte=c['fecha_corte'], corte=c)
 
 
 def programables(manifest, bit, tmp):
