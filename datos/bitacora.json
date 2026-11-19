@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-19T16:39:27Z",
+ "ejecucion": "2026-11-19T19:15:10Z",
  "carpetas": {
   "PAA": "19112026",
   "Real": "12112026"
@@ -11,45 +11,7 @@
    "archivo": "REPORTE_PAA_CURSOS_19112026_1324.xlsx",
    "tamano_mb": 2.2,
    "fecha_corte": "2026-11-19",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-19",
-    "grupos": 12310,
-    "inscripciones": 183487,
-    "asistencias": 3906419,
-    "unidades": 78,
-    "instalaciones": 430,
-    "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 204,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 0,
-     "no_acuatica_alberca": 87,
-     "paso": 117,
-     "sin_instalacion": 0
-    },
-    "archivo": "REPORTE_PAA_CURSOS_19112026_1324.xlsx",
-    "hora_consulta": "10:34"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-18",
-    "grupos": 4148,
-    "inscripciones": 58022,
-    "asistencias": 1156519,
-    "unidades": 47,
-    "instalaciones": 196,
-    "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 136,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 0,
-     "no_acuatica_alberca": 81,
-     "paso": 55,
-     "sin_instalacion": 0
-    },
-    "archivo": "REPORTE_PAA_CURSOS_18112026_1324.xlsx",
-    "hora_consulta": "09:30"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "M2",
@@ -57,27 +19,7 @@
    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_19112026_1324.xlsx",
    "tamano_mb": 0.6,
    "fecha_corte": "2026-11-19",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-19",
-    "actividades": 3638,
-    "asistencias": 269097,
-    "cupo": 269097,
-    "unidades": 35,
-    "grupos_fuera_universo": 0,
-    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_19112026_1324.xlsx",
-    "hora_consulta": "10:32"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-18",
-    "actividades": 1569,
-    "asistencias": 128105,
-    "cupo": 128105,
-    "unidades": 17,
-    "grupos_fuera_universo": 0,
-    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_18112026_1324.xlsx",
-    "hora_consulta": "09:31"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "M3",
@@ -94,17 +36,17 @@
     "registros_fuera_universo": 0,
     "registros_otro_anio": 0,
     "archivo": "Reporte_PAA_Teatros_19_11_2026.xls",
-    "hora_consulta": "10:34"
+    "hora_consulta": "13:14"
    },
    "corte_anterior": {
-    "fecha_corte": "2026-11-18",
-    "eventos": 2,
-    "asistencias": 160,
-    "teatros": 2,
+    "fecha_corte": "2026-11-19",
+    "eventos": 367,
+    "asistencias": 47453,
+    "teatros": 8,
     "registros_fuera_universo": 0,
     "registros_otro_anio": 0,
-    "archivo": "Reporte_PAA_Teatros_18_11_2026.xls",
-    "hora_consulta": "09:26"
+    "archivo": "Reporte_PAA_Teatros_19_11_2026.xls",
+    "hora_consulta": "10:34"
    }
   },
   {
@@ -134,39 +76,12 @@
   {
    "id": "IP",
    "reporte": "Instalaciones programables (cruce con la HRI 2027)",
-   "estado": "actualizado",
-   "fecha_corte": "2026-11-19",
-   "corte": {
-    "fecha_corte": "2026-11-19",
-    "programables": 2834,
-    "programables_con_registro": 436,
-    "no_programables_con_registro": 0,
-    "grupos_sin_catalogo": 3783,
-    "unidades": 156
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "PR",
    "reporte": "Pronóstico de cumplimiento del Programa Anual 2027",
-   "estado": "actualizado",
-   "fecha_corte": "2026-11-19",
-   "corte": {
-    "fecha_corte": "2026-11-19",
-    "cierre": "2026-11-30",
-    "dias_habiles_restantes": 7,
-    "cortes": 3,
-    "meta_2027": 1267527,
-    "inscripciones": 183487,
-    "asistencias": 3906419,
-    "ritmo_diario": 75904.5,
-    "ritmo_necesario": 154862.9,
-    "proyeccion_cierre": 344761,
-    "asistencias_proyectadas": 7309069,
-    "avance_proyectado": 0.272,
-    "real_2027_inscripciones": 334105,
-    "real_2027_asistencias": 5283279,
-    "cumplimiento_real_estimado": 0.2636
-   }
+   "estado": "sin cambios (ya publicado)"
   }
  ],
  "pendientes": []

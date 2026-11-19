@@ -100,19 +100,19 @@
   "te_catalogo": {
    "archivo": "datos/te_catalogo.json",
    "titulo": "Teatros · catálogo de actividades",
-   "actualizado": "2026-11-19T16:39:27Z",
+   "actualizado": "2026-11-19T19:15:10Z",
    "fuente": "Jorge (Reporte_PAA_Teatros_19_11_2026.xls)"
   },
   "te_corte": {
    "archivo": "datos/te_corte.json",
    "titulo": "Teatros · cortes del registro",
-   "actualizado": "2026-11-19T16:39:27Z",
+   "actualizado": "2026-11-19T19:15:10Z",
    "fuente": "Jorge (Reporte_PAA_Teatros_19_11_2026.xls)"
   },
   "te_registro": {
    "archivo": "datos/te_registro.json",
    "titulo": "Teatros · registro de eventos",
-   "actualizado": "2026-11-19T16:39:27Z",
+   "actualizado": "2026-11-19T19:15:10Z",
    "fuente": "Jorge (Reporte_PAA_Teatros_19_11_2026.xls)"
   },
   "unidades_operativas": {
