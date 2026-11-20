@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-20T15:41:40Z",
+ "ejecucion": "2026-11-20T15:42:11Z",
  "carpetas": {
   "PAA": "20112026",
   "Real": "12112026"
@@ -27,7 +27,36 @@
    "archivo": "Reporte_PAA_Teatros_20_11_2026.xls",
    "tamano_mb": 0.1,
    "fecha_corte": "2026-11-20",
-   "estado": "sin cambios (ya publicado)"
+   "estado": "actualizado",
+   "corte": {
+    "fecha_corte": "2026-11-20",
+    "eventos": 1908,
+    "asistencias": 237807,
+    "teatros": 15,
+    "registros_fuera_universo": 10,
+    "registros_otro_anio": 0,
+    "unidades_fuera": [
+     {
+      "cve_ooad": 7,
+      "cve_uopsi": 401,
+      "ooad": "[07] CHIAPAS",
+      "unidad": "[401] TEATRO FRANCISCO I. MADERO",
+      "registros": 10
+     }
+    ],
+    "archivo": "Reporte_PAA_Teatros_20_11_2026.xls",
+    "hora_consulta": "09:28"
+   },
+   "corte_anterior": {
+    "fecha_corte": "2026-11-20",
+    "eventos": 1908,
+    "asistencias": 237807,
+    "teatros": 15,
+    "registros_fuera_universo": 10,
+    "registros_otro_anio": 0,
+    "archivo": "Reporte_PAA_Teatros_20_11_2026.xls",
+    "hora_consulta": "09:28"
+   }
   },
   {
    "id": "R1",
