@@ -85,6 +85,7 @@ Z = lambda: dict(eventos=0, asistencias=0, aforo=0)
 AGG = collections.defaultdict(Z)
 cat = {}
 n = fuera = otro = 0
+fuera_u = collections.Counter()
 for r in it:
     if not r or r[I['OOAD']] in (None, ''): continue
     r = list(r) + [None] * (len(hdr) - len(r))
@@ -95,6 +96,7 @@ for r in it:
         continue
     if o * 1000 + u not in uo:
         fuera += 1
+        fuera_u[(o, u, txt(r[I['OOAD']]), txt(r[I['UOPSI']]))] += 1
         continue
     fe = fecha_de(r[I['FEC_EVENTO']])
     if fe and fe.year != 2027:
@@ -121,6 +123,8 @@ dump('te_registro.json', rows)
 dump('te_catalogo.json', list(cat.values()))
 corte = dict(fecha_corte=fecha, eventos=sum(r['eventos'] for r in rows), asistencias=e(sum(r['asistencias'] for r in rows)),
              teatros=len({r['unidad'] for r in rows}), registros_fuera_universo=fuera, registros_otro_anio=otro)
+if fuera_u:
+    corte['unidades_fuera'] = [dict(cve_ooad=k[0], cve_uopsi=k[1], ooad=k[2], unidad=k[3], registros=v) for k, v in fuera_u.most_common()]
 hist = sorted([c for c in prev if c.get('fecha_corte') != fecha] + [corte], key=lambda c: c['fecha_corte'])
 dump('te_corte.json', hist)
 print(json.dumps(dict(**corte, tamanos={f: os.path.getsize(out + '/' + f) for f in os.listdir(out)}), ensure_ascii=False))
