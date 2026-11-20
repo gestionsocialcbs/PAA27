@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-20T15:42:11Z",
+ "ejecucion": "2026-11-20T15:43:06Z",
  "carpetas": {
   "PAA": "20112026",
   "Real": "12112026"
@@ -30,6 +30,16 @@
    "estado": "actualizado",
    "corte": {
     "fecha_corte": "2026-11-20",
+    "eventos": 1918,
+    "asistencias": 239177,
+    "teatros": 16,
+    "registros_fuera_universo": 0,
+    "registros_otro_anio": 0,
+    "archivo": "Reporte_PAA_Teatros_20_11_2026.xls",
+    "hora_consulta": "09:28"
+   },
+   "corte_anterior": {
+    "fecha_corte": "2026-11-20",
     "eventos": 1908,
     "asistencias": 237807,
     "teatros": 15,
@@ -44,16 +54,6 @@
       "registros": 10
      }
     ],
-    "archivo": "Reporte_PAA_Teatros_20_11_2026.xls",
-    "hora_consulta": "09:28"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-20",
-    "eventos": 1908,
-    "asistencias": 237807,
-    "teatros": 15,
-    "registros_fuera_universo": 10,
-    "registros_otro_anio": 0,
     "archivo": "Reporte_PAA_Teatros_20_11_2026.xls",
     "hora_consulta": "09:28"
    }
