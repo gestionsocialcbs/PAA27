@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-20T15:34:27Z",
+ "ejecucion": "2026-11-20T15:41:40Z",
  "carpetas": {
   "PAA": "20112026",
   "Real": "12112026"
@@ -11,45 +11,7 @@
    "archivo": "REPORTE_PAA_CURSOS_20112026_1324.xlsx",
    "tamano_mb": 3.2,
    "fecha_corte": "2026-11-20",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-20",
-    "grupos": 19761,
-    "inscripciones": 299858,
-    "asistencias": 6387322,
-    "unidades": 99,
-    "instalaciones": 657,
-    "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 279,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 0,
-     "no_acuatica_alberca": 96,
-     "paso": 183,
-     "sin_instalacion": 0
-    },
-    "archivo": "REPORTE_PAA_CURSOS_20112026_1324.xlsx",
-    "hora_consulta": "09:25"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-19",
-    "grupos": 12310,
-    "inscripciones": 183487,
-    "asistencias": 3906419,
-    "unidades": 78,
-    "instalaciones": 430,
-    "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 204,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 0,
-     "no_acuatica_alberca": 87,
-     "paso": 117,
-     "sin_instalacion": 0
-    },
-    "archivo": "REPORTE_PAA_CURSOS_19112026_1324.xlsx",
-    "hora_consulta": "10:34"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "M2",
@@ -57,27 +19,7 @@
    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_20112026_1324.xlsx",
    "tamano_mb": 1.0,
    "fecha_corte": "2026-11-20",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-20",
-    "actividades": 7305,
-    "asistencias": 500172,
-    "cupo": 500172,
-    "unidades": 51,
-    "grupos_fuera_universo": 0,
-    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_20112026_1324.xlsx",
-    "hora_consulta": "09:27"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-19",
-    "actividades": 3638,
-    "asistencias": 269097,
-    "cupo": 269097,
-    "unidades": 35,
-    "grupos_fuera_universo": 0,
-    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_19112026_1324.xlsx",
-    "hora_consulta": "10:32"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "M3",
@@ -85,27 +27,7 @@
    "archivo": "Reporte_PAA_Teatros_20_11_2026.xls",
    "tamano_mb": 0.1,
    "fecha_corte": "2026-11-20",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-20",
-    "eventos": 1908,
-    "asistencias": 237807,
-    "teatros": 15,
-    "registros_fuera_universo": 10,
-    "registros_otro_anio": 0,
-    "archivo": "Reporte_PAA_Teatros_20_11_2026.xls",
-    "hora_consulta": "09:28"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-19",
-    "eventos": 684,
-    "asistencias": 107921,
-    "teatros": 10,
-    "registros_fuera_universo": 0,
-    "registros_otro_anio": 0,
-    "archivo": "Reporte_PAA_Teatros_19_11_2026.xls",
-    "hora_consulta": "13:30"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "R1",
@@ -134,39 +56,12 @@
   {
    "id": "IP",
    "reporte": "Instalaciones programables (cruce con la HRI 2027)",
-   "estado": "actualizado",
-   "fecha_corte": "2026-11-20",
-   "corte": {
-    "fecha_corte": "2026-11-20",
-    "programables": 2834,
-    "programables_con_registro": 657,
-    "no_programables_con_registro": 1,
-    "grupos_sin_catalogo": 6330,
-    "unidades": 156
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "PR",
    "reporte": "Pronóstico de cumplimiento del Programa Anual 2027",
-   "estado": "actualizado",
-   "fecha_corte": "2026-11-20",
-   "corte": {
-    "fecha_corte": "2026-11-20",
-    "cierre": "2026-11-30",
-    "dias_habiles_restantes": 6,
-    "cortes": 4,
-    "meta_2027": 1267527,
-    "inscripciones": 299858,
-    "asistencias": 6387322,
-    "ritmo_diario": 89393.3,
-    "ritmo_necesario": 161278.2,
-    "proyeccion_cierre": 487935,
-    "asistencias_proyectadas": 10576622,
-    "avance_proyectado": 0.385,
-    "real_2027_inscripciones": 471144,
-    "real_2027_asistencias": 7662054,
-    "cumplimiento_real_estimado": 0.3717
-   }
+   "estado": "sin cambios (ya publicado)"
   }
  ],
  "pendientes": []
