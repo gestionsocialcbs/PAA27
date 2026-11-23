@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-23T15:43:19Z",
+ "ejecucion": "2026-11-23T15:47:40Z",
  "carpetas": {
   "PAA": "23112026",
   "Real": "12112026"
@@ -28,27 +28,43 @@
      "paso": 331,
      "sin_instalacion": 0
     },
+    "control": {
+     "filas_archivo": 31674,
+     "cupo_archivo": 491217,
+     "filas_sin_clave": 0,
+     "cupo_sin_clave": 0,
+     "cupo_fuera_universo": 217
+    },
+    "unidades_fuera": [
+     {
+      "cve_ooad": 5,
+      "cve_uopsi": 151,
+      "unidad": "CSS PART. SABINAS COAH.",
+      "grupos": 14,
+      "inscripciones": 217
+     }
+    ],
     "archivo": "REPORTE_PAA_CURSOS_23112026_1324.xlsx",
     "hora_consulta": "09:38"
    },
    "corte_anterior": {
-    "fecha_corte": "2026-11-20",
-    "grupos": 25063,
-    "inscripciones": 385954,
-    "asistencias": 8173953,
-    "unidades": 111,
-    "instalaciones": 779,
-    "grupos_fuera_universo": 1,
-    "grupos_con_advertencia": 347,
+    "fecha_corte": "2026-11-23",
+    "grupos": 31660,
+    "inscripciones": 491000,
+    "asistencias": 10347574,
+    "unidades": 121,
+    "instalaciones": 930,
+    "grupos_fuera_universo": 14,
+    "grupos_con_advertencia": 675,
     "advertencias": {
      "no_apto": 0,
      "acuatica_fuera": 5,
-     "no_acuatica_alberca": 146,
-     "paso": 196,
+     "no_acuatica_alberca": 339,
+     "paso": 331,
      "sin_instalacion": 0
     },
-    "archivo": "REPORTE_PAA_CURSOS_20112026_1324.xlsx",
-    "hora_consulta": "16:50"
+    "archivo": "REPORTE_PAA_CURSOS_23112026_1324.xlsx",
+    "hora_consulta": "09:38"
    }
   },
   {
@@ -57,27 +73,7 @@
    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_23112026_1324.xlsx",
    "tamano_mb": 1.9,
    "fecha_corte": "2026-11-23",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-23",
-    "actividades": 12175,
-    "asistencias": 885220,
-    "cupo": 885220,
-    "unidades": 69,
-    "grupos_fuera_universo": 0,
-    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_23112026_1324.xlsx",
-    "hora_consulta": "09:39"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-20",
-    "actividades": 8888,
-    "asistencias": 639522,
-    "cupo": 639522,
-    "unidades": 59,
-    "grupos_fuera_universo": 0,
-    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_20112026_1324.xlsx",
-    "hora_consulta": "16:47"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "M3",
@@ -85,27 +81,7 @@
    "archivo": "Reporte_PAA_Teatros_23_11_2026.xls",
    "tamano_mb": 0.2,
    "fecha_corte": "2026-11-23",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-23",
-    "eventos": 2634,
-    "asistencias": 329104,
-    "teatros": 18,
-    "registros_fuera_universo": 0,
-    "registros_otro_anio": 0,
-    "archivo": "Reporte_PAA_Teatros_23_11_2026.xls",
-    "hora_consulta": "09:39"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-20",
-    "eventos": 2082,
-    "asistencias": 262967,
-    "teatros": 17,
-    "registros_fuera_universo": 0,
-    "registros_otro_anio": 0,
-    "archivo": "Reporte_PAA_Teatros_20_11_2026.xls",
-    "hora_consulta": "16:49"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "R1",
