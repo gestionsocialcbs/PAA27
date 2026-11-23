@@ -129,14 +129,22 @@ def reglas_de(nom_rep, cat, es_cec, actividad, agrupacion):
     if alberca and not acuatica: out.append('no_acuatica_alberca')
     return out
 n = fuera = 0
+CTL = dict(filas=0, cupo_archivo=0.0, filas_sin_clave=0, cupo_sin_clave=0.0, cupo_fuera=0.0)
+FUERA = collections.Counter(); FUERA_C = collections.Counter()
 for r in it:
     if not r or r[I['CVE_OOAD']] in (None, ''): continue
     r = list(r) + [None] * (len(hdr) - len(r))
+    CTL['filas'] += 1; CTL['cupo_archivo'] += num(r[I['CAN_CUPO']])
     try: o, u = int(r[I['CVE_OOAD']]), int(r[I['CVE_UOPSI']])
-    except (TypeError, ValueError): continue
+    except (TypeError, ValueError):
+        CTL['filas_sin_clave'] += 1; CTL['cupo_sin_clave'] += num(r[I['CAN_CUPO']])
+        continue
     cu = o * 1000 + u
     if cu not in uo:
         fuera += 1
+        CTL['cupo_fuera'] += num(r[I['CAN_CUPO']])
+        nm = str(r[hdr.index('DES_UOPSI')] or '').strip() if 'DES_UOPSI' in hdr else ''
+        FUERA[(o, u, nm)] += 1; FUERA_C[(o, u, nm)] += num(r[I['CAN_CUPO']])
         continue
     n += 1
     unidad = f'{o}-{u}'
@@ -274,7 +282,11 @@ T = lambda f: sum(r[f] for r in rows)
 corte = dict(fecha_corte=fecha, grupos=T('grupos'), inscripciones=T('inscripciones'), asistencias=T('asistencias'),
              unidades=len({r['unidad'] for r in rows}), instalaciones=len({(r['unidad'], r['cve_instalacion']) for r in rows}),
              grupos_fuera_universo=fuera, grupos_con_advertencia=len({(a['unidad'], a['grupo'], a['clave_actividad']) for a in ALERTAS}),
-             advertencias={k: sum(1 for a in ALERTAS if a['regla'] == k) for k in REGLAS})
+             advertencias={k: sum(1 for a in ALERTAS if a['regla'] == k) for k in REGLAS},
+             control=dict(filas_archivo=CTL['filas'], cupo_archivo=ent(CTL['cupo_archivo']), filas_sin_clave=CTL['filas_sin_clave'],
+                          cupo_sin_clave=ent(CTL['cupo_sin_clave']), cupo_fuera_universo=ent(CTL['cupo_fuera'])))
+if FUERA:
+    corte['unidades_fuera'] = [dict(cve_ooad=k[0], cve_uopsi=k[1], unidad=k[2], grupos=v, inscripciones=ent(FUERA_C[k])) for k, v in FUERA.most_common()]
 hist = [p for p in prev if p.get('fecha_corte') != fecha] + [corte]
 hist.sort(key=lambda p: p['fecha_corte'])
 dump('avance_corte.json', hist)
