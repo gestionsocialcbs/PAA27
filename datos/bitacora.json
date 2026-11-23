@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-23T15:47:40Z",
+ "ejecucion": "2026-11-23T15:49:45Z",
  "carpetas": {
   "PAA": "23112026",
   "Real": "12112026"
@@ -13,6 +13,32 @@
    "fecha_corte": "2026-11-23",
    "estado": "actualizado",
    "corte": {
+    "fecha_corte": "2026-11-23",
+    "grupos": 31674,
+    "inscripciones": 491217,
+    "asistencias": 10351480,
+    "unidades": 122,
+    "instalaciones": 931,
+    "grupos_fuera_universo": 0,
+    "grupos_con_advertencia": 675,
+    "advertencias": {
+     "no_apto": 0,
+     "acuatica_fuera": 5,
+     "no_acuatica_alberca": 339,
+     "paso": 331,
+     "sin_instalacion": 0
+    },
+    "control": {
+     "filas_archivo": 31674,
+     "cupo_archivo": 491217,
+     "filas_sin_clave": 0,
+     "cupo_sin_clave": 0,
+     "cupo_fuera_universo": 0
+    },
+    "archivo": "REPORTE_PAA_CURSOS_23112026_1324.xlsx",
+    "hora_consulta": "09:38"
+   },
+   "corte_anterior": {
     "fecha_corte": "2026-11-23",
     "grupos": 31660,
     "inscripciones": 491000,
@@ -44,25 +70,6 @@
       "inscripciones": 217
      }
     ],
-    "archivo": "REPORTE_PAA_CURSOS_23112026_1324.xlsx",
-    "hora_consulta": "09:38"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-23",
-    "grupos": 31660,
-    "inscripciones": 491000,
-    "asistencias": 10347574,
-    "unidades": 121,
-    "instalaciones": 930,
-    "grupos_fuera_universo": 14,
-    "grupos_con_advertencia": 675,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 5,
-     "no_acuatica_alberca": 339,
-     "paso": 331,
-     "sin_instalacion": 0
-    },
     "archivo": "REPORTE_PAA_CURSOS_23112026_1324.xlsx",
     "hora_consulta": "09:38"
    }
@@ -114,11 +121,11 @@
    "fecha_corte": "2026-11-23",
    "corte": {
     "fecha_corte": "2026-11-23",
-    "programables": 2834,
-    "programables_con_registro": 915,
+    "programables": 2838,
+    "programables_con_registro": 916,
     "no_programables_con_registro": 5,
     "grupos_sin_catalogo": 10261,
-    "unidades": 156
+    "unidades": 157
    }
   },
   {
@@ -132,16 +139,16 @@
     "dias_habiles_restantes": 5,
     "cortes": 5,
     "meta_2027": 1267527,
-    "inscripciones": 491000,
-    "asistencias": 10347574,
-    "ritmo_diario": 144341.0,
-    "ritmo_necesario": 155305.4,
-    "proyeccion_cierre": 723894,
-    "asistencias_proyectadas": 15469620,
-    "avance_proyectado": 0.5711,
-    "real_2027_inscripciones": 694457,
-    "real_2027_asistencias": 11080131,
-    "cumplimiento_real_estimado": 0.5479
+    "inscripciones": 491217,
+    "asistencias": 10351480,
+    "ritmo_diario": 144413.3,
+    "ritmo_necesario": 155262.0,
+    "proyeccion_cierre": 724473,
+    "asistencias_proyectadas": 15480036,
+    "avance_proyectado": 0.5716,
+    "real_2027_inscripciones": 694877,
+    "real_2027_asistencias": 11084718,
+    "cumplimiento_real_estimado": 0.5482
    }
   }
  ],
