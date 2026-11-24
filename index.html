@@ -361,14 +361,14 @@
     </div>
     <p class="px-note px-meta-na" hidden>El área seleccionada no tiene meta en la base.</p>
     <div class="px-card" id="metas-area">
-      <h3><span class="px-mi">Meta por área normativa</span><span class="px-ma" hidden>Asistencias registradas por área normativa</span> · <span data-draw="m-amb">—</span></h3>
+      <h3><span class="px-h3t"><span class="px-mi">Meta por área normativa</span><span class="px-ma" hidden>Asistencias registradas por área normativa</span> · <span data-draw="m-amb">—</span></span></h3>
       <p class="px-note"><span class="px-mi">Avance del registro del PAA 2027 contra la meta de inscripciones de cada área, con el semáforo de avance (Morado &gt; 125%, Verde más de 85% y menos de 115%, Amarillo de 75% a 85% o de 115% a 125%, Rojo &lt; 75%).</span><span class="px-ma" hidden>Asistencias registradas en el PAA 2027 por área normativa, con su participación en las asistencias del ámbito. No hay meta de asistencias.</span></p>
       <p class="px-note px-mi">Cada anillo es un área normativa: la vuelta completa es su meta de inscripciones 2027 y el arco de color, lo registrado en el PAA 2027; al centro, el avance del ámbito.</p>
       <div class="px-chart dash-skeleton" data-draw="ch-metas-area" data-source="av_nivel" style="min-height:212px"></div>
     </div>
     <p class="px-note px-meta-fuera" hidden>Esta Unidad Operativa está en la base de metas pero no en el catálogo UOPSI del tablero.</p>
     <div class="px-card" id="metas-ooad">
-      <h3><span class="px-ml px-ml-1"><span class="px-mi">Meta y registro</span><span class="px-ma" hidden>Asistencias registradas</span> por OOAD</span><span class="px-ml px-ml-2" hidden><span class="px-mi">Meta y registro</span><span class="px-ma" hidden>Asistencias registradas</span> por Unidad Operativa</span></h3>
+      <h3><span class="px-h3t"><span class="px-ml px-ml-1"><span class="px-mi">Meta y registro</span><span class="px-ma" hidden>Asistencias registradas</span> por OOAD</span><span class="px-ml px-ml-2" hidden><span class="px-mi">Meta y registro</span><span class="px-ma" hidden>Asistencias registradas</span> por Unidad Operativa</span></span></h3>
       <p class="px-note px-ma" hidden>Asistencias registradas en el PAA 2027 del área seleccionada, de mayor a menor, con su participación en las asistencias del ámbito. Haz clic en una barra para filtrar el tablero.</p>
       <p class="px-note px-mi">A nivel nacional, cada círculo del panal es una OOAD, acomodada con la forma de México, con su abreviatura y su avance contra la meta de inscripciones 2027 del área seleccionada, en el color del semáforo (gris: sin registro); al elegir una OOAD, cada círculo es una de sus Unidades Operativas. Meta de <span data-draw="mtot2-n">—</span>: <span data-draw="mtot2" data-k="meta_2027">—</span> inscripciones. Haz clic en una burbuja para filtrar el tablero.</p>
       <div class="px-sem-bar px-mi">
@@ -446,12 +446,12 @@
     </div>
     <div class="px-grid">
       <div class="px-card" id="rep-instalaciones">
-        <h3>Instalaciones programables con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas</h3>
+        <h3><span class="px-h3t">Instalaciones programables con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas</span></h3>
         <p class="px-note">Las 15 instalaciones del ámbito con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas, entre todas las instalaciones susceptibles de programación de la base HRI 2027 (INSTALACIÓN PROGRAMABLE = SI); al pasar el cursor se ven el servicio, los grupos, las inscripciones y las asistencias. La base se une con el registro por OOAD, UOPSI, Centro de Extensión y nombre de la instalación.</p>
         <div class="px-chart dash-skeleton" data-draw="ch-av-inst" data-source="av_inst_prog" style="min-height:300px"></div>
       </div>
       <div class="px-card" id="rep-actividades">
-        <h3>Actividades con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas</h3>
+        <h3><span class="px-h3t">Actividades con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas</span></h3>
         <p class="px-note">Las 15 actividades del ámbito con más <span class="px-mi">inscripciones</span><span class="px-ma" hidden>asistencias</span> registradas; al pasar el cursor se ven los grupos, las inscripciones y las asistencias. En guinda, las actividades con clave en el Layout 2027.</p>
         <div class="px-chart dash-skeleton" data-draw="ch-av-act" data-source="av_act" style="min-height:300px"></div>
       </div>
@@ -1484,6 +1484,7 @@ dash.draw('avk', (el) => {
   el.classList.toggle('dash-skeleton', dash.data('av_nivel').status === 'loading');
   const s = PXV.scope();
   const r = PXV.find('av_nivel', s.nivel, s.clave);
+  if (r && k === 'unidades_con_registro' && r.nivel === 'Unidad Operativa') { el.textContent = r.inscripciones > 0 ? 'Con registro' : 'Sin registro'; return; }
   if (!r || r[k] === null || r[k] === undefined) { el.textContent = '—'; return; }
   pxMark(el, 'av_nivel', k, PXV.where(r), k === 'avance' ? PXV.pct(r[k]) : PX.fmt(Math.round(r[k])));
   if (k === 'avance' && r.semaforo) {
@@ -2202,11 +2203,21 @@ window.PXA = {
   empty: (el, t) => { const p = document.createElement('p'); p.className = 'px-note'; p.textContent = t || 'Sin actividades registradas en el ámbito y el área seleccionados.'; el.appendChild(p); },
 };
 
+// Nombre del ámbito desde el catálogo de Unidades Operativas, para cuando el reporte no trae registro de esa OOAD o unidad.
+function pxNombreAmbito(s) {
+  const d = dash.data('unidades_operativas');
+  if (d.status === 'ok') {
+    const u = s.nivel === 'OOAD' ? d.data.find((x) => String(x.cve_ooad) === String(s.clave)) : d.data.find((x) => Math.floor(x.cve_uo / 1000) + '-' + (x.cve_uo % 1000) === String(s.clave));
+    if (u) return s.nivel === 'OOAD' ? u.ooad : u.unidad_operativa;
+  }
+  return 'Ámbito seleccionado';
+}
+
 dash.draw('acamb', (el) => {
   const s = PXV.scope();
   const r = PXA.find(s.nivel, s.clave);
   const a = PX.area();
-  el.textContent = (r ? r.nombre : s.nivel === 'Nacional' ? 'Nacional' : 'Ámbito seleccionado') + (a !== 'Todas' ? ' · ' + a : '');
+  el.textContent = (r ? r.nombre : s.nivel === 'Nacional' ? 'Nacional' : pxNombreAmbito(s)) + (a !== 'Todas' ? ' · ' + a : '');
 });
 
 dash.draw('ac-corte', (el) => {
@@ -2222,6 +2233,7 @@ dash.draw('ack', (el) => {
   const s = PXV.scope();
   const r = PXA.find(s.nivel, s.clave);
   if (!r) { el.textContent = dash.data('ac_nivel').status === 'ok' ? '0' : '—'; return; }
+  if (k === 'unidades_con_registro' && s.nivel === 'Unidad Operativa') { el.textContent = r.asistencias > 0 ? 'Con registro' : 'Sin registro'; return; }
   const v = r[k];
   if (v === null || v === undefined) { el.textContent = '—'; return; }
   const t = PX.fmt(Math.round(v));
@@ -2465,7 +2477,7 @@ dash.draw('teamb', (el) => {
   const s = PXV.scope();
   const r = PXT.find(s.nivel, s.clave);
   const a = PX.area();
-  el.textContent = (r ? r.nombre : s.nivel === 'Nacional' ? 'Nacional' : 'Ámbito seleccionado') + (a !== 'Todas' ? ' · ' + a : '');
+  el.textContent = (r ? r.nombre : s.nivel === 'Nacional' ? 'Nacional' : pxNombreAmbito(s)) + (a !== 'Todas' ? ' · ' + a : '');
 });
 
 dash.draw('te-corte', (el) => {

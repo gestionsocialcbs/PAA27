@@ -92,9 +92,10 @@ window.PXZ = (() => {
     root.append('text').attr('class', 'px-val').attr('text-anchor', 'middle').attr('y', -1).style('font-size', '14px').style('font-weight', 700).text(compact(tot));
     root.append('text').attr('class', 'px-tick').attr('text-anchor', 'middle').attr('y', 13).text(o.unidad || 'en el año');
     const top = rows.reduce((x, y) => (y.v > x.v ? y : x));
-    root.append('text').attr('class', 'px-tick').attr('text-anchor', Math.sin(a(top.m) + Math.PI / 12) >= 0 ? 'start' : 'end')
-      .attr('x', Math.sin(a(top.m) + Math.PI / 12) * (rr(top.v) * 0.62 + r0 * 0.38) + (Math.sin(a(top.m) + Math.PI / 12) >= 0 ? 6 : -6))
-      .attr('y', -Math.cos(a(top.m) + Math.PI / 12) * (rr(top.v) * 0.62 + r0 * 0.38)).attr('dy', '0.35em').style('font-weight', 600).style('fill', 'var(--color-bg, #fff)').style('paint-order', 'stroke').style('stroke', o.color).style('stroke-width', '3px')
+    const rm = (rr(top.v) + r0) / 2; // centro radial de la cuña con más registro
+    root.append('text').attr('class', 'px-tick').attr('text-anchor', 'middle')
+      .attr('x', Math.sin(a(top.m) + Math.PI / 12) * rm)
+      .attr('y', -Math.cos(a(top.m) + Math.PI / 12) * rm).attr('dy', '0.35em').style('font-weight', 600).style('fill', 'var(--color-bg, #fff)').style('paint-order', 'stroke').style('stroke', o.color).style('stroke-width', '3px')
       .text(compact(top.v)).attr('opacity', top.v ? 1 : 0);
     PX.hover(el, g, o.tip);
   };
@@ -334,8 +335,8 @@ window.PXZ = (() => {
     const svg = svgOf(el, W, H, o.aria);
     const xm = d3.max(rows, o.x) || 1, ym = d3.max(rows, o.y) || 1;
     const y = d3.scaleLinear([0, ym * 1.08], [H - mg.b, mg.t]).nice();
-    const probe = svg.append('text').attr('class', 'px-tick').text(compact(d3.max(y.ticks(4))));
-    mg.l = probe.node().getComputedTextLength() + 10;
+    const probe = svg.append('text').attr('class', 'px-tick');
+    mg.l = d3.max(y.ticks(4), (t) => probe.text(compact(t)).node().getComputedTextLength()) + 10;
     probe.remove();
     const x = d3.scaleLinear([0, xm * 1.08], [mg.l, W - mg.r]).nice();
     const r = d3.scaleSqrt([0, d3.max(rows, o.r) || 1], [4, Math.min(30, W / 22)]);
@@ -370,13 +371,13 @@ window.PXZ = (() => {
     if (!rows.length) { empty(el, o.vacio); return; }
     const anim = !el.dataset.pxDrawn && !reduce();
     el.dataset.pxDrawn = '1';
-    const W = Math.max(260, el.clientWidth), H = 230, mg = { t: 46, b: 26, r: 18 };
+    const W = Math.max(260, el.clientWidth), dos = W < 520, H = dos ? 244 : 230, mg = { t: dos ? 60 : 46, b: 26, r: 18 };
     el.style.minHeight = H + 'px';
     const svg = svgOf(el, W, H, o.aria);
     const vals = rows.map(o.value);
     const y = d3.scaleLinear([0, (d3.max(vals) || 1) * 1.12], [H - mg.b, mg.t]).nice();
-    const probe = svg.append('text').attr('class', 'px-tick').text(compact(d3.max(y.ticks(3))));
-    const left = probe.node().getComputedTextLength() + 10;
+    const probe = svg.append('text').attr('class', 'px-tick');
+    const left = d3.max(y.ticks(3), (t) => probe.text(compact(t)).node().getComputedTextLength()) + 10;
     probe.remove();
     const pf = (iso) => new Date(iso + 'T12:00:00');
     const t0 = pf(rows[0].fecha_corte), t1 = pf(rows[rows.length - 1].fecha_corte);
@@ -386,7 +387,13 @@ window.PXZ = (() => {
     const fx = (r) => x(pf(r.fecha_corte));
     const last = rows[rows.length - 1];
     svg.append('text').attr('class', 'px-val').attr('x', left).attr('y', 20).style('font-size', '20px').style('font-weight', 700).style('fill', o.color).text(fmt(o.value(last)));
-    svg.append('text').attr('class', 'px-tick').attr('x', left).attr('y', 36).text(o.unidad + ' al ' + PXV.fecha(last.fecha_corte) + (rows.length > 1 ? ' · ' + (o.value(last) - o.value(rows[rows.length - 2]) >= 0 ? '+' : '') + fmt(o.value(last) - o.value(rows[rows.length - 2])) + ' desde el corte anterior' : ''));
+    const sub1 = o.unidad + ' al ' + PXV.fecha(last.fecha_corte);
+    const sub2 = rows.length > 1 ? (o.value(last) - o.value(rows[rows.length - 2]) >= 0 ? '+' : '') + fmt(o.value(last) - o.value(rows[rows.length - 2])) + ' desde el corte anterior' : '';
+    if (dos) {
+      const fl = pf(last.fecha_corte);
+      svg.append('text').attr('class', 'px-tick').attr('x', left).attr('y', 36).text(o.unidad + ' al ' + fl.getDate() + ' ' + PXP.MESES[fl.getMonth()].slice(0, 3) + ' ' + fl.getFullYear()).each(function () { PX.fit(this, W - left - mg.r); });
+      if (sub2) svg.append('text').attr('class', 'px-tick').attr('x', left).attr('y', 50).text(sub2);
+    } else svg.append('text').attr('class', 'px-tick').attr('x', left).attr('y', 36).text(sub1 + (sub2 ? ' · ' + sub2 : ''));
     if (rows.length > 1) {
       const fill = grad(svg, o.color, 'v');
       const area = d3.area().x(fx).y0(y(0)).y1((r) => y(o.value(r))).curve(d3.curveMonotoneX);
@@ -394,7 +401,10 @@ window.PXZ = (() => {
       svg.append('path').attr('d', area(rows)).attr('fill', fill).attr('opacity', 0.28);
       const ln = svg.append('path').attr('d', line(rows)).attr('fill', 'none').attr('stroke', o.color).attr('stroke-width', 2.5);
       if (anim) { const L = ln.node().getTotalLength(); ln.attr('stroke-dasharray', L).attr('stroke-dashoffset', L).transition().duration(1100).ease(d3.easeCubicOut).attr('stroke-dashoffset', 0); }
-      const ticks = rows.length <= 8 ? rows.map((r) => pf(r.fecha_corte)) : x.ticks(6);
+      const ticks0 = rows.length <= 8 ? rows.map((r) => pf(r.fecha_corte)) : x.ticks(6);
+      // Sin etiquetas encimadas: se conserva la última fecha y se omiten las que quedan a menos de 44 px.
+      const ticks = [];
+      for (let i = ticks0.length - 1; i >= 0; i--) if (!ticks.length || x(ticks[0]) - x(ticks0[i]) >= 44) ticks.unshift(ticks0[i]);
       svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'px-tick').attr('x', x).attr('y', H - 8).attr('text-anchor', 'middle').text((d) => d.getDate() + ' ' + PXP.MESES[d.getMonth()].slice(0, 3));
     } else {
       svg.append('line').attr('x1', left).attr('x2', W - mg.r).attr('y1', y(o.value(last))).attr('y2', y(o.value(last))).attr('stroke', o.color).attr('stroke-dasharray', '3 4').attr('opacity', 0.5);

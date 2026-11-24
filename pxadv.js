@@ -44,7 +44,7 @@ dash.draw('ch-adv-regla', (el) => {
   const W = Math.max(260, el.clientWidth), step = 40, H = T.length * step;
   el.style.minHeight = H + 'px';
   const svg = d3.select(el).append('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Grupos por tipo de advertencia');
-  const x = d3.scaleLinear([0, d3.max(T, (d) => d.n) || 1], [0, W - 70]);
+  const x = d3.scaleLinear([0, d3.max(T, (d) => d.n) || 1], [0, W - 96]);
   const g = svg.selectAll('g').data(T).join('g').attr('transform', (d, i) => `translate(0,${i * step})`);
   g.append('rect').attr('width', W).attr('height', step).attr('fill', 'transparent');
   g.append('text').attr('class', 'px-lbl').attr('y', 13).text((d) => d.nivel + ' · ' + d.k).each(function () { PX.fit(this, W - 4); });

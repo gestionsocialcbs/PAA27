@@ -32,7 +32,7 @@ window.PXPDF = (() => {
     let o = '';
     const walk = (n) => {
       if (n.nodeType === 3) { o += n.nodeValue; return; }
-      if (n.nodeType !== 1 || n.hidden || n.matches('script, style, .px-tip') || getComputedStyle(n).display === 'none') return;
+      if (n.nodeType !== 1 || n.hidden || n.matches('script, style, .px-tip, .px-real') || getComputedStyle(n).display === 'none') return;
       for (const c of n.childNodes) walk(c);
       o += /^(P|DIV|LI|TR|H\d)$/.test(n.tagName) ? '\n' : ' ';
     };
@@ -293,7 +293,16 @@ window.PXPDF = (() => {
     if (el.matches('svg')) { await grafica(doc, el); return; }
     if (el.matches('.px-card')) {
       const h = el.querySelector(':scope > h3, :scope > summary h3');
-      doc.cabe(40);
+      // El título de la tarjeta pasa de página junto con su primera gráfica (o al menos con 200 pt de ella).
+      const g0 = [...el.querySelectorAll('svg')].find((x) => x.getBoundingClientRect().width > 0);
+      let pide = 40;
+      if (g0) {
+        const b = g0.getBoundingClientRect();
+        const notas = [...el.querySelectorAll(':scope > .px-note')].filter(visible).reduce((t, n) => t + Math.ceil(vtext(n).length / 150) * 9.8, 0);
+        const hg = b.height * Math.min(CW / b.width, 0.8), pag = doc.abajo() - doc.inicio();
+        pide = (hg + 30 + notas <= pag ? hg : 200) + 30 + notas;
+      }
+      doc.cabe(Math.min(pide, doc.abajo() - doc.inicio()));
       doc.linea(M, doc.y, M + CW, RGB.osc, 1.2);
       doc.y += 6;
       if (h) { doc.rect(M, doc.y + 2.5, 5, 5, RGB.guinda); doc.parrafo(limpia(vtext(h)), 9.5, true, RGB.tinta, M + 9, CW - 9, 13); }
@@ -339,7 +348,7 @@ window.PXPDF = (() => {
     doc.nueva(true);
     for (const ch of mod.children) {
       if (ch.matches('.px-mod-h')) {
-        const chips = [...ch.querySelectorAll('.px-upd-chip')].map((c) => limpia(vtext(c))).join('   ·   ');
+        const chips = [...ch.querySelectorAll('.px-upd-chip')].map((c) => limpia(vtext(c)).replace(/\s*·\s*$/, '')).filter(Boolean).join('   ·   ');
         if (chips) doc.parrafo(chips, 7.2, false, RGB.gris, M, CW, 9.8);
         const lead = ch.querySelector('.px-lead');
         if (lead && visible(lead)) { doc.y += 2; doc.parrafo(limpia(vtext(lead)), 9, false, RGB.tinta, M, CW, 12.5); }
