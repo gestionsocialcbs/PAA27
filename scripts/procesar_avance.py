@@ -106,6 +106,8 @@ RX_NO_APTO = re.compile(r'sanitari|\bbanos?\b|\bwc\b|regadera|vestidor|bodega|al
 RX_PASO = re.compile(r'vestibulo|pasillo|escalera|recepcion|oficina|cubiculo|\bdireccion\b|administraci|sala de espera')
 RX_ALBERCA = re.compile(r'alberca|chapoteadero|fosa de clavados|piscina')
 RX_ACUATICA = re.compile(r'natacion|clavados|polo acuatic|acuatic|aquaer|acuaer|hidrogimnasia|hidroterapia|matronatacion|nado sincronizado|buceo|salvavidas|aquazumba|acuazumba')
+# Actividades que no entran en las notas de advertencia (indicación de la DATMP).
+RX_EXENTA = re.compile(r'cuida tu espalda')
 REGLAS = {
     'no_apto': ('Alerta', 'Espacio no apto por su nombre (sanitarios, bodegas, estacionamiento u otros servicios)'),
     'acuatica_fuera': ('Alerta', 'Actividad acuática fuera de alberca'),
@@ -119,6 +121,8 @@ def reglas_de(nom_rep, cat, es_cec, actividad, agrupacion):
     acuatica = bool(RX_ACUATICA.search(low(actividad))) or low(agrupacion).strip() == 'actividades acuaticas'
     alberca = bool(RX_ALBERCA.search(n)) or (cat or {}).get('tipo_instalacion') == 'Instalaciones Deportivas Acuáticas'
     out = []
+    if RX_EXENTA.search(low(actividad)):
+        return out
     if es_cec:
         return out  # en los Centros de Extensión el espacio no está en el catálogo de instalaciones
     if low(nom_rep).strip() in ('', 'sin instalacion', 'none'):
