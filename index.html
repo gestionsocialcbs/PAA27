@@ -61,7 +61,7 @@
 @media (max-width: 720px) { .px-tbl { font-size:12px; } .px-tbl td, .px-tbl th { padding:4px 6px; } }
 .px-tbl td { padding:var(--cds-pad-xs) var(--cds-pad-sm); border-bottom:1px solid var(--color-border-line); vertical-align:top; line-height:1.4; }
 .px-tbl .px-num { text-align:right; }
-.px-tbl th button { all:unset; cursor:pointer; }
+.px-tbl th button { all:unset; cursor:pointer; display:inline-block; } .px-tbl th button:hover, .px-tbl th[aria-sort=ascending] button, .px-tbl th[aria-sort=descending] button { color:var(--px-verde, #1E5B4F); } .px-tbl th button:focus-visible { outline:2px solid var(--px-oro, #A57F2C); outline-offset:2px; }
 .px-tbl th[aria-sort=ascending] button::after { content:' ↑'; } .px-tbl th[aria-sort=descending] button::after { content:' ↓'; }
 .px-tbl tr.px-on td { background:color-mix(in srgb, var(--px-oro) 10%, transparent); }
 .px-cellbar { height:4px; border-radius:2px; background:var(--px-verde); margin-top:3px; }
@@ -506,7 +506,7 @@
     </div>
     <div class="px-card" id="adv-lista">
       <h3>Grupos con advertencia</h3>
-      <p class="px-note">Primero las alertas. Se muestran hasta 300 grupos del ámbito; elige una OOAD o una Unidad Operativa para ver los suyos.</p>
+      <p class="px-note">Primero las alertas; haz clic en cualquier encabezado para ordenar la tabla (otro clic invierte el orden). Se muestran hasta 300 grupos del ámbito; elige una OOAD o una Unidad Operativa para ver los suyos.</p>
       <div class="px-tbl-wrap" style="max-height:520px"><table class="px-tbl" data-source="av_alertas" data-row-key="unidad,grupo,regla"><thead><tr><th data-field="nivel">Nota</th><th data-field="unidad_operativa">Unidad Operativa</th><th data-field="grupo">Clave del grupo</th><th data-field="instalacion">Espacio registrado</th><th data-field="actividad">Actividad</th><th data-field="mes" class="px-num">Mes</th><th data-field="inscripciones" class="px-num">Inscripciones</th><th data-field="regla_t">Advertencia</th></tr></thead><tbody data-draw="adv-tabla"></tbody></table></div>
       <p class="px-note" data-draw="adv-mas"></p>
     </div>

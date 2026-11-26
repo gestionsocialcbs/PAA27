@@ -81,10 +81,47 @@ dash.draw('ch-adv-nivel', (el) => {
   PX.hover(el, g, (d) => [d.nombre, ['Alertas', PX.fmt(d.Alerta)], ['Por revisar', PX.fmt(d.Revisar)]]);
   if (s.nivel !== 'Unidad Operativa') g.on('click', (ev, d) => (s.nivel === 'Nacional' ? dash.setParams({ ooad: d.k, uo: null, inst: null }) : dash.setParams({ ooad: d.ooad, uo: d.k, inst: null })));
 });
-dash.draw('adv-tabla', (el) => {
+// Orden de la tabla: clic en cualquier encabezado (otro clic invierte el sentido). Por omisión, primero las alertas.
+PXADV.ord = { f: 'nivel', dir: 1 };
+PXADV.ordenar = (rows) => {
+  const { f, dir } = PXADV.ord;
+  const num = f === 'mes' || f === 'inscripciones';
+  const txt = (v) => String(v ?? '');
+  const base = (a, b) => txt(a.unidad_operativa).localeCompare(txt(b.unidad_operativa), 'es') || txt(a.grupo).localeCompare(txt(b.grupo), 'es', { numeric: true });
+  const cmp = (a, b) => {
+    let c;
+    if (f === 'nivel') c = (a.nivel === b.nivel ? 0 : a.nivel === 'Alerta' ? -1 : 1);
+    else if (num) c = (Number(a[f]) || 0) - (Number(b[f]) || 0);
+    else c = txt(a[f]).localeCompare(txt(b[f]), 'es', { numeric: true, sensitivity: 'base' });
+    return c * dir || base(a, b);
+  };
+  return rows.slice().sort(cmp);
+};
+PXADV.encabezados = (tbody) => {
+  const table = tbody.closest('table');
+  table.querySelectorAll('thead th[data-field]').forEach((th) => {
+    if (!th.querySelector('button')) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = th.textContent;
+      b.title = 'Ordenar por ' + th.textContent.toLowerCase();
+      th.textContent = '';
+      th.appendChild(b);
+      b.addEventListener('click', () => {
+        const f = th.dataset.field;
+        PXADV.ord = PXADV.ord.f === f ? { f, dir: -PXADV.ord.dir } : { f, dir: f === 'inscripciones' ? -1 : 1 };
+        PXADV.pintar(tbody);
+      });
+    }
+    th.setAttribute('aria-sort', th.dataset.field === PXADV.ord.f ? (PXADV.ord.dir > 0 ? 'ascending' : 'descending') : 'none');
+  });
+};
+PXADV.pintar = (el) => {
   const rows = PXADV.rows();
   if (!rows) return;
-  const L = rows.slice().sort((a, b) => (a.nivel === b.nivel ? String(a.unidad_operativa).localeCompare(String(b.unidad_operativa)) || String(a.grupo).localeCompare(String(b.grupo)) : a.nivel === 'Alerta' ? -1 : 1)).slice(0, 300);
+  el.textContent = '';
+  PXADV.encabezados(el);
+  const L = PXADV.ordenar(rows).slice(0, 300);
   if (!L.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 8; td.className = 'px-note'; td.textContent = 'Sin notas de advertencia en el ámbito y el área seleccionados.'; tr.appendChild(td); el.appendChild(tr); return; }
   for (const r of L) {
     const tr = document.createElement('tr');
@@ -95,7 +132,8 @@ dash.draw('adv-tabla', (el) => {
     c(r.unidad_operativa); c(r.grupo); c(r.instalacion || '—'); c(r.actividad); c(r.mes ? PXP.MESES[r.mes - 1].slice(0, 3) : '—', 'px-num'); c(PX.fmt(r.inscripciones), 'px-num'); c(r.regla_t);
     el.appendChild(tr);
   }
-});
+};
+dash.draw('adv-tabla', (el) => PXADV.pintar(el));
 dash.draw('adv-mas', (el) => {
   const rows = PXADV.rows();
   el.textContent = rows && rows.length > 300 ? 'Se muestran 300 de ' + PX.fmt(rows.length) + ' notas; filtra por OOAD o Unidad Operativa para ver el resto.' : '';
