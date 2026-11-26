@@ -103,16 +103,18 @@ ALERTAS = []
 SIN_AC = str.maketrans('ÁÉÍÓÚÜáéíóúü', 'AEIOUUaeiouu')
 low = lambda v: ' ' + re.sub(r'\s+', ' ', str(v or '').translate(SIN_AC).lower()) + ' '
 RX_NO_APTO = re.compile(r'sanitari|\bbanos?\b|\bwc\b|regadera|vestidor|bodega|almacen|estacionamiento|cuarto de maquinas|caseta|cisterna|azotea|cuarto de aseo|intendencia|basura')
-RX_PASO = re.compile(r'vestibulo|pasillo|escalera|recepcion|oficina|cubiculo|\bdireccion\b|administraci|sala de espera')
+RX_PASO = re.compile(r'pasillo|escalera|recepcion|oficina|cubiculo|\bdireccion\b|administraci|sala de espera')
 RX_ALBERCA = re.compile(r'alberca|chapoteadero|fosa de clavados|piscina')
 RX_ACUATICA = re.compile(r'natacion|clavados|polo acuatic|acuatic|aquaer|acuaer|hidrogimnasia|hidroterapia|matronatacion|nado sincronizado|buceo|salvavidas|aquazumba|acuazumba')
 # Actividades que no entran en las notas de advertencia (indicación de la DATMP).
 RX_EXENTA = re.compile(r'cuida tu espalda')
+# Espacios de una unidad que no entran en las notas de advertencia: (unidad, nombre del espacio sin acentos ni mayúsculas).
+EXENTAS_INST = {('1-101', 'cubiculo de evaluacion (otm-pass) 2')}  # CSS Aguascalientes
 REGLAS = {
     'no_apto': ('Alerta', 'Espacio no apto por su nombre (sanitarios, bodegas, estacionamiento u otros servicios)'),
     'acuatica_fuera': ('Alerta', 'Actividad acuática fuera de alberca'),
     'no_acuatica_alberca': ('Revisar', 'Actividad no acuática en alberca'),
-    'paso': ('Revisar', 'Área de paso u oficina (vestíbulo, pasillo, oficina, cubículo)'),
+    'paso': ('Revisar', 'Área de paso u oficina (pasillo, oficina, cubículo)'),
     'sin_instalacion': ('Revisar', 'Grupo sin instalación asignada'),
 }
 def reglas_de(nom_rep, cat, es_cec, actividad, agrupacion):
@@ -180,7 +182,8 @@ for r in it:
             USO[(unidad, key)].append((ini, max(fin, ini), ds, hi, hf))
     mes = int(num(r[I['CVE_MES']], ini.month if ini else 0)) or (ini.month if ini else 0)
     cupo = num(r[I['CAN_CUPO']])
-    for rg in reglas_de(r[I['DES_INSTALACION']], inst.get(ck), key == 'CEC', r[I['DES_ACTIVIDAD']], L['agrupacion'] if L else ''):
+    exenta = (unidad, low(r[I['DES_INSTALACION']]).strip()) in EXENTAS_INST
+    for rg in ([] if exenta else reglas_de(r[I['DES_INSTALACION']], inst.get(ck), key == 'CEC', r[I['DES_ACTIVIDAD']], L['agrupacion'] if L else '')):
         ALERTAS.append(dict(unidad=unidad, area=area, regla=rg, nivel=REGLAS[rg][0],
                             grupo=str(r[I['CVE_GRUPO_ID']]).strip() if 'CVE_GRUPO_ID' in I else (str(r[I['CVE_GRUPO']]).strip() if 'CVE_GRUPO' in I else ''),
                             cve_instalacion=key, instalacion=re.sub(r'\s+', ' ', str(r[I['DES_INSTALACION']] or '')).strip().capitalize(),
