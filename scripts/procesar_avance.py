@@ -110,6 +110,8 @@ RX_ACUATICA = re.compile(r'natacion|clavados|polo acuatic|acuatic|aquaer|acuaer|
 RX_EXENTA = re.compile(r'cuida tu espalda')
 # Espacios de una unidad que no entran en las notas de advertencia: (unidad, nombre del espacio sin acentos ni mayúsculas).
 EXENTAS_INST = {('1-101', 'cubiculo de evaluacion (otm-pass) 2')}  # CSS Aguascalientes
+# Espacios que no entran en ninguna unidad de una OOAD: (clave de OOAD, nombre del espacio sin acentos ni mayúsculas).
+EXENTAS_OOAD = {(27, 'cubiculo de evaluacion (otm-pass) 1')}  # Sonora
 REGLAS = {
     'no_apto': ('Alerta', 'Espacio no apto por su nombre (sanitarios, bodegas, estacionamiento u otros servicios)'),
     'acuatica_fuera': ('Alerta', 'Actividad acuática fuera de alberca'),
@@ -182,7 +184,8 @@ for r in it:
             USO[(unidad, key)].append((ini, max(fin, ini), ds, hi, hf))
     mes = int(num(r[I['CVE_MES']], ini.month if ini else 0)) or (ini.month if ini else 0)
     cupo = num(r[I['CAN_CUPO']])
-    exenta = (unidad, low(r[I['DES_INSTALACION']]).strip()) in EXENTAS_INST
+    nom_ex = low(r[I['DES_INSTALACION']]).strip()
+    exenta = (unidad, nom_ex) in EXENTAS_INST or (o, nom_ex) in EXENTAS_OOAD
     for rg in ([] if exenta else reglas_de(r[I['DES_INSTALACION']], inst.get(ck), key == 'CEC', r[I['DES_ACTIVIDAD']], L['agrupacion'] if L else '')):
         ALERTAS.append(dict(unidad=unidad, area=area, regla=rg, nivel=REGLAS[rg][0],
                             grupo=str(r[I['CVE_GRUPO_ID']]).strip() if 'CVE_GRUPO_ID' in I else (str(r[I['CVE_GRUPO']]).strip() if 'CVE_GRUPO' in I else ''),
