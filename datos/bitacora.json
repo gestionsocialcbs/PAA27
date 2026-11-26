@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-26T20:22:17Z",
+ "ejecucion": "2026-11-26T21:44:16Z",
  "carpetas": {
   "PAA": "26112026",
   "Real": "12112026"
@@ -11,59 +11,7 @@
    "archivo": "REPORTE_PAA_CURSOS_26112026_1324.xlsx",
    "tamano_mb": 12.3,
    "fecha_corte": "2026-11-26",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-26",
-    "grupos": 66123,
-    "inscripciones": 1023746,
-    "asistencias": 20093073,
-    "unidades": 152,
-    "instalaciones": 1627,
-    "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 446,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 19,
-     "no_acuatica_alberca": 231,
-     "paso": 196,
-     "sin_instalacion": 0
-    },
-    "control": {
-     "filas_archivo": 66123,
-     "cupo_archivo": 1023746,
-     "filas_sin_clave": 0,
-     "cupo_sin_clave": 0,
-     "cupo_fuera_universo": 0
-    },
-    "archivo": "REPORTE_PAA_CURSOS_26112026_1324.xlsx",
-    "hora_consulta": "10:46"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-26",
-    "grupos": 66123,
-    "inscripciones": 1023746,
-    "asistencias": 20093073,
-    "unidades": 152,
-    "instalaciones": 1627,
-    "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 787,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 19,
-     "no_acuatica_alberca": 231,
-     "paso": 537,
-     "sin_instalacion": 0
-    },
-    "control": {
-     "filas_archivo": 66123,
-     "cupo_archivo": 1023746,
-     "filas_sin_clave": 0,
-     "cupo_sin_clave": 0,
-     "cupo_fuera_universo": 0
-    },
-    "archivo": "REPORTE_PAA_CURSOS_26112026_1324.xlsx",
-    "hora_consulta": "10:46"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "M2",
@@ -108,39 +56,12 @@
   {
    "id": "IP",
    "reporte": "Instalaciones programables (cruce con la HRI 2027)",
-   "estado": "actualizado",
-   "fecha_corte": "2026-11-26",
-   "corte": {
-    "fecha_corte": "2026-11-26",
-    "programables": 2838,
-    "programables_con_registro": 1641,
-    "no_programables_con_registro": 18,
-    "grupos_sin_catalogo": 29765,
-    "unidades": 157
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "PR",
    "reporte": "Pronóstico de cumplimiento del Programa Anual 2027",
-   "estado": "actualizado",
-   "fecha_corte": "2026-11-26",
-   "corte": {
-    "fecha_corte": "2026-11-26",
-    "cierre": "2026-11-30",
-    "dias_habiles_restantes": 2,
-    "cortes": 8,
-    "meta_2027": 1267527,
-    "inscripciones": 1023746,
-    "asistencias": 20093073,
-    "ritmo_diario": 178397.3,
-    "ritmo_necesario": 121890.5,
-    "proyeccion_cierre": 1158137,
-    "asistencias_proyectadas": 22761643,
-    "avance_proyectado": 0.9137,
-    "real_2027_inscripciones": 1118261,
-    "real_2027_asistencias": 16981011,
-    "cumplimiento_real_estimado": 0.8822
-   }
+   "estado": "sin cambios (ya publicado)"
   }
  ],
  "pendientes": []
