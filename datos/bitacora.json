@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-26T18:24:34Z",
+ "ejecucion": "2026-11-26T20:22:17Z",
  "carpetas": {
   "PAA": "26112026",
   "Real": "12112026"
@@ -20,12 +20,12 @@
     "unidades": 152,
     "instalaciones": 1627,
     "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 787,
+    "grupos_con_advertencia": 446,
     "advertencias": {
      "no_apto": 0,
      "acuatica_fuera": 19,
      "no_acuatica_alberca": 231,
-     "paso": 537,
+     "paso": 196,
      "sin_instalacion": 0
     },
     "control": {
@@ -46,12 +46,12 @@
     "unidades": 152,
     "instalaciones": 1627,
     "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 1074,
+    "grupos_con_advertencia": 787,
     "advertencias": {
      "no_apto": 0,
      "acuatica_fuera": 19,
-     "no_acuatica_alberca": 511,
-     "paso": 544,
+     "no_acuatica_alberca": 231,
+     "paso": 537,
      "sin_instalacion": 0
     },
     "control": {
