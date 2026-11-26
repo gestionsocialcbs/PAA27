@@ -329,24 +329,32 @@ window.PXPDF = (() => {
     doc.y += 3;
   }
 
-  async function generar(n) {
+  async function generar(n, secId) {
     const mod = document.getElementById('modulo-' + n);
     if (!mod) return null;
+    const sec = secId ? document.getElementById(secId) : null;
     const sel = (id) => { const s = document.getElementById(id); return s && s.selectedIndex >= 0 ? limpia(s.options[s.selectedIndex].textContent) : ''; };
     const ooad = sel('px-f-ooad') || 'Nacional', uo = sel('px-f-uo'), area = sel('px-f-area') || 'Todas las áreas';
     const amb = [ooad, uo && !/^elige|^todas/i.test(uo) ? uo : ''].filter(Boolean).join(' · ');
     const med = n === '1' ? ' · ' + (PXMED.t ? PXMED.t() : '') : '';
     const hoy = new Date();
-    const sub = 'Ámbito: ' + amb + ' · Área: ' + area + med + ' · Descargado el ' + hoy.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
-    const titulo = 'Módulo ' + n + ' · ' + limpia(mod.querySelector('.px-mod-t')?.textContent).replace(/^\d+\s*/, '');
+    const sub = 'Ámbito: ' + amb + ' · Área: ' + area + (sec ? '' : med) + ' · Descargado el ' + hoy.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
+    let titulo = 'Módulo ' + n + ' · ' + limpia(mod.querySelector('.px-mod-t')?.textContent).replace(/^\d+\s*/, '');
+    let sub2 = '';
+    if (sec) {
+      titulo = 'Módulo ' + n + ' · ' + (limpia(sec.querySelector('.px-sec-n')?.textContent).replace(/^\d+\s*·\s*/, '') || 'Apartado');
+      const th = sec.querySelector('th[aria-sort="ascending"], th[aria-sort="descending"]');
+      if (th) sub2 = ' · Tabla ordenada por ' + limpia(th.textContent).toLowerCase() + (th.dataset.field === 'nivel' ? (th.getAttribute('aria-sort') === 'ascending' ? ' (primero las alertas)' : ' (primero por revisar)') : th.getAttribute('aria-sort') === 'ascending' ? ' (ascendente)' : ' (descendente)');
+    }
     const logos = [];
     const tmp = new Doc('', '', []);
     for (const img of document.querySelectorAll('.px-brand-l img')) {
       try { const cv = imgCanvas(img); logos.push({ i: tmp.addJpeg(jpeg(cv), cv.width, cv.height), w: cv.width, h: cv.height }); } catch (e) { /* sin logotipo */ }
     }
-    const doc = Object.assign(Object.create(Doc.prototype), { pages: [], imgs: tmp.imgs, titulo, sub, logos });
+    const doc = Object.assign(Object.create(Doc.prototype), { pages: [], imgs: tmp.imgs, titulo, sub: sub + sub2, logos });
     doc.nueva(true);
     for (const ch of mod.children) {
+      if (sec && !ch.matches('.px-mod-h') && ch !== sec) continue;
       if (ch.matches('.px-mod-h')) {
         const chips = [...ch.querySelectorAll('.px-upd-chip')].map((c) => limpia(vtext(c)).replace(/\s*·\s*$/, '')).filter(Boolean).join('   ·   ');
         if (chips) doc.parrafo(chips, 7.2, false, RGB.gris, M, CW, 9.8);
@@ -357,7 +365,7 @@ window.PXPDF = (() => {
       }
       await bloque(doc, ch);
     }
-    const nombre = 'PAA2027_Modulo' + n + '_' + amb.replace(/[^\p{L}\p{N}]+/gu, '_').replace(/^_|_$/g, '') + '.pdf';
+    const nombre = 'PAA2027_' + (sec ? 'Advertencias' : 'Modulo' + n) + '_' + amb.replace(/[^\p{L}\p{N}]+/gu, '_').replace(/^_|_$/g, '') + '.pdf';
     return { bytes: doc.bytes(), nombre };
   }
 
@@ -367,7 +375,7 @@ window.PXPDF = (() => {
     btn.disabled = true;
     btn.textContent = 'Preparando PDF…';
     try {
-      const r = await generar(n);
+      const r = await generar(n, btn.dataset.sec);
       if (!r) return;
       const blob = new Blob([r.bytes], { type: 'application/pdf' });
       let dl = null;

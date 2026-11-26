@@ -282,6 +282,7 @@
 .px-pdf { display:inline-flex; align-items:center; gap:6px; font:inherit; font-size:var(--cds-font-size-caption); font-weight:600; color:var(--px-verde-osc); background:var(--color-panel); border:1px solid var(--px-oro); border-radius:999px; padding:3px 12px 3px 9px; cursor:pointer; margin-right:auto; margin-left:var(--cds-gap-sm); }
 .px-pdf svg { width:14px; height:14px; color:var(--px-oro); }
 .px-pdf:hover { background:var(--px-crema); }
+.px-pdf-sec { align-self:flex-start; margin:2px 0 4px; }
 .px-pdf:disabled { opacity:.6; cursor:progress; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .px-pdf { color:var(--color-fg); } }
 :root[data-theme="dark"] .px-pdf { color:var(--color-fg); }
@@ -492,6 +493,7 @@
     <div class="px-sec-h">
       <div class="px-sec-n">03 · Notas de advertencia</div>
       <h2 class="px-sec-t">Notas de advertencia en el registro de cursos y talleres</h2>
+      <button type="button" class="px-pdf px-pdf-sec" data-mod="1" data-sec="advertencias" title="Descarga solo este apartado en PDF, con los filtros elegidos y el orden de la tabla"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0-3-3m3 3 3-3M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar este apartado en PDF</button>
       <p class="px-sec-d">Grupos del REPORTE PAA CURSOS, con corte al <b class="px-strong" data-draw="upd" data-src="avance_corte" data-source="avance_corte" data-field="fecha_corte">—</b>, cuyo registro conviene revisar por el nombre del espacio o por la combinación de actividad y espacio. <b class="px-strong">Alerta</b>: registro que no debería existir así; <b class="px-strong">Revisar</b>: registro que puede ser correcto pero conviene confirmar. Cada nota trae la clave del grupo para corregirlo en SIPSI. Responde a los filtros de ámbito y de área.</p>
     </div>
     <div class="px-kpis">
