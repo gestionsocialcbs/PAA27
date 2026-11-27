@@ -463,13 +463,13 @@ dash.draw('ch-metas-ooad', (el) => {
   const a = PX.area(), l = PXM.lista(), m = PXMED.m();
   const ins = m !== 'asistencias';
   const rows = dash.data('av_nivel').data.filter((r) => r.nivel === l.nivel && r.padre === l.padre && r.area === a && (ins ? r.meta_2027 : r.asistencias > 0));
-  // Dentro de una OOAD se agregan, en gris, las Unidades Operativas del catálogo que no tienen registro.
+  // Dentro de una OOAD se agregan, en gris, las Unidades Operativas del catálogo que no tienen registro (sin los teatros).
   if (l.nivel === 'Unidad Operativa' && dash.data('unidades_operativas').status === 'ok') {
     const ya = new Set(rows.map((r) => r.clave));
     const mn = dash.data('metas_nivel').status === 'ok' ? dash.data('metas_nivel').data : [];
     for (const u of dash.data('unidades_operativas').data) {
       const clave = Math.floor(u.cve_uo / 1000) + '-' + (u.cve_uo % 1000);
-      if (String(u.cve_ooad) !== String(l.padre) || ya.has(clave)) continue;
+      if (String(u.cve_ooad) !== String(l.padre) || ya.has(clave) || /teatro/i.test(u.tipo_uo || '')) continue; // los teatros se siguen en el Módulo 3
       const mm = mn.filter((x) => x.nivel === 'Unidad Operativa' && x.clave === clave && (a === 'Todas' || x.area === a));
       const meta = d3.sum(mm, (x) => x.meta_2027 || 0);
       rows.push({ nivel: 'Unidad Operativa', clave, padre: String(l.padre), nombre: u.unidad_operativa, tipo: u.tipo_uo, area: a, grupos: 0, inscripciones: 0, asistencias: 0, meta_2027: meta, avance: meta ? 0 : null, semaforo: null, sinRegistro: true });
