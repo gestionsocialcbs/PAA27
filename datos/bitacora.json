@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-27T20:28:12Z",
+ "ejecucion": "2026-11-27T21:28:16Z",
  "carpetas": {
   "PAA": "27112026",
   "Real": "12112026"
@@ -11,59 +11,7 @@
    "archivo": "REPORTE_PAA_CURSOS_27112026_1324.xlsx",
    "tamano_mb": 15.0,
    "fecha_corte": "2026-11-27",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-27",
-    "grupos": 80581,
-    "inscripciones": 1246397,
-    "asistencias": 24283720,
-    "unidades": 153,
-    "instalaciones": 1807,
-    "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 428,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 27,
-     "no_acuatica_alberca": 364,
-     "paso": 37,
-     "sin_instalacion": 0
-    },
-    "control": {
-     "filas_archivo": 80581,
-     "cupo_archivo": 1246397,
-     "filas_sin_clave": 0,
-     "cupo_sin_clave": 0,
-     "cupo_fuera_universo": 0
-    },
-    "archivo": "REPORTE_PAA_CURSOS_27112026_1324.xlsx",
-    "hora_consulta": "14:14"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-27",
-    "grupos": 76724,
-    "inscripciones": 1190653,
-    "asistencias": 23294562,
-    "unidades": 153,
-    "instalaciones": 1764,
-    "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 391,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 27,
-     "no_acuatica_alberca": 321,
-     "paso": 43,
-     "sin_instalacion": 0
-    },
-    "control": {
-     "filas_archivo": 76724,
-     "cupo_archivo": 1190653,
-     "filas_sin_clave": 0,
-     "cupo_sin_clave": 0,
-     "cupo_fuera_universo": 0
-    },
-    "archivo": "REPORTE_PAA_CURSOS_27112026_1324.xlsx",
-    "hora_consulta": "09:36"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "M2",
@@ -71,27 +19,7 @@
    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_27112026_1324.xlsx",
    "tamano_mb": 6.4,
    "fecha_corte": "2026-11-27",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-27",
-    "actividades": 41292,
-    "asistencias": 3353949,
-    "cupo": 3353949,
-    "unidades": 149,
-    "grupos_fuera_universo": 0,
-    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_27112026_1324.xlsx",
-    "hora_consulta": "14:16"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-27",
-    "actividades": 38324,
-    "asistencias": 3277752,
-    "cupo": 3277752,
-    "unidades": 147,
-    "grupos_fuera_universo": 0,
-    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_27112026_1324.xlsx",
-    "hora_consulta": "09:38"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "M3",
@@ -99,27 +27,7 @@
    "archivo": "Reporte_PAA_Teatros_27_11_2026.xls",
    "tamano_mb": 0.4,
    "fecha_corte": "2026-11-27",
-   "estado": "actualizado",
-   "corte": {
-    "fecha_corte": "2026-11-27",
-    "eventos": 5455,
-    "asistencias": 739483,
-    "teatros": 31,
-    "registros_fuera_universo": 0,
-    "registros_otro_anio": 0,
-    "archivo": "Reporte_PAA_Teatros_27_11_2026.xls",
-    "hora_consulta": "14:17"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-27",
-    "eventos": 5314,
-    "asistencias": 718537,
-    "teatros": 30,
-    "registros_fuera_universo": 0,
-    "registros_otro_anio": 0,
-    "archivo": "Reporte_PAA_Teatros_27_11_2026.xls",
-    "hora_consulta": "09:39"
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "R1",
@@ -148,39 +56,12 @@
   {
    "id": "IP",
    "reporte": "Instalaciones programables (cruce con la HRI 2027)",
-   "estado": "actualizado",
-   "fecha_corte": "2026-11-27",
-   "corte": {
-    "fecha_corte": "2026-11-27",
-    "programables": 2838,
-    "programables_con_registro": 1844,
-    "no_programables_con_registro": 19,
-    "grupos_sin_catalogo": 37949,
-    "unidades": 157
-   }
+   "estado": "sin cambios (ya publicado)"
   },
   {
    "id": "PR",
    "reporte": "Pronóstico de cumplimiento del Programa Anual 2027",
-   "estado": "actualizado",
-   "fecha_corte": "2026-11-27",
-   "corte": {
-    "fecha_corte": "2026-11-27",
-    "cierre": "2026-11-30",
-    "dias_habiles_restantes": 1,
-    "cortes": 9,
-    "meta_2027": 1267527,
-    "inscripciones": 1246397,
-    "asistencias": 24283720,
-    "ritmo_diario": 182619.0,
-    "ritmo_necesario": 21130.0,
-    "proyeccion_cierre": 1300898,
-    "asistencias_proyectadas": 25303266,
-    "avance_proyectado": 1.0263,
-    "real_2027_inscripciones": 1249722,
-    "real_2027_asistencias": 18706822,
-    "cumplimiento_real_estimado": 0.986
-   }
+   "estado": "sin cambios (ya publicado)"
   }
  ],
  "pendientes": []
