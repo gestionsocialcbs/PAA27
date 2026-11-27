@@ -459,20 +459,34 @@ dash.draw('avd', (el) => {
 
 // Meta por OOAD o por Unidad Operativa: burbujas del tamaño de la meta, llenas según el avance y del color del semáforo.
 dash.draw('ch-metas-ooad', (el) => {
-  if (!PX.ready(el, ['av_nivel', 'metas_nivel'])) return;
+  if (!PX.ready(el, ['av_nivel', 'metas_nivel', 'unidades_operativas'])) return;
   const a = PX.area(), l = PXM.lista(), m = PXMED.m();
   const ins = m !== 'asistencias';
   const rows = dash.data('av_nivel').data.filter((r) => r.nivel === l.nivel && r.padre === l.padre && r.area === a && (ins ? r.meta_2027 : r.asistencias > 0));
+  // Dentro de una OOAD se agregan, en gris, las Unidades Operativas del catálogo que no tienen registro.
+  if (l.nivel === 'Unidad Operativa' && dash.data('unidades_operativas').status === 'ok') {
+    const ya = new Set(rows.map((r) => r.clave));
+    const mn = dash.data('metas_nivel').status === 'ok' ? dash.data('metas_nivel').data : [];
+    for (const u of dash.data('unidades_operativas').data) {
+      const clave = Math.floor(u.cve_uo / 1000) + '-' + (u.cve_uo % 1000);
+      if (String(u.cve_ooad) !== String(l.padre) || ya.has(clave)) continue;
+      const mm = mn.filter((x) => x.nivel === 'Unidad Operativa' && x.clave === clave && (a === 'Todas' || x.area === a));
+      const meta = d3.sum(mm, (x) => x.meta_2027 || 0);
+      rows.push({ nivel: 'Unidad Operativa', clave, padre: String(l.padre), nombre: u.unidad_operativa, tipo: u.tipo_uo, area: a, grupos: 0, inscripciones: 0, asistencias: 0, meta_2027: meta, avance: meta ? 0 : null, semaforo: null, sinRegistro: true });
+    }
+  }
   const tot = d3.sum(rows, (r) => r.asistencias);
   // A nivel nacional, las OOAD se acomodan en un panal con la forma de México; dentro de una OOAD, burbujas agrupadas.
   (l.nivel === 'OOAD' ? PXZ.rejilla : PXZ.burbujas)(el, rows, {
     cve: (r) => r.clave,
     aria: (ins ? 'Avance contra la meta de inscripciones 2027' : 'Asistencias registradas') + ' por ' + (l.nivel === 'OOAD' ? 'OOAD' : 'Unidad Operativa'),
     size: l.nivel === 'OOAD' ? null : () => 1, fill: ins ? (r) => Math.min(1, r.avance || 0) : null,
-    color: (r) => (ins ? (r.inscripciones > 0 ? PXS.color(r.semaforo) : '#98989A') : d3.interpolateRgb('#D9B5C0', '#9B2247')(Math.sqrt(r.asistencias / (d3.max(rows, (x) => x.asistencias) || 1)))),
-    label: (r) => r.nombre, sub: (r) => (ins ? PXZ.pct(r.avance) : PXZ.compact(r.asistencias)),
+    color: (r) => (r.sinRegistro ? '#98989A' : ins ? (r.inscripciones > 0 ? PXS.color(r.semaforo) : '#98989A') : d3.interpolateRgb('#D9B5C0', '#9B2247')(Math.sqrt(r.asistencias / (d3.max(rows, (x) => x.asistencias) || 1)))),
+    label: (r) => r.nombre, sub: (r) => (r.sinRegistro ? 'Sin registro' : ins ? PXZ.pct(r.avance) : PXZ.compact(r.asistencias)),
     click: (r) => dash.setParams(r.nivel === 'OOAD' ? { ooad: r.clave, uo: null } : { ooad: r.padre, uo: r.clave }),
-    tip: (r) => (ins
+    tip: (r) => (r.sinRegistro
+      ? [r.nombre, ['Tipo de unidad', r.tipo || '—'], ['Meta de inscripciones 2027', r.meta_2027 ? PX.fmt(Math.round(r.meta_2027)) : 'Sin meta'], ['Registro en el PAA 2027', 'Sin registro de información']]
+      : ins
       ? [r.nombre, ['Meta de inscripciones 2027', PX.fmt(Math.round(r.meta_2027))], ['Inscripciones registradas', PX.fmt(Math.round(r.inscripciones))], ['Avance', PXZ.pct(r.avance)], ['Semáforo', r.semaforo || 'Sin registro']]
       : [r.nombre, ['Asistencias registradas', PX.fmt(Math.round(r.asistencias))], ['Participación en las asistencias', tot ? PXZ.pct(r.asistencias / tot) : '—'], ['Inscripciones registradas', PX.fmt(Math.round(r.inscripciones))], ['Grupos registrados', PX.fmt(r.grupos)]]),
   });
