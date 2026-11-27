@@ -1,5 +1,5 @@
 {
- "ejecucion": "2026-11-27T15:42:28Z",
+ "ejecucion": "2026-11-27T20:28:12Z",
  "carpetas": {
   "PAA": "27112026",
   "Real": "12112026"
@@ -9,10 +9,36 @@
    "id": "M1",
    "reporte": "Cursos y talleres (PAA)",
    "archivo": "REPORTE_PAA_CURSOS_27112026_1324.xlsx",
-   "tamano_mb": 14.3,
+   "tamano_mb": 15.0,
    "fecha_corte": "2026-11-27",
    "estado": "actualizado",
    "corte": {
+    "fecha_corte": "2026-11-27",
+    "grupos": 80581,
+    "inscripciones": 1246397,
+    "asistencias": 24283720,
+    "unidades": 153,
+    "instalaciones": 1807,
+    "grupos_fuera_universo": 0,
+    "grupos_con_advertencia": 428,
+    "advertencias": {
+     "no_apto": 0,
+     "acuatica_fuera": 27,
+     "no_acuatica_alberca": 364,
+     "paso": 37,
+     "sin_instalacion": 0
+    },
+    "control": {
+     "filas_archivo": 80581,
+     "cupo_archivo": 1246397,
+     "filas_sin_clave": 0,
+     "cupo_sin_clave": 0,
+     "cupo_fuera_universo": 0
+    },
+    "archivo": "REPORTE_PAA_CURSOS_27112026_1324.xlsx",
+    "hora_consulta": "14:14"
+   },
+   "corte_anterior": {
     "fecha_corte": "2026-11-27",
     "grupos": 76724,
     "inscripciones": 1190653,
@@ -37,42 +63,26 @@
     },
     "archivo": "REPORTE_PAA_CURSOS_27112026_1324.xlsx",
     "hora_consulta": "09:36"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-26",
-    "grupos": 72035,
-    "inscripciones": 1118731,
-    "asistencias": 21872239,
-    "unidades": 152,
-    "instalaciones": 1707,
-    "grupos_fuera_universo": 0,
-    "grupos_con_advertencia": 349,
-    "advertencias": {
-     "no_apto": 0,
-     "acuatica_fuera": 22,
-     "no_acuatica_alberca": 284,
-     "paso": 43,
-     "sin_instalacion": 0
-    },
-    "control": {
-     "filas_archivo": 72035,
-     "cupo_archivo": 1118731,
-     "filas_sin_clave": 0,
-     "cupo_sin_clave": 0,
-     "cupo_fuera_universo": 0
-    },
-    "archivo": "REPORTE_PAA_CURSOS_26112026_1324.xlsx",
-    "hora_consulta": "16:46"
    }
   },
   {
    "id": "M2",
    "reporte": "Actividades complementarias (PAA)",
    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_27112026_1324.xlsx",
-   "tamano_mb": 5.9,
+   "tamano_mb": 6.4,
    "fecha_corte": "2026-11-27",
    "estado": "actualizado",
    "corte": {
+    "fecha_corte": "2026-11-27",
+    "actividades": 41292,
+    "asistencias": 3353949,
+    "cupo": 3353949,
+    "unidades": 149,
+    "grupos_fuera_universo": 0,
+    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_27112026_1324.xlsx",
+    "hora_consulta": "14:16"
+   },
+   "corte_anterior": {
     "fecha_corte": "2026-11-27",
     "actividades": 38324,
     "asistencias": 3277752,
@@ -81,16 +91,6 @@
     "grupos_fuera_universo": 0,
     "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_27112026_1324.xlsx",
     "hora_consulta": "09:38"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-26",
-    "actividades": 33554,
-    "asistencias": 2980717,
-    "cupo": 2980717,
-    "unidades": 135,
-    "grupos_fuera_universo": 0,
-    "archivo": "REPORTE_PAA_ACOMPLEMENTARIA_26112026_1324.xlsx",
-    "hora_consulta": "16:47"
    }
   },
   {
@@ -102,6 +102,16 @@
    "estado": "actualizado",
    "corte": {
     "fecha_corte": "2026-11-27",
+    "eventos": 5455,
+    "asistencias": 739483,
+    "teatros": 31,
+    "registros_fuera_universo": 0,
+    "registros_otro_anio": 0,
+    "archivo": "Reporte_PAA_Teatros_27_11_2026.xls",
+    "hora_consulta": "14:17"
+   },
+   "corte_anterior": {
+    "fecha_corte": "2026-11-27",
     "eventos": 5314,
     "asistencias": 718537,
     "teatros": 30,
@@ -109,16 +119,6 @@
     "registros_otro_anio": 0,
     "archivo": "Reporte_PAA_Teatros_27_11_2026.xls",
     "hora_consulta": "09:39"
-   },
-   "corte_anterior": {
-    "fecha_corte": "2026-11-26",
-    "eventos": 4879,
-    "asistencias": 676653,
-    "teatros": 29,
-    "registros_fuera_universo": 0,
-    "registros_otro_anio": 0,
-    "archivo": "Reporte_PAA_Teatros_26_11_2026.xls",
-    "hora_consulta": "16:48"
    }
   },
   {
@@ -153,9 +153,9 @@
    "corte": {
     "fecha_corte": "2026-11-27",
     "programables": 2838,
-    "programables_con_registro": 1797,
-    "no_programables_con_registro": 20,
-    "grupos_sin_catalogo": 35954,
+    "programables_con_registro": 1844,
+    "no_programables_con_registro": 19,
+    "grupos_sin_catalogo": 37949,
     "unidades": 157
    }
   },
@@ -170,16 +170,16 @@
     "dias_habiles_restantes": 1,
     "cortes": 9,
     "meta_2027": 1267527,
-    "inscripciones": 1190653,
-    "asistencias": 23294562,
-    "ritmo_diario": 163357.0,
-    "ritmo_necesario": 76874.0,
-    "proyeccion_cierre": 1252126,
-    "asistencias_proyectadas": 24513701,
-    "avance_proyectado": 0.9878,
-    "real_2027_inscripciones": 1205422,
-    "real_2027_asistencias": 18147227,
-    "cumplimiento_real_estimado": 0.951
+    "inscripciones": 1246397,
+    "asistencias": 24283720,
+    "ritmo_diario": 182619.0,
+    "ritmo_necesario": 21130.0,
+    "proyeccion_cierre": 1300898,
+    "asistencias_proyectadas": 25303266,
+    "avance_proyectado": 1.0263,
+    "real_2027_inscripciones": 1249722,
+    "real_2027_asistencias": 18706822,
+    "cumplimiento_real_estimado": 0.986
    }
   }
  ],
